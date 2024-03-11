@@ -10,6 +10,7 @@ import { HomepageComponent } from './core/component/homepage/homepage.component'
 import { HttpClientModule } from '@angular/common/http';
 import { AdminPanelComponent } from './core/component/admin-panel/admin-panel.component';
 import { SignUpComponent } from './core/component/sign-up/sign-up.component';
+import { MenuComponent } from './core/component/menu/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { SignUpComponent } from './core/component/sign-up/sign-up.component';
     LoginComponent,
     HomepageComponent,
     AdminPanelComponent,
-    SignUpComponent
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,

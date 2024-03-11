@@ -8,9 +8,16 @@ import { SignUpComponent } from './core/component/sign-up/sign-up.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'homepage', component: HomepageComponent},
-  { path: 'adminPanel', component: AdminPanelComponent},
-  { path: 'signup', component: SignUpComponent},
+  {
+    path: 'homepage', component: HomepageComponent, children: [
+      {
+        path: 'product', loadChildren: () => import('./modules/product/product.module')
+          .then(p => p.ProductModule)
+      }
+    ]
+  },
+  { path: 'adminPanel', component: AdminPanelComponent },
+  { path: 'signup', component: SignUpComponent },
   { path: '**', redirectTo: 'login' }
 
 ];

@@ -35,7 +35,7 @@ export class LoginComponent {
       next: (value) => {
         this.toastr.success('Successfully Log In');
         let isAdmin = this.loginService.userHasRole('admin');
-        this.router.navigateByUrl(isAdmin ? 'adminPanel' : 'homepage');
+        this.router.navigateByUrl(isAdmin ? 'adminPanel' : 'homepage/product');
       },
       error: (err) => {
         this.toastr.error('Wrong email or password!');
