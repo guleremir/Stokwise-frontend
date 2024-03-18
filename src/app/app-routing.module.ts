@@ -4,6 +4,7 @@ import { LoginComponent } from './core/component/login/login.component';
 import { HomepageComponent } from './core/component/homepage/homepage.component';
 import { AdminPanelComponent } from './core/component/admin-panel/admin-panel.component';
 import { SignUpComponent } from './core/component/sign-up/sign-up.component';
+import { AccountManagementComponent } from './core/component/account-management/account-management.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -11,8 +12,11 @@ const routes: Routes = [
   {
     path: 'homepage', component: HomepageComponent, children: [
       {
-        path: 'product', loadChildren: () => import('./modules/product/product.module')
+        path: 'products', loadChildren: () => import('./modules/product/product.module')
           .then(p => p.ProductModule)
+      },
+      {
+        path: 'account', component: AccountManagementComponent
       }
     ]
   },

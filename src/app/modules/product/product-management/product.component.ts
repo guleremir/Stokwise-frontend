@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from '../../../shared/dto/product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../service/product.service';
 
 
@@ -13,7 +13,8 @@ export class ProductComponent {
   products: Product[] = [];
 
   constructor(
-    public router: ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private productService: ProductService,
     // private yazilimIlanService: YazilimIlanService,
     // private loginService: LoginService,
@@ -22,10 +23,14 @@ export class ProductComponent {
   ngOnInit(): void {
     this.productService.getAllProduct().subscribe({
       next: (products => {
+        console.log(products);
         this.products = products;
       })
     });
   }
 
+  addProduct(){
+    this.router.navigate(['addProduct'], { relativeTo: this.route });
+  }
 
 }

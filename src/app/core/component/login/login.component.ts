@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../service/login.service';
-import { EmitterVisitorContext } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +34,7 @@ export class LoginComponent {
       next: (value) => {
         this.toastr.success('Successfully Log In');
         let isAdmin = this.loginService.userHasRole('admin');
-        this.router.navigateByUrl(isAdmin ? 'adminPanel' : 'homepage/product');
+        this.router.navigateByUrl(isAdmin ? 'adminPanel' : 'homepage/products');
       },
       error: (err) => {
         this.toastr.error('Wrong email or password!');

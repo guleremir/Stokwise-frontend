@@ -18,7 +18,7 @@ export class LoginService {
   ) { }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/api/v1/login', { email, password }).pipe(
+    return this.http.post<any>('/login', { email, password }).pipe(
       map(resp => {
         // console.log(resp);
         //this.processToken(this.parseJwt(resp.token));
@@ -30,7 +30,7 @@ export class LoginService {
   signUp(email: string, password: string): Observable<any> {
     // email: email, password: password
     //http.post<any>(url, body) ~ "Observable"
-    return this.http.post<any>('http://localhost:8080/api/v1/user/signup', { email, password }).pipe(
+    return this.http.post<any>('/user/signup', { email, password }).pipe(
       map(resp => {
         // console.log(resp);
         return this.parseLoginResponse(resp, email, password);
@@ -64,6 +64,15 @@ export class LoginService {
     }).join(''));
 
     return JSON.parse(jsonPayload);
+  }
+
+  logout(){
+    this.loggedIn = false,
+    this.email = "";
+    this.password = "";
+    this.token = "";
+    this.roles = [];
+    localStorage.clear();
   }
 
 }
