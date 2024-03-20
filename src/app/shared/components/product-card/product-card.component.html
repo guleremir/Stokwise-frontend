@@ -1,0 +1,29 @@
+<div class="col">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Product Name : {{product.name}}</h5>
+            <p class="card-text">
+                <!-- Category Name : {{product.category.name}} -->
+            </p>
+            <p class="card-text">
+                Price : {{product.price}}
+            </p>
+            <p class="card-text">
+                Quantity : {{product.quantity}}
+            </p>
+            <p class="card-text">
+                Units In Stock : {{product.unitInStock}}
+            </p>
+            <p class="card-text">
+                Description : {{product.description}}
+            </p>
+            <div>
+                <button type="button" (click)="editProduct()" class="btn btn-secondary me-2">Update</button>
+                <button type="button" (click)="deleteProduct()" class="btn btn-danger">Delete</button>
+            </div>
+
+            <!-- <i class="fa-solid fa-trash-can"></i>
+            <i class="fa-solid fa-pen"></i> -->
+        </div>
+    </div>
+</div>

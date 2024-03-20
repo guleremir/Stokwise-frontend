@@ -16,6 +16,10 @@ const routes: Routes = [
           .then(p => p.ProductModule)
       },
       {
+        path: 'shelves', loadChildren: () => import('./modules/shelf/shelf.module')
+          .then(s => s.ShelfModule)
+      },
+      {
         path: 'account', component: AccountManagementComponent
       }
     ]

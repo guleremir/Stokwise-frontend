@@ -1,37 +1,48 @@
-<div><button class="btn btn-primary mb-2" (click)="addProduct()">Add Product</button>
-</div>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  @for (product of products; track $index) {
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Product Name : {{product.name}}</h5>
-        <p class="card-text">
-          <!-- Category Name : {{product.category.name}} -->
-        </p>
-        <p class="card-text">
-          Price : {{product.price}}
-        </p>
-        <p class="card-text">
-          Quantity : {{product.quantity}}
-        </p>
-        <p class="card-text">
-          Units In Stock : {{product.unitInStock}}
-        </p>
-        <p class="card-text">
-          Description : {{product.description}}
-          </p>
-          <div>
-            <button type="button" class="btn btn-secondary me-2">Update</button>
-            <button type="button" class="btn btn-danger">Delete</button>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div><button class="btn btn-primary mb-2" (click)="addProduct()">Add Product</button>
+    </div>
 
-          </div>
-          
-          
-          <!-- <i class="fa-solid fa-trash-can"></i>
-            <i class="fa-solid fa-pen"></i> -->
+    <app-product-card class="ms-2 col-3 mb-5" 
+             *ngFor="let product of products" [product]="product"
+             (edit)="editProduct($event)"
+             (delete)="deleteProduct($event)"
+             >
+          </app-product-card>
+  
+    <!-- @for (product of products; track $index) {
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Product Name : {{product.name}}</h5>
+          <p class="card-text">
+            Category Name : {{product.category.name}}
+          </p>
+          <p class="card-text">
+            Price : {{product.price}}
+          </p>
+          <p class="card-text">
+            Quantity : {{product.quantity}}
+          </p>
+          <p class="card-text">
+            Units In Stock : {{product.unitInStock}}
+          </p>
+          <p class="card-text">
+            Description : {{product.description}}
+            </p>
+            <div>
+              <button type="button" class="btn btn-secondary me-2">Update</button>
+              <button type="button" class="btn btn-danger">Delete</button>
+  
+            </div>
+            
+            
+             <i class="fa-solid fa-trash-can"></i>
+              <i class="fa-solid fa-pen"></i>
+            </div>
           </div>
         </div>
-      </div>
-    } 
-  </div>
+      }  -->
+    </div>
+  
+</div>

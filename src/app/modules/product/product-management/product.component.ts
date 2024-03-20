@@ -35,20 +35,22 @@ export class ProductComponent {
     this.router.navigate(['addProduct'], { relativeTo: this.route });
   }
 
-  // editProduct(product: Product){
-  //   this.router.navigate(['edit'], { relativeTo: this.route });
-  // }
+  editProduct(product: Product){
+    this.router.navigate(['edit'], { relativeTo: this.route });
+  }
 
-  // deleteProduct(product: Product){
-  //   this.productService.deleteProduct(product).subscribe({
-  //     next: () => {
-  //       this.products = this.products.filter(p => p.id!== product.id);
-  //       this.toastr.info("Product deleted successfully");
-  //     },
-  //     error: (err)=> {
-  //       console.log(err);
-  //     }
-  //   });
-  // }
+  deleteProduct(product: Product){
+    //console.log(product);
+    this.productService.deleteProduct(product.id).subscribe({
+      next: () => {
+        this.products = this.products.filter(p => p.id!== product.id);
+        this.toastr.success("Product deleted successfully");
+        //console.log(this.products);
+      },
+      error: (err)=> {
+        console.log(err);
+      }
+    });
+  }
 
 }

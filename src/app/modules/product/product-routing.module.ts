@@ -6,6 +6,7 @@ import { ProductComponent } from './product-management/product.component';
 const routes: Routes = [
   { path: '', component: ProductComponent, pathMatch: 'full' },
   { path: 'addProduct', component: AddProductComponent},
+  
 
 ];
 

@@ -24,9 +24,9 @@ export class ProductService {
     return this.httpClient.post<SuccessResponse>('/addProduct', product);
   }
 
-  // deleteProduct(product:Product): Observable<SuccessResponse> {
-  //   return this.httpClient.post<SuccessResponse>('/deleteProduct', product);
-  // }
+  deleteProduct(id : number): Observable<SuccessResponse> {
+    return this.httpClient.post<SuccessResponse>('/deleteProduct', {id});
+  }
 
 
 }
