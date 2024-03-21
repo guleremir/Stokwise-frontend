@@ -18,11 +18,11 @@ export class ProductComponent {
     private route: ActivatedRoute,
     private productService: ProductService,
     private toastr: ToastrService
-    // private yazilimIlanService: YazilimIlanService,
-    // private loginService: LoginService,
   ) { }
 
+  //Component çağrıldığında çalışan method.
   ngOnInit(): void {
+    //ProductService'den getAllProducts() methodunu çağrıyor. Tüm productları döndürüyor.
     this.productService.getAllProduct().subscribe({
       next: (products => {
         console.log(products);
@@ -36,8 +36,16 @@ export class ProductComponent {
   }
 
   editProduct(product: Product){
-    this.router.navigate(['edit'], { relativeTo: this.route });
+    // this.productService.editProduct = product;
+    this.productService.editingProduct = product;
+    console.log(product);
+    this.router.navigate(['editProduct'], { relativeTo: this.route });
   }
+
+  // editFruit(fruit: Fruit) {
+  //   this.fruitService.editingFruit = fruit;
+  //   this.router.navigate(['create'], { relativeTo: this.route });
+  // }
 
   deleteProduct(product: Product){
     //console.log(product);

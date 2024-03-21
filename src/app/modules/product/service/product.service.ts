@@ -9,13 +9,13 @@ import { SuccessResponse } from '../../../shared/dto/successResponse';
 })
 export class ProductService {
 
+   editingProduct : Product | null = null;
+
   constructor(
     private httpClient: HttpClient
   ) { }
 
-  // yazilimIlanVer(ilanVer: any): Observable<any> {
-  //   return this.httpClient.post<any>('/yazilimIlanVer', ilanVer);
-  // }
+
   getAllProduct(){
     return this.httpClient.get<Product[]>('/getAllProducts');
   }
@@ -26,6 +26,9 @@ export class ProductService {
 
   deleteProduct(id : number): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/deleteProduct', {id});
+  }
+  editProduct(product: Product): Observable<SuccessResponse> {
+    return this.httpClient.post<SuccessResponse>('/updateProduct', product);
   }
 
 
