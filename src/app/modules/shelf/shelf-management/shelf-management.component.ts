@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Shelf } from '../../../shared/dto/shelf';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../product/service/product.service';
@@ -10,30 +10,59 @@ import { ShelfService } from '../service/shelf.service';
   templateUrl: './shelf-management.component.html',
   styleUrl: './shelf-management.component.scss'
 })
-export class ShelfManagementComponent {
+//ngOnInit() ?
+export class ShelfManagementComponent implements OnInit {
 
   shelves : Shelf[] = [];
+  selectedShelf: Shelf | null = null;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
      private shelfService: ShelfService,
-    private toastr: ToastrService
+     private toastr: ToastrService
   ) { }
-
 
   //Component çağrıldığında çalışan method.
   ngOnInit(): void {
-    // this.productService.getAllProduct().subscribe({
-    //   next: (products => {
-    //     console.log(products);
-    //     // this.products = products;
-    //   })
-    // });
+    this.shelfService.getAllShelves().subscribe({
+      next: (data => {
+        this.shelves = data;
+    console.log(this.shelves);
+      })
+    });
   }
-
+  
   addShelf(){
     this.router.navigate(['addShelf'], { relativeTo: this.route });
+  }
+
+  selectBox(shelf: Shelf) {
+    if (shelf == this.selectedShelf) {
+      this.selectedShelf = null;
+    } else {
+      this.selectedShelf = shelf;
+    }
+  }
+
+  editShelf(shelf : Shelf) {
+    this.shelfService.editingShelf = shelf;
+    console.log(shelf);
+    this.router.navigate(['editShelf'], { relativeTo: this.route });
+  }
+  
+  deleteShelf(shelf: Shelf) {
+    console.log(shelf.id);
+    this.shelfService.deleteShelf(shelf.id).subscribe({
+      next: () => {
+        this.shelves = this.shelves.filter(s => s.id!== shelf.id);
+        this.toastr.success("Shelf deleted successfully");
+        console.log(this.shelves);
+      },
+      error: (err)=> {
+        console.log(err);
+      }
+    })
   }
 
 }

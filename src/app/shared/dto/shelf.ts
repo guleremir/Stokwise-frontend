@@ -3,6 +3,7 @@ export class Shelf {
         public id: number,
         public productCount: number,
         public capacity: number,
-        public productCategory: string
+        public productCategory: string,
+        public productName: string
     ) {}
 }

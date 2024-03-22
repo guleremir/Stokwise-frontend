@@ -12,6 +12,7 @@ import { Product } from '../../../shared/dto/product';
 })
 export class AddProductComponent {
 
+  //createProduct
   createForm = this.fb.nonNullable.group({
     productName: "",
     productPrice: 0,

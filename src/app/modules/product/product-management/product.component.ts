@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })
-export class ProductComponent {
+export class ProductComponent{
   products: Product[] = [];
 
   constructor(
