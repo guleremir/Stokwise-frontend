@@ -4,7 +4,7 @@ export class Product {
     constructor(
         public id:number = 0,
         public name: string = '',
-        //public category: Category,
+        public category: Category,
         public price: number = 0,
         public quantity: number = 0,
         public unitInStock: number = 0,

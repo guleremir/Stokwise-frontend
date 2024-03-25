@@ -4,6 +4,15 @@
     <input formControlName="productName" type="text" class="form-control" id="txtProductName">
   </div>
   <div class="mb-3">
+    <label class="form-label">Category Name</label>
+    
+    <select formControlName="productCategoryID" class="form-select" aria-label="Default select example">
+      @for (category of categories; track category.id) {
+        <option value="{{category.id}}">{{category.name}}</option>
+      }
+    </select>
+  </div>
+  <div class="mb-3">
     <label for="txtProductPrice" class="form-label">Price</label>
     <input formControlName="productPrice" type="number" class="form-control" id="txtProductPrice">
   </div>

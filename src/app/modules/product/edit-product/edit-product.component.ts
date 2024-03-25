@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../service/product.service';
+import { ProductService } from '../../../shared/service/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
 import { Product } from '../../../shared/dto/product';
+import { Category } from '../../../shared/dto/category';
 
 @Component({
   selector: 'app-edit-product',
@@ -20,6 +21,7 @@ export class EditProductComponent implements OnInit {
     productMinimumCount: 0,
     productDescription: "",
   })
+  productCategory = "";
   productID = 0;
   
   constructor(
@@ -33,6 +35,7 @@ export class EditProductComponent implements OnInit {
     // console.log(this.productService.editingProduct);
     if (this.productService.editingProduct != null) {
       this.productID = this.productService.editingProduct.id;
+      this.productCategory = this.productService.editingProduct.category.name;
       this.createForm.setValue({
         productName: this.productService.editingProduct.name,
         productPrice: this.productService.editingProduct.price,
@@ -53,7 +56,7 @@ export class EditProductComponent implements OnInit {
     let productQuantity = (this.createForm.get('productQuantity')!.value);
     let productMinimumCount = (this.createForm.get('productMinimumCount')!.value);
     let productDescription = (this.createForm.get('productDescription')!.value);
-    this.productService.editProduct(new Product(this.productID, productName, productPrice, productQuantity, productUnitInStock, productMinimumCount, productDescription)).subscribe({
+    this.productService.editProduct(new Product(this.productID, productName, new Category(0,this.productCategory) ,productPrice, productQuantity, productUnitInStock, productMinimumCount, productDescription)).subscribe({
       next: (result) => {
         this.toastr.info('Product updated.');
         this.router.navigate(['..'], { relativeTo: this.route });

@@ -10,6 +10,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Count</th>
+                        <!-- <th>Capacity</th> -->
                         <th>Capacity</th>
                         <th>Category</th>
                         <th>Product Name</th>
@@ -17,11 +18,14 @@
             </thead>
             
             <tbody>
-                @for (shelf of shelves; track shelf.id) {
+                @for (shelf of shelves; track shelf.id; let index = $index; let first = $first; let last = $last;) {
                     <tr [class.table-primary]="shelf.id == selectedShelf?.id"
                     class="boxRow"
                     (click)="selectBox(shelf)">
                     <td>{{shelf.id}}</td>
+                    <!-- <td>{{first}}</td>
+                    <td>{{last}}</td> -->
+                    <!-- <td>{{index + 1}}</td> -->
                     <td>{{shelf.productCount}}</td>
                     <td>{{shelf.capacity}}</td>
                     <td>{{shelf.productCategory}}</td>

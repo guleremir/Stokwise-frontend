@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../../../shared/dto/product';
+import { Product } from '../dto/product';
 import { Observable } from 'rxjs';
-import { SuccessResponse } from '../../../shared/dto/successResponse';
+import { SuccessResponse } from '../dto/successResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,10 @@ export class ProductService {
   ) { }
 
 
-  getAllProduct(){
+  getAllProduct(): Observable<Product[]>{
     return this.httpClient.get<Product[]>('/getAllProducts');
   }
+
 
   addProduct(product: Product): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/addProduct', product);

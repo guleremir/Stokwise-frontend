@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from '../../../shared/dto/product';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../service/product.service';
+import { ProductService } from '../../../shared/service/product.service';
 import { ToastrService } from 'ngx-toastr';
 
 

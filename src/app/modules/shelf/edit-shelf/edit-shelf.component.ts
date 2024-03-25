@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ShelfService } from '../service/shelf.service';
+import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Shelf } from '../../../shared/dto/shelf';

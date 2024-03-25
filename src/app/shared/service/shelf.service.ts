@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Shelf } from '../../../shared/dto/shelf';
+import { Shelf } from '../dto/shelf';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SuccessResponse } from '../../../shared/dto/successResponse';
+import { SuccessResponse } from '../dto/successResponse';
 
 @Injectable({
   providedIn: 'root'

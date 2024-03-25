@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Shelf } from '../../../shared/dto/shelf';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../../product/service/product.service';
+import { ProductService } from '../../../shared/service/product.service';
 import { ToastrService } from 'ngx-toastr';
-import { ShelfService } from '../service/shelf.service';
+import { ShelfService } from '../../../shared/service/shelf.service';
 
 @Component({
   selector: 'app-shelf-management',

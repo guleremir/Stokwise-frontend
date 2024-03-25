@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../dto/product';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from '../../dto/category';
 
 @Component({
   selector: 'app-product-card',
@@ -8,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './product-card.component.scss'
 })
 export class ProductCardComponent {
-  @Input() product: Product = new Product(0, '', 0, 0, 0, 0,'');
+  @Input() product: Product = new Product(0, '',new Category() , 0, 0, 0, 0,'');
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
 
