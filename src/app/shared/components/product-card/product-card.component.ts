@@ -14,7 +14,7 @@ export class ProductCardComponent {
   @Output() edit = new EventEmitter();
 
   constructor(
-    private toastr: ToastrService
+    //private toastr: ToastrService
   ) {}
 
   deleteProduct() {

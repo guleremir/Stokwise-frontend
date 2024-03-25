@@ -32,8 +32,8 @@ export class ProductService {
     return this.httpClient.post<SuccessResponse>('/updateProduct', product);
   }
 
-  // acceptProduct(product: Product): Observable<SuccessResponse> {
-
-  // } 25.03.2024
+  acceptProduct(productID: number, count: number): Observable<SuccessResponse> {
+    return this.httpClient.post<SuccessResponse>('/placeProduct', {productID, count});
+  }
 
 }
