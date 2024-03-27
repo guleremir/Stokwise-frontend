@@ -35,7 +35,7 @@ export class EditShelfComponent implements OnInit {
     private shelfService: ShelfService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   // close() {
@@ -44,10 +44,14 @@ export class EditShelfComponent implements OnInit {
   submit() {
     //let capacity = this.createForm.get('capacity');   
     const capacity = this.createForm.get('capacity')!.value;
-    this.shelfService.editShelf(new Shelf(this.shelfID, this.productCount, capacity, this.productCategory,this.productName)).subscribe({
+    this.shelfService.editShelf(this.shelfID, capacity).subscribe({
       next: (result) => {
         this.toastr.info('Shelf edited.');
         this.router.navigate(['..'], { relativeTo: this.route });
+      },
+      error: (error) => {
+        this.toastr.error('You cannot set capacity less than the number of products in the shelf.');
+        console.log(error);
       }
     });
   }

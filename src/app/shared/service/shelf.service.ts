@@ -9,26 +9,26 @@ import { SuccessResponse } from '../dto/successResponse';
 })
 export class ShelfService {
 
-  editingShelf : Shelf | null = null;
+  editingShelf: Shelf | null = null;
 
   constructor(
-    private httpClient : HttpClient
+    private httpClient: HttpClient
   ) { }
 
-  getAllShelves(){
+  getAllShelves() {
     return this.httpClient.get<Shelf[]>('/getAllShelves');
   }
 
-  addShelf(shelf : Shelf):Observable<SuccessResponse>{
+  addShelf(shelf: Shelf): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/addShelf', shelf);
   }
 
-  deleteShelf(id : number):Observable<SuccessResponse>{
-    return this.httpClient.post<SuccessResponse>('/deleteShelf', {id});
+  deleteShelf(id: number): Observable<SuccessResponse> {
+    return this.httpClient.post<SuccessResponse>('/deleteShelf', { id });
   }
 
-  editShelf(shelf : Shelf): Observable<SuccessResponse>{
-    return this.httpClient.post<SuccessResponse>('/editShelf', shelf);
+  editShelf(id: number, capacity: number): Observable<SuccessResponse> {
+    return this.httpClient.post<SuccessResponse>('/editShelf', { id, capacity });
   }
 
 

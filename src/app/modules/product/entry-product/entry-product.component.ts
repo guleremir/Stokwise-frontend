@@ -27,6 +27,7 @@ export class EntryProductComponent {
     ngOnInit(): void {
       this.productService.getAllProduct().subscribe({
         next: (result) => {
+          console.log(result);
           this.products = result;
         }
       });
@@ -48,5 +49,6 @@ export class EntryProductComponent {
   }
   productSelect(product: Product) {
     this.selectedProduct = product;
+    console.log(product);
   }
 }

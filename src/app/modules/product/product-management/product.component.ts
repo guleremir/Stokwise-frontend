@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })
-export class ProductComponent{
+export class ProductComponent {
   products: Product[] = [];
 
   constructor(
@@ -31,11 +31,11 @@ export class ProductComponent{
     });
   }
 
-  addProduct(){
+  addProduct() {
     this.router.navigate(['addProduct'], { relativeTo: this.route });
   }
 
-  editProduct(product: Product){
+  editProduct(product: Product) {
     // this.productService.editProduct = product;
     this.productService.editingProduct = product;
     console.log(product);
@@ -47,15 +47,15 @@ export class ProductComponent{
   //   this.router.navigate(['create'], { relativeTo: this.route });
   // }
 
-  deleteProduct(product: Product){
+  deleteProduct(product: Product) {
     //console.log(product);
     this.productService.deleteProduct(product.id).subscribe({
       next: () => {
-        this.products = this.products.filter(p => p.id!== product.id);
+        this.products = this.products.filter(p => p.id !== product.id);
         this.toastr.success("Product deleted successfully");
         //console.log(this.products);
       },
-      error: (err)=> {
+      error: (err) => {
         console.log(err);
       }
     });
