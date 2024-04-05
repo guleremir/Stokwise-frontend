@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../shared/service/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { ShelfService } from '../../../shared/service/shelf.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-shelf-management',
@@ -13,31 +14,48 @@ import { ShelfService } from '../../../shared/service/shelf.service';
 //ngOnInit() ?
 export class ShelfManagementComponent implements OnInit {
 
-  shelves : Shelf[] = [];
+  //shelves : Shelf[] = [];
   selectedShelf: Shelf | null = null;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
      private shelfService: ShelfService,
-     private toastr: ToastrService
+     private toastr: ToastrService,
+     private http: HttpClient
   ) { }
 
-  //Component çağrıldığında çalışan method.
+  shelves: any[] = [];
+  products: any[] = [];
+
+  
+
   ngOnInit(): void {
-    this.shelfService.getAllShelves().subscribe({
-      next: (data => {
+    this.http.get<any[]>('/getAllShelves').subscribe(
+      data => {
         this.shelves = data;
-    console.log(this.shelves);
-      })
-    });
+      },
+      error => {
+        console.error('Error fetching shelves:', error);
+      }
+    );
   }
+
+  //Component çağrıldığında çalışan method.
+  // ngOnInit(): void {
+  //   this.shelfService.getAllShelves().subscribe({
+  //     next: (data => {
+  //       this.shelves = data;
+  //   console.log(this.shelves);
+  //     })
+  //   });
+  // }
   
   addShelf(){
     this.router.navigate(['addShelf'], { relativeTo: this.route });
   }
 
-  selectBox(shelf: Shelf) {
+  selectShelf(shelf: Shelf) {
     if (shelf == this.selectedShelf) {
       this.selectedShelf = null;
     } else {

@@ -65,4 +65,8 @@ export class AddProductComponent implements OnInit{
     });
   }
 
+  cancel() {
+    this.router.navigate(['/homepage/products']);
+  }
+
 }

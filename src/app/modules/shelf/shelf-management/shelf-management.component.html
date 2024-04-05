@@ -1,45 +1,46 @@
 <div>
-    <div><button class="btn btn-primary mb-2" (click)="addShelf()">Add Shelf</button>
+    <div>
+        <button class="btn btn-primary mb-2" (click)="addShelf()">Add Shelf</button>
     </div>
     <div class="container-fluid">
         @if (shelves.length == 0) {
-            It seems there are no shelves...
+        It seems there are no shelves...
         } @else {
-            <table class="table table-warning table table-hover">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Count</th>
-                        <!-- <th>Capacity</th> -->
-                        <th>Capacity</th>
-                        <th>Category</th>
-                        <th>Product Name</th>
+        <table class="table table-warning table table-hover">
+            <thead>
+                <tr>
+                    <th>Shelf ID</th>
+                    <th>Capacity</th>
+                    <th>Count</th>
+                    <th>Category</th>
+                    <th>Product Name</th>
                 </tr>
             </thead>
-            
             <tbody>
-                @for (shelf of shelves; track shelf.id; let index = $index; let first = $first; let last = $last;) {
-                    <tr [class.table-primary]="shelf.id == selectedShelf?.id"
-                    class="boxRow"
-                    (click)="selectBox(shelf)">
-                    <td>{{shelf.id}}</td>
-                    <!-- <td>{{first}}</td>
-                    <td>{{last}}</td> -->
-                    <!-- <td>{{index + 1}}</td> -->
-                    <td>{{shelf.productCount}}</td>
-                    <td>{{shelf.capacity}}</td>
-                    <td>{{shelf.productCategory}}</td>
-                    <td>{{shelf.productName}}</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-<div class="mt-2">
-    @if (selectedShelf != null) {
+                <ng-container *ngFor="let shelf of shelves">
+                    <tr *ngIf="shelf.products.length === 0" class="boxRow"
+                    (click)="selectShelf(shelf)">
+                        <td>{{ shelf.id }}</td>
+                        <td>{{ shelf.capacity }}</td>
+                        <td colspan="3"></td>
+                    </tr>
+                    <tr *ngFor="let product of shelf.products" class="boxRow"
+                    (click)="selectShelf(shelf)">
+                        <td>{{ shelf.id }}</td>
+                        <td>{{ shelf.capacity }}</td>
+                        <td>{{ product.count }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.name }}</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+        }
+        <div class="mt-2">
+            @if (selectedShelf != null) {
             <button class="btn btn-warning ms-2" (click)="editShelf(selectedShelf)">Edit Shelf</button>
             <button class="btn btn-primary ms-2" (click)="deleteShelf(selectedShelf)">Delete Shelf</button>
-        }
+            }
+        </div>
     </div>
-</div>
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -38,7 +38,15 @@ export class AddShelfComponent {
       next: (result) => {
         this.toastr.info('Shelf created.');
         this.router.navigate(['..'], { relativeTo: this.route });
+      },
+      error: (err) => {
+        this.toastr.error(err.error.message);
       }
     });
   }
+
+  cancel() {
+    this.router.navigate(['/homepage/shelves']);
+  }
+
 }

@@ -32,8 +32,27 @@ export class ProductService {
     return this.httpClient.post<SuccessResponse>('/updateProduct', product);
   }
 
-  acceptProduct(productID: number, count: number): Observable<SuccessResponse> {
-    return this.httpClient.post<SuccessResponse>('/placeProduct', {productID, count});
+  // acceptProduct(productID: number, count: number): Observable<SuccessResponse> {
+  //   return this.httpClient.post<SuccessResponse>('/placeProduct', {productID, count});
+  // }
+
+  // acceptProduct(productId: number, count: number): Observable<any> {
+  //   const url = '/entryProduct'; // Endpoint URL'si
+  //   const requestBody = { productId, count }; // Gönderilecek veri
+  //   return this.httpClient.post<any>(url, requestBody);
+  // }
+
+  acceptProduct(productId: number, count: number): Observable<string> {
+    const url = '/entryProduct';
+    const requestBody = { productId, count };
+    return this.httpClient.post<string>(url, requestBody, { responseType: 'text' as 'json' });
   }
+
+  // // Yeni fonksiyon: Ürün stok miktarını azalt
+  // decreaseProductStock(productId: number, count: number): Observable<SuccessResponse> {
+  //   const url = '/decreaseProductStock'; // Backend'de bu endpoint'e karşılık gelen bir URL olmalı
+  //   const requestBody = { productId, count };
+  //   return this.httpClient.post<SuccessResponse>(url, requestBody);
+  // }
 
 }

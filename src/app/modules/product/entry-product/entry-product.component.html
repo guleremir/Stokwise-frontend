@@ -1,4 +1,4 @@
-<form [formGroup]="entryForm" (submit)="submit()">
+<form [formGroup]="entryForm" (submit)="addProductToShelf()">
     <div class="row">
         <div class="col">
             <div style="float:left">
@@ -21,7 +21,8 @@
                             @for (product of products; track product.id) {
                                 <li>
                                     <a class="dropdown-item" (click)="productSelect(product)">
-                                        <span>{{product.name}}</span>
+                                        <span>{{product.name}} </span>
+                                        <span>{{(product.quantity) - (product.unitInStock)}}</span>
                                     </a>
                                 </li>
                             }
@@ -36,7 +37,8 @@
     </div>
     <div class="mb-3">
       <label for="count" class="form-label">Count</label>
-      <input formControlName="count" type="number" class="form-control" id="count">
+      <input formControlName="count" type="number" class="form-control" id="count" min="0">
     </div>
     <button type="submit" class="btn btn-primary">Place Product</button>
+    <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
   </form>
