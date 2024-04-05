@@ -32,23 +32,96 @@ export class EntryProductComponent {
         }
       });
     }
-    submit() {
-      if (this.selectedProduct) {
-        let count = this.entryForm.get('count')!.value;
+  //   
+  
+  addProductToShelf() {
+    if (this.selectedProduct) {
+      let count = this.entryForm.get('count')!.value;
       this.productService.acceptProduct(this.selectedProduct.id, count).subscribe({
         next: (result) => {
           this.toastr.info('Product successfully placed.');
-          this.router.navigate(['/menu']);
+          this.router.navigate(['/homepage/shelves']);
         },
         error: (err) => {
           console.log(err);
-          this.toastr.error('Something went wrong.');
+          if (err.status === 500) { // hata kodu 409'dan 500'e çevrildi. 409'u GPT vermişti.
+            this.toastr.error('Not enough space on the shelf.');
+          } else {
+            this.toastr.error('An error occurred while placing the product.');
+          }
         }
       });
     }
   }
+
   productSelect(product: Product) {
     this.selectedProduct = product;
     console.log(product);
   }
+
+  cancel() {
+    this.router.navigate(['/homepage/shelves']);
+  }
+
 }
+
+// import { Component } from '@angular/core';
+// import { FormGroup, FormBuilder } from '@angular/forms';
+// import { Router } from '@angular/router';
+// import { ToastrService } from 'ngx-toastr';
+// import { ProductService } from '../../../shared/service/product.service'; // ProductService'nin doğru yolunu belirtmelisiniz
+
+// @Component({
+//   selector: 'app-entry-product',
+//   templateUrl: './entry-product.component.html',
+//   styleUrls: ['./entry-product.component.scss']
+// })
+// export class EntryProductComponent {
+//   entryForm: FormGroup;
+//   selectedProduct: any;
+//   products: any[] = []; // Bu, ürünlerinizi içeren diziyi temsil etmelidir
+
+//   constructor(
+//     private formBuilder: FormBuilder,
+//     private productService: ProductService, // ProductService'yi enjekte edin
+//     private toastr: ToastrService,
+//     private router: Router
+//   ) {
+//     this.entryForm = this.formBuilder.group({
+//       count: ['']
+//     });
+//   }
+
+//   addProductToShelf() {
+//     if (this.selectedProduct) {
+//       let count = this.entryForm.get('count')!.value;
+//       this.productService.acceptProduct(this.selectedProduct.id, count).subscribe({
+//         next: (result) => {
+//           // Ürünü raflara ekledikten sonra stok miktarını azalt
+//           this.productService.decreaseProductStock(this.selectedProduct.id, count).subscribe({
+//             next: (result) => {
+//               this.toastr.info('Product successfully placed.');
+//               this.router.navigate(['/homepage/shelves']);
+//             },
+//             error: (err) => {
+//               console.log(err);
+//               this.toastr.error('An error occurred while updating product stock.');
+//             }
+//           });
+//         },
+//         error: (err) => {
+//           console.log(err);
+//           if (err.status === 409) {
+//             this.toastr.error('Not enough space on the shelf.');
+//           } else {
+//             this.toastr.error('An error occurred while placing the product.');
+//           }
+//         }
+//       });
+//     }
+//   }
+
+//   productSelect(product: any) {
+//     this.selectedProduct = product;
+//   }
+// }
