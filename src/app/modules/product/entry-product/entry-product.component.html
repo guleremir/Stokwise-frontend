@@ -21,8 +21,8 @@
                             @for (product of products; track product.id) {
                                 <li>
                                     <a class="dropdown-item" (click)="productSelect(product)">
-                                        <span>{{product.name}} </span>
-                                        <span>{{(product.quantity) - (product.unitInStock)}}</span>
+                                        <div>{{product.name}} </div>
+                                        <div>{{(product.quantity) - (product.unitInStock)}}</div>
                                     </a>
                                 </li>
                             }

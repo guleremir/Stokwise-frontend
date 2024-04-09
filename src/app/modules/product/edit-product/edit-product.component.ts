@@ -64,4 +64,8 @@ export class EditProductComponent implements OnInit {
     });
   }
 
+  hasQuantityError():boolean{
+    return this.createForm.value.productQuantity! < this.createForm.value.productUnitInStock!;
+  }
+
 }
