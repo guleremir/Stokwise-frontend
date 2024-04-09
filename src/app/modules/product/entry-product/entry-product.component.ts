@@ -44,11 +44,8 @@ export class EntryProductComponent {
         },
         error: (err) => {
           console.log(err);
-          if (err.status === 500) { // hata kodu 409'dan 500'e çevrildi. 409'u GPT vermişti.
-            this.toastr.error('Not enough space on the shelf.');
-          } else {
-            this.toastr.error('An error occurred while placing the product.');
-          }
+            this.toastr.error(err.error);
+          
         }
       });
     }
