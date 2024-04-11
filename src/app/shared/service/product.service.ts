@@ -32,6 +32,10 @@ export class ProductService {
     return this.httpClient.post<SuccessResponse>('/updateProduct', product);
   }
 
+  getAllProductsFromShelves(): Observable<Product[]>{
+    return this.httpClient.get<Product[]>('/getAllProductsFromShelves');
+  }
+
   // acceptProduct(productID: number, count: number): Observable<SuccessResponse> {
   //   return this.httpClient.post<SuccessResponse>('/placeProduct', {productID, count});
   // }
@@ -44,6 +48,12 @@ export class ProductService {
 
   acceptProduct(productId: number, count: number): Observable<string> {
     const url = '/entryProduct';
+    const requestBody = { productId, count };
+    return this.httpClient.post<string>(url, requestBody, { responseType: 'text' as 'json' });
+  }
+
+  dispatchProduct(productId: number, count: number): Observable<string>{
+    const url = '/dispatchProduct';
     const requestBody = { productId, count };
     return this.httpClient.post<string>(url, requestBody, { responseType: 'text' as 'json' });
   }

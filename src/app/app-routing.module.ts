@@ -24,7 +24,9 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'adminPanel', component: AdminPanelComponent },
+  { path: 'adminPanel', component: AdminPanelComponent, children: [
+    
+  ] },
   { path: 'signup', component: SignUpComponent },
   { path: '**', redirectTo: 'login' }
 

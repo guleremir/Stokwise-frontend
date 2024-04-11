@@ -1,0 +1,44 @@
+<form [formGroup]="entryForm" (submit)="dispatchProductFromShelf()">
+    <div class="row">
+        <div class="col">
+            <div style="float:left">
+                <div class="dropdown">
+                    <div class="dropdown">
+                        Products on shelves: 
+                    </div>
+                    <div>
+                        <button class="form-select mt-2 mb-4" type="button" id="fruitSelectButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <div>
+                                @if (selectedProduct == null) {
+                                    Select Product
+                                } @else {
+                                    <span>{{selectedProduct.name}}</span>
+                                }
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="productSelectButton" id="products">
+                            @for (product of products; track product.id) {
+                                <li>
+                                    <a class="dropdown-item" (click)="productSelect(product)">
+                                        <span>{{product.name}}</span>
+                                        <span>{{product.unitInStock}}</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div style="float:left">
+                <div id="selected-image" style="align-items: center; display:flex;margin-left:5px"></div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+      <label for="count" class="form-label">Count</label>
+      <input formControlName="count" type="number" class="form-control" id="count" min="0">
+    </div>
+    <button type="submit" class="btn btn-primary">Dispatch Product</button>
+    <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
+  </form>
