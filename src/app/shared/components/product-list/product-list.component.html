@@ -1,28 +1,51 @@
-<tr>
-    <td>#5033</td>
-    <td>
-        <div class="client">
-           <div class="client-img bg-img" style="background-image: url(img/3.jpeg)"></div>
-            <div class="client-info">
-                <h4>Andrew Bruno</h4>
-                <small>brunocrossover.org</small>
-            </div>
-        </div>
-    </td>
-    <td>
-        $3171
-    </td>
-    <td>
-        19 April, 2022
-    </td>
-    <td>
-        -$205
-    </td>
-    <td>
-        <div class="actions">
-            <span class="lab la-telegram-plane"></span>
-            <span class="las la-eye"></span>
-            <span class="las la-ellipsis-v"></span>
-        </div>
-    </td>
-</tr>
+<table width="100%">
+    <tbody>
+        <tr>
+            <td># {{product.id}}</td>
+            <td>
+                <div class="client">
+                    <div class="client-info">
+                        <h6>{{product.name}}</h6>
+                        <small>{{product.category.name}}</small>
+                    </div>
+                </div>
+            </td>
+            <td>
+                {{product.price}} $
+            </td>
+            <td>
+                {{product.quantity}}
+            </td>
+            <td>
+                {{product.unitInStock}}
+            </td>
+            <td>
+                <div class="actions">
+                    {{product.description}}
+                </div>
+            </td>
+            <td>
+                <div class="buttons">
+                    <div>
+                        <!-- <button type="button" (click)="editProduct()" class="btn btn-success btn-sm">Update</button> -->
+                        <button type="button" class="left-button" (click)="editProduct()">
+                            <span class="transition"></span>
+                            <span class="gradient"></span>
+                            <span class="label">Update</span>
+                          </button>
+                    </div>
+                    <div>
+                        <!-- <button type="button" (click)="deleteProduct()" class="btn btn-danger btn-sm">Delete</button> -->
+                        <button type="button" class="right-button" (click)="deleteProduct()">
+                            <span class="transition"></span>
+                            <span class="gradient"></span>
+                            <span class="label">Delete</span>
+                          </button>
+                    </div>
+                </div>
+                
+            </td>
+            
+        </tr>
+    </tbody>
+</table>

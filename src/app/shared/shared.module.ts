@@ -16,7 +16,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
     HttpClientModule
   ],
   exports: [
-    ProductCardComponent
+    ProductCardComponent,
+    ProductListComponent
   ]
 })
 export class SharedModule { }

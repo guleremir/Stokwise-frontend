@@ -25,7 +25,10 @@ const routes: Routes = [
     ]
   },
   { path: 'adminPanel', component: AdminPanelComponent, children: [
-    
+    {
+      path: '', loadChildren: () => import('./modules/admin/admin.module')
+        .then(p => p.AdminModule)
+    },
   ] },
   { path: 'signup', component: SignUpComponent },
   { path: '**', redirectTo: 'login' }

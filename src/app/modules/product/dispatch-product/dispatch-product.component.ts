@@ -25,7 +25,6 @@ export class DispatchProductComponent {
     ) { }
 
     ngOnInit(): void {
-      console.log(this.products);
       this.productService.getAllProductsFromShelves().subscribe({
         next: (result) => {
           console.log(result);
