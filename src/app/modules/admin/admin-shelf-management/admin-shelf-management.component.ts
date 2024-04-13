@@ -1,28 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Shelf } from '../../../shared/dto/shelf';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../../../shared/service/product.service';
-import { ToastrService } from 'ngx-toastr';
 import { ShelfService } from '../../../shared/service/shelf.service';
+import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-shelf-management',
-  templateUrl: './shelf-management.component.html',
-  styleUrl: './shelf-management.component.scss'
+  selector: 'app-admin-shelf-management',
+  templateUrl: './admin-shelf-management.component.html',
+  styleUrl: './admin-shelf-management.component.scss'
 })
-//ngOnInit() ?
-export class ShelfManagementComponent implements OnInit {
-
-  //shelves : Shelf[] = [];
+export class AdminShelfManagementComponent implements OnInit {
   selectedShelf: Shelf | null = null;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
      private shelfService: ShelfService,
-     private toastr: ToastrService,
-     private http: HttpClient
+     private toastr: ToastrService
   ) { }
 
   shelves: any[] = [];
@@ -31,27 +26,13 @@ export class ShelfManagementComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.http.get<any[]>('/getAllShelves').subscribe(
-      data => {
-        console.log(data);
-        this.shelves = data;
-      },
-      error => {
-        console.error('Error fetching shelves:', error);
-      }
-    );
+    this.shelfService.getAllShelves().subscribe({
+      next: (shelf => {
+        console.log(shelf);
+        this.shelves = shelf;
+      })
+    });
   }
-
-  //Component çağrıldığında çalışan method.
-  // ngOnInit(): void {
-  //   this.shelfService.getAllShelves().subscribe({
-  //     next: (data => {
-  //       this.shelves = data;
-  //   console.log(this.shelves);
-  //     })
-  //   });
-  // }
-  
   addShelf(){
     this.router.navigate(['addShelf'], { relativeTo: this.route });
   }
@@ -83,5 +64,4 @@ export class ShelfManagementComponent implements OnInit {
       }
     })
   }
-
 }

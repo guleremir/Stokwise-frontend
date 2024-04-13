@@ -1,0 +1,94 @@
+
+<table width="100%">
+    <thead>
+        <tr>
+            <th> ID </th>
+            <th><span class="las la-sort"></span> Shelf Capacity </th>
+            <th><span class="las la-sort"></span> Product Count </th>
+            <th><span class="las la-sort"></span> Shelf Category </th>
+            <th><span class="las la-sort"></span> Actions </th>
+        </tr>
+    </thead>
+</table>  
+           @if (shelves.length == 0) {
+                It seems there are no shelves...
+                }  @else {
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <h2 class="accordion-header">
+                          <div class="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    <table width="100%">
+                        <tbody>
+                            <ng-container *ngFor="let shelf of shelves">
+                                <tr *ngIf="shelf.products.length === 0">
+                                    <td>{{ shelf.id }}</td>
+                                    <td>{{ shelf.capacity }}</td>
+                                    <td colspan="2"></td>
+                                    <td>
+                                        <div class="buttons">
+                                            <div>
+                                                <!-- <button type="button" (click)="editProduct(shelf.id)" class="btn btn-success btn-sm">Update</button> -->
+                                                <button type="button" class="left-button">
+                                                    <span class="transition"></span>
+                                                    <span class="gradient"></span>
+                                                    <span class="label">Update</span>
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <!-- <button type="button" (click)="deleteProduct(shelf.id)" class="btn btn-danger btn-sm">Delete</button> -->
+                                                <button type="button" class="right-button">
+                                                    <span class="transition"></span>
+                                                    <span class="gradient"></span>
+                                                    <span class="label">Delete</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let product of shelf.products">
+                                    <td>{{ shelf.id }}</td>
+                                    <td>
+                                        <div class="client">
+                                            <div class="client-info">
+                                                <h6>{{ shelf.capacity }}</h6>
+                                                <small>{{ shelf.categoryName }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ shelf.price }}</td>
+                                    <td>
+                                        <div class="actions">
+                                            {{ shelf.description }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="buttons">
+                                            <div>
+                                                <!-- <button type="button" (click)="editProduct(shelf.id)" class="btn btn-success btn-sm">Update</button> -->
+                                                <button type="button" class="left-button">
+                                                    <span class="transition"></span>
+                                                    <span class="gradient"></span>
+                                                    <span class="label">Update</span>
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <!-- <button type="button" (click)="deleteProduct(shelf.id)" class="btn btn-danger btn-sm">Delete</button> -->
+                                                <button type="button" class="right-button">
+                                                    <span class="transition"></span>
+                                                    <span class="gradient"></span>
+                                                    <span class="label">Delete</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+              </div>
+            
+          </div>
+                    }

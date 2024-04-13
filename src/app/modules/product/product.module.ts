@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { EntryProductComponent } from './entry-product/entry-product.component';
+import { DispatchProductComponent } from './dispatch-product/dispatch-product.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { EntryProductComponent } from './entry-product/entry-product.component';
     AddProductComponent,
     EditProductComponent,
     EntryProductComponent,
+    DispatchProductComponent,
   ],
   imports: [
     CommonModule,

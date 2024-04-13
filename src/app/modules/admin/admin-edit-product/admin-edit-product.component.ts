@@ -5,68 +5,63 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
 import { Product } from '../../../shared/dto/product';
 import { Category } from '../../../shared/dto/category';
-import { CategoryService } from '../../../shared/service/category.service';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrl: './add-product.component.scss'
+  selector: 'app-admin-edit-product',
+  templateUrl: './admin-edit-product.component.html',
+  styleUrl: './admin-edit-product.component.scss'
 })
-export class AddProductComponent implements OnInit{
-
-  categories: Category[] = [];
-
-  //createProduct
+export class AdminEditProductComponent implements OnInit{
   createForm = this.fb.nonNullable.group({
     productName: "",
     productPrice: 0,
     productQuantity: 0,
     productUnitInStock: 0,
-    productMinimumCount:0,
+    productMinimumCount: 0,
     productDescription: "",
-    productCategoryID: 0,
   })
+  productCategory = "";
   productID = 0;
 
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
     private fb: FormBuilder
-  ) {}
-
-
+  ) { }
   ngOnInit(): void {
-    this.categoryService.getAllCategories().subscribe({
-      next: (data: Category[]) => {
-        this.categories = data;
-        console.log(this.categories);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
+    if (this.productService.editingProduct != null) {
+      this.productID = this.productService.editingProduct.id;
+      this.productCategory = this.productService.editingProduct.category.name;
+      this.createForm.setValue({
+        productName: this.productService.editingProduct.name,
+        productPrice: this.productService.editingProduct.price,
+        productQuantity: this.productService.editingProduct.quantity,
+        productUnitInStock: this.productService.editingProduct.unitInStock,
+        productMinimumCount: this.productService.editingProduct.minimumCount,
+        productDescription: this.productService.editingProduct.description,
+      });
+    } else { }
   }
+
   submit() {
+    console.log(this.productService.editingProduct);
     let productName = this.createForm.get('productName')!.value;
     let productPrice = (this.createForm.get('productPrice')!.value);
     let productUnitInStock = (this.createForm.get('productUnitInStock')!.value);
     let productQuantity = (this.createForm.get('productQuantity')!.value);
     let productMinimumCount = (this.createForm.get('productMinimumCount')!.value);
     let productDescription = (this.createForm.get('productDescription')!.value);
-    let productCategoryID = (this.createForm.get('productCategoryID')!.value);
-    this.productService.addProduct(new Product(this.productID, productName, new Category(productCategoryID,"") ,productPrice,productQuantity,productUnitInStock,productMinimumCount, productDescription )).subscribe({
+    this.productService.editProduct(new Product(this.productID, productName, new Category(0,this.productCategory) ,productPrice, productQuantity, productUnitInStock, productMinimumCount, productDescription)).subscribe({
       next: (result) => {
-        this.toastr.info('Product created.');
+        this.toastr.info('Product updated.');
         this.router.navigate(['..'], { relativeTo: this.route });
       }
     });
   }
 
-  cancel() {
-    this.router.navigate(['/homepage/products']);
+  hasQuantityError():boolean{
+    return this.createForm.value.productQuantity! < this.createForm.value.productUnitInStock!;
   }
-
 }

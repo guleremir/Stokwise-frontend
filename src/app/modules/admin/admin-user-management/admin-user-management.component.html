@@ -1,0 +1,29 @@
+<div class="record-header">
+    <div class="browse">
+        <input type="search" placeholder="Search" class="record-search">
+        <button (click)="addUser()">
+            <span class="transition"></span>
+            <span class="gradient"></span>
+            <span class="label">Add User</span>
+        </button>
+
+    </div>
+</div>
+<div>
+    <table width="100%">
+        <thead>
+            <tr>
+                <th><span class="las la-sort"></span> Email </th>
+                <th><span class="las la-sort"></span> Password </th>
+                <th><span class="las la-sort"></span> Actions </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+<app-user-list *ngFor="let user of users" [user]="user" 
+(edit)="editUser($event)" 
+(delete)="deleteUser($event)">
+
+</app-user-list>

@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ProductService } from '../../../shared/service/product.service';
+import { CategoryService } from '../../../shared/service/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
 import { Product } from '../../../shared/dto/product';
 import { Category } from '../../../shared/dto/category';
-import { CategoryService } from '../../../shared/service/category.service';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrl: './add-product.component.scss'
+  selector: 'app-admin-add-product',
+  templateUrl: './admin-add-product.component.html',
+  styleUrl: './admin-add-product.component.scss'
 })
-export class AddProductComponent implements OnInit{
-
+export class AdminAddProductComponent implements OnInit{
   categories: Category[] = [];
 
   //createProduct
@@ -68,5 +67,4 @@ export class AddProductComponent implements OnInit{
   cancel() {
     this.router.navigate(['/homepage/products']);
   }
-
 }

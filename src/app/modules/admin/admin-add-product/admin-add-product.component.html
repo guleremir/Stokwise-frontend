@@ -1,0 +1,40 @@
+<form class="formControl" [formGroup]="createForm" (submit)="submit()">
+    <div class="mb-3">
+      <label for="txtProductName" class="form-label">Product Name</label>
+      <input formControlName="productName" type="text" class="form-control" id="txtProductName">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Category Name</label>
+      
+      <select formControlName="productCategoryID" class="form-select" aria-label="Default select example">
+        @for (category of categories; track category.id) {
+          <option value="{{category.id}}">{{category.name}}</option>
+        }
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="txtProductPrice" class="form-label">Price</label>
+      <input formControlName="productPrice" type="number" class="form-control" id="txtProductPrice" min="0">
+    </div>
+    <div class="mb-3">
+      <label for="txtProductQuantity" class="form-label">Quantity</label>
+      <input formControlName="productQuantity" type="number" class="form-control" id="txtProductQuantity" min="0">
+    </div>
+    <div class="mb-3">
+      <label for="txtProductUnitInStock" class="form-label">Units In Stock</label>
+      <input formControlName="productUnitInStock" type="number" class="form-control" id="txtProductUnitInStock" readonly>
+    </div>
+    <div class="mb-3">
+      <label for="txtProductMinimumCount" class="form-label">Minimum Count</label>
+      <input formControlName="productMinimumCount" type="number" class="form-control" id="txtProductMinimumCount" min="0">
+    </div>
+    <div class="mb-3">
+      <label for="txtProductDescription" class="form-label">Description</label>
+      <input formControlName="productDescription" type="text" class="form-control" id="txtProductDescription">
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Add Product</button>
+      <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
+    </div>
+    <br>
+    </form>
