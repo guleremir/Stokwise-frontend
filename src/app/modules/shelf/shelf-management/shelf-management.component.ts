@@ -33,6 +33,7 @@ export class ShelfManagementComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<any[]>('/getAllShelves').subscribe(
       data => {
+        console.log(data);
         this.shelves = data;
       },
       error => {

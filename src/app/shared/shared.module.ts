@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 
 
@@ -10,6 +11,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
   declarations: [
     ProductCardComponent,
     ProductListComponent,
+    UserListComponent,
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
   ],
   exports: [
     ProductCardComponent,
-    ProductListComponent
+    ProductListComponent,
+    UserListComponent
   ]
 })
 export class SharedModule { }

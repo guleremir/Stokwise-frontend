@@ -125,17 +125,3 @@ button:hover .transition {
 button:active {
     transform: scale(0.97);
 }
-
-.accordion-button::after {
-    display: none;
-}
-.accordion-button {
-    display: flex; /* Flexbox kullanarak içeriklerin yatay olarak yayılmasını sağlar */
-    justify-content: space-between; /* İçerikler arasında boşluk bırakır */
-    align-items: center; /* İçerikleri dikey olarak hizalar */
-    padding: 0px;
-}
-
-.accordion-button > div {
-    flex-grow: 1; /* İç içe divin tüm boş alanı kaplamasını sağlar */
-}

@@ -10,7 +10,7 @@
             <div class="side-menu">
                 <ul>
                     <li>
-                       <a routerLink="/adminPanel/products" [class.active] = "url == '/adminPanel/products'">
+                       <a routerLink="/adminPanel" [class.active] = "url == '/adminPanel'">
                             <span class="las la-home"></span>
                             <small> Products </small>
                         </a>
@@ -22,29 +22,17 @@
                         </a>
                     </li>
                     <li>
-                       <a href="">
-                            <span class="las la-envelope"></span>
-                            <small>Mailbox</small>
-                        </a>
-                    </li>
-                    <li>
-                       <a href="">
-                            <span class="las la-clipboard-list"></span>
-                            <small>Projects</small>
-                        </a>
-                    </li>
-                    <li>
-                       <a href="">
-                            <span class="las la-shopping-cart"></span>
-                            <small>Orders</small>
-                        </a>
-                    </li>
-                    <li>
-                       <a>
-                            <span class="las la-tasks"></span>
-                            <small>Log Out</small>
-                        </a>
-                    </li>
+                        <a routerLink="/adminPanel/users" routerLinkActive="active">
+                             <span class="las la-user-alt"></span>
+                             <small> Users </small>
+                         </a>
+                     </li>
+                     <li>
+                        <a routerLink="/adminPanel/account" routerLinkActive="active">
+                             <span class="las la-user-alt"></span>
+                             <small> My Account </small>
+                         </a>
+                     </li>
 
                 </ul>
             </div>

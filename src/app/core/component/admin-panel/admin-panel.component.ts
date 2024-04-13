@@ -11,12 +11,10 @@ export class AdminPanelComponent implements OnInit{
   url = "";
   constructor(
     private router: Router,
-    private toastr: ToastrService,
   ) { }
   ngOnInit(): void {
     this.router.events.subscribe({
       next: (event) => {
-        console.log(event);
         if (event instanceof NavigationEnd) {
           this.url = event.url;
         }

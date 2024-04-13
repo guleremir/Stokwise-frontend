@@ -1,0 +1,19 @@
+<form class="formControl" [formGroup]="createForm" (submit)="submit()">
+    <div class="mb-3">
+      <label for="txtEmail" class="form-label">Email</label>
+      <input formControlName="email" type="text" class="form-control" id="txtEmail">
+    </div>
+    <div class="mb-3">
+      <label for="txtPassword" class="form-label">Password</label>
+      <input formControlName="password" type="text" class="form-control" id="txtPassword" min="0">
+    </div>
+    <div class="mb-3">
+      <label for="txtConfirmPassword" class="form-label">Confirm Password</label>
+      <input formControlName="confirmPassword" type="text" class="form-control" id="txtConfirmPassword" min="0">
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary" >Add User</button>
+      <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
+    </div>
+    <br>
+    </form>
