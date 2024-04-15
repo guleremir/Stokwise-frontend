@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../dto/user';
+import { UserRole } from '../../dto/userRole';
 
 @Component({
   selector: 'app-user-list',
@@ -7,12 +8,11 @@ import { User } from '../../dto/user';
   styleUrl: './user-list.component.scss'
 })
 export class UserListComponent {
-  @Input() user: User = new User(0, '','');
+  @Input() user: User = new User(0,'','',[]);
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
 
   constructor(
-    //private toastr: ToastrService
   ) {}
 
   deleteProduct() {

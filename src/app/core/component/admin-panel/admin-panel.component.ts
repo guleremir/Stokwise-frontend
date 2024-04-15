@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -11,6 +12,8 @@ export class AdminPanelComponent implements OnInit{
   url = "";
   constructor(
     private router: Router,
+    private toastr: ToastrService,
+    private loginService: LoginService
   ) { }
   ngOnInit(): void {
     this.router.events.subscribe({
@@ -21,4 +24,12 @@ export class AdminPanelComponent implements OnInit{
       }
     });
   }
+
+  logout() {
+    this.loginService.logout();
+    this.toastr.success("Logout Successfuly!");
+    this.router.navigate(['/login']);
+  }
+
+
 }
