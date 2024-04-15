@@ -1,1 +1,23 @@
-<p>admin-account works!</p>
+<div class="sayfa">
+    <form [formGroup]="accountForm" (ngSubmit)="submit()">
+
+        <div class="mb-3">
+            <label for="txtOldPassword" class="form-label">Old Password</label>
+            <input formControlName="oldPassword" type="password" class="form-control" id="txtOldPassword" aria-describedby="oldPassword">
+        </div>
+        <div class="mb-3">
+            <label for="txtNewPassword" class="form-label">New Password</label>
+            <input formControlName="newPassword" type="password" class="form-control" [class.is-invalid]="!accountForm.get('newPassword')?.valid && accountForm.get('newPassword')?.touched" id="txtNewPassword" aria-describedby="newPassword">
+            <div *ngIf="!accountForm.get('newPassword')?.valid && accountForm.get('newPassword')?.touched" class="small text-danger">
+                <div *ngIf="accountForm.get('newPassword')?.errors?.['required'] ">Şifre alanını boş geçemezsiniz.</div>
+                <div *ngIf="accountForm.get('newPassword')?.errors?.['minlength']">Şifre en az 3 karakter olmalıdır</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="txtCheckPassword" class="form-label">New Password Retry</label>
+            <input formControlName="checkPassword" type="password" class="form-control" id="txtCheckPassword" aria-describedby="checkPassword">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!accountForm.valid">Update Password</button>
+        <button class="btn btn-warning ms-2" [routerLink]="['..']">Back</button>
+    </form>
+</div>

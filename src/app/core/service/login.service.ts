@@ -38,6 +38,7 @@ export class LoginService {
     );
   }
 
+  
   parseLoginResponse(data: any, email: string, password: string) {
     this.loggedIn = true;
     this.token = data.token;
@@ -50,7 +51,10 @@ export class LoginService {
     this.roles = payload.roles;
     return data;
   }
-
+  
+  relogin():Observable<any> {
+    return this.login(this.email, this.password);
+  }
 
   userHasRole(role: string): boolean {
     return this.roles.findIndex(r => r === role) != -1;

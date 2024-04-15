@@ -2,10 +2,15 @@
     <tbody>
         <tr>
             <td>
-               {{user.email}}
+                {{user.email}}
             </td>
             <td>
-                {{user.password}} 
+                {{user.password}}
+            </td>
+            <td>
+                <ul>
+                    <li *ngFor="let role of user.roles">{{ role.name }}</li>
+                </ul>
             </td>
             <td>
                 <div class="buttons">
@@ -15,7 +20,7 @@
                             <span class="transition"></span>
                             <span class="gradient"></span>
                             <span class="label">Update</span>
-                          </button>
+                        </button>
                     </div>
                     <div>
                         <!-- <button type="button" (click)="deleteProduct()" class="btn btn-danger btn-sm">Delete</button> -->
@@ -23,12 +28,12 @@
                             <span class="transition"></span>
                             <span class="gradient"></span>
                             <span class="label">Delete</span>
-                          </button>
+                        </button>
                     </div>
                 </div>
-                
+
             </td>
-            
+
         </tr>
     </tbody>
 </table>
