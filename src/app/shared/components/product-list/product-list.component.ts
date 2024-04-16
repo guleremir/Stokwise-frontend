@@ -22,4 +22,9 @@ export class ProductListComponent {
   editProduct() {
     this.edit.emit(this.product);
   }
+
+  hasQuantityError():boolean{
+    return this.product.minimumCount! >= this.product.quantity!;
+  }
+
 }
