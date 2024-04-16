@@ -55,5 +55,16 @@ export class AdminProductManagementComponent {
     });
   }
 
+  reportProduct(){
+    this.productService.reportProduct().subscribe({
+      next: () => {
+        this.toastr.success("Product reported successfully");
+      },
+      error: (err) => {
+        console.log("Error:", err); // Hatayı konsola yazdır
+      }
+    });
+  }
+
 
 }

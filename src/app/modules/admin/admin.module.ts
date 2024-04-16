@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminProductManagementComponent } from './admin-product-management/admin-product-management.component';
 import { SharedModule } from '../../shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminEditProductComponent } from './admin-edit-product/admin-edit-product.component';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 import { AdminShelfManagementComponent } from './admin-shelf-management/admin-shelf-management.component';
@@ -23,13 +23,15 @@ import { AdminAccountComponent } from './admin-account/admin-account.component';
     AdminUserManagementComponent,
     AdminAddUserComponent,
     AdminEditUserComponent,
-    AdminAccountComponent
+    AdminAccountComponent,
+    
   ],
   imports: [
     CommonModule,
     AdminRoutingModule, 
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class AdminModule { }
