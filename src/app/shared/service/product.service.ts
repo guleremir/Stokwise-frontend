@@ -20,6 +20,9 @@ export class ProductService {
     return this.httpClient.get<Product[]>('/getAllProducts');
   }
 
+  reportProduct(): Observable<SuccessResponse>{
+    return this.httpClient.get<SuccessResponse>('/reportProduct');
+  }
 
   addProduct(product: Product): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/addProduct', product);
