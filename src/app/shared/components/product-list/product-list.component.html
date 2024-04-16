@@ -1,6 +1,6 @@
 <table width="100%">
     <tbody>
-        <tr>
+        <tr [class.is-invalid]="hasQuantityError()">
             <td># {{product.id}}</td>
             <td>
                 <div class="client">
@@ -21,7 +21,12 @@
             </td>
             <td>
                 <div class="actions">
-                    {{product.description}}
+                    <ng-container *ngIf="product.description.length > 25">
+                        {{ product.description | slice:0:25 }}...
+                      </ng-container>
+                      <ng-container *ngIf="product.description.length <= 25">
+                        {{ product.description }}
+                      </ng-container>
                 </div>
             </td>
             <td>

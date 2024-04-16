@@ -14,8 +14,13 @@ export class LoginService {
   roles: string[] = [];
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    
+  ) { 
+    localStorage.getItem('token');
+    localStorage.getItem('email');
+    localStorage.getItem('password');
+  }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>('/login', { email, password }).pipe(
