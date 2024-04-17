@@ -53,6 +53,7 @@ export class EntryProductComponent {
 
   productSelect(product: Product) {
     this.selectedProduct = product;
+    console.log(this.selectedProduct + " productSelect metodu");
     console.log(product);
   }
 
