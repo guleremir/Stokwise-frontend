@@ -35,7 +35,7 @@ export class DispatchProductComponent {
 
   
 
-dispatchProductFromShelf() {
+dispatchProductFromShelf() { //deneme
   if(this.selectedProduct){
     let count = this.entryForm.get('count')!.value;
     this.productService.dispatchProduct(this.selectedProduct.id, count).subscribe({
