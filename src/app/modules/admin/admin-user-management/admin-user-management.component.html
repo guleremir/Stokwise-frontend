@@ -1,6 +1,6 @@
 <div class="record-header">
     <div class="browse">
-        <input type="search" placeholder="Search" class="record-search">
+        <input type="search" placeholder="Search User" class="record-search" [(ngModel)]="searchText">
         <button (click)="addUser()">
             <span class="transition"></span>
             <span class="gradient"></span>
@@ -23,8 +23,7 @@
 </div>
 
 
-<app-user-list *ngFor="let user of users" [user]="user" 
+<app-user-list *ngFor="let user of filterUsers()" [user]="user" 
 (edit)="editUser($event)" 
 (delete)="deleteUser($event)">
-
 </app-user-list>

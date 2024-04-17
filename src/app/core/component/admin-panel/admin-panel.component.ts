@@ -31,5 +31,8 @@ export class AdminPanelComponent implements OnInit{
     this.router.navigate(['/login']);
   }
 
+  isCurrentRoute(route: string): boolean {
+    return this.router.url === route;
+}
 
 }

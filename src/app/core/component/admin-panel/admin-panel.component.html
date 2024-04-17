@@ -8,7 +8,7 @@
             <div class="side-menu">
                 <ul>
                     <li>
-                       <a routerLink="/adminPanel" [class.active] = "url == '/adminPanel'">
+                       <a routerLink="/adminPanel" [class.active] = "isCurrentRoute('/adminPanel')">
                             <span class="las la-home"></span>
                             <small> Products </small>
                         </a>
@@ -34,7 +34,7 @@
                      <li>
                         <a routerLinkActive="active" (click)="logout()">
                              <span class="las la-user-alt"></span>
-                             <small> Lobut </small>
+                             <small> Log Out </small>
                          </a>
                      </li>
 
