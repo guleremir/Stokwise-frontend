@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdminProductManagementComponent {
   products: Product[] = [];
+  searchText: string = ''; // Arama metni için değişken eklendi
 
   constructor(
     private router: Router,
@@ -19,9 +20,7 @@ export class AdminProductManagementComponent {
     private toastr: ToastrService
   ) { }
 
-  //Component çağrıldığında çalışan method.
   ngOnInit(): void {
-    //ProductService'den getAllProducts() methodunu çağrıyor. Tüm productları döndürüyor.
     this.productService.getAllProduct().subscribe({
       next: (products => {
         console.log(products);
@@ -55,5 +54,21 @@ export class AdminProductManagementComponent {
     });
   }
 
+  reportProduct(){
+    this.productService.reportProduct().subscribe({
+      next: () => {
+        this.toastr.success("Product reported successfully");
+      },
+      error: (err) => {
+        console.log("Error:", err); // Hatayı konsola yazdır
+      }
+    });
+  }
 
+  // Ürünleri filtrelemek için fonksiyon eklendi
+  filterProducts(): Product[] {
+    return this.products.filter(product => {
+      return product.name.toLowerCase().includes(this.searchText.toLowerCase());
+    });
+  }
 }

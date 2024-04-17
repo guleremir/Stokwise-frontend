@@ -23,6 +23,9 @@ export class AdminEditUserComponent  implements OnInit {
   userID = 0;
   roles: Role[]= []; // Roller dizisini tanımla
 
+  // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın
+  selectedRoles: Role[] = [];
+
 
   constructor(
     private userService: UserService,
@@ -33,8 +36,8 @@ export class AdminEditUserComponent  implements OnInit {
     private roleService: RoleService
   ) { }
 
-
   ngOnInit(): void {
+
     this.roleService.getAllRoles().subscribe({
       next: (data: Role[]) => {
         this.roles = data;
@@ -44,6 +47,14 @@ export class AdminEditUserComponent  implements OnInit {
         console.log(error);
       }
     });
+    
+    if(this.userService.editingUser != null){
+      this.userID = this.userService.editingUser.id;
+      this.updateForm.patchValue({
+        email : this.userService.editingUser.email,
+        password : this.userService.editingUser.password
+      });
+    } else{}
   }
 
   submit() {
@@ -52,22 +63,61 @@ export class AdminEditUserComponent  implements OnInit {
     let confirmPassword = this.updateForm.get('confirmPassword')!.value;
     let roles = this.updateForm.get('roles')!.value; // Rollerin alınması
 
-    if (password === confirmPassword) {
-      this.userService.updateUser(new User(this.userID, email, password, roles)).subscribe({
-        next: (result) => {
-          this.toastr.info('User updated.');
-          this.router.navigate(['..'], { relativeTo: this.route });
-        },
-        error: (error) => {
-          this.toastr.error('An error occurred while updating user.');
-        }
-      });
-    } else {
-      this.toastr.error('Passwords do not match.');
-    }
+    
+      if (password === confirmPassword) {
+        this.userService.updateUser(new User(this.userID, email, password, roles)).subscribe({
+          next: (result) => {
+            this.toastr.info('User updated.');
+            this.router.navigate(['..'], { relativeTo: this.route });
+          },
+          error: (error) => {
+            this.toastr.error('An error occurred while updating user.');
+          }
+        });
+      } else {
+        this.toastr.error('Passwords do not match.');
+      }
   }
 
   cancel() {
-    this.router.navigate(['/homepage/products']);
+    this.router.navigate(['/adminPanel/users']);
   }
+
+// Seçilen rollerin kontrolü
+isSelected(role: Role): boolean {
+  return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
+}
+
+// Seçilen rolleri değiştirme
+toggleSelection(role: Role): void {
+  const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
+  if (index === -1) {
+    this.selectedRoles.push(role);
+  } else {
+    this.selectedRoles.splice(index, 1);
+  }
+}
+
+// // Bir rolün seçilip seçilmediğini değiştiren işlev
+// toggleRoleSelection(checked: boolean, role: Role): void {
+//   if (checked) {
+//       // Eğer check box işaretlendi ise, seçili roller dizisine ekleyin
+//       this.selectedRoles.push(role);
+//   } else {
+//       // Eğer check box işareti kaldırıldı ise, seçili roller dizisinden kaldırın
+//       const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
+//       if (index !== -1) {
+//           this.selectedRoles.splice(index, 1);
+//       }
+//   }
+// }
+
+pswCannotBeEmpty():boolean{
+  return this.updateForm.value.password! === '' ;
+}
+confirmPswCannotBeEmpty():boolean{
+  return this.updateForm.value.confirmPassword! === '' ;
+}
+
+
 }

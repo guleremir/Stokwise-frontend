@@ -1,13 +1,16 @@
-
     <div class="record-header">
         <div class="browse">
-           <input type="search" placeholder="Search" class="record-search">
-           <button (click)="addProduct()">
+            <input type="search" placeholder="Search Product" class="record-search" [(ngModel)]="searchText">
+           <button (click)="addProduct()" class="left-button">
             <span class="transition"></span>
             <span class="gradient"></span>
             <span class="label">Add Product</span>
           </button>
-          
+          <button (click)="reportProduct()" class="right-button">
+            <span class="transition"></span>
+            <span class="gradient"></span>
+            <span class="label">Report Product</span>
+          </button>
         </div>
     </div>
     <div>
@@ -27,10 +30,7 @@
     </div>
     
 
-    <app-product-list *ngFor="let product of products" [product]="product"
-            (edit)="editProduct($event)"
-            (delete)="deleteProduct($event)"
-            >
-
-            </app-product-list>
-
+    <app-product-list *ngFor="let product of filterProducts()" [product]="product"
+  (edit)="editProduct($event)"
+  (delete)="deleteProduct($event)">
+</app-product-list>

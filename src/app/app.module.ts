@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './core/component/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomepageComponent } from './core/component/homepage/homepage.component';
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AdminPanelComponent } from './core/component/admin-panel/admin-panel.component';
@@ -24,6 +24,7 @@ import { AccountManagementComponent } from './core/component/account-management/
     AdminPanelComponent,
     SignUpComponent,
     AccountManagementComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,8 @@ import { AccountManagementComponent } from './core/component/account-management/
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     provideHttpClient(withInterceptors([urlInterceptor])),

@@ -14,14 +14,24 @@ export class LoginService {
   roles: string[] = [];
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+  ) { 
+    this.token = localStorage.getItem('token') || "";
+    this.email = localStorage.getItem('email') || "";
+    this.password = localStorage.getItem('password') || "";
+  }
+
+  scheduleLogout() {
+    setTimeout(() => {
+        this.logout();
+    }, 24 * 60 * 60 * 1000); // 1 gün sonra (24 saat * 60 dakika * 60 saniye * 1000 milisaniye)
+}
 
   login(email: string, password: string): Observable<any> {
+    this.scheduleLogout();
     return this.http.post<any>('/login', { email, password }).pipe(
       map(resp => {
-        // console.log(resp);
-        //this.processToken(this.parseJwt(resp.token));
+        console.log(resp);
         return this.parseLoginResponse(resp, email, password);
       })
     );
@@ -53,6 +63,7 @@ export class LoginService {
   }
   
   relogin():Observable<any> {
+    this.scheduleLogout();
     return this.login(this.email, this.password);
   }
 

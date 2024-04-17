@@ -537,7 +537,7 @@ th {
     cursor: pointer;
 }
 
-button {
+.left-button {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         "Liberation Mono", "Courier New", monospace;
     font-size: 14px;
@@ -552,6 +552,25 @@ button {
     overflow: hidden;
     border-radius: 0.6em;
     cursor: pointer;
+    margin-right: 10px;
+}
+
+.right-button {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+    /* Daha küçük bir font boyutu */
+    padding: 7px 14px;
+    /* Daha küçük bir padding */
+    font-weight: 500;
+    background: rgb(160, 151, 34);
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.6em;
+    cursor: pointer;
+    margin-right: 10px;
 }
 
 .gradient {
