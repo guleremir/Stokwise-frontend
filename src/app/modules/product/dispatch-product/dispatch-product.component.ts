@@ -73,4 +73,8 @@ cancel() {
   this.router.navigate(['/homepage/shelves']);
 }
 
+hasCountError():boolean{
+  return this.entryForm.value.count! > this.selectedProduct?.unitInStock!;
+}
+
 }
