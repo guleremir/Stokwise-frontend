@@ -68,4 +68,8 @@ export class EditProductComponent implements OnInit {
     return this.createForm.value.productQuantity! < this.createForm.value.productUnitInStock!;
   }
 
+  cancel() {
+    this.router.navigate(['/homepage/products']);
+  }
+
 }

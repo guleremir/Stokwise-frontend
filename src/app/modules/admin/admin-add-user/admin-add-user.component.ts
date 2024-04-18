@@ -44,6 +44,6 @@ export class AdminAddUserComponent {
   }
 
   cancel() {
-    this.router.navigate(['/homepage/products']);
+    this.router.navigate(['/adminPanel/users']);
   }
 }

@@ -62,7 +62,7 @@ export class EntryProductComponent {
   }
 
   hasCountError():boolean{
-    return this.entryForm.value.count! < (this.selectedProduct?.quantity! - this.selectedProduct?.unitInStock!);
+    return this.entryForm.value.count! > (this.selectedProduct?.quantity! - this.selectedProduct?.unitInStock!);
   }
 
 }

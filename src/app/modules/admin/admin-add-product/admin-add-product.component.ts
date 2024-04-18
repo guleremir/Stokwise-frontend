@@ -65,6 +65,6 @@ export class AdminAddProductComponent implements OnInit{
   }
 
   cancel() {
-    this.router.navigate(['/homepage/products']);
+    this.router.navigate(['/adminPanel']);
   }
 }
