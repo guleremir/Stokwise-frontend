@@ -29,4 +29,5 @@
       <input formControlName="productDescription" type="text" class="form-control" id="txtProductDescription">
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="hasQuantityError()">Edit Product</button>
+    <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
   </form>

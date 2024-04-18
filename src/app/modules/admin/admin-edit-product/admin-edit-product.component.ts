@@ -64,4 +64,8 @@ export class AdminEditProductComponent implements OnInit{
   hasQuantityError():boolean{
     return this.createForm.value.productQuantity! < this.createForm.value.productUnitInStock!;
   }
+
+  cancel() {
+    this.router.navigate(['/adminPanel']);
+  }
 }
