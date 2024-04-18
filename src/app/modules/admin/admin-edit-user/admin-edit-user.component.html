@@ -4,11 +4,20 @@
     <input formControlName="email" type="text" class="form-control" id="txtEmail" readonly>
   </div>
   <div class="mb-3">
-    <label for="txtPassword" class="form-label">Password</label>
+    <label for="txtPassword" class="form-label">Old Password</label>
     <input formControlName="password" type="text" class="form-control" [class.is-invalid]="pswCannotBeEmpty()" id="txtPassword" min="0" required>
     @if(pswCannotBeEmpty()){
       <div class="invalid-feedback">
         This field cannot be left blank! Please enter a password!
+      </div>
+    }
+  </div>
+  <div class="mb-3">
+    <label for="txtConfirmPassword" class="form-label">New Password</label>
+    <input formControlName="confirmPassword" type="text" class="form-control" [class.is-invalid]="confirmPswCannotBeEmpty()" id="txtConfirmPassword" min="0">
+    @if(confirmPswCannotBeEmpty()){
+      <div class="invalid-feedback">
+        This field cannot be left blank! Please verify the password you entered!
       </div>
     }
   </div>

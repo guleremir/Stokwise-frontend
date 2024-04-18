@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Product } from '../../../shared/dto/product';
-import { ProductService } from '../../../shared/service/product.service';
+
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProductService } from '../../../shared/service/product.service';
 
 @Component({
   selector: 'app-dispatch-product',
@@ -18,7 +19,7 @@ export class DispatchProductComponent {
   });
 
   constructor(
-    private productService: ProductService,
+    private productService : ProductService,
     private toastr: ToastrService,
     private fb: FormBuilder,
     private router: Router,
@@ -33,13 +34,27 @@ export class DispatchProductComponent {
       });
     }
 
+
+    productSelect(product: Product) {
+  this.selectedProduct = product;
+  console.log(this.selectedProduct + " productSelect metodu");
+  console.log(this.selectedProduct);
+  console.log(product);
+  
+}
+
+    
   
 
 dispatchProductFromShelf() { //deneme
   if(this.selectedProduct){
+    console.log(this.selectedProduct.id + "seçilen ürün");
+    
     let count = this.entryForm.get('count')!.value;
     this.productService.dispatchProduct(this.selectedProduct.id, count).subscribe({
       next: (result) => {
+        console.log("result data " + result );
+        
         this.toastr.info('Product dispatch successfuly.');
         this.router.navigate(['/homepage/shelves']);
       },
@@ -52,13 +67,14 @@ dispatchProductFromShelf() { //deneme
   }
 }
 
-productSelect(product: Product) {
-  this.selectedProduct = product;
-  console.log(product);
-}
+
 
 cancel() {
   this.router.navigate(['/homepage/shelves']);
+}
+
+hasCountError():boolean{
+  return this.entryForm.value.count! > this.selectedProduct?.unitInStock!;
 }
 
 }
