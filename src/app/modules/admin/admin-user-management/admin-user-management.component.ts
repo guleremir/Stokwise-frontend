@@ -12,6 +12,7 @@ import { UserService } from '../../../shared/service/user.service';
 })
 export class AdminUserManagementComponent {
   users: User[] = [];
+  searchText: string = ''; // Arama metni için değişken eklendi
 
   constructor(
     private router: Router,
@@ -55,5 +56,11 @@ export class AdminUserManagementComponent {
     });
   }
 
+  // Ürünleri filtrelemek için fonksiyon eklendi
+  filterUsers(): User[] {
+    return this.users.filter(user => {
+      return user.email.toLowerCase().includes(this.searchText.toLowerCase());
+    });
+  }
 
 }

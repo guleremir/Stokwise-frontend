@@ -23,6 +23,9 @@ export class AdminEditUserComponent  implements OnInit {
   userID = 0;
   roles: Role[]= []; // Roller dizisini tanımla
 
+  // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın
+  selectedRoles: Role[] = [];
+
 
   constructor(
     private userService: UserService,
@@ -33,8 +36,8 @@ export class AdminEditUserComponent  implements OnInit {
     private roleService: RoleService
   ) { }
 
-
   ngOnInit(): void {
+
     this.roleService.getAllRoles().subscribe({
       next: (data: Role[]) => {
         this.roles = data;
@@ -44,6 +47,14 @@ export class AdminEditUserComponent  implements OnInit {
         console.log(error);
       }
     });
+    
+    if(this.userService.editingUser != null){
+      this.userID = this.userService.editingUser.id;
+      this.updateForm.patchValue({
+        email : this.userService.editingUser.email,
+        password : this.userService.editingUser.password
+      });
+    } else{}
   }
 
   submit() {
@@ -52,22 +63,23 @@ export class AdminEditUserComponent  implements OnInit {
     let confirmPassword = this.updateForm.get('confirmPassword')!.value;
     let roles = this.updateForm.get('roles')!.value; // Rollerin alınması
 
-    if (password === confirmPassword) {
-      this.userService.updateUser(new User(this.userID, email, password, roles)).subscribe({
-        next: (result) => {
-          this.toastr.info('User updated.');
-          this.router.navigate(['..'], { relativeTo: this.route });
-        },
-        error: (error) => {
-          this.toastr.error('An error occurred while updating user.');
-        }
-      });
-    } else {
-      this.toastr.error('Passwords do not match.');
-    }
+    
+      if (password === confirmPassword) {
+        this.userService.updateUser(new User(this.userID, email, password, roles)).subscribe({
+          next: (result) => {
+            this.toastr.info('User updated.');
+            this.router.navigate(['..'], { relativeTo: this.route });
+          },
+          error: (error) => {
+            this.toastr.error('An error occurred while updating user.');
+          }
+        });
+      } else {
+        this.toastr.error('Passwords do not match.');
+      }
   }
 
   cancel() {
-    this.router.navigate(['/adminPanel/users']);
+    this.router.navigate(['/homepage/products']);
   }
 }
