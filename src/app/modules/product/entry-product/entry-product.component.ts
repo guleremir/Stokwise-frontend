@@ -61,6 +61,10 @@ export class EntryProductComponent {
     this.router.navigate(['/homepage/shelves']);
   }
 
+  hasCountError():boolean{
+    return this.entryForm.value.count! < (this.selectedProduct?.quantity! - this.selectedProduct?.unitInStock!);
+  }
+
 }
 
 // import { Component } from '@angular/core';
