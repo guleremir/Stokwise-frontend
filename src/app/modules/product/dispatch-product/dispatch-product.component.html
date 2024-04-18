@@ -37,8 +37,13 @@
     </div>
     <div class="mb-3">
       <label for="count" class="form-label">Count</label>
-      <input formControlName="count" type="number" class="form-control" id="count" min="0">
+      <input formControlName="count" type="number" class="form-control" id="count" [class.is-invalid]="hasCountError()" id="count" min="0">
+      @if(hasCountError()){
+        <div class="invalid-feedback">
+          Please select a valid state.
+        </div>
+     }
     </div>
-    <button type="submit" class="btn btn-primary">Dispatch Product</button>
+    <button type="submit" class="btn btn-primary" [disabled]="hasCountError()">Dispatch Product</button>
     <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
   </form>

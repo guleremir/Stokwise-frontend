@@ -53,11 +53,16 @@ export class EntryProductComponent {
 
   productSelect(product: Product) {
     this.selectedProduct = product;
+    console.log(this.selectedProduct + " productSelect metodu");
     console.log(product);
   }
 
   cancel() {
     this.router.navigate(['/homepage/shelves']);
+  }
+
+  hasCountError():boolean{
+    return this.entryForm.value.count! < (this.selectedProduct?.quantity! - this.selectedProduct?.unitInStock!);
   }
 
 }
