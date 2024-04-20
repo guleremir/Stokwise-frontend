@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Product } from '../../dto/product';
+import { Category } from '../../dto/category';
 
 @Component({
   selector: 'app-are-you-sure',
@@ -8,16 +9,16 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AreYouSureComponent {
 
-  question = '';
-  constructor(public dialogRef: MatDialogRef<AreYouSureComponent>){}
+  selectedId?: number = undefined;
 
-  
+  @Output() areYouSureEvent =  new EventEmitter();
+  @Input() areYouSureQuestion = '';
 
-  buttonYesClick() {
-    this.dialogRef.close({"result": "yes"});
+  buttonYesClick(id: number) {
+    this.areYouSureEvent.emit(id);
   }
   buttonNoClick() {
-    this.dialogRef.close({"result": "no"});
+    this.areYouSureEvent.emit('no');
   }
 
 }

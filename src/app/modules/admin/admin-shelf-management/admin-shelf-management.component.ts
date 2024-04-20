@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
+import { AdminShelf } from '../../../shared/dto/admin-shelf';
+import { AdminProduct } from '../../../shared/dto/admin-product';
 
 @Component({
   selector: 'app-admin-shelf-management',
@@ -11,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './admin-shelf-management.component.scss'
 })
 export class AdminShelfManagementComponent implements OnInit {
-  selectedShelf: Shelf | null = null;
+  selectedShelf: AdminShelf | null = null;
 
   constructor(
     private router: Router,
@@ -20,13 +22,13 @@ export class AdminShelfManagementComponent implements OnInit {
      private toastr: ToastrService
   ) { }
 
-  shelves: any[] = [];
-  products: any[] = [];
+  shelves: AdminShelf[] = [];
+  products: AdminProduct[] = [];
 
   
 
   ngOnInit(): void {
-    this.shelfService.getAllShelves().subscribe({
+    this.shelfService.getAllTableShelves().subscribe({
       next: (shelf => {
         console.log(shelf);
         this.shelves = shelf;
@@ -37,11 +39,19 @@ export class AdminShelfManagementComponent implements OnInit {
     this.router.navigate(['addShelf'], { relativeTo: this.route });
   }
 
-  selectShelf(shelf: Shelf) {
+  setSelectedShelf(shelf: AdminShelf) {
     if (shelf == this.selectedShelf) {
       this.selectedShelf = null;
-    } else {
+    } else if(shelf.productCount > 0){
       this.selectedShelf = shelf;
+      this.getSelectedShelfProducts();
+    }
+  }
+  getSelectedShelfProducts() {
+    if(this.selectedShelf != null){
+      this.shelfService.getAllProductsFromShelf(this.selectedShelf.id).subscribe((products)=>{
+        this.products=products;
+      });
     }
   }
 
@@ -64,4 +74,5 @@ export class AdminShelfManagementComponent implements OnInit {
       }
     })
   }
-}
+
+  }
