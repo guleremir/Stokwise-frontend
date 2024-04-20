@@ -1,4 +1,4 @@
-<form [formGroup]="createForm" (submit)="submit()">
+<form [formGroup]="createForm">
     <div class="mb-3">
       <label for="txtProductName" class="form-label">Product Name</label>
       <input formControlName="productName" type="text" class="form-control" id="txtProductName">
@@ -28,6 +28,8 @@
       <label for="txtProductDescription" class="form-label">Description</label>
       <input formControlName="productDescription" type="text" class="form-control" id="txtProductDescription">
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="hasQuantityError()">Edit Product</button>
+    <button type="button" class="btn btn-primary" [disabled]="hasQuantityError()" data-bs-toggle="modal" data-bs-target="#areyousure">Edit Product</button>
     <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
   </form>
+  <app-are-you-sure (areYouSureEvent)="editProduct()" [areYouSureQuestion]="areYouSureQuestion" >
+  </app-are-you-sure>

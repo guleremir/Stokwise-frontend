@@ -6,7 +6,7 @@
                 <!-- Category Name : {{product.category.name}} -->
             </p>
             <p class="card-text">
-                Price : {{product.price}}
+                Price : {{product.price}} £
             </p>
             <p class="card-text">
                 Quantity : {{product.quantity}}
@@ -21,12 +21,12 @@
                 Description : {{product.description}}
             </p>
             <div>
-                <button type="button" (click)="editProduct()" class="btn btn-secondary me-2">Update</button>
-                <button type="button" (click)="deleteProductButtonClicked()" class="btn btn-danger">Delete</button>
+                <button type="button" (click)="editProduct()" class="btn btn-secondary me-2" >Update</button>
+                <button type="button" (click)="deleteProduct(product.id)"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#areyousure">Delete</button>
             </div>
-
             <!-- <i class="fa-solid fa-trash-can"></i>
             <i class="fa-solid fa-pen"></i> -->
         </div>
     </div>
 </div>
+

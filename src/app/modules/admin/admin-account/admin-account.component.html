@@ -1,5 +1,5 @@
 <div class="sayfa">
-    <form [formGroup]="accountForm" (ngSubmit)="submit()">
+    <form class="formControl" [formGroup]="accountForm" (ngSubmit)="submit()">
 
         <div class="mb-3">
             <label for="txtOldPassword" class="form-label">Old Password</label>
@@ -17,6 +17,7 @@
             <label for="txtCheckPassword" class="form-label">New Password Retry</label>
             <input formControlName="checkPassword" type="password" class="form-control" id="txtCheckPassword" aria-describedby="checkPassword">
         </div>
+        <br>
         <button class="btn btn-primary" type="submit" [disabled]="!accountForm.valid">Update Password</button>
         <button class="btn btn-warning ms-2" [routerLink]="['..']">Back</button>
     </form>
