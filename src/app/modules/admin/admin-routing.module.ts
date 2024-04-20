@@ -8,15 +8,29 @@ import { AdminUserManagementComponent } from './admin-user-management/admin-user
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
 import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { AdminAccountComponent } from './admin-account/admin-account.component';
+import { AdminUserComponent } from './admin-user/admin-user.component';
+import { AdminProductComponent } from './admin-product/admin-product.component';
+import { AdminPanelComponent } from '../../core/component/admin-panel/admin-panel.component';
 
 const routes: Routes = [
-  { path: '', component: AdminProductManagementComponent, pathMatch: 'full' },
-  { path: 'editProduct', component: AdminEditProductComponent},
-  { path: 'addProduct', component: AdminAddProductComponent},
+  { path: '', redirectTo:'products', pathMatch: 'full' },
+  { path: 'products', component: AdminProductComponent,  
+  children: [
+      {path: '', component: AdminProductManagementComponent, pathMatch: 'full' },
+      {path: 'editProduct', component: AdminEditProductComponent},
+      {path: 'addProduct', component: AdminAddProductComponent}
+    ]
+  },
+  // { path: 'editProduct', component: AdminEditProductComponent},
+  // { path: 'addProduct', component: AdminAddProductComponent},
   { path: 'shelves', component: AdminShelfManagementComponent},
-  { path: 'users', component: AdminUserManagementComponent},
-  { path: 'users/addUser', component: AdminAddUserComponent},
-  { path: 'users/editUser', component: AdminEditUserComponent},
+  { path: 'users', component: AdminUserComponent,  
+  children: [
+      {path: '', component: AdminUserManagementComponent, pathMatch: 'full' },
+      {path: 'addUser', component: AdminAddUserComponent},
+      {path: 'editUser', component: AdminEditUserComponent}
+    ]
+  },
   { path: 'account', component: AdminAccountComponent}
 ];
 

@@ -5,6 +5,8 @@ import { ProductService } from '../../../shared/service/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { ShelfService } from '../../../shared/service/shelf.service';
 import { HttpClient } from '@angular/common/http';
+import { AdminShelf } from '../../../shared/dto/admin-shelf';
+import { AdminProduct } from '../../../shared/dto/admin-product';
 
 @Component({
   selector: 'app-shelf-management',
@@ -15,7 +17,8 @@ import { HttpClient } from '@angular/common/http';
 export class ShelfManagementComponent implements OnInit {
 
   //shelves : Shelf[] = [];
-  selectedShelf: Shelf | null = null;
+  selectedShelf: AdminShelf | null = null;
+  // selectTableShelf: Shelf | null = null;
 
   constructor(
     private router: Router,
@@ -25,21 +28,28 @@ export class ShelfManagementComponent implements OnInit {
      private http: HttpClient
   ) { }
 
-  shelves: any[] = [];
-  products: any[] = [];
+  shelves: AdminShelf[] = [];
+  products: AdminProduct[] = [];
 
-  
+  // ngOnInit(): void {
+  //   this.http.get<any[]>('/getAllShelves').subscribe(
+  //     data => {
+  //       console.log(data);
+  //       this.shelves = data;
+  //     },
+  //     error => {
+  //       console.error('Error fetching shelves:', error);
+  //     }
+  //   );
+  // }
 
   ngOnInit(): void {
-    this.http.get<any[]>('/getAllShelves').subscribe(
-      data => {
-        console.log(data);
-        this.shelves = data;
-      },
-      error => {
-        console.error('Error fetching shelves:', error);
-      }
-    );
+    this.shelfService.getAllTableShelves().subscribe({
+      next: (shelf => {
+        console.log(shelf);
+        this.shelves = shelf;
+      })
+    });
   }
 
   //Component çağrıldığında çalışan method.
@@ -56,21 +66,48 @@ export class ShelfManagementComponent implements OnInit {
     this.router.navigate(['addShelf'], { relativeTo: this.route });
   }
 
-  selectShelf(shelf: Shelf) {
-    if (shelf == this.selectedShelf) {
+  setSelectedShelf(shelf: AdminShelf) {
+    // console.log(this.selectedShelf);
+    // if (shelf == this.selectedShelf) {
+    //   this.selectedShelf = null;
+    // } else if(shelf.productCount > 0){
+    //   this.selectedShelf = shelf;
+    //   this.getSelectedShelfProducts();
+    // } 
+
+    if(shelf === this.selectedShelf){
+      // Seçili raf zaten varsa ve tekrar tıklanırsa, seçili rafı kapat
       this.selectedShelf = null;
     } else {
+      // Seçili rafı değiştir
       this.selectedShelf = shelf;
+      console.log(this.selectedShelf);
+      this.getSelectedShelfProducts();
+    }
+  }
+  getSelectedShelfProducts() {
+    if(this.selectedShelf != null){
+      this.shelfService.getAllProductsFromShelf(this.selectedShelf.id).subscribe((products)=>{
+        this.products=products;
+      });
     }
   }
 
-  editShelf(shelf : Shelf) {
+  // selectShelf(shelf: Shelf) {
+  //   if (shelf == this.selectTableShelf) {
+  //     this.selectTableShelf = null;
+  //   } else {
+  //     this.selectTableShelf = shelf;
+  //   }
+  // }
+
+  editShelf(shelf : AdminShelf) {
     this.shelfService.editingShelf = shelf;
     console.log(shelf);
     this.router.navigate(['editShelf'], { relativeTo: this.route });
   }
   
-  deleteShelf(shelf: Shelf) {
+  deleteShelf(shelf: AdminShelf) {
     console.log(shelf.id);
     this.shelfService.deleteShelf(shelf.id).subscribe({
       next: () => {
