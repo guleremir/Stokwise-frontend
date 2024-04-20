@@ -11,7 +11,7 @@ import { AdminShelf } from '../dto/admin-shelf';
 })
 export class ShelfService {
   
-  editingShelf: Shelf | null = null;
+  editingShelf: AdminShelf | null = null;
   
   constructor(
     private httpClient: HttpClient
