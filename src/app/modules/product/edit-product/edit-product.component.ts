@@ -13,6 +13,8 @@ import { Category } from '../../../shared/dto/category';
 })
 export class EditProductComponent implements OnInit {
 
+  areYouSureQuestion = 'Are you sure you want to edit this product?'
+
   createForm = this.fb.nonNullable.group({
     productName: "",
     productPrice: 0,
@@ -70,6 +72,10 @@ export class EditProductComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/homepage/products']);
+  }
+
+  editProduct(){
+    this.submit();
   }
 
 }
