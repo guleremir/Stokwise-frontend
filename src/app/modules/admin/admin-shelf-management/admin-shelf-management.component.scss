@@ -16,6 +16,53 @@ td, th {
     white-space: nowrap;
 }
 
+.records {
+    box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
+    background: #fff;
+    border-radius: 3px;
+}
+
+.record-header {
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input,
+button,
+select {
+    outline: none;
+}
+
+.add,
+.browse {
+    display: flex;
+    align-items: center;
+}
+
+.add select,
+.browse input,
+.browse select {
+    height: 35px;
+    border: 1px solid #b0b0b0;
+    border-radius: 3px;
+    display: inline-block;
+    width: 75px;
+    padding: 0rem .5rem;
+    margin-right: .8rem;
+    color: #666;
+}
+
+.browse input {
+    width: 150px;
+}
+
+.browse select {
+    width: 100px;
+}
+
+
 /* İstemci bilgisi stilleri */
 .client {
     display: flex;
@@ -146,10 +193,4 @@ button:active {
 
 .accordion-button > div {
     flex-grow: 1; /* İç içe divin tüm boş alanı kaplamasını sağlar */
-}
-
-.records {
-    box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
-    background: #fff;
-    border-radius: 3px;
 }
