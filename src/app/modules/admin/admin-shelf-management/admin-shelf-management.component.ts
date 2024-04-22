@@ -24,6 +24,7 @@ export class AdminShelfManagementComponent implements OnInit {
 
   shelves: AdminShelf[] = [];
   products: AdminProduct[] = [];
+  searchShelfId: string = ''; // Arama metni için değişken eklendi
 
   
 
@@ -74,5 +75,13 @@ export class AdminShelfManagementComponent implements OnInit {
       }
     })
   }
+
+  filterShelf(): AdminShelf[] {
+    return this.shelves.filter( shelf => {
+      return shelf.id.toString().includes(this.searchShelfId);
+    });
+  }
+
+  
 
   }
