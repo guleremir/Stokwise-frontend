@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Shelf } from '../../../shared/dto/shelf';
 
 @Component({
-  selector: 'app-edit-shelf',
-  templateUrl: './edit-shelf.component.html',
-  styleUrl: './edit-shelf.component.scss'
-}) 
-export class EditShelfComponent implements OnInit {
+  selector: 'app-admin-edit-shelf',
+  templateUrl: './admin-edit-shelf.component.html',
+  styleUrl: './admin-edit-shelf.component.scss'
+})
+export class AdminEditShelfComponent{
   createForm = this.fb.nonNullable.group({
     capacity: 0,
   });
@@ -54,8 +53,5 @@ export class EditShelfComponent implements OnInit {
         console.log(error);
       }
     });
-  }
-  cancel() {
-    this.router.navigate(['/homepage/shelves']);
   }
 }
