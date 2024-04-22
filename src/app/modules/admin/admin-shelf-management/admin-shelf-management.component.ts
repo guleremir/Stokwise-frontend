@@ -61,7 +61,7 @@ export class AdminShelfManagementComponent implements OnInit {
     this.router.navigate(['editShelf'], { relativeTo: this.route });
   }
   
-  deleteShelf(shelf: Shelf) {
+  deleteShelf(shelf: AdminShelf) {
     console.log(shelf.id);
     this.shelfService.deleteShelf(shelf.id).subscribe({
       next: () => {

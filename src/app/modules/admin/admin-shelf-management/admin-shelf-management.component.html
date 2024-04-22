@@ -30,7 +30,14 @@
                     <td>{{ shelf.capacity }}</td>
                     <td>{{ shelf.productCount }}</td>
                     <td>{{ shelf.productCategory }}</td>
-                    <td>&nbsp;</td>
+                 <td>
+                    <button (click)="deleteShelf(shelf)" class="left-button">
+                        <span class="transition"></span>
+                        <span class="gradient"></span>
+                        <span class="label">Delete Shelf</span>
+                    </button>
+                </td>
+                    
                 </tr>
                 @if (selectedShelf?.id == shelf.id) {
                 <tr>
