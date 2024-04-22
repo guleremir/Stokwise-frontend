@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div>
         <button class="btn btn-primary mb-2" (click)="addShelf()">Add Shelf</button>
     </div>
@@ -43,4 +43,70 @@
             }
         </div>
     </div>
+</div> -->
+
+<div>
+    <button class="btn btn-primary mb-2" (click)="addShelf()">Add Shelf</button>
 </div>
+
+@if (shelves.length == 0) {
+    It seems there are no shelves...
+    }  @else {
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Shelf Capacity</th>
+                    <th>Product Count</th>
+                    <th>Shelf Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (shelf of shelves; track shelf.id) {
+                    <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
+                        <td>{{ shelf.id }}</td>
+                        <td>{{ shelf.capacity }}</td>
+                        <td>{{ shelf.productCount }}</td>
+                        <td>{{ shelf.productCategory }}</td>
+                    </tr>
+                    @if (selectedShelf?.id == shelf.id && selectedShelf?.productCount! > 0) {
+                        <tr>
+                            <td colspan=4>
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (product of products; track product.id) {
+                                            <tr>
+                                                <td>{{ product.name }}</td>
+                                                <td>{{ product.count }}</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    }
+                    
+                }
+                
+            </tbody>
+        </table>
+        }
+
+<br>
+<div class="mt-2">
+    @if (selectedShelf != null) {
+        <button class="btn btn-warning ms-2" (click)="editShelf(selectedShelf)">Edit Shelf</button>
+            
+    @if (selectedShelf.productCount == 0){
+        <button class="btn btn-primary ms-2" (click)="deleteShelf(selectedShelf)">Delete Shelf</button>
+    }
+}
+</div>
+<br>
+<br>

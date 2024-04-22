@@ -12,6 +12,8 @@ import { AdminUserManagementComponent } from './admin-user-management/admin-user
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
 import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { AdminAccountComponent } from './admin-account/admin-account.component';
+import { AdminUserComponent } from './admin-user/admin-user.component';
+import { AdminProductComponent } from './admin-product/admin-product.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { AdminAccountComponent } from './admin-account/admin-account.component';
     AdminAddUserComponent,
     AdminEditUserComponent,
     AdminAccountComponent,
+    AdminUserComponent,
+    AdminProductComponent,
     
   ],
   imports: [

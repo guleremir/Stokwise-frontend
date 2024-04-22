@@ -13,6 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductComponent {
   products: Product[] = [];
 
+  selectedProductId: number = 0;
+  areYouSureQuestion = 'Are you sure you want to delete this product?'
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -42,16 +45,25 @@ export class ProductComponent {
     this.router.navigate(['editProduct'], { relativeTo: this.route });
   }
 
-  // editFruit(fruit: Fruit) {
-  //   this.fruitService.editingFruit = fruit;
-  //   this.router.navigate(['create'], { relativeTo: this.route });
+  // deleteProduct(product: Product) {
+  //   //console.log(product);
+  //   this.productService.deleteProduct(product.id).subscribe({
+  //     next: () => {
+  //       this.products = this.products.filter(p => p.id !== product.id);
+  //       this.toastr.success("Product deleted successfully");
+  //       //console.log(this.products);
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     }
+  //   });
   // }
 
-  deleteProduct(product: Product) {
+  deleteProduct(id: any) {
     //console.log(product);
-    this.productService.deleteProduct(product.id).subscribe({
+    this.productService.deleteProduct(id).subscribe({
       next: () => {
-        this.products = this.products.filter(p => p.id !== product.id);
+        this.products = this.products.filter(p => p.id !== id);
         this.toastr.success("Product deleted successfully");
         //console.log(this.products);
       },
@@ -59,6 +71,11 @@ export class ProductComponent {
         console.log(err);
       }
     });
+  }
+
+  id = 0;
+  selectedProduct(productId: number){
+    this.id = productId;
   }
 
 }
