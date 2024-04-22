@@ -19,6 +19,10 @@
     display: none;
 }
 
+.product-table{
+    padding: 1rem;
+}
+
 .sidebar {
     position: fixed;
     height: 100%;
@@ -341,7 +345,7 @@ main {
 }
 
 .record-header {
-    padding: 1rem;
+    padding-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

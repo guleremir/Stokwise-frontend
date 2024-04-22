@@ -1,51 +1,71 @@
-
-           @if (shelves.length == 0) {
-                It seems there are no shelves...
-                }  @else {
-                    <table width="100%">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Shelf Capacity</th>
-                                <th>Product Count</th>
-                                <th>Shelf Category</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (shelf of shelves; track shelf.id) {
-                                <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
-                                    <td>{{ shelf.id }}</td>
-                                    <td>{{ shelf.capacity }}</td>
-                                    <td>{{ shelf.productCount }}</td>
-                                    <td>{{ shelf.productCategory }}</td>
-                                    <td>&nbsp;</td>
+<div class="shelf-table">
+    <div class="record-header">
+        <div class="browse">
+            <input type="search" placeholder="Search Product" class="record-search">
+            <button (click)="addShelf()" class="right-button">
+                <span class="transition"></span>
+                <span class="gradient"></span>
+                <span class="label">Add Shelf</span>
+            </button>
+        </div>
+    </div>
+    <div>
+        @if (shelves.length == 0) {
+        It seems there are no shelves...
+        } @else {
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Shelf Capacity</th>
+                    <th>Product Count</th>
+                    <th>Shelf Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (shelf of shelves; track shelf.id) {
+                <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
+                    <td>{{ shelf.id }}</td>
+                    <td>{{ shelf.capacity }}</td>
+                    <td>{{ shelf.productCount }}</td>
+                    <td>{{ shelf.productCategory }}</td>
+                 <td>
+                    <button (click)="deleteShelf(shelf)" class="left-button">
+                        <span class="transition"></span>
+                        <span class="gradient"></span>
+                        <span class="label">Delete Shelf</span>
+                    </button>
+                </td>
+                    
+                </tr>
+                @if (selectedShelf?.id == shelf.id) {
+                <tr>
+                    <td colspan=5>
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Count</th>
                                 </tr>
-                                @if (selectedShelf?.id == shelf.id) {
-                                    <tr>
-                                        <td colspan=5>
-                                            <table width="100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Count</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @for (product of products; track product.id) {
-                                                        <tr>
-                                                            <td>{{ product.name }}</td>
-                                                            <td>{{ product.count }}</td>
-                                                        </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
+                            </thead>
+                            <tbody>
+                                @for (product of products; track product.id) {
+                                <tr>
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.count }}</td>
+                                </tr>
                                 }
-                                
-                            }
-                            
-                        </tbody>
-                    </table>
-                    }
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                }
+
+                }
+
+            </tbody>
+        </table>
+        }
+    </div>
+</div>
