@@ -15,10 +15,12 @@ import { environment } from '../environments/environment.prod';
 import { APP_CONFIG } from './app.config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AccountManagementComponent } from './core/component/account-management/account-management.component';
+import { MenuComponent } from './core/component/menu/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
     LoginComponent,
     HomepageComponent,
     AdminPanelComponent,

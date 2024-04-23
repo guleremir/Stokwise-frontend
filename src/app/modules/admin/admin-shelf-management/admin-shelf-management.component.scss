@@ -16,6 +16,53 @@ td, th {
     white-space: nowrap;
 }
 
+.records {
+    box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
+    background: #fff;
+    border-radius: 3px;
+}
+
+.record-header {
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input,
+button,
+select {
+    outline: none;
+}
+
+.add,
+.browse {
+    display: flex;
+    align-items: center;
+}
+
+.add select,
+.browse input,
+.browse select {
+    height: 35px;
+    border: 1px solid #b0b0b0;
+    border-radius: 3px;
+    display: inline-block;
+    width: 75px;
+    padding: 0rem .5rem;
+    margin-right: .8rem;
+    color: #666;
+}
+
+.browse input {
+    width: 175px;
+}
+
+.browse select {
+    width: 100px;
+}
+
+
 /* İstemci bilgisi stilleri */
 .client {
     display: flex;
@@ -60,8 +107,7 @@ td, th {
 
 
 .right-button {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
+    font-family: 'Merriweather', sans-serif;
     font-size: 14px;
     /* Daha küçük bir font boyutu */
     padding: 7px 14px;
@@ -78,14 +124,13 @@ td, th {
 
 
 .left-button {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
+    font-family: 'Merriweather', sans-serif;
     font-size: 14px;
     /* Daha küçük bir font boyutu */
     padding: 7px 14px;
     /* Daha küçük bir padding */
     font-weight: 500;
-    background: #138803;
+    background: #a71616;
     color: white;
     border: none;
     position: relative;
@@ -146,4 +191,15 @@ button:active {
 
 .accordion-button > div {
     flex-grow: 1; /* İç içe divin tüm boş alanı kaplamasını sağlar */
+}
+.search-container {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 150px; /* İstenilen yerde ayarlayabilirsiniz */
+    transform: translateY(-50%);
+    opacity: 0.7;
 }

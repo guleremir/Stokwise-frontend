@@ -13,6 +13,7 @@ import { AdminProductComponent } from './admin-product/admin-product.component';
 import { AdminPanelComponent } from '../../core/component/admin-panel/admin-panel.component';
 import { AdminAddShelfComponent } from './admin-add-shelf/admin-add-shelf.component';
 import { AdminShelfComponent } from './admin-shelf/admin-shelf.component';
+import { AdminEditShelfComponent } from './admin-edit-shelf/admin-edit-shelf.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'products', pathMatch: 'full' },
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'shelves', component: AdminShelfComponent,
   children: [
     {path: '', component: AdminShelfManagementComponent, pathMatch: 'full' },
-
+    {path: 'editShelf', component: AdminEditShelfComponent},
     {path: 'addShelf', component: AdminAddShelfComponent},
     
   ]
