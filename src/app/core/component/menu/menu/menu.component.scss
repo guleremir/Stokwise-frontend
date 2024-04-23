@@ -85,7 +85,7 @@ body{
         width: 100%;
         max-width: 100vw; 
         overflow-x: hidden; 
-    
+    background-color: #ffebc0;
    
 
    
@@ -301,6 +301,10 @@ nav{
 .col{
     display: flex;
     width: 50%;
+}
+
+#header{
+    background-color: #acc1cce5;
 }
 
 /* -- ## --- RESUABLE CSS -- ## -- */

@@ -14,6 +14,8 @@ import { AdminPanelComponent } from '../../core/component/admin-panel/admin-pane
 import { AdminAddShelfComponent } from './admin-add-shelf/admin-add-shelf.component';
 import { AdminShelfComponent } from './admin-shelf/admin-shelf.component';
 import { AdminEditShelfComponent } from './admin-edit-shelf/admin-edit-shelf.component';
+import { roleCheckGuard } from '../../shared/guard/role-check.guard';
+import { ROLE_ADMIN, ROLE_REPORT_READER } from '../../shared/model/constant';
 
 const routes: Routes = [
   { path: '', redirectTo:'products', pathMatch: 'full' },
@@ -29,8 +31,8 @@ const routes: Routes = [
   { path: 'shelves', component: AdminShelfComponent,
   children: [
     {path: '', component: AdminShelfManagementComponent, pathMatch: 'full' },
-    {path: 'editShelf', component: AdminEditShelfComponent},
-    {path: 'addShelf', component: AdminAddShelfComponent},
+    {path: 'editShelf', component: AdminEditShelfComponent, canActivate:[roleCheckGuard(ROLE_ADMIN)]},
+    {path: 'addShelf', component: AdminAddShelfComponent, canActivate:[roleCheckGuard(ROLE_ADMIN)]},
     
   ]
 
