@@ -8,7 +8,7 @@ import { UserRole } from '../../dto/userRole';
   styleUrl: './user-list.component.scss'
 })
 export class UserListComponent {
-  @Input() user: User = new User(0,'','',[]);
+  @Input() user: User = new User("",'','',[]);
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
 

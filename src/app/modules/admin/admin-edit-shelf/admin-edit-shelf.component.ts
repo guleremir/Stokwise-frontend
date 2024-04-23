@@ -13,7 +13,7 @@ export class AdminEditShelfComponent{
   createForm = this.fb.nonNullable.group({
     capacity: 0,
   });
-  shelfID = 0;
+  shelfID: string = "";
   productCount = 0;
   productCategory = "";
   productName = "";

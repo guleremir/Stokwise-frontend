@@ -16,7 +16,7 @@ export class AdminAddUserComponent {
     password:"",
     confirmPassword:""
   })
-  userID = 0;
+  userID = "";
 
   constructor(
     private userService: UserService,
