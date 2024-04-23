@@ -11,10 +11,10 @@ import { LoginService } from '../../service/login.service';
 })
 export class LoginComponent {
 
-  loginForm = this.fb.nonNullable.group({
-    email: [''], //Validators eklencek.
-    password: ''
-  })
+  loginForm = this.fb.group({
+    email: ['', Validators.required],  // Validators eklenmeli.
+    password: ['', Validators.required]
+  });
 
   constructor(
     private fb: FormBuilder,
@@ -23,29 +23,38 @@ export class LoginComponent {
     private router: Router
   ) { }
 
-//
-
   submit() {
-    let email = this.loginForm.get('email')!.value;
-    let password = this.loginForm.get('password')!.value;
-    console.log(email);
-    console.log(password);
-    this.loginService.login(email, password).subscribe({
-      next: (value) => {
-        this.toastr.success('Successfully Log In');
-        let isAdmin = this.loginService.userHasRole('admin');
-        this.router.navigateByUrl(isAdmin ? 'adminPanel' : 'homepage/products');
-      },
-      error: (err) => {
-        this.toastr.error('Wrong email or password!');
-        this.loginForm.patchValue({ email: '', password: '' });
-        console.error(err);
+    if (this.loginForm.valid) {
+      const email = this.loginForm.get('email')?.value;
+      const password = this.loginForm.get('password')?.value;
+      
+      // email veya password null ise hata göster.
+      if (email == null || password == null) {
+        this.toastr.error('Email or password cannot be null.');
+        return;
       }
-    })
+  
+      this.loginService.login(email, password).subscribe({
+        next: (value) => {
+          this.toastr.success('Successfully Logged In');
+          let isAdmin = this.loginService.userHasRole('admin');
+          this.router.navigateByUrl(isAdmin ? '/adminPanel' : '/homepage/products');
+        },
+        error: (err) => {
+          this.toastr.error('Wrong email or password!');
+          this.loginForm.patchValue({ email: '', password: '' });
+          console.error(err);
+        }
+      });
+    } else {
+      this.toastr.error('Please fill in all required fields correctly.');
+    }
   }
-
-  signUpRouter(){
-    this.router.navigate(['/signup']);
-  }
-
+  
 }
+
+  // signUpRouter(){
+  //   this.router.navigate(['/signup']);
+  // }
+
+
