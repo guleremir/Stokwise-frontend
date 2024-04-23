@@ -1,6 +1,7 @@
 <div class="shelf-table">
     <div class="record-header">
         <div class="browse">
+
             <!-- <input type="search" placeholder="Search Shelf ID" class="record-search" [(ngModel)]="searchShelfId">
             <i class="fa-solid fa-magnifying-glass"></i> -->
             <div class="search-container">
@@ -8,6 +9,7 @@
                 <input type="text" placeholder="Search Shelf ID" class="record-search" [(ngModel)]="searchShelfId">
             </div>
             
+
             <button (click)="addShelf()" class="right-button">
                 <span class="transition"></span>
                 <span class="gradient"></span>
@@ -31,7 +33,9 @@
             </thead>
             <tbody>
                 @for (shelf of filterShelf(); track shelf.id) {
+
                     <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
+
                     <td>{{ shelf.id }}</td>
                     <td>{{ shelf.capacity }}</td>
                     <td>{{ shelf.productCount }}</td>
