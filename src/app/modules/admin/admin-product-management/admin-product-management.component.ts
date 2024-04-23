@@ -20,13 +20,38 @@ export class AdminProductManagementComponent {
     private toastr: ToastrService
   ) { }
 
+   uuidToSequenceMap: { [key: string]: number} = {};
+
+   loadProducts(): void {
+    this.productService.getAllProduct().subscribe(
+      (data: Product[]) => {
+        this.products = data;
+  
+        // UUID'leri sıralı numaralarla eşleştirme
+        this.uuidToSequenceMap = {}; // Önce objeyi sıfırlayın
+  
+        this.products.forEach((product, index) => {
+          // Her ürünün id'sini sıralı numaralarla eşleştir
+          this.uuidToSequenceMap[product.id] = index + 1;
+        });
+        console.log('Products:', this.products);
+      console.log('uuidToSequenceMap:', this.uuidToSequenceMap);
+      },
+      (error) => {
+        console.error('Error loading products:', error);
+        this.toastr.error('Error loading products. Please try again.');
+      }
+    );
+  }
+
   ngOnInit(): void {
-    this.productService.getAllProduct().subscribe({
-      next: (products => {
-        console.log(products);
-        this.products = products;
-      })
-    });
+    // this.productService.getAllProduct().subscribe({
+    //   next: (products => {
+    //     console.log(products);
+    //     this.products = products;
+    //   })
+    // });
+    this.loadProducts()
   }
   // Sıralama sütunu ve sıralama tipi
   sortBy: string = 'productName'; // Varsayılan olarak productName'e göre sırala

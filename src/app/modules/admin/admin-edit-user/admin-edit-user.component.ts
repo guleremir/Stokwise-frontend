@@ -20,7 +20,7 @@ export class AdminEditUserComponent  implements OnInit {
     confirmPassword: "",
     roles: [[]]
   })
-  userID = 0;
+  userID = "";
   roles: Role[]= []; // Roller dizisini tanımla
 
   // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın

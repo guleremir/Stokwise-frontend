@@ -1,7 +1,10 @@
 <table width="100%">
     <tbody>
         <tr [class.is-invalid]="hasQuantityError()">
-            <td># {{product.id}}</td>
+           
+            <td> {{uuidToSequenceMap[product.id]}}</td>
+           
+           
             <td>
                 <div class="client">
                     <div class="client-info">

@@ -25,15 +25,15 @@ export class ShelfService {
     return this.httpClient.post<SuccessResponse>('/addShelf', shelf);
   }
   
-  deleteShelf(id: number): Observable<SuccessResponse> {
+  deleteShelf(id: string): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/deleteShelf', { id });
   }
   
-  editShelf(id: number, capacity: number): Observable<SuccessResponse> {
+  editShelf(id: string, capacity: number): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/editShelf', { id, capacity });
   }
   
-  getAllProductsFromShelf(id: number): Observable<AdminProduct[]> {
+  getAllProductsFromShelf(id: string): Observable<AdminProduct[]> {
     return this.httpClient.post<AdminProduct[]>('/getAllProductsFromShelf', { id });
   }
 
