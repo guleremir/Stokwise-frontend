@@ -1,38 +1,43 @@
 <div class="product-table">
-    <div class="record-header">
-        <div class="browse">
-              <input type="text" placeholder="Search Product" class="record-search" [(ngModel)]="searchText">
-            <button (click)="addProduct()" class="left-button">
-            <span class="transition"></span>
-            <span class="gradient"></span>
-            <span class="label">Add Product</span>
-          </button>
-          <button (click)="reportProduct()" class="right-button">
-            <span class="transition"></span>
-            <span class="gradient"></span>
-            <span class="label">Report Product</span>
-          </button>
-        </div>
+  <div class="record-header">
+    <div class="browse">
+      <input type="text" placeholder="Search Product" class="record-search" [(ngModel)]="searchText">
+      <button (click)="addProduct()" class="left-button">
+        <span class="transition"></span>
+        <span class="gradient"></span>
+        <span class="label">Add Product</span>
+      </button>
+      <button (click)="reportProduct()" class="right-button">
+        <span class="transition"></span>
+        <span class="gradient"></span>
+        <span class="label">Report Product</span>
+      </button>
+      <button (click)="reportMinimumCount()" class="right-button">
+        <span class="transition"></span>
+        <span class="gradient"></span>
+        <span class="label">Report Minimum Count Product</span>
+      </button>
     </div>
-    <div>
-        <table width="100%">
-            <thead>
-                <tr>
-                    <th> ID </th>
-                    <th><span class="las la-sort"></span> Product Name </th>
-                    <th><span class="las la-sort"></span> Price </th>
-                    <th><span class="las la-sort"></span> Quantity </th>
-                    <th><span class="las la-sort"></span> Units In Stock </th>
-                    <th><span class="las la-sort"></span> Description </th>
-                    <th><span class="las la-sort"></span> Actions </th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    
+  </div>
+  <div>
+    <table width="100%">
+      <thead>
+        <tr>
+          <th> ID </th>
+          <th (click)="sort('productName')"> Product Name </th>
 
-    <app-product-list *ngFor="let product of filterProducts()" [product]="product"
-  (edit)="editProduct($event)"
-  (delete)="deleteProduct($event)">
-</app-product-list>
+          <th><span class="las la-sort"></span> Price </th>
+          <th><span class="las la-sort"></span> Quantity </th>
+          <th><span class="las la-sort"></span> Units In Stock </th>
+          <th><span class="las la-sort"></span> Description </th>
+          <th><span class="las la-sort"></span> Actions </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+
+  <app-product-list *ngFor="let product of filterProducts()" [product]="product" (edit)="editProduct($event)"
+    (delete)="deleteProduct($event)">
+  </app-product-list>
 </div>

@@ -6,13 +6,14 @@ import { AdminPanelComponent } from './core/component/admin-panel/admin-panel.co
 import { SignUpComponent } from './core/component/sign-up/sign-up.component';
 import { AccountManagementComponent } from './core/component/account-management/account-management.component';
 import { MenuComponent } from './core/component/menu/menu/menu.component';
+import { loginGuard } from './core/guard/login.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
   { path: 'menu', component: MenuComponent },
   { path: 'login', component: LoginComponent },
   {
-    path: 'homepage', component: HomepageComponent, children: [
+    path: 'homepage', component: HomepageComponent, canActivate: [loginGuard], children: [
       {
         path: 'products', loadChildren: () => import('./modules/product/product.module')
           .then(p => p.ProductModule)
@@ -26,12 +27,14 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'adminPanel', component: AdminPanelComponent, children: [
-    {
-      path: '', loadChildren: () => import('./modules/admin/admin.module')
-        .then(p => p.AdminModule)
-    },
-  ] },
+  {
+    path: 'adminPanel', component: AdminPanelComponent, canActivate: [loginGuard], children: [
+      {
+        path: '', loadChildren: () => import('./modules/admin/admin.module')
+          .then(p => p.AdminModule)
+      },
+    ]
+  },
   { path: 'signup', component: SignUpComponent },
   { path: '**', redirectTo: 'login' }
 
