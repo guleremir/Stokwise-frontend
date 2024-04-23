@@ -57,16 +57,20 @@
 
                     <div class="card">
                         <div class="card-head">
-                            <h2>107,200</h2>
+                            <h2>{{ products.length }}</h2>
                             <span class="las la-user-friends"></span>
                         </div>
                         <div class="card-progress">
-                            <small>User activity this month</small>
-                            <div class="card-indicator">
-                                <div class="indicator one" style="width: 60%"></div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" [style.width.%]="calculateProgress()" aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    <span class="sr-only">{{ calculateProgress() }}% Complete</span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
+                    
 
                     <div class="card">
                         <div class="card-head">

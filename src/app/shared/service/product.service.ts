@@ -20,6 +20,10 @@ export class ProductService {
     return this.httpClient.get<Product[]>('/getAllProducts');
   }
 
+  reportWarningCountProduct(): Observable<SuccessResponse>{
+    return this.httpClient.get<SuccessResponse>('/reportProductWarningCount');
+  }
+
   reportProduct(): Observable<SuccessResponse>{
     return this.httpClient.get<SuccessResponse>('/reportProduct');
   }
