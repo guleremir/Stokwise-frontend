@@ -14,7 +14,7 @@ export class EditShelfComponent implements OnInit {
   createForm = this.fb.nonNullable.group({
     capacity: 0,
   });
-  shelfID = 0;
+  shelfID = "";
   productCount = 0;
   productCategory = "";
   productName = "";

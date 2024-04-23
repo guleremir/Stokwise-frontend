@@ -37,7 +37,7 @@
   </div>
 
 
-  <app-product-list *ngFor="let product of filterProducts()" [product]="product" (edit)="editProduct($event)"
+  <app-product-list (loadProductEvent)="loadProducts()" [uuidToSequenceMap]="uuidToSequenceMap" *ngFor="let product of filterProducts()" [product]="product" (edit)="editProduct($event)"
     (delete)="deleteProduct($event)">
   </app-product-list>
 </div>

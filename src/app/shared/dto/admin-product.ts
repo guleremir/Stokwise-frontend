@@ -1,6 +1,6 @@
 export class AdminProduct {
     constructor(
-        public id: number,
+        public id: string,
         public count: number,
         public name: string
     ) {}

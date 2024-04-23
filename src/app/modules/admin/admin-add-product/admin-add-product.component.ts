@@ -23,9 +23,9 @@ export class AdminAddProductComponent implements OnInit{
     productUnitInStock: 0,
     productMinimumCount:0,
     productDescription: "",
-    productCategoryID: 0,
+    productCategoryID: "",
   })
-  productID = 0;
+  productID = "";
 
   constructor(
     private productService: ProductService,

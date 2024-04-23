@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductComponent {
   products: Product[] = [];
 
-  selectedProductId: number = 0;
+  selectedProductId: string =  "";
   areYouSureQuestion = 'Are you sure you want to delete this product?'
 
   constructor(
@@ -30,8 +30,11 @@ export class ProductComponent {
       next: (products => {
         console.log(products);
         this.products = products;
+        
       })
+      
     });
+    
   }
 
   addProduct() {
@@ -73,9 +76,10 @@ export class ProductComponent {
     });
   }
 
-  id = 0;
-  selectedProduct(productId: number){
+  id = "";
+  selectedProduct(productId: string){
     this.id = productId;
   }
+ 
 
 }

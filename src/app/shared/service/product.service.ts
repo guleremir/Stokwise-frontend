@@ -32,7 +32,7 @@ export class ProductService {
     return this.httpClient.post<SuccessResponse>('/addProduct', product);
   }
 
-  deleteProduct(id : number): Observable<SuccessResponse> {
+  deleteProduct(id : string): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/deleteProduct', {id});
   }
   editProduct(product: Product): Observable<SuccessResponse> {
@@ -53,13 +53,13 @@ export class ProductService {
   //   return this.httpClient.post<any>(url, requestBody);
   // }
 
-  acceptProduct(productId: number, count: number): Observable<string> {
+  acceptProduct(productId: string, count: number): Observable<string> {
     const url = '/entryProduct';
     const requestBody = { productId, count };
     return this.httpClient.post<string>(url, requestBody, { responseType: 'text' as 'json' });
   }
 
-  dispatchProduct(productId: number, count: number): Observable<string>{
+  dispatchProduct(productId: string, count: number): Observable<string>{
     const url = '/dispatchProduct';
     const requestBody = { productId, count };
     return this.httpClient.post<string>(url, requestBody, { responseType: 'text' as 'json' });
@@ -71,5 +71,8 @@ export class ProductService {
   //   const requestBody = { productId, count };
   //   return this.httpClient.post<SuccessResponse>(url, requestBody);
   // }
+  shortenUuid(uuid: string): string {
+    return uuid.substring(0, 8);
+  }
 
 }
