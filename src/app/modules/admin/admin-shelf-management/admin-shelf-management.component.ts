@@ -56,7 +56,7 @@ export class AdminShelfManagementComponent implements OnInit {
     }
   }
 
-  editShelf(shelf : Shelf) {
+  editShelf(shelf : AdminShelf) {
     this.shelfService.editingShelf = shelf;
     console.log(shelf);
     this.router.navigate(['editShelf'], { relativeTo: this.route });
@@ -82,6 +82,5 @@ export class AdminShelfManagementComponent implements OnInit {
     });
   }
 
-  
 
   }

@@ -55,7 +55,9 @@ select {
 }
 
 .browse input {
-    width: 150px;
+
+    width: 175px;
+
 }
 
 .browse select {
@@ -107,8 +109,7 @@ select {
 
 
 .right-button {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
+    font-family: 'Merriweather', sans-serif;
     font-size: 14px;
     /* Daha küçük bir font boyutu */
     padding: 7px 14px;
@@ -125,14 +126,13 @@ select {
 
 
 .left-button {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
+    font-family: 'Merriweather', sans-serif;
     font-size: 14px;
     /* Daha küçük bir font boyutu */
     padding: 7px 14px;
     /* Daha küçük bir padding */
     font-weight: 500;
-    background: #138803;
+    background: #a71616;
     color: white;
     border: none;
     position: relative;
@@ -193,4 +193,15 @@ button:active {
 
 .accordion-button > div {
     flex-grow: 1; /* İç içe divin tüm boş alanı kaplamasını sağlar */
+}
+.search-container {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 150px; /* İstenilen yerde ayarlayabilirsiniz */
+    transform: translateY(-50%);
+    opacity: 0.7;
 }

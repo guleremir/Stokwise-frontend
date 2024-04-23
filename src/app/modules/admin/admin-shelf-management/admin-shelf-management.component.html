@@ -1,8 +1,15 @@
 <div class="shelf-table">
     <div class="record-header">
         <div class="browse">
+
+            <!-- <input type="search" placeholder="Search Shelf ID" class="record-search" [(ngModel)]="searchShelfId">
+            <i class="fa-solid fa-magnifying-glass"></i> -->
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="Search Shelf ID" class="record-search" [(ngModel)]="searchShelfId">
+            </div>
             
-            <input type="search" placeholder="Search Shelf ID" class="record-search" [(ngModel)]="searchShelfId">
+
             <button (click)="addShelf()" class="right-button">
                 <span class="transition"></span>
                 <span class="gradient"></span>
@@ -26,18 +33,30 @@
             </thead>
             <tbody>
                 @for (shelf of filterShelf(); track shelf.id) {
-                <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
-                    
+
+                    <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
+
                     <td>{{ shelf.id }}</td>
                     <td>{{ shelf.capacity }}</td>
                     <td>{{ shelf.productCount }}</td>
                     <td>{{ shelf.productCategory }}</td>
                  <td>
-                    <button (click)="deleteShelf(shelf)" class="left-button">
-                        <span class="transition"></span>
-                        <span class="gradient"></span>
-                        <span class="label">Delete Shelf</span>
-                    </button>
+                    <div class="buttons">
+                        <div>
+                            <button (click)="editShelf(shelf)" class="right-button">
+                                <span class="transition"></span>
+                                <span class="gradient"></span>
+                                <span class="label">Update</span>
+                            </button>
+                        </div>
+                        <div>
+                            <button (click)="deleteShelf(shelf)" class="left-button">
+                                <span class="transition"></span>
+                                <span class="gradient"></span>
+                                <span class="label">Delete</span>
+                            </button>
+                        </div>
+                    </div>
                 </td>
                     
                 </tr>

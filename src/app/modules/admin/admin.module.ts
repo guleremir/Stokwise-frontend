@@ -16,6 +16,7 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
 import { AdminProductComponent } from './admin-product/admin-product.component';
 import { AdminAddShelfComponent } from './admin-add-shelf/admin-add-shelf.component';
 import { AdminShelfComponent } from './admin-shelf/admin-shelf.component';
+import { AdminEditShelfComponent } from './admin-edit-shelf/admin-edit-shelf.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AdminShelfComponent } from './admin-shelf/admin-shelf.component';
     AdminProductComponent,
     AdminAddShelfComponent,
     AdminShelfComponent,
+    AdminEditShelfComponent,
     
   ],
   imports: [

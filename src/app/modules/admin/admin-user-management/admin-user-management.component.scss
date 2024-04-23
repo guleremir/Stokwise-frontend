@@ -394,7 +394,7 @@ select {
 }
 
 .browse input {
-    width: 150px;
+    width: 175px;
 }
 
 .browse select {
@@ -542,8 +542,7 @@ th {
 }
 
 button {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
+    font-family: 'Merriweather', sans-serif;
     font-size: 14px;
     /* Daha küçük bir font boyutu */
     padding: 7px 14px;
