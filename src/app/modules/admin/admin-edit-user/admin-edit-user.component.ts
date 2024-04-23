@@ -61,11 +61,15 @@ export class AdminEditUserComponent  implements OnInit {
     let email = this.updateForm.get('email')!.value;
     let password = this.updateForm.get('password')!.value;
     let confirmPassword = this.updateForm.get('confirmPassword')!.value;
-    let roles = this.updateForm.get('roles')!.value; // Rollerin alınması
-
+    let selectedRoles: UserRole[] = this.selectedRoles.map(role => {
+      return {
+        id: role.id,
+        name: role.name // veya role.name gibi
+      };
+    });
     
       if (password === confirmPassword) {
-        this.userService.updateUser(new User(this.userID, email, password, roles)).subscribe({
+        this.userService.updateUser(new User(this.userID, email, password, selectedRoles)).subscribe({
           next: (result) => {
             this.toastr.info('User updated.');
             this.router.navigate(['..'], { relativeTo: this.route });
