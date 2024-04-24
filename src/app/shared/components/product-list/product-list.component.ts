@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { Product } from '../../dto/product';
 import { Category } from '../../dto/category';
 
@@ -8,9 +8,15 @@ import { Category } from '../../dto/category';
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent {
-  @Input() product: Product = new Product(0, '',new Category() , 0, 0, 0, 0,'');
+  @Input() product: Product = new Product("", '',new Category() , 0, 0, 0, 0,'');
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
+@Output() loadProductEvent=new EventEmitter<void>();
+@Input() uuidToSequenceMap: { [key: string]: number} = {};
+
+loadProduct(){
+  this.loadProductEvent.emit();
+}
 
   constructor(
     //private toastr: ToastrService
@@ -26,5 +32,6 @@ export class ProductListComponent {
   hasQuantityError():boolean{
     return this.product.minimumCount! >= this.product.quantity!;
   }
+  
 
 }

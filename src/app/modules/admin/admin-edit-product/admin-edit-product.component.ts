@@ -21,7 +21,7 @@ export class AdminEditProductComponent implements OnInit{
     productDescription: "",
   })
   productCategory = "";
-  productID = 0;
+  productID = "";
 
   constructor(
     private productService: ProductService,
@@ -53,7 +53,7 @@ export class AdminEditProductComponent implements OnInit{
     let productQuantity = (this.createForm.get('productQuantity')!.value);
     let productMinimumCount = (this.createForm.get('productMinimumCount')!.value);
     let productDescription = (this.createForm.get('productDescription')!.value);
-    this.productService.editProduct(new Product(this.productID, productName, new Category(0,this.productCategory) ,productPrice, productQuantity, productUnitInStock, productMinimumCount, productDescription)).subscribe({
+    this.productService.editProduct(new Product(this.productID, productName, new Category("",this.productCategory) ,productPrice, productQuantity, productUnitInStock, productMinimumCount, productDescription)).subscribe({
       next: (result) => {
         this.toastr.info('Product updated.');
         this.router.navigate(['..'], { relativeTo: this.route });

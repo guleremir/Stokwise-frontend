@@ -20,13 +20,53 @@ export class AdminProductManagementComponent {
     private toastr: ToastrService
   ) { }
 
+   uuidToSequenceMap: { [key: string]: number} = {};
+
+   loadProducts(): void {
+    this.productService.getAllProduct().subscribe(
+      (data: Product[]) => {
+        this.products = data;
+  
+        // UUID'leri sıralı numaralarla eşleştirme
+        this.uuidToSequenceMap = {}; // Önce objeyi sıfırlayın
+  
+        this.products.forEach((product, index) => {
+          // Her ürünün id'sini sıralı numaralarla eşleştir
+          this.uuidToSequenceMap[product.id] = index + 1;
+        });
+        console.log('Products:', this.products);
+      console.log('uuidToSequenceMap:', this.uuidToSequenceMap);
+      },
+      (error) => {
+        console.error('Error loading products:', error);
+        this.toastr.error('Error loading products. Please try again.');
+      }
+    );
+  }
+
   ngOnInit(): void {
-    this.productService.getAllProduct().subscribe({
-      next: (products => {
-        console.log(products);
-        this.products = products;
-      })
-    });
+    // this.productService.getAllProduct().subscribe({
+    //   next: (products => {
+    //     console.log(products);
+    //     this.products = products;
+    //   })
+    // });
+    this.loadProducts()
+  }
+  // Sıralama sütunu ve sıralama tipi
+  sortBy: string = 'productName'; // Varsayılan olarak productName'e göre sırala
+  sortDirection: 'asc' | 'desc' = 'asc'; // Varsayılan olarak artan sıralama
+
+  // Sıralama fonksiyonu
+  sort(column: string) {
+    if (this.sortBy === column) {
+      // Sıralama sütunu aynıysa sıralama tipini değiştir
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      // Sıralama sütunu değiştiyse varsayılan olarak artan sıralamaya dön
+      this.sortBy = column;
+      this.sortDirection = 'asc';
+    }
   }
 
   addProduct(){
@@ -54,6 +94,17 @@ export class AdminProductManagementComponent {
     });
   }
 
+  reportMinimumCount(){
+    this.productService.reportWarningCountProduct().subscribe({
+      next: () => {
+        this.toastr.success("Product reported successfully");
+      },
+      error: (err) => {
+        console.log("Error:", err); // Hatayı konsola yazdır
+      }
+    });
+  }
+
   reportProduct(){
     this.productService.reportProduct().subscribe({
       next: () => {
@@ -66,9 +117,24 @@ export class AdminProductManagementComponent {
   }
 
   // Ürünleri filtrelemek için fonksiyon eklendi
-  filterProducts(): Product[] {
-    return this.products.filter(product => {
-      return product.name.toLowerCase().includes(this.searchText.toLowerCase());
+filterProducts() {
+    let filteredProducts = this.products;
+
+    // Arama filtresi
+    if (this.searchText) {
+      filteredProducts = filteredProducts.filter(product =>
+        product.name.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    }
+
+    // Sıralama
+    filteredProducts = filteredProducts.sort((a, b) => {
+      const x = a.name;
+const y = b.name;
+      return this.sortDirection === 'asc' ? x.localeCompare(y) : y.localeCompare(x);
     });
+
+    return filteredProducts;
   }
+
 }
