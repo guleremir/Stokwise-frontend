@@ -19,6 +19,7 @@ export class EditProductComponent implements OnInit {
     productName: "",
     productPrice: 0,
     productQuantity: 0,
+    incomingProductQuantity: 0,
     productUnitInStock: 0,
     productMinimumCount: 0,
     productDescription: "",
@@ -45,6 +46,7 @@ export class EditProductComponent implements OnInit {
         productUnitInStock: this.productService.editingProduct.unitInStock,
         productMinimumCount: this.productService.editingProduct.minimumCount,
         productDescription: this.productService.editingProduct.description,
+        incomingProductQuantity: 0
       });
       // console.log(this.productService.editingProduct);
     } else { }
@@ -55,7 +57,7 @@ export class EditProductComponent implements OnInit {
     let productName = this.createForm.get('productName')!.value;
     let productPrice = (this.createForm.get('productPrice')!.value);
     let productUnitInStock = (this.createForm.get('productUnitInStock')!.value);
-    let productQuantity = (this.createForm.get('productQuantity')!.value);
+    let productQuantity = (this.createForm.get('productQuantity')!.value + this.createForm.get('incomingProductQuantity')!.value);
     let productMinimumCount = (this.createForm.get('productMinimumCount')!.value);
     let productDescription = (this.createForm.get('productDescription')!.value);
     this.productService.editProduct(new Product(this.productID, productName, new Category("",this.productCategory) ,productPrice, productQuantity, productUnitInStock, productMinimumCount, productDescription)).subscribe({

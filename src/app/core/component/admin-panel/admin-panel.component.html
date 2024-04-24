@@ -1,124 +1,122 @@
-    <div class="sidebar">
+<div class="sidebar">
         
-        <div class="side-content">
-            <div class="profile">
-                <img src="../../../../../assets/logo.png" width="100px" height="100px" alt="IMG">
-            </div>
+    <div class="side-content">
+        <div class="profile">
+            <img src="../../../../../assets/logo.png" width="100px" height="100px" alt="IMG">
+        </div>
 
-            <div class="side-menu">
-                <ul>
-                    <li>
-                       <a routerLink="/adminPanel/products" [class.active] = "isCurrentRoute('/adminPanel/products')">
-                            <span class="las la-home"></span>
-                            <small> Products </small>
-                        </a>
-                    </li>
-                    <li>
-                       <a routerLink="/adminPanel/shelves" routerLinkActive="active">
-                            <span class="las la-user-alt"></span>
-                            <small> Shelves </small>
-                        </a>
-                    </li>
-                    <li>
-                        <a routerLink="/adminPanel/users" routerLinkActive="active">
-                             <span class="las la-user-alt"></span>
-                             <small> Users </small>
-                         </a>
-                     </li>
-                     <li>
-                        <a routerLink="/adminPanel/account" routerLinkActive="active">
-                             <span class="las la-user-alt"></span>
-                             <small> My Account </small>
-                         </a>
-                     </li>
-                     <li>
-                        <a routerLinkActive="active" (click)="logout()">
-                             <span class="las la-user-alt"></span>
-                             <small> Log Out </small>
-                         </a>
-                     </li>
+        <div class="side-menu">
+            <ul>
+                <li>
+                   <a routerLink="/adminPanel/products" [class.active] = "isCurrentRoute('/adminPanel/products')">
+                        <span class="las la-home"></span>
+                        <small> Products </small>
+                    </a>
+                </li>
+                <li>
+                   <a routerLink="/adminPanel/shelves" routerLinkActive="active">
+                        <span class="las la-user-alt"></span>
+                        <small> Shelves </small>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/adminPanel/users" routerLinkActive="active">
+                         <span class="las la-user-alt"></span>
+                         <small> Users </small>
+                     </a>
+                 </li>
+                 <li>
+                    <a routerLink="/adminPanel/account" routerLinkActive="active">
+                         <span class="las la-user-alt"></span>
+                         <small> My Account </small>
+                     </a>
+                 </li>
+                 <li>
+                    <a routerLinkActive="active" (click)="logout()">
+                         <span class="las la-user-alt"></span>
+                         <small> Log Out </small>
+                     </a>
+                 </li>
 
-                </ul>
-            </div>
+            </ul>
         </div>
     </div>
-    
-    <div class="main-content">
-      
-            
-            <div class="page-header">
-                <h1>Dashboard</h1>
-                <small>Home / Dashboard</small>
-            </div>
-            
-            <div class="page-content">
-            
-                <div class="analytics">
+</div>
 
-                    <div class="card">
-                        <div class="card-head">
+<div class="main-content">
+  
+        
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <small>Home / Dashboard</small>
+        </div>
+        
+        <div class="page-content">
+        
+            <div class="analytics">
 
-                            <h2>{{ products.length }}</h2>
-                            <span class="las la-user-friends"></span>
-                        </div>
-                        <div class="card-progress">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" [style.width.%]="calculateProgress()" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <span class="sr-only">{{ calculateProgress() }}% Complete</span>
-                                </div>
-
+                <div class="card">
+                    <div class="card-head">
+                        <h2>{{ products.length }}</h2>
+                        <span class="las la-user-friends"></span>
+                    </div>
+                    <div class="card-progress">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width.%]="calculateProgress()" aria-valuemin="0"
+                                aria-valuemax="100">
+                                <span class="sr-only">{{ calculateProgress() }}% Complete</span>
                             </div>
                         </div>
                     </div>
-                    
-                    
+                </div>
+                
+                
 
-                    <div class="card">
-                        <div class="card-head">
-                            <h2>veri çekilecek</h2>
-                            <span class="las la-eye"></span>
-                        </div>
-                        <div class="card-progress">
-                            <small>Total shelf capacity</small>
-                            <div class="card-indicator">
-                                <div class="indicator two" style="width: 80%"></div>
-                            </div>
+                <div class="card">
+                    <div class="card-head">
+                        <h2>340,230</h2>
+                        <span class="las la-eye"></span>
+                    </div>
+                    <div class="card-progress">
+                        <small>Page views</small>
+                        <div class="card-indicator">
+                            <div class="indicator two" style="width: 80%"></div>
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div class="card-head">
-                            <h2>veri çekilecek</h2>
-                            <span class="las la-shopping-cart"></span>
-                        </div>
-                        <div class="card-progress">
-                            <small>Warehouse occupancy rate</small>
-                            <div class="card-indicator">
-                                <div class="indicator three" style="width: 65%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-head">
-                            <h2>veri çekilecek</h2>
-                            <span class="las la-envelope"></span>
-                        </div>
-                        <div class="card-progress">
-                            <small>Total number of users</small>
-                            <div class="card-indicator">
-                                <div class="indicator four" style="width: 90%"></div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
+                <div class="card">
+                    <div class="card-head">
+                        <h2>$653,200</h2>
+                        <span class="las la-shopping-cart"></span>
+                    </div>
+                    <div class="card-progress">
+                        <small>Monthly revenue growth</small>
+                        <div class="card-indicator">
+                            <div class="indicator three" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="records table-responsive">
-                <router-outlet/>
+                <div class="card">
+                    <div class="card-head">
+                        <h2>47,500</h2>
+                        <span class="las la-envelope"></span>
+                    </div>
+                    <div class="card-progress">
+                        <small>New E-mails received</small>
+                        <div class="card-indicator">
+                            <div class="indicator four" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            
+
+
+            <div class="records table-responsive">
+            <router-outlet/>
+        </div>
         
-    </div>
+    
+</div>
