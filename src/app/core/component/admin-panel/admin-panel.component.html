@@ -57,11 +57,11 @@
 
                 <div class="card">
                     <div class="card-head">
-                        <h2>{{ products.length }}</h2> 
+                        <h2>{{ getTotalProductQuantity() }}</h2> 
                         <span class="las la-user-friends"></span>
                     </div>
                     <div class="card-progress">
-                        <small>Number of products</small>
+                        <small>Total number of products</small>
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" [style.width.%]="calculateProgress()" aria-valuemin="0"
                                 aria-valuemax="100">
@@ -80,7 +80,7 @@
                         <span class="las la-eye"></span>
                     </div>
                     <div class="card-progress">
-                        <small>Number of shelves</small>
+                        <small>Total shelf capacity</small>
                         <div class="card-indicator">
                             <div class="indicator two" style="width: 80%"></div>
                         </div>
