@@ -596,3 +596,25 @@ button:hover .transition {
 button:active {
     transform: scale(0.97);
 }
+button:active {
+    transform: scale(0.97);
+}
+.accordion-button::after {
+    display: none;
+}
+
+.accordion-button > div {
+    flex-grow: 1; /* İç içe divin tüm boş alanı kaplamasını sağlar */
+}
+.search-container {
+    position: relative;
+}
+
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 150px; /* İstenilen yerde ayarlayabilirsiniz */
+    transform: translateY(-50%);
+    opacity: 0.7;
+}

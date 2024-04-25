@@ -56,4 +56,8 @@ calculateProgress(): number {
     return this.router.url === route;
   }
 
+  getTotalProductQuantity(): number {
+    return this.products.reduce((total, product) => total + product.quantity, 0);
+  }
+
 }

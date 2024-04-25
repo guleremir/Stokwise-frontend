@@ -28,6 +28,10 @@ export class ProductCardComponent {
     this.edit.emit(this.product);
   }
 
+  hasQuantityError():boolean{
+    return this.product.minimumCount! >= this.product.quantity!;
+  }
+
   // deleteProductButtonClicked(){
   //   let dialog = this.dialog.open(AreYouSureComponent, {
   //     width: '300px',

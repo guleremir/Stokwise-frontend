@@ -40,7 +40,7 @@ export class ProductComponent {
   addProduct() {
     this.router.navigate(['addProduct'], { relativeTo: this.route });
   }
-
+  
   editProduct(product: Product) {
     // this.productService.editProduct = product;
     this.productService.editingProduct = product;

@@ -22,3 +22,12 @@
 .card-title{
     margin-bottom: 2rem;
 }
+
+
+.is-invalid {
+    border: 2px solid rgb(182, 13, 13); 
+    padding: 1px; /* Opsiyonel: Çerçeve ile içerik arasında bir boşluk bırakır */
+    border-radius: 5px; /* Opsiyonel: Köşeleri yuvarlar */
+}
+
+

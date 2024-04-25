@@ -7,7 +7,7 @@
       <label for="txtProductPrice" class="form-label">Price</label>
       <input formControlName="productPrice" type="number" class="form-control" id="txtProductPrice" min="0">
     </div>
-    <div class="mb-3">
+   <!--  <div class="mb-3">
       <label for="txtProductQuantity" class="form-label">Quantity</label>
       <input formControlName="productQuantity" type="number" class="form-control" [class.is-invalid]="hasQuantityError()" id="txtProductQuantity" min="0">
       @if(hasQuantityError()){
@@ -15,7 +15,15 @@
           Please select a valid state.
         </div>
       }
+    </div> -->
+    <div class="mb-3">
+      <label for="txtProductQuantity" class="form-label">Quantity</label>
+      <input formControlName="productQuantity" type="number" class="form-control" class="form-control" id="txtProductQuantity" readonly>      
     </div>
+    <div class="mb-3">
+      <label for="txtIncomingProductQuantity" class="form-label">Quantity of products received</label>
+      <input formControlName="incomingProductQuantity" type="number" class="form-control" class="form-control" id="txtIncomingProductQuantity" min="0">      
+    </div>    
     <div class="mb-3">
       <label for="txtProductUnitInStock" class="form-label">Units In Stock</label>
       <input formControlName="productUnitInStock" type="number" class="form-control" id="txtProductUnitInStock" readonly>
@@ -28,7 +36,7 @@
       <label for="txtProductDescription" class="form-label">Description</label>
       <input formControlName="productDescription" type="text" class="form-control" id="txtProductDescription">
     </div>
-    <button type="button" class="btn btn-primary" [disabled]="hasQuantityError()" data-bs-toggle="modal" data-bs-target="#areyousure">Edit Product</button>
+    <button type="button" class="btn btn-primary" [disabled]="hasQuantityError()" data-bs-toggle="modal" data-bs-target="#areyousure">Update Product</button>
     <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
   </form>
   <app-are-you-sure (areYouSureEvent)="editProduct()" [areYouSureQuestion]="areYouSureQuestion" >
