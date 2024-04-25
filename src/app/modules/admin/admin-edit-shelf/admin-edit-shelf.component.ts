@@ -54,4 +54,8 @@ export class AdminEditShelfComponent{
       }
     });
   }
+
+  cancel() {
+    this.router.navigate(['/adminPanel/shelves']);
+  }
 }

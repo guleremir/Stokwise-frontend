@@ -1,7 +1,12 @@
 <div class="user-table">
 <div class="record-header">
     <div class="browse">
-        <input type="search" placeholder="Search User" class="record-search" [(ngModel)]="searchText">
+        <!-- <input type="search" placeholder="Search User" class="record-search" [(ngModel)]="searchText"> -->
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" placeholder="Search User" class="record-search" [(ngModel)]="searchText">
+        </div>
+        
         <button (click)="addUser()">
             <span class="transition"></span>
             <span class="gradient"></span>

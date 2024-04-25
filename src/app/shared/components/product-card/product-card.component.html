@@ -1,6 +1,7 @@
 <div class="col">
-    <div class="card">
-        <div class="card-body">
+    <div class="card" >
+        <!-- <div class="card-body"> -->
+            <div [class.is-invalid]="hasQuantityError()">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">
                 Category : {{product.category.name}}
