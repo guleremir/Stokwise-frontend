@@ -4,11 +4,12 @@
 
             <!-- <input type="search" placeholder="Search Shelf ID" class="record-search" [(ngModel)]="searchShelfId">
             <i class="fa-solid fa-magnifying-glass"></i> -->
+            <form [formGroup]="searchForm" >
             <div class="search-container">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" placeholder="Search Shelf ID" class="record-search" [(ngModel)]="searchShelfId">
+                <input type="text" placeholder="Search Category" class="record-search" formControlName="searchText"/> 
             </div>
-            
+            </form>
 
             <button (click)="addShelf()" class="right-button">
                 <span class="transition"></span>
@@ -24,7 +25,7 @@
         <table width="100%">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Index Number</th>
                     <th>Shelf Capacity</th>
                     <th>Product Count</th>
                     <th>Shelf Category</th>
@@ -32,11 +33,11 @@
                 </tr>
             </thead>
             <tbody>
-                @for (shelf of filterShelf(); track shelf.id) {
+                @for (shelf of filteredShelves; track shelf.id; let  i = $index) {
 
                     <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
 
-                    <td>{{ shelf.id }}</td>
+                    <td>{{ i + 1 }}</td>
                     <td>{{ shelf.capacity }}</td>
                     <td>{{ shelf.productCount }}</td>
                     <td>{{ shelf.productCategory }}</td>
