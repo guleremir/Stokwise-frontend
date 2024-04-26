@@ -61,12 +61,9 @@
                         <span class="las la-user-friends"></span>
                     </div>
                     <div class="card-progress">
-                        <small>Total number of products</small>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" [style.width.%]="calculateProgress()" aria-valuemin="0"
-                                aria-valuemax="100">
-                                <span class="sr-only">{{ calculateProgress() }}% Complete</span>
-                            </div>
+                        <small>Total Number of Products</small>
+                        <div class="card-indicator">
+                            <div class="indicator one" style="width: 30%"></div>
                         </div>
                        
                     </div>
@@ -76,39 +73,41 @@
 
                 <div class="card">
                     <div class="card-head">
-                        <h2>340,230</h2>
+                        <h2>{{ getTotalShelfCapacity() }}</h2>
                         <span class="las la-eye"></span>
                     </div>
                     <div class="card-progress">
-                        <small>Total shelf capacity</small>
+                        <small>Total Shelf Capacity</small>
                         <div class="card-indicator">
-                            <div class="indicator two" style="width: 80%"></div>
+                            <div class="indicator two" style="width: 45%"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-head">
-                        <h2>$653,200</h2>
+                        <h2> %{{ getOccupancyRate() }}</h2>
                         <span class="las la-shopping-cart"></span>
                     </div>
                     <div class="card-progress">
-                        <small>Warehouse occupancy rate</small>
+                        <small>Warehouse Occupancy Rate</small>
                         <div class="card-indicator">
-                            <div class="indicator three" style="width: 65%"></div>
+                            <div class="indicator three" [style.width.%]="getOccupancyRate()" aria-valuemin="0"
+                            aria-valuemax="100">
+                            <span class="sr-only">{{ getOccupancyRate() }}% Complete</span></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-head">
-                        <h2>47,500</h2>
+                        <h2>{{ getTotalUsers() }}</h2>
                         <span class="las la-envelope"></span>
                     </div>
                     <div class="card-progress">
-                        <small>Number of users</small>
+                        <small>Total Number of Users</small>
                         <div class="card-indicator">
-                            <div class="indicator four" style="width: 90%"></div>
+                            <div class="indicator four" style="width: 15%"></div>
                         </div>
                     </div>
                 </div>

@@ -62,9 +62,9 @@
                 </tr>
             </thead>
             <tbody>
-                @for (shelf of shelves; track shelf.id) {
+                @for (shelf of shelves; track shelf.id; let i = $index) {
                     <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
-                        <td>{{ shelf.id }}</td>
+                        <td>{{ i + 1 }}</td>
                         <td>{{ shelf.capacity }}</td>
                         <td>{{ shelf.productCount }}</td>
                         <td>{{ shelf.productCategory }}</td>

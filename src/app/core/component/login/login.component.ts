@@ -50,6 +50,9 @@ export class LoginComponent {
       this.toastr.error('Please fill in all required fields correctly.');
     }
   }
+  backToMenu() {
+    this.router.navigate(['/menu']);
+  }
   
 }
 

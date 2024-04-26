@@ -54,7 +54,7 @@ export class AdminProductManagementComponent {
     this.loadProducts()
   }
   // Sıralama sütunu ve sıralama tipi
-  sortBy: string = 'productName'; // Varsayılan olarak productName'e göre sırala
+  sortBy: string = 'productId'; // Varsayılan olarak productName'e göre sırala
   sortDirection: 'asc' | 'desc' = 'asc'; // Varsayılan olarak artan sıralama
 
   // Sıralama fonksiyonu
@@ -126,14 +126,6 @@ filterProducts() {
         product.name.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
-
-    // Sıralama
-    filteredProducts = filteredProducts.sort((a, b) => {
-      const x = a.name;
-const y = b.name;
-      return this.sortDirection === 'asc' ? x.localeCompare(y) : y.localeCompare(x);
-    });
-
     return filteredProducts;
   }
 
