@@ -4,15 +4,22 @@
     gap: 20px;
 }
 
-.card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-}
+// .card {
+//     border: 1px solid #ccc;
+//     border-radius: 8px;
+//     overflow: hidden;
+//     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+// }
 
-.card-body {
-    padding: 20px;
+
+.card {
+    width: 300px;
+    height: 400px;
+    border-radius: 30px;
+    background: #fff7e6;
+    box-shadow: 10px 10px 20px gray
+    // -5px -5px 10px #fff7e6;
+    // #fdda8f
 }
 
 .btn-group {
@@ -20,14 +27,33 @@
 }
 
 .card-title{
-    margin-bottom: 2rem;
+    margin: 20px;
 }
 
+.card-body {
+    padding: 23px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 .is-invalid {
-    border: 2px solid rgb(182, 13, 13); 
-    padding: 1px; /* Opsiyonel: Çerçeve ile içerik arasında bir boşluk bırakır */
-    border-radius: 5px; /* Opsiyonel: Köşeleri yuvarlar */
+    // width: 300px;
+    // height: 450px;
+    border: 5px solid rgba(182, 13, 13, 0.39); 
+    // padding: 5px; /* Opsiyonel: Çerçeve ile içerik arasında bir boşluk bırakır */
+    border-radius: 30px; /* Opsiyonel: Köşeleri yuvarlar */
+    // box-shadow: 5px 5px 10px rgba(182, 13, 13, 0.541),
+    // -5px -5px 10px rgb(182, 13, 13, 0.541);
+}
+
+.features{
+    max-width: 260px;
+    max-height: 200px;
+}
+
+.button-group{
+
 }
 
 

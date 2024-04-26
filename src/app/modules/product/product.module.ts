@@ -8,6 +8,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { EntryProductComponent } from './entry-product/entry-product.component';
 import { DispatchProductComponent } from './dispatch-product/dispatch-product.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { DispatchProductComponent } from './dispatch-product/dispatch-product.co
     EditProductComponent,
     EntryProductComponent,
     DispatchProductComponent,
+    AddCategoryComponent,
   ],
   imports: [
     CommonModule,

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../dto/category';
+import { SuccessResponse } from '../dto/successResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,9 @@ export class CategoryService {
 
   getAllCategories(): Observable<Category[]>{
     return this.httpClient.get<Category[]>('/category/getAll');
+  }
+
+  addCategory(category: Category): Observable<SuccessResponse> {
+    return this.httpClient.post<SuccessResponse>('/category/addCategory', category);
   }
 }

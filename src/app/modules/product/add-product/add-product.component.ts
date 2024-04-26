@@ -69,4 +69,7 @@ export class AddProductComponent implements OnInit{
     this.router.navigate(['/homepage/products']);
   }
 
+  addCategory() {
+    this.router.navigate(['/homepage/products/addCategory'], { relativeTo: this.route });
+  }
 }

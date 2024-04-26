@@ -1,8 +1,8 @@
 <div class="col">
     <div class="card" >
-        <!-- <div class="card-body"> -->
-            <div [class.is-invalid]="hasQuantityError()">
+        <div class="card-body" [class.is-invalid]="hasQuantityError()">
             <h5 class="card-title">{{product.name}}</h5>
+            <div class="features">
             <p class="card-text">
                 Category : {{product.category.name}}
             </p>
@@ -16,9 +16,16 @@
                 Units In Stock : {{product.unitInStock}}
             </p>
             <p class="card-text">
-                Description : {{product.description}}
+                Description : 
+                <ng-container *ngIf="product.description.length > 16">
+                      {{ product.description | slice:0:16 }}...
+                </ng-container>
+                <ng-container *ngIf="product.description.length <= 16">
+                      {{ product.description }}
+                </ng-container>
             </p>
-            <div>
+            </div>
+            <div class="button-group">
                 <button type="button" (click)="editProduct()" class="btn btn-secondary me-2" >Update</button>
                 <button type="button" (click)="deleteProduct(product.id)"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#areyousure">Delete</button>
             </div>
