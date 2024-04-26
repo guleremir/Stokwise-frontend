@@ -16,6 +16,64 @@ td, th {
     white-space: nowrap;
 }
 
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container{
+    width: 100%;
+}
+
+.group {
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    // max-width: 190px;
+  }
+  
+  .input {
+    width: 500px;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: 0.3s ease;
+  }
+  
+  .input::placeholder {
+    color: #9e9ea7;
+  }
+  
+  .input:focus,
+  input:hover {
+    outline: none;
+    border-color: rgba(0, 48, 73, 0.4);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgb(0 48 73 / 10%);
+  }
+  
+  .icon {
+    position: absolute;
+    left: 1rem;
+    fill: #9e9ea7;
+    width: 1rem;
+    height: 1rem;
+  }
+  
+.yanyana{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
 .records {
     box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
     background: #fff;
@@ -29,36 +87,36 @@ td, th {
     align-items: center;
 }
 
-input,
-button,
-select {
-    outline: none;
-}
+// input,
+// button,
+// select {
+//     outline: none;
+// }
 
-.add,
-.browse {
-    display: flex;
-    align-items: center;
-}
+// .add,
+// .browse {
+//     display: flex;
+//     align-items: center;
+// }
 
-.add select,
-.browse input,
-.browse select {
-    height: 35px;
-    border: 1px solid #b0b0b0;
-    border-radius: 3px;
-    display: inline-block;
-    width: 75px;
-    padding: 0rem .5rem;
-    margin-right: .8rem;
-    color: #666;
-}
+// .add select,
+// .browse input,
+// .browse select {
+//     height: 35px;
+//     border: 1px solid #b0b0b0;
+//     border-radius: 3px;
+//     display: inline-block;
+//     width: 75px;
+//     padding: 0rem .5rem;
+//     margin-right: .8rem;
+//     color: #666;
+// }
 
-.browse input {
+// .browse input {
 
-    width: 175px;
+//     width: 175px;
 
-}
+// }
 
 .browse select {
     width: 100px;
