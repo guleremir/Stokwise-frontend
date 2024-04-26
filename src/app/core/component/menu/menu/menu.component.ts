@@ -32,7 +32,7 @@ export class MenuComponent implements OnInit {
 
   private initTyped() {
     const options = {
-      strings: ["StokWise", "Since 2023"],
+      strings: ["Welcome to Stokwise!", "Serving you since 2023","Fast, Safe, and Easy Storage Solutions!"],
       loop: true,
       typeSpeed: 100,
       backSpeed: 80,
