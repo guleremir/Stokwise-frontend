@@ -37,7 +37,6 @@ export class AdminEditUserComponent  implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.roleService.getAllRoles().subscribe({
       next: (data: Role[]) => {
         this.roles = data;

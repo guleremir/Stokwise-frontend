@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../../shared/dto/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../shared/service/product.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder } from '@angular/forms';
+import { LoggerService } from '../../../shared/service/logger.service';
+import { Category } from '../../../shared/dto/category';
 
 
 @Component({
@@ -12,7 +15,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProductComponent {
   products: Product[] = [];
-
+  searchForm = this.fb.nonNullable.group({
+    searchText: [''] // Arama metni için değişken eklendi
+  });
+  @Input() product: Product = new Product("", '',new Category() , 0, 0, 0, 0,'');
+  @Output() delete = new EventEmitter();
+  @Output() edit = new EventEmitter();
+  
   selectedProductId: string =  "";
   areYouSureQuestion = 'Are you sure you want to delete this product?'
 
@@ -20,7 +29,9 @@ export class ProductComponent {
     private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private logger: LoggerService,
+    private fb: FormBuilder
   ) { }
 
   //Component çağrıldığında çalışan method.
@@ -30,11 +41,14 @@ export class ProductComponent {
       next: (products => {
         console.log(products);
         this.products = products;
-        
+        this.filterProduct();
       })
-      
     });
-    
+    this.searchForm.get("searchText")?.valueChanges.subscribe({
+      next: (data) =>{
+        this.filterProduct(data);
+      }
+    })
   }
 
   addProduct() {
@@ -80,6 +94,18 @@ export class ProductComponent {
   selectedProduct(productId: string){
     this.id = productId;
   }
- 
+
+  filteredProducts: Product [] = [];
+  filterProduct(data="") {
+    this.filteredProducts= this.products ;
+    // Arama filtresi
+    if (data) {
+     this.filteredProducts = this.filteredProducts.filter(product => {
+      this.logger.log(product)
+      return product.name?.toLowerCase().includes(data.toLowerCase())
+     }
+     );
+    }
+  }
 
 }
