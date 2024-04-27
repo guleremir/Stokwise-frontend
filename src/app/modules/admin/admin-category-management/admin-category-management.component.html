@@ -1,0 +1,57 @@
+<div class="shelf-table">
+    <div class="record-header">
+        <div class="browse">
+
+
+
+            <button (click)="addCategory()" class="right-button">
+                <span class="transition"></span>
+                <span class="gradient"></span>
+                <span class="label">Add Category</span>
+            </button>
+        </div>
+    </div>
+    <div>
+        <!-- @if (categories.length == 0) {
+        It seems there are no categories...
+        } @else { -->
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Index Number</th>
+                    <th>Category Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (category of categories; track category.id; let i = $index) {
+                <tr>
+
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <div class="buttons">
+                            <div>
+                                <button (click)="editCategory(category)" class="right-button">
+                                    <span class="transition"></span>
+                                    <span class="gradient"></span>
+                                    <span class="label">Update</span>
+                                </button>
+                            </div>
+                            <div>
+                                <button (click)="deleteCategory(category)" class="left-button">
+                                    <span class="transition"></span>
+                                    <span class="gradient"></span>
+                                    <span class="label">Delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+        <!-- } -->
+    </div>
+</div>

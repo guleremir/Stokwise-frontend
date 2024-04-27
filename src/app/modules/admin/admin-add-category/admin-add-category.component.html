@@ -1,0 +1,12 @@
+<div class="container-fluid my-4">
+    <form [formGroup]="createForm" (submit)="submit()">
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <input formControlName="categoryName" type="text" class="form-control" id="category" placeholder="Category Name">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add Category</button>
+        <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
+    </form>
+</div>
+
