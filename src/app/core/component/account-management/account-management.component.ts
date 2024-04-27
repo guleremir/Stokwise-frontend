@@ -79,7 +79,7 @@ export class AccountManagementComponent implements  OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/adminPanel/users']);
+    this.router.navigate(['/homepage/products']);
   }
 
 // Seçilen rollerin kontrolü

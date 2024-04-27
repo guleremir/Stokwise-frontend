@@ -5,7 +5,18 @@
             <input formControlName="categoryName" type="text" class="form-control" id="category" placeholder="Category Name">
         </div>
         
-        <button type="submit" class="btn btn-primary">Add Category</button>
-        <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
+        <div class="mt-2">    
+            <button type="submit" class="editselect add ms-2">
+                <span class="text">Add Category</span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.7-14.3-32-32-32h-32c-17.7 0-32 14.3-32 32v144H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h144v144c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V304h144c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z"/></svg></span></button>
+            
+      
+            <button type="button" class="noselect ms-2" (click)="cancel()">
+                <span class="text">Cancel</span>
+                <span class="icon">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M34.5 239L228.9 44.7c9.4-9.4 24.6-9.4 33.9 0l22.7 22.7c9.4 9.4 9.4 24.5 0 33.9L131.5 256l154 154.8c9.3 9.4 9.3 24.5 0 33.9l-22.7 22.7c-9.4 9.4-24.6 9.4-33.9 0L34.5 273c-9.4-9.4-9.4-24.6 0-33.9z"/></svg></span></button>
+            
+        </div>
     </form>
 </div>

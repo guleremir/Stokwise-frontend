@@ -8,17 +8,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './homepage.component.scss'
 })
 export class HomepageComponent {
-
+  
   constructor(
     private loginService : LoginService,
     private router : Router,
     public route : ActivatedRoute
   ){
-
+    
   }
-
+  
   logout(){
     this.loginService.logout();
     this.router.navigate(['/']);
+  }
+  goMenu() {
+    this.router.navigate(['/menu']);
   }
 }
