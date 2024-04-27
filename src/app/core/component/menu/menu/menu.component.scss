@@ -76,21 +76,15 @@ i{
 }
 
 /* ------- BASE -------- */
-body{
-    background: var(--body-color);
-    width: 100%;
-   
-    
-}
+// body{
+//     background-color: #B4C5CB;
+//     width: 100%;
+// }
 .container{
-    
-        width: 100%;
-        max-width: 100vw; 
-        // overflow-x: hidden; 
+    width: 100%;
+    max-width: 100vw; 
+    // overflow-x: hidden; 
     background-color: #ffebc0;
-   
-
-   
 }
 
 /* ----- NAVIGATION BAR ----- */

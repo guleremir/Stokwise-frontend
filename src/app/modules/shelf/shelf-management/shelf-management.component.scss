@@ -3,6 +3,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
+    background-color: #fff7e6;
 }
 
 td, th {
@@ -15,6 +16,11 @@ td, th {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.btn-add{
+    color: #FFF7E6;
+    background-color: #273D45;
+}
+
 
 /* İstemci bilgisi stilleri */
 .client {
@@ -23,7 +29,8 @@ td, th {
 }
 
 .selectedShelf{
-    background-color: #62b0b6a0;
+    background-color: #273D45;
+    color: #FFF7E6;
 }
 
 .client-info h4 {
@@ -45,49 +52,135 @@ td, th {
     cursor: pointer;
 }
 
-.buttons {
-    text-align: center;
+.mt-2 {
+    display: flex;
 }
-
-.buttons div {
-    display: inline-block;
+.editselect, .noselect {
     margin-right: 10px;
 }
-
-
-.right-button {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
-    font-size: 14px;
-    /* Daha küçük bir font boyutu */
-    padding: 7px 14px;
-    /* Daha küçük bir padding */
-    font-weight: 500;
-    background: #a71616;
-    color: white;
-    border: none;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.6em;
+/*****************************/
+.noselect {
+    width: 150px;
+    height: 50px;
     cursor: pointer;
-}
-
-.left-button {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
-    font-size: 14px;
-    /* Daha küçük bir font boyutu */
-    padding: 7px 14px;
-    /* Daha küçük bir padding */
-    font-weight: 500;
-    background: #138803;
-    color: white;
+    display: flex;
+    align-items: center;
     border: none;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.6em;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #e62222;
+   }
+   
+   .noselect, .noselect span {
+    transition: 200ms;
+   }
+   
+   .noselect .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+   }
+   
+   .noselect .icon {
+    position: absolute;
+    border-left: 1px solid #911313;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   
+   .noselect svg {
+    width: 15px;
+    fill: #eee;
+   }
+   
+   .noselect:hover {
+    background: #ff3636;
+   }
+   
+   .noselect:hover .text {
+    color: transparent;
+   }
+   
+   .noselect:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+   }
+   
+   .noselect:focus {
+    outline: none;
+   }
+   
+   .noselect:active .icon svg {
+    transform: scale(0.8);
+   }
+/*****************************/ 
+
+/*****************************/
+.editselect {
+    width: 150px;
+    height: 50px;
     cursor: pointer;
-}
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #1f7ea0;
+   }
+   
+   .editselect, .editselect span {
+    transition: 200ms;
+   }
+   
+   .editselect .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+   }
+   
+   .editselect .icon {
+    position: absolute;
+    border-left: 1px solid #185e77;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   
+   .editselect svg {
+    width: 18px;
+    fill: #eee;
+   }
+   
+   .editselect:hover {
+    background: #2596be;
+   }
+   
+   .editselect:hover .text {
+    color: transparent;
+   }
+   
+   .editselect:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+   }
+   
+   .editselect:focus {
+    outline: none;
+   }
+   
+   .editselect:active .icon svg {
+    transform: scale(0.8);
+   }
+/*****************************/ 
 
 .gradient {
     position: absolute;
@@ -118,27 +211,4 @@ td, th {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-}
-
-button:hover .transition {
-    width: 14em;
-    height: 14em;
-}
-
-button:active {
-    transform: scale(0.97);
-}
-
-.accordion-button::after {
-    display: none;
-}
-.accordion-button {
-    display: flex; /* Flexbox kullanarak içeriklerin yatay olarak yayılmasını sağlar */
-    justify-content: space-between; /* İçerikler arasında boşluk bırakır */
-    align-items: center; /* İçerikleri dikey olarak hizalar */
-    padding: 0px;
-}
-
-.accordion-button > div {
-    flex-grow: 1; /* İç içe divin tüm boş alanı kaplamasını sağlar */
 }
