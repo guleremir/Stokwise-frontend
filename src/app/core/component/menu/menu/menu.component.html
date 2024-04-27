@@ -179,14 +179,15 @@
               <p><i class="uil uil-phone"></i> +91 70822 00001</p>
             </div>
           </div>
+        
           <div class="col">
             <div class="form-control">
               <div class="form-inputs">
-                <input type="text" class="input-field" placeholder="Name" />
-                <input type="text" class="input-field" placeholder="Email" />
+                <input type="text" class="input-field" placeholder="Name" formControlName="name"/>
+                <input type="text" class="input-field" placeholder="Email" formControlName="email"/>
               </div>
               <div class="text-area">
-                <textarea placeholder="Message"></textarea>
+                <textarea placeholder="Message" formControlName="message"></textarea>
               </div>
               <div class="form-button">
                 <button class="btn">
@@ -194,7 +195,9 @@
                 </button>
               </div>
             </div>
+
           </div>
+        
         </div>
       </section>
     </main>
