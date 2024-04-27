@@ -17,6 +17,10 @@ import { AdminProductComponent } from './admin-product/admin-product.component';
 import { AdminAddShelfComponent } from './admin-add-shelf/admin-add-shelf.component';
 import { AdminShelfComponent } from './admin-shelf/admin-shelf.component';
 import { AdminEditShelfComponent } from './admin-edit-shelf/admin-edit-shelf.component';
+import { AdminCategoryComponent } from './admin-category/admin-category.component';
+import { AdminCategoryManagementComponent } from './admin-category-management/admin-category-management.component';
+import { AdminAddCategoryComponent } from './admin-add-category/admin-add-category.component';
+import { AdminEditCategoryComponent } from './admin-edit-category/admin-edit-category.component';
 
 
 @NgModule({
@@ -34,6 +38,10 @@ import { AdminEditShelfComponent } from './admin-edit-shelf/admin-edit-shelf.com
     AdminAddShelfComponent,
     AdminShelfComponent,
     AdminEditShelfComponent,
+    AdminCategoryComponent,
+    AdminCategoryManagementComponent,
+    AdminAddCategoryComponent,
+    AdminEditCategoryComponent,
     
   ],
   imports: [
