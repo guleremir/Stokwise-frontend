@@ -4,14 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../../service/login.service';
 import { FormBuilder } from '@angular/forms';
+import ScrollReveal from 'scrollreveal';
 
 
-
-
-
-
-declare var myTyped: any; // Assuming Typed.js is globally available
-declare var ScrollReveal: any; // Assuming ScrollReveal is globally available
 
 @Component({
   selector: 'app-menu',
@@ -19,6 +14,7 @@ declare var ScrollReveal: any; // Assuming ScrollReveal is globally available
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  
   // Accessing DOM elements directly in Angular is generally done through ElementRef and Renderer2
   constructor(private el: ElementRef, private renderer: Renderer2,
     
