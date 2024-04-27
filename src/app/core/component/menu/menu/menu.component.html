@@ -13,7 +13,7 @@
       <div class="nav-menu" id="myNavMenu">
         <ul class="nav_menu_list">
           <li class="nav_list">
-            <a href="#home" class="nav-link active-link">Home</a>
+            <a href="#home" class="nav-link">Home</a>
             <div class="circle"></div>
           </li>
           <li class="nav_list">
@@ -32,11 +32,11 @@
       </div>
       <div class="nav-button">
         <button class="btn" (click)="logInRouter()">
-          LogIn <i class="uil uil-file-alt"></i>
+          <span>Log In <i class="bi bi-box-arrow-in-right"></i></span>
         </button>
       </div>
       <div class="nav-menu-btn">
-        <i class="fa-solid fa-bars" onclick="myMenuFunction()"></i>
+        <i class="bi bi-menu-up" onclick="myMenuFunction()"></i>
       </div>
     </nav>
     
@@ -55,9 +55,9 @@
           <div class="featured-text-info">
             <p>
               If you're looking for quality storage solutions, you've come to
-              the right place! <br />
+              the right place!<br/>
               We offer modern and reliable storage spaces where you can safely
-              keep your belongings. <br />
+              keep your belongings.<br/>
               Whether you need short-term or long-term solutions, everything you
               need is right here.
             </p>
@@ -70,7 +70,7 @@
         </div>
         <div class="scroll-icon-box">
           <a href="#about" class="scroll-btn">
-            <i class="uil uil-mouse-alt"></i>
+            <i class="bi bi-mouse"></i>
             <p>Scroll Down</p>
           </a>
         </div>
@@ -78,29 +78,33 @@
       <!-- -------------- ABOUT BOX ---------------- -->
       <section class="section" id="about">
         <div class="top-header">
-          <h1>About Me</h1>
+          <h1>About Us</h1>
         </div>
         <div class="row">
           <div class="col">
             <div class="about-info">
               <p>
+                <br>
                 At Stokwise, we were established in 2023 and are dedicated to
                 providing our valued customers with high-quality storage
                 solutions. Our modern facilities ensure ideal storage conditions
                 for a variety of items and materials. By prioritizing security,
                 accessibility, and customer satisfaction, we aim to provide you
                 with a peaceful and secure storage experience.
-                <br />
+                <br/>
+                <br>
                 Our mission is to offer flexible and reliable storage options
                 that cater to the needs of every customer. Our expert team
                 treats your belongings as if they were their own, and we are
                 committed to always delivering the best service.
-                <br />
+                <br/>
+                <br>
                 At Stokwise, we create solutions for all types of storage needs;
                 whether personal or corporate, short-term or long-term, we are
                 always by your side. Your safety and satisfaction are our top
                 priorities.
-                <br />
+                <br/>
+                <br>
                 Contact us to find the best solution for your storage needs.
                 With Stokwise, you can be assured that your items are securely
                 stored. Continue with your life, and let us handle your storage
@@ -122,21 +126,21 @@
             <div class="img-box">
               <img class="emir team" src="../../../../../assets/team-img/emir2.jpg" alt="" />
             </div>
-            <br />
+            <br/>
             <h3>Emir GÜLER</h3>
           </div>
           <div class="project-box">
             <div class="img-box">
               <img class="nazli team" src="../../../../../assets/team-img/nazli.jpg" alt="" />
             </div>
-            <br />
+            <br/>
             <h3>Nazlı NOYAN TAŞTAN</h3>
           </div>
           <div class="project-box">
             <div class="img-box">
               <img class="müslüm team" src="../../../../../assets/team-img/müslüm.jpg" alt="" />
             </div>
-            <br />
+            <br/>
             <h3>Müslüm TUNÇ</h3>
           </div>
 
@@ -144,14 +148,14 @@
             <div class="img-box">
               <img class="asli team" src="../../../../../assets/team-img/asli.webp" alt="" />
             </div>
-            <br />
+            <br/>
             <h3>Aslı KARAYİĞİT</h3>
           </div>
           <div class="project-box">
             <div class="img-box">
               <img class="oguz team" src="../../../../../assets/team-img/oguz.jpg" alt="" />
-            </div>%%*
-            <br />
+            </div>
+            <br/>
             <h3>Oğuzhan YALÇIN</h3>
           </div>
           <div class="project-box">
@@ -174,9 +178,10 @@
         <div class="row">
           <div class="col">
             <div class="contact-info">
-              <h2>Find Me <i class="uil uil-corner-right-down"></i></h2>
-              <p><i class="uil uil-envelope"></i></p>
-              <p><i class="uil uil-phone"></i> +91 70822 00001</p>
+              
+              <h2>Find Us</h2>
+              <p><i class="bi bi-envelope-fill"></i>info.stokwise.com</p>
+              <p><i class="bi bi-telephone-inbound-fill"></i> +91 70822 00001</p>
             </div>
           </div>
         
@@ -187,12 +192,29 @@
                 <input type="text" class="input-field" placeholder="Email" formControlName="email"/>
               </div>
               <div class="text-area">
-                <textarea placeholder="Message" formControlName="message"></textarea>
+                <textarea placeholder="Type Your Message..." formControlName="message"></textarea>
               </div>
               <div class="form-button">
-                <button class="btn">
-                  Send <i class="uil uil-message"></i>
+                <button class="send-btn btn">
+                  <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                      >
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path
+                          fill="currentColor"
+                          d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <span>Send</span>
                 </button>
+                
               </div>
             </div>
 
@@ -205,7 +227,7 @@
     <!-- --------------- FOOTER --------------- -->
     <footer>
       <div class="top-footer">
-        <p>Pair7</p>
+        <p>Pair-7</p>
       </div>
       <div class="middle-footer">
         <ul class="footer-menu">
@@ -216,7 +238,7 @@
             <a href="#about">About</a>
           </li>
           <li class="footer_menu_list">
-            <a href="#projects">Projects</a>
+            <a href="#projects">Team</a>
           </li>
           <li class="footer_menu_list">
             <a href="#contact">Contact</a>
@@ -227,7 +249,7 @@
       <div class="bottom-footer">
         <p>
           Copyright &copy;
-          <a href="#home" style="text-decoration: none">Pair7</a> - All
+          <a href="#home" style="text-decoration: none">Pair-7</a> - All
           rights reserved
         </p>
       </div>
