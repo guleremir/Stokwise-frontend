@@ -14,6 +14,12 @@
                     </a>
                 </li>
                 <li>
+                    <a routerLink="/adminPanel/categories" [class.active] = "isCurrentRoute('/adminPanel/categories')">
+                         <span class="las la-home"></span>
+                         <small> Categories </small>
+                     </a>
+                 </li>
+                <li>
                    <a routerLink="/adminPanel/shelves" routerLinkActive="active">
                         <span class="las la-user-alt"></span>
                         <small> Shelves </small>

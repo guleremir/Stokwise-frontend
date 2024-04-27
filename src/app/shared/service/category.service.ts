@@ -13,6 +13,8 @@ export class CategoryService {
     private httpClient: HttpClient
   ) { }
 
+  editingCategory: Category | null = null;
+
 
   getAllCategories(): Observable<Category[]>{
     return this.httpClient.get<Category[]>('/category/getAll');
@@ -21,4 +23,18 @@ export class CategoryService {
   addCategory(category: Category): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/category/addCategory', category);
   }
+
+editCategory(id:string, name: string):
+Observable<SuccessResponse> {
+  return this.httpClient.post<SuccessResponse>('/category/editCategory', {id,name});
 }
+
+deleteCategory(id:string):
+Observable<SuccessResponse> {
+  return this.httpClient.post<SuccessResponse>('/category/deleteCategory', { id });
+
+}
+
+
+}
+  

@@ -1,0 +1,10 @@
+<form class="formControl" [formGroup]="createForm" (submit)="submit()">
+    <div class="mb-3">
+        <label class="form-label">Category Name</label>
+        <input formControlName="name" type="text" class="form-control" id="capacity" placeholder="Category Name" >
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Update</button>
+    <!-- <button class="ms-2 btn btn-warning" type="button" (click)="close()">Cancel</button> -->
+    <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
+</form>
