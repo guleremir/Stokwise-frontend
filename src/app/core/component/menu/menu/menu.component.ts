@@ -1,9 +1,13 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2 ,AfterViewInit} from '@angular/core';
 import Typed from 'typed.js';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../../service/login.service';
 import { FormBuilder } from '@angular/forms';
+
+
+
+
 
 
 declare var myTyped: any; // Assuming Typed.js is globally available
@@ -32,7 +36,7 @@ export class MenuComponent implements OnInit {
 
   private initTyped() {
     const options = {
-      strings: ["Welcome to Stokwise!", "Serving you since 2023","Fast, Safe, and Easy Storage Solutions!"],
+      strings: ["Welcome to Stokwise!", "Serving you since 2023","Fast Safe Storage Solutions!"],
       loop: true,
       typeSpeed: 100,
       backSpeed: 80,
