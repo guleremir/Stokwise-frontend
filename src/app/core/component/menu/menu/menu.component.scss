@@ -131,14 +131,12 @@ nav{
 }
 .nav-link{
     text-decoration: none;
-    color: var(--text-color-second);
+    color: #273D45;
     font-weight: 500;
     padding-inline: 15px;
     margin-inline: 20px;
     transition: font-size 0.3s ease-in-out;
-
 }
-
 .nav-link:hover {
     font-size: 20px;
     color: #BD4F07;
@@ -166,7 +164,17 @@ nav{
     background: var(--first-color);
     border-radius: 50%;
 }
+.nav-button span{
+    color: #273D45;
+}
 
+.nav-button .btn{
+    background-color: #ffebc0b4;
+}
+
+.nav-button .btn:hover{
+    background-color: #bd500779;
+}
 
 /* ----- WRAPPER DESIGN ----- */
 .wrapper{
@@ -249,8 +257,6 @@ nav{
     color: var(--first-color);
 }
 
-p{ text-indent:10px; }
-
 /* ----- FEATURED IMAGE BOX ----- */
 .featured-image{
     display: flex;
@@ -258,31 +264,22 @@ p{ text-indent:10px; }
     align-content: center;
     min-height: 80vh;
     width: 100%;
-    
-    
-    
 }
 .image{
     margin: auto ;
     left: 100px;
     width: 600px;
     height: 600px;
-    animation: imgFloat 7s ease-in-out infinite;
 }
 .image img{
     width: 600px;
     height: 600px;
     object-fit: contain;
 }
-@keyframes imgFloat {
-    50%{
-        transform: translateY(10px);
-    }
-}
 .scroll-btn{
    position: absolute;
    bottom: 0;
-   left: 50%;
+   left: 41%;
    translate: -50%;
    display: flex;
    justify-content: center;
@@ -313,6 +310,14 @@ p{ text-indent:10px; }
 .col{
     display: flex;
     width: 50%;
+    transition: all 0.4s ease-in-out;
+}
+.col:hover{
+    width: 60%;
+    transform: scale(1.1);
+}
+.col:hover .about-info p {
+    font-size: 1em; /* Yazının %10 büyümesi */
 }
 
 #header{
@@ -481,16 +486,15 @@ h3{
     border-radius: 10px;
     box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
     overflow: hidden;
+    color:#273D45
 }
 .contact-info>h2{
-    color: var(--color-white);
     margin-bottom: 20px;
 }
 .contact-info>p{
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--color-white);
     margin-block: 5px;
 }
 .contact-info p>i{
@@ -502,7 +506,7 @@ h3{
 .contact-info:hover.contact-info h2,
 .contact-info:hover.contact-info p,
 .contact-info:hover.contact-info i{
-    color: #777;
+    color: #273D45;
     z-index: 2;
 }
 
@@ -549,7 +553,7 @@ textarea{
     color: var(--color-white);
 }
 .form-button>.btn:hover{
-    background:#4D8FAC;
+    background:#B4C5CB;
 }
 .form-button i{
     font-size: 18px;
@@ -565,6 +569,7 @@ footer{
     row-gap: 30px;
     background: #B4C5CB;
     padding-block: 40px 60px;
+    color: #273D45;
 }
 .top-footer p{
     font-size: 25px;
@@ -707,3 +712,56 @@ footer{
         width: 100%;
     }
 }
+.send-btn {
+    font-family: inherit;
+    font-size: 20px;
+    color: #273D45 !important;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+.send-btn span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+.send-btn svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+.send-btn:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+.send-btn:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+  }
+  
+.send-btn:hover span {
+    transform: translateX(5em);
+  }
+  
+.send-btn:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+  
