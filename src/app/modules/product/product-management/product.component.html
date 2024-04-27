@@ -1,16 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="yanyana">
+    <div class="head-row">
       <div>
-        <button class="btn btn-primary mb-2" (click)="addProduct()">Add Product</button>
+        <button class="btn btn-primary" (click)="addProduct()">
+          Add Product
+        </button>
       </div>
       <div>
-        <form [formGroup]="searchForm" >
+        <form [formGroup]="searchForm">
           <!-- <div class="search-container">
             <input type="text" placeholder="Search Category" class="record-search" formControlName="searchText"/> 
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
           </div> -->
-          
+
           <div class="group">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
               <g>
@@ -19,19 +21,30 @@
                 ></path>
               </g>
             </svg>
-            <input class="input" type="text" placeholder="Search Category" formControlName="searchText" />
+            <input
+              class="input"
+              type="text"
+              placeholder="Search Category"
+              formControlName="searchText"
+            />
           </div>
         </form>
       </div>
     </div>
-    <app-product-card class="ms-2 col-3 mb-5" 
-             *ngFor="let product of filteredProducts" [product]="product"
-             (edit)="editProduct($event)"
-             (delete)="selectedProduct($event.id)"  
-             >
-    </app-product-card>
+    <div class="card-container">
+      <app-product-card
+        class="ms-2 col-3 mb-5"
+        *ngFor="let product of filteredProducts"
+        [product]="product"
+        (edit)="editProduct($event)"
+        (delete)="selectedProduct($event.id)"
+      >
+      </app-product-card>
     </div>
-    <app-are-you-sure (areYouSureEvent)="deleteProduct(id)" [areYouSureQuestion]="areYouSureQuestion" >
-    </app-are-you-sure>
+  </div>
+  <app-are-you-sure
+    (areYouSureEvent)="deleteProduct(id)"
+    [areYouSureQuestion]="areYouSureQuestion"
+  >
+  </app-are-you-sure>
 </div>
-
