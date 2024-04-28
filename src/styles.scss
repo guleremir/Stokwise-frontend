@@ -8,11 +8,29 @@ body{
 }
 
 button{
+   
     font-family: 'Merriweather', sans-serif !important;
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
     
 }
+
+:root {
+    --body-color: #ffebc0;
+    --color-white: rgb(255, 255, 255);
+    --first-shadow-color: rgba(0, 0, 0, 0.1);
+    --lightblue-color:#b4c5cb;
+    --darkblue-color:#273d45;
+    --darkorange-color: #bd4f07;
+    --orange-color: #fb9048;
+    --cardbg--color:#fff7e6;
+    --yellowbtn-color:#efb60c;
+    --lightyellowbtn-color:#ffc310;
+    --darkyellowbtn-color: #a7800a;
+    --bluebtn-color:#1f7ea0;
+    --lightbluebtn-color:#2596be;
+    --darkbluebtn-color:#185e77;
+  
+  }

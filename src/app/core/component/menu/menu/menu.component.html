@@ -10,7 +10,7 @@
           alt="IMG"
         />
       </div>
-      <div class="nav-menu" id="myNavMenu">
+      <div class="nav-menu" id="myNavMenu"[ngClass]="{'responsive': isMenuOpen}" >
         <ul class="nav_menu_list">
           <li class="nav_list">
             <a href="#home" class="nav-link">Home</a>
@@ -35,8 +35,8 @@
           <span>Log In <i class="bi bi-box-arrow-in-right"></i></span>
         </button>
       </div>
-      <div class="nav-menu-btn">
-        <i class="bi bi-menu-up" onclick="myMenuFunction()"></i>
+      <div class="nav-menu-btn" (click)="toggleMenu()">
+        <i class="bi bi-menu-up" ></i>
       </div>
     </nav>
     
@@ -45,7 +45,7 @@
       <!-- -------------- FEATURED BOX ---------------- -->
       <section class="featured-box" id="home">
         <div class="featured-text">
-          <!-- <div class="featured-text-card"></div> -->
+        
           <div class="featured-name">
             <p>
               <span class="typedText"></span>
@@ -65,7 +65,7 @@
         </div>
         <div class="featured-image">
           <div class="image">
-            <img src="../../../../../assets/other-img/Logo.svg" alt="avatar" />
+            <img src="../../../../../assets/other-img/Logo.svg" alt="Logo" />
           </div>
         </div>
         <div class="scroll-icon-box">
@@ -115,55 +115,61 @@
         </div>
       </section>
 
-      <!-- -------------- PROJECT BOX ---------------- -->
+      <!-- -------------- TEAM BOX ---------------- -->
 
       <section class="section" id="team">
         <div class="top-header">
           <h1>Our Team</h1>
         </div>
-        <div class="project-container">
-          <div class="project-box">
+        <div class="team-container">
+          <div class="team-box">
             <div class="img-box">
               <img class="emir teams" src="../../../../../assets/team-img/emir2.jpg" alt="" />
             </div>
             <br/>
-            <h3>Emir GÜLER</h3>
+            <h5>Emir GÜLER</h5>
+            <p>Delirecem </p>
           </div>
-          <div class="project-box">
+          <div class="team-box">
             <div class="img-box">
-              <img class="nazli teams" src="../../../../../assets/team-img/nazli.jpg" alt="" />
+              <img class="nazli teams" src="../../../../../assets/team-img/nazlı3.jpg" alt="" />
             </div>
             <br/>
-            <h3>Nazlı NOYAN TAŞTAN</h3>
+            <h5>Nazlı NOYAN TAŞTAN</h5>
+            <p>Ben Yeni Bişeyler Ekledim</p>
           </div>
-          <div class="project-box">
+          <div class="team-box">
             <div class="img-box">
               <img class="müslüm teams" src="../../../../../assets/team-img/müslüm.jpg" alt="" />
             </div>
             <br/>
-            <h3>Müslüm TUNÇ</h3>
+            <h5>Müslüm TUNÇ</h5>
+            <p>Her Türlü Hallederiz</p>
           </div>
 
-          <div class="project-box">
+          <div class="team-box">
             <div class="img-box">
               <img class="asli teams" src="../../../../../assets/team-img/asli.webp" alt="" />
             </div>
             <br/>
-            <h3>Aslı KARAYİĞİT</h3>
+            <h5>Aslı KARAYİĞİT</h5>
+            <p>Tamam Tamam :)</p>
           </div>
-          <div class="project-box">
+          <div class="team-box">
             <div class="img-box">
               <img class="oguz teams" src="../../../../../assets/team-img/oguz.jpg" alt="" />
             </div>
             <br/>
-            <h3>Oğuzhan YALÇIN</h3>
+            <h5>Oğuzhan YALÇIN</h5>
+            <p>Şimdi Napıyoruz </p>
           </div>
-          <div class="project-box">
+          <div class="team-box">
             <div class="img-box">
               <img class="elif teams" src="../../../../../assets/team-img/elif.jpg" alt="" />
             </div>
             <br />
-            <h3>Elif ARAS</h3>
+            <h5>Elif ARAS</h5>
+            <p>Yaa Çok İyii Oldu </p>
           </div>
         </div>
       </section>
