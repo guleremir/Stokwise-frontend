@@ -36,6 +36,15 @@ export class ProductComponent {
 
   //Component çağrıldığında çalışan method.
   ngOnInit(): void {
+    this.getAllProduct();
+    this.searchForm.get("searchText")?.valueChanges.subscribe({
+      next: (data) =>{
+        this.filterProduct(data);
+      }
+    });
+  }
+
+  getAllProduct(){
     //ProductService'den getAllProducts() methodunu çağrıyor. Tüm productları döndürüyor.
     this.productService.getAllProduct().subscribe({
       next: (products => {
@@ -44,11 +53,6 @@ export class ProductComponent {
         this.filterProduct();
       })
     });
-    this.searchForm.get("searchText")?.valueChanges.subscribe({
-      next: (data) =>{
-        this.filterProduct(data);
-      }
-    })
   }
 
   addProduct() {
@@ -82,6 +86,7 @@ export class ProductComponent {
       next: () => {
         this.products = this.products.filter(p => p.id !== id);
         this.toastr.success("Product deleted successfully");
+        this.getAllProduct();
         //console.log(this.products);
       },
       error: (err) => {
