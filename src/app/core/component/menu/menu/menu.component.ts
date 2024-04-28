@@ -75,16 +75,17 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-
 
   logInRouter(){
     this.router.navigate(['/login']);
   }
 
+  navigate(event: Event, sectionId: string): void {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
 
-
+  }
 }
