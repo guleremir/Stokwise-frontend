@@ -113,4 +113,8 @@ export class ProductComponent {
     }
   }
 
+  report(){
+    this.router.navigate(['/homepage/products/report'],{ relativeTo: this.route });
+  }
+
 }
