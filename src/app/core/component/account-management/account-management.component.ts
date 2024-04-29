@@ -14,15 +14,17 @@ import { LoginService } from '../../service/login.service';
   styleUrl: './account-management.component.scss'
 })
 export class AccountManagementComponent implements  OnInit {
-  updateForm = this.fb.nonNullable.group({
+    updateForm = this.fb.nonNullable.group({
     email: "",
     password: "",
     confirmPassword: "",
-    roles: this.fb.array([]) 
+    // roles: {value:this.loginService.roles}
+    
   })
+
   userID = "";
-  roles: Role[]= []; 
-  selectedRoles: Role[] = [];
+  // roles: Role[]= []; 
+  selectedRoles: string [] = [];
 
 
   constructor(
@@ -39,17 +41,17 @@ export class AccountManagementComponent implements  OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.roleService.getAllRoles().subscribe({
-      next: (data: Role[]) => {
-        this.roles = data;
-        this.loadCurrentUser(); 
-        console.log(this.roles);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
+       
+    // console.log('updateformroles',this.updateForm.value.roles)
+    // this.roleService.getAllRoles().subscribe({
+    //   next: (data: Role[]) => {
+    //     this.roles = data;
+       
+    //   },
+    //   error: (error) => {
+    //     console.log(error);
+    //   }
+    // });
     
     this.loadCurrentUser();
   }
@@ -58,15 +60,15 @@ export class AccountManagementComponent implements  OnInit {
     
     if (this.loginService.loggedIn) {
       this.userID = this.loginService.email;
-      this.selectedRoles = this.roles.filter(role => this.loginService.roles.includes(role.id))
-      console.log(this.loginService.roles),
+      this.selectedRoles=this.loginService.roles,
       this.updateForm.patchValue({
         email: this.loginService.email, 
-        roles: this.selectedRoles.map(role => role.name),
+        
         
         password: '' 
         
       });
+    
     } else {
       console.log("Kullanıcı giriş yapmamış.");
     }
@@ -78,7 +80,7 @@ export class AccountManagementComponent implements  OnInit {
     let email = this.updateForm.get('email')!.value;
     let password = this.updateForm.get('password')!.value;
     let confirmPassword = this.updateForm.get('confirmPassword')!.value;
-    let roles = this.updateForm.get('roles')!.value; // Rollerin alınması
+    
 
     
       if (password === confirmPassword) {
@@ -99,22 +101,6 @@ export class AccountManagementComponent implements  OnInit {
   cancel() {
     this.router.navigate(['/homepage/products']);
   }
-
-// // Seçilen rollerin kontrolü
-// isSelected(role: Role): boolean {
-//   return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
-// }
-
-// // Seçilen rolleri değiştirme
-// toggleSelection(role: Role): void {
-//   const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
-//   if (index === -1) {
-//     this.selectedRoles.push(role);
-//   } else {
-//     this.selectedRoles.splice(index, 1);
-//   }
-// }
-
 
 
 pswCannotBeEmpty():boolean{
