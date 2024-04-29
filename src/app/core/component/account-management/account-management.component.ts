@@ -21,6 +21,7 @@ export class AccountManagementComponent implements  OnInit {
     // roles: {value:this.loginService.roles}
     
   })
+ 
 
   userID = "";
   // roles: Role[]= []; 
@@ -34,8 +35,7 @@ export class AccountManagementComponent implements  OnInit {
     private toastr: ToastrService,
     private fb: FormBuilder,
     private roleService: RoleService,
-    private loginService: LoginService,
-    
+    private loginService: LoginService   
       
     
   ) { }
@@ -54,6 +54,14 @@ export class AccountManagementComponent implements  OnInit {
     // });
     
     this.loadCurrentUser();
+
+    if(this.userService.editingUser != null){
+      this.userID = this.userService.editingUser.id;
+      this.updateForm.patchValue({
+        email : this.userService.editingUser.email,
+        password : this.userService.editingUser.password
+      });
+    } else{}
   }
 
   loadCurrentUser() {
@@ -84,10 +92,10 @@ export class AccountManagementComponent implements  OnInit {
 
     
       if (password === confirmPassword) {
-        this.userService.updateUser(new User( email, password)).subscribe({
+        this.userService.updateUser(new User( this.userID, email, password)).subscribe({
           next: (result) => {
             this.toastr.info('User updated.');
-            this.router.navigate(['..'], { relativeTo: this.route });
+            this.router.navigate(['/homepage/products'], { relativeTo: this.route });
           },
           error: (error) => {
             this.toastr.error('An error occurred while updating user.');

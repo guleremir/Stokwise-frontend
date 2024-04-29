@@ -9,6 +9,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { EntryProductComponent } from './entry-product/entry-product.component';
 import { DispatchProductComponent } from './dispatch-product/dispatch-product.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
+import { ReportProductComponent } from './report-product/report-product.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AddCategoryComponent } from './add-category/add-category.component';
     EntryProductComponent,
     DispatchProductComponent,
     AddCategoryComponent,
+    ReportProductComponent,
   ],
   imports: [
     CommonModule,
