@@ -17,10 +17,10 @@
             </p>
             <p class="card-text" data-toggle="tooltip" data-placement="top" title="{{product.description}}">
                 Description : 
-                <ng-container *ngIf="product.description.length > 16">
-                      {{ product.description | slice:0:16 }}...
+                <ng-container *ngIf="product.description.length > 14">
+                      {{ product.description | slice:0:14 }}...
                 </ng-container>
-                <ng-container *ngIf="product.description.length <= 16">
+                <ng-container *ngIf="product.description.length <= 14">
                       {{ product.description }}
                 </ng-container>
             </p>
