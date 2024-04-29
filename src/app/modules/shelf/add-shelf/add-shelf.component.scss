@@ -14,7 +14,7 @@
     border: none;
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-    background: #efb60c;
+    background: var(--yellowbtn-color);
    }
    
    .noselect, .noselect span {
@@ -29,7 +29,7 @@
    
    .noselect .icon {
     position: absolute;
-    border-left: 1px solid #a7800a;
+    border-left: 1px solid var(--darkyellowbtn-color);
     transform: translateX(110px);
     height: 40px;
     width: 40px;
@@ -44,7 +44,7 @@
    }
    
    .noselect:hover {
-    background: #ffc310;
+    background: var(--lightyellowbtn-color);
    }
    
    .noselect:hover .text {
@@ -76,7 +76,7 @@
     border: none;
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-    background: #1f7ea0;
+    background: var(--bluebtn-color);
    }
    
    .editselect, .editselect span {
@@ -91,7 +91,7 @@
    
    .editselect .icon {
     position: absolute;
-    border-left: 1px solid #185e77;
+    border-left: 1px solid var(--darkbluebtn-color);
     transform: translateX(110px);
     height: 40px;
     width: 40px;
@@ -106,7 +106,7 @@
    }
    
    .editselect:hover {
-    background: #2596be;
+    background: var(--lightbluebtn-color);
    }
    
    .editselect:hover .text {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Role } from '../../../shared/dto/role';
 import { UserService } from '../../../shared/service/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
 import { RoleService } from '../../../shared/service/role.service';
 import { User } from '../../../shared/dto/user';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-account-management',
@@ -17,12 +18,10 @@ export class AccountManagementComponent implements  OnInit {
     email: "",
     password: "",
     confirmPassword: "",
-    roles: [[]]
+    roles: this.fb.array([]) 
   })
   userID = "";
-  roles: Role[]= []; // Roller dizisini tanımla
-
-  // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın
+  roles: Role[]= []; 
   selectedRoles: Role[] = [];
 
 
@@ -32,7 +31,11 @@ export class AccountManagementComponent implements  OnInit {
     private route: ActivatedRoute,
     private toastr: ToastrService,
     private fb: FormBuilder,
-    private roleService: RoleService
+    private roleService: RoleService,
+    private loginService: LoginService,
+    
+      
+    
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +43,7 @@ export class AccountManagementComponent implements  OnInit {
     this.roleService.getAllRoles().subscribe({
       next: (data: Role[]) => {
         this.roles = data;
+        this.loadCurrentUser(); 
         console.log(this.roles);
       },
       error: (error) => {
@@ -47,14 +51,28 @@ export class AccountManagementComponent implements  OnInit {
       }
     });
     
-    if(this.userService.editingUser != null){
-      this.userID = this.userService.editingUser.id;
-      this.updateForm.patchValue({
-        email : this.userService.editingUser.email,
-        password : this.userService.editingUser.password
-      });
-    } else{}
+    this.loadCurrentUser();
   }
+
+  loadCurrentUser() {
+    
+    if (this.loginService.loggedIn) {
+      this.userID = this.loginService.email;
+      this.selectedRoles = this.roles.filter(role => this.loginService.roles.includes(role.id))
+      console.log(this.loginService.roles),
+      this.updateForm.patchValue({
+        email: this.loginService.email, 
+        roles: this.selectedRoles.map(role => role.name),
+        
+        password: '' 
+        
+      });
+    } else {
+      console.log("Kullanıcı giriş yapmamış.");
+    }
+  }
+
+
 
   submit() {
     let email = this.updateForm.get('email')!.value;
@@ -64,7 +82,7 @@ export class AccountManagementComponent implements  OnInit {
 
     
       if (password === confirmPassword) {
-        this.userService.updateUser(new User(this.userID, email, password, roles)).subscribe({
+        this.userService.updateUser(new User( email, password)).subscribe({
           next: (result) => {
             this.toastr.info('User updated.');
             this.router.navigate(['..'], { relativeTo: this.route });
@@ -82,34 +100,22 @@ export class AccountManagementComponent implements  OnInit {
     this.router.navigate(['/homepage/products']);
   }
 
-// Seçilen rollerin kontrolü
-isSelected(role: Role): boolean {
-  return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
-}
+// // Seçilen rollerin kontrolü
+// isSelected(role: Role): boolean {
+//   return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
+// }
 
-// Seçilen rolleri değiştirme
-toggleSelection(role: Role): void {
-  const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
-  if (index === -1) {
-    this.selectedRoles.push(role);
-  } else {
-    this.selectedRoles.splice(index, 1);
-  }
-}
-
-// // Bir rolün seçilip seçilmediğini değiştiren işlev
-// toggleRoleSelection(checked: boolean, role: Role): void {
-//   if (checked) {
-//       // Eğer check box işaretlendi ise, seçili roller dizisine ekleyin
-//       this.selectedRoles.push(role);
+// // Seçilen rolleri değiştirme
+// toggleSelection(role: Role): void {
+//   const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
+//   if (index === -1) {
+//     this.selectedRoles.push(role);
 //   } else {
-//       // Eğer check box işareti kaldırıldı ise, seçili roller dizisinden kaldırın
-//       const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
-//       if (index !== -1) {
-//           this.selectedRoles.splice(index, 1);
-//       }
+//     this.selectedRoles.splice(index, 1);
 //   }
 // }
+
+
 
 pswCannotBeEmpty():boolean{
   return this.updateForm.value.password! === '' ;
