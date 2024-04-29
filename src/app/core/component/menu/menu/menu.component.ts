@@ -14,7 +14,8 @@ import ScrollReveal from 'scrollreveal';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  
+    
+  public isMenuOpen = false;
   // Accessing DOM elements directly in Angular is generally done through ElementRef and Renderer2
   constructor(private el: ElementRef, private renderer: Renderer2,
     
@@ -29,6 +30,7 @@ export class MenuComponent implements OnInit {
     this.initTyped();
     this.initScrollReveal();
   }
+  
 
   private initTyped() {
     const options = {
@@ -73,32 +75,17 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  toggleMenu() {
-    const menuBtn = this.el.nativeElement.querySelector('#myNavMenu') as HTMLDivElement;
-    if (menuBtn.className.includes('nav-menu')) {
-      this.renderer.addClass(menuBtn, 'responsive');
-    } else {
-      this.renderer.removeClass(menuBtn, 'responsive');
-    }
-  }
-
-  updateActiveLink() {
-    const sections = document.querySelectorAll('section[id]') as NodeListOf<HTMLElement>;
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 50;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      const link = this.el.nativeElement.querySelector(`.nav-menu a[href*=${sectionId}]`) as HTMLElement;
-
-      if (window.scrollY > sectionTop && window.scrollY <= sectionTop + sectionHeight) {
-        this.renderer.addClass(link, 'active-link');
-      } else {
-        this.renderer.removeClass(link, 'active-link');
-      }
-    });
-  }
 
   logInRouter(){
     this.router.navigate(['/login']);
+  }
+
+  navigate(event: Event, sectionId: string): void {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+
   }
 }

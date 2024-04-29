@@ -17,6 +17,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AccountManagementComponent } from './core/component/account-management/account-management.component';
 import { MenuComponent } from './core/component/menu/menu/menu.component';
 
+import { RouterModule, Routes } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import { MenuComponent } from './core/component/menu/menu/menu.component';
     HomepageComponent,
     AdminPanelComponent,
     AccountManagementComponent,
+   
     
   ],
   imports: [
@@ -34,7 +37,8 @@ import { MenuComponent } from './core/component/menu/menu/menu.component';
     ToastrModule.forRoot(), // ToastrModule added
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    
   ],
   providers: [
     provideHttpClient(withInterceptors([urlInterceptor])),

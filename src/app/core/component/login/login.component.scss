@@ -32,7 +32,7 @@ body::before {
 .wrapper {
   width: 420px;
   background-color: rgba(230, 212, 162, 0.945);
-  color: #273D45;
+  color: var(--darkblue-color);
   border-radius: 12px;
   padding: 30px 40px;
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -56,19 +56,18 @@ body::before {
   width: calc(100% - 3px);
   height: 50px;
   background: transparent;
-  border: 2px solid #273D45;
-  //  rgba(255, 255, 255, 0.2)
+  border: 2px solid var(--darkblue-color);
   border-radius: 40px;
   padding: 20px 20px 20px 50px;
   font-size: 16px;
-  color: #273D45;
+  color: var(--darkblue-color);
   outline: none;
 }
 
 .input-box input::placeholder {
   position: absolute;
   left: 50px;
-  color: #273D45;
+  color: var(--darkblue-color);
 }
 
 .input-box i {
@@ -80,30 +79,6 @@ body::before {
   color: #666666;
 }
 
-
-
-// .wrapper .btn {
-//   width: 100%;
-//   height: 45px;
-//   background: #fff;
-//   border: none;
-//   border-radius: 40px;
-//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-//   cursor: pointer;
-//   font-size: 16px;
-//   color: #333;
-//   font-weight: 600;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 0 25px;
-// }
-
-// .wrapper .btn:hover {
-//   transform: scale(1.05); 
-//   transition: transform 0.3s ease-in-out; 
-// }
-
 .btn {
   position: relative;
   font-size: 15px;
@@ -113,19 +88,18 @@ body::before {
   display: inline-block;
   border-radius: 6em;
   transition: all .2s;
-  border: 2px solid #273D45;
+  border: 2px solid var(--darkblue-color);
   font-family: inherit;
   font-weight: 500;
   color: #E3CF9C;
-  background-color: #273D45;
-  // border: 2px solid #273D45;
+  background-color: var(--darkblue-color);
   width: 100%;
  }
  
  .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  background-color: #273D45;
+  background-color: var(--darkblue-color);
   color:#E3CF9C;
   border: 2px solid rgb(62, 32, 20);
  }
@@ -153,10 +127,23 @@ body::before {
   border: 2px solid rgb(62, 32, 20);
  }
  
-//  .btn:hover::after {
-//   transform: scaleX(1.4) scaleY(1.6);
-//   opacity: 0;
-//  }
+
+
+.back {
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 14px; 
+  color: var(--darkblue-color); 
+  padding: 0; 
+  display: block; 
+  margin: 0 auto;
+  text-align: center; 
+}
+
+.back:hover {
+  text-decoration: underline;
+}
 
 
 
@@ -180,18 +167,3 @@ body::before {
   }
 }
 
-.back {
-  background-color: transparent; /* Arka plan rengini transparan yapın */
-  border: none; /* Kenarlık olmadığından border'ı kaldırın */
-  cursor: pointer; /* Farenin üzerine geldiğinde imlecin şeklini değiştir */
-  font-size: 14px; /* Metin boyutunu ayarlayın */
-  color: #273D45; /* Metin rengini ayarlayın */
-  padding: 0; /* İç içe boşluğu kaldırın */
-  display: block; /* Blok öğe olarak ayarlayın */
-  margin: 0 auto; /* Otomatik kenar boşluğu ile ortalamak için */
-  text-align: center; /* Metni ortalamak için */
-}
-
-.back:hover {
-  text-decoration: underline; /* Farenin üzerine geldiğinde altını çizin */
-}
