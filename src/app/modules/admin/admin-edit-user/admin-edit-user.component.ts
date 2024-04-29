@@ -63,7 +63,7 @@ export class AdminEditUserComponent  implements OnInit {
     let selectedRoles: UserRole[] = this.selectedRoles.map(role => {
       return {
         id: role.id,
-        name: role.name // veya role.name gibi
+        name: role.name 
       };
     });
     
@@ -100,20 +100,6 @@ toggleSelection(role: Role): void {
     this.selectedRoles.splice(index, 1);
   }
 }
-
-// // Bir rolün seçilip seçilmediğini değiştiren işlev
-// toggleRoleSelection(checked: boolean, role: Role): void {
-//   if (checked) {
-//       // Eğer check box işaretlendi ise, seçili roller dizisine ekleyin
-//       this.selectedRoles.push(role);
-//   } else {
-//       // Eğer check box işareti kaldırıldı ise, seçili roller dizisinden kaldırın
-//       const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
-//       if (index !== -1) {
-//           this.selectedRoles.splice(index, 1);
-//       }
-//   }
-// }
 
 pswCannotBeEmpty():boolean{
   return this.updateForm.value.password! === '' ;
