@@ -7,6 +7,7 @@ import { FormBuilder } from '@angular/forms';
 import { RoleService } from '../../../shared/service/role.service';
 import { User } from '../../../shared/dto/user';
 import { LoginService } from '../../service/login.service';
+import { AccountService } from '../../service/account.service';
 
 @Component({
   selector: 'app-account-management',
@@ -16,12 +17,13 @@ import { LoginService } from '../../service/login.service';
 export class AccountManagementComponent implements  OnInit {
     updateForm = this.fb.nonNullable.group({
     email: "",
-    password: "",
-    confirmPassword: "",
+    oldPassword: "",
+    newPassword: "",
+    checkPassword: "",
     // roles: {value:this.loginService.roles}
     
   })
- 
+
 
   userID = "";
   // roles: Role[]= []; 
@@ -35,31 +37,22 @@ export class AccountManagementComponent implements  OnInit {
     private toastr: ToastrService,
     private fb: FormBuilder,
     private roleService: RoleService,
-    private loginService: LoginService   
+    private loginService: LoginService,
+    private accountService: AccountService   
       
     
   ) { }
 
   ngOnInit(): void {
        
-    // console.log('updateformroles',this.updateForm.value.roles)
-    // this.roleService.getAllRoles().subscribe({
-    //   next: (data: Role[]) => {
-    //     this.roles = data;
-       
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //   }
-    // });
-    
+        
     this.loadCurrentUser();
 
     if(this.userService.editingUser != null){
       this.userID = this.userService.editingUser.id;
       this.updateForm.patchValue({
         email : this.userService.editingUser.email,
-        password : this.userService.editingUser.password
+        oldPassword : this.userService.editingUser.password
       });
     } else{}
   }
@@ -73,7 +66,7 @@ export class AccountManagementComponent implements  OnInit {
         email: this.loginService.email, 
         
         
-        password: '' 
+        oldPassword: '' 
         
       });
     
@@ -84,27 +77,20 @@ export class AccountManagementComponent implements  OnInit {
 
 
 
-  submit() {
-    let email = this.updateForm.get('email')!.value;
-    let password = this.updateForm.get('password')!.value;
-    let confirmPassword = this.updateForm.get('confirmPassword')!.value;
-    
-
-    
-      if (password === confirmPassword) {
-        this.userService.updateUser(new User( this.userID, email, password)).subscribe({
-          next: (result) => {
-            this.toastr.info('User updated.');
-            this.router.navigate(['/homepage/products'], { relativeTo: this.route });
-          },
-          error: (error) => {
-            this.toastr.error('An error occurred while updating user.');
-          }
-        });
-      } else {
-        this.toastr.error('Passwords do not match.');
+   submit() {
+    let oldPassword = this.updateForm.get('oldPassword')!.value;
+    let newPassword = this.updateForm.get('newPassword')!.value;
+    this.accountService.changePassword({oldPassword, newPassword }).subscribe({
+      next: (sonuc) => {
+        console.log(sonuc);
+        this.toastr.info("Şifre değiştirilmiştir.");
+        this.router.navigate(['/homepage/products'], { relativeTo: this.route });
       }
+    });
   }
+
+
+  
 
   cancel() {
     this.router.navigate(['/homepage/products']);
@@ -112,10 +98,10 @@ export class AccountManagementComponent implements  OnInit {
 
 
 pswCannotBeEmpty():boolean{
-  return this.updateForm.value.password! === '' ;
+  return this.updateForm.value.oldPassword! === '' ;
 }
 confirmPswCannotBeEmpty():boolean{
-  return this.updateForm.value.confirmPassword! === '' ;
+  return this.updateForm.value.checkPassword! === '' ;
 }
 
 }
