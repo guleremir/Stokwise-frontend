@@ -4,12 +4,19 @@
   border: none;
 }
 
-.btn-primary{
-  background-color: gray;
+.primary {
+  background-color:  var(--lightbluebtn-color);
+  color: white;
 }
-
-.btn-secondary{
-  background-color: darkblue;
+.primary:hover {
+  background-color: var(--bluebtn-color);
+}
+.secondary {
+  background-color: var(--lightredbtn-color);
+  color: white;
+}
+.secondary:hover {
+  background-color: var(--redbtn-color);
 }
 
 .modal-header{
@@ -20,7 +27,7 @@
 
 .fa-circle-exclamation{
   font-size: 100px;
-  color: rgb(197, 0, 0);
+  color: var(--lightredbtn-color);
 }
 
 .modal-body{
@@ -33,5 +40,10 @@
   justify-content: space-evenly;
   // align-items: center;
 }
+.modal-content{
+  border-radius: 26px;
+}
+
+
 
 

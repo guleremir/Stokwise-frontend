@@ -14,6 +14,7 @@ import { Category } from '../../../shared/dto/category';
   styleUrl: './product.component.scss'
 })
 export class ProductComponent {
+
   products: Product[] = [];
   searchForm = this.fb.nonNullable.group({
     searchText: [''] // Arama metni için değişken eklendi
@@ -114,7 +115,28 @@ export class ProductComponent {
   }
 
   report(){
-    this.router.navigate(['/homepage/products/report'],{ relativeTo: this.route });
+    // this.router.navigate(['/homepage/products/report'],{ relativeTo: this.route });
   }
 
+  reportMinimumCount(){
+    this.productService.reportWarningCountProduct().subscribe({
+      next: () => {
+        this.toastr.success("Product reported successfully");
+      },
+      error: (err) => {
+        console.log("Error:", err); // Hatayı konsola yazdır
+      }
+    });
+  }
+
+  reportProduct(){
+    this.productService.reportProduct().subscribe({
+      next: () => {
+        this.toastr.success("Product reported successfully");
+      },
+      error: (err) => {
+        console.log("Error:", err); // Hatayı konsola yazdır
+      }
+    });
+  }
 }

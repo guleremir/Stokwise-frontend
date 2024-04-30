@@ -21,6 +21,19 @@ td, th {
     background-color: var(--darkblue-color) ;
 }
 
+.selectedShelf{
+    background-color: #62b0b6a0;
+    background-color: #273D45;
+    color: #FFF7E6;
+}
+
+.mt-2 {
+    display: flex;
+}
+.editselect, .noselect {
+    margin-right: 10px;
+}
+
 /*****************************/
 .noselect {
     width: 150px;
