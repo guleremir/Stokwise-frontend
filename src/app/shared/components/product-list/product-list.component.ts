@@ -14,6 +14,8 @@ export class ProductListComponent {
 @Output() loadProductEvent=new EventEmitter<void>();
 @Input() uuidToSequenceMap: { [key: string]: number} = {};
 
+areYouSureQuestion = 'Are you sure you want to delete this product?'
+
 loadProduct(){
   this.loadProductEvent.emit();
 }

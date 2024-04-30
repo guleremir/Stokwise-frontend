@@ -12,6 +12,9 @@ import { ProductService } from '../../../shared/service/product.service';
   styleUrl: './dispatch-product.component.scss'
 })
 export class DispatchProductComponent {
+
+  areYouSureQuestion = 'Are you sure you want to dispatch this product?'
+
   products: Product[] = [];
   selectedProduct: Product | null = null;
   entryForm = this.fb.nonNullable.group({
@@ -34,17 +37,12 @@ export class DispatchProductComponent {
       });
     }
 
-
-    productSelect(product: Product) {
+  productSelect(product: Product) {
   this.selectedProduct = product;
   console.log(this.selectedProduct + " productSelect metodu");
   console.log(this.selectedProduct);
   console.log(product);
-  
 }
-
-    
-  
 
 dispatchProductFromShelf() { //deneme
   if(this.selectedProduct){
@@ -67,14 +65,24 @@ dispatchProductFromShelf() { //deneme
   }
 }
 
-
-
 cancel() {
   this.router.navigate(['/homepage/shelves']);
 }
 
 hasCountError():boolean{
   return this.entryForm.value.count! > this.selectedProduct?.unitInStock!;
+}
+
+countCannotBeEmpty():boolean{
+  return this.entryForm.value.count! === 0 ;
+}
+
+emptyAndCountError():boolean{
+  return this.hasCountError() || this.countCannotBeEmpty();
+}
+
+dispatchProduct(){
+  this.dispatchProductFromShelf();
 }
 
 }

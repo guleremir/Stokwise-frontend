@@ -12,6 +12,8 @@ import { Category } from '../../../shared/dto/category';
 })
 export class AdminAddCategoryComponent {
 
+  areYouSureQuestion = 'Are you sure you want to do this?'
+
   createForm = this.fb.nonNullable.group({
     categoryName: "",
   });
@@ -40,6 +42,14 @@ export class AdminAddCategoryComponent {
 
   cancel() {
     this.router.navigate(['adminPanel/categories']);
+  }
+
+  addCategory(){
+    this.submit();
+  }
+
+  confirmCategoryCannotBeEmpty():boolean{
+    return this.createForm.value.categoryName! === '' ;
   }
 
 }

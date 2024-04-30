@@ -1,7 +1,12 @@
 <div class="product-table">
   <div class="record-header">
     <div class="browse">
-      <input type="text" placeholder="Search Product" class="record-search" [(ngModel)]="searchText">
+      <div class="search-container">
+        <input type="text" placeholder="Search Product" class="record-search" [(ngModel)]="searchText">
+        <span>
+          <i class="bi bi-search"></i>
+        </span>
+      </div>
       <button (click)="addProduct()" class="left-button">
         <span class="transition"></span>
         <span class="gradient"></span>
@@ -15,7 +20,7 @@
       <button (click)="reportMinimumCount()" class="right-button">
         <span class="transition"></span>
         <span class="gradient"></span>
-        <span class="label">Report Minimum Count Product</span>
+        <span class="label">Minimum Count</span>
       </button>
     </div>
   </div>

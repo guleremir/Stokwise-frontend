@@ -62,8 +62,10 @@ export class EditProductComponent implements OnInit {
     let productDescription = (this.createForm.get('productDescription')!.value);
     this.productService.editProduct(new Product(this.productID, productName, new Category("",this.productCategory) ,productPrice, productQuantity, productUnitInStock, productMinimumCount, productDescription)).subscribe({
       next: (result) => {
-        this.toastr.info('Product updated.');
+        this.toastr.info('Product updated!');
         this.router.navigate(['..'], { relativeTo: this.route });
+      }, error: (err) => {
+        this.toastr.error('Please check the information you have entered!');
       }
     });
   }
@@ -80,4 +82,29 @@ export class EditProductComponent implements OnInit {
     this.submit();
   }
 
+  productNameCannotBeEmpty():boolean{
+    return this.createForm.value.productName! === '' ;
+  }
+
+  productPriceCannotBeEmpty():boolean{
+    return this.createForm.value.productPrice! === 0 ;
+  }
+
+  productQuantityCannotBeEmpty():boolean{
+    return this.createForm.value.productQuantity! === 0 ;
+  }
+
+  productMinimumCountCannotBeEmpty():boolean{
+    return this.createForm.value.productMinimumCount! === 0 ;
+  }
+
+  productDescriptionCannotBeEmpty():boolean{
+    return this.createForm.value.productDescription! === '' ;
+  }
+
+  bothFieldsCannotBeEmpty(): boolean {
+    // İki alanın da dolu olup olmadığını kontrol etmek için productNameCannotBeEmpty ve productDescriptionCannotBeEmpty fonksiyonlarını birleştirin
+    return this.productNameCannotBeEmpty() || this.productPriceCannotBeEmpty() || this.productQuantityCannotBeEmpty() || this.productMinimumCountCannotBeEmpty() || this.productDescriptionCannotBeEmpty() || this.hasQuantityError(); 
+    // Eğer herhangi biri true döndürürse, en az bir alan boş demektir
+  }
 }

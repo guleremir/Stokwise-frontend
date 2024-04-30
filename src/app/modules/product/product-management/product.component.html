@@ -31,7 +31,7 @@
         </form>
       </div>
       <div>
-        <button class="btn btn-add" (click)="report()">
+        <button type="button" class="btn btn-add button" (click)="report()" data-bs-toggle="modal" data-bs-target="#report">
           Report
         </button>
       </div>
@@ -52,4 +52,31 @@
     [areYouSureQuestion]="areYouSureQuestion"
   >
   </app-are-you-sure>
+
+  <!-- Report Modal -->
+  <div class="modal fade" id="report" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="fa-solid fa-file-pdf"></i>
+          <button class="exit-button"  data-bs-dismiss="modal">
+            <svg height="20px" viewBox="0 0 384 512">
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+              ></path>
+            </svg>
+          </button>
+          <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+        </div>
+        <div class="modal-body">
+          Which reporting type do you want to use?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="report report-button min" data-bs-dismiss="modal" (click)="reportMinimumCount()">Minimum Count</button>
+          <button type="button" class="report report-button product" data-bs-dismiss="modal" (click)="reportProduct()">Report Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Report Modal -->
 </div>

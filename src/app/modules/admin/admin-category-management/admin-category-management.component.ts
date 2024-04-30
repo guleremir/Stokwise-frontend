@@ -17,7 +17,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdminCategoryManagementComponent implements OnInit {
 
-  
+  areYouSureQuestion = 'Are you sure you want to edit this category?'
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
