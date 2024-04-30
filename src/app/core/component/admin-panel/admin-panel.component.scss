@@ -90,21 +90,12 @@ side-head span {
     background-size: cover;
 }
 
-.profile-img {
-    height: 80px;
-    width: 80px;
-    display: inline-block;
-    margin: 0 auto .5rem auto;
-    border: 3px solid #899DC1;
-}
-
 .profile h4 {
     color: #fff;
     font-weight: 500;
 }
 
 .profile small {
-    color: #899DC1;
     font-weight: 600;
 }
 
@@ -134,7 +125,7 @@ side-head span {
 
 .side-menu a span,
 .side-menu a small {
-    color: #899DC1;
+    color: var(--darkblue-color);
 }
 
 #menu-toggle:checked~.sidebar {

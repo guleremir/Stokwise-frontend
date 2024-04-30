@@ -197,11 +197,3 @@ button:active {
 .search-container {
     position: relative;
 }
-
-.search-icon {
-    position: absolute;
-    top: 50%;
-    left: 150px; /* İstenilen yerde ayarlayabilirsiniz */
-    transform: translateY(-50%);
-    opacity: 0.7;
-}

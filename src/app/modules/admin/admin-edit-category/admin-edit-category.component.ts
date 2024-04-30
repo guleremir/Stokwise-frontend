@@ -11,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AdminEditCategoryComponent {
 
+  areYouSureQuestion = 'Are you sure you want to edit this category?'
+
   createForm = this.fb.nonNullable.group({
     name:"",
   })
@@ -53,5 +55,12 @@ cancel() {
   this.router.navigate(['/adminPanel/categories']);
   }
 
+  editCategory(){
+    this.submit();
+  }
+
+  categoryNameCannotBeEmpty():boolean{
+    return this.createForm.value.name! === '' ;
+  }
 
 }

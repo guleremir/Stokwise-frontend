@@ -1,11 +1,11 @@
 <div class="container-fluid my-4">
-    <form [formGroup]="createForm" (submit)="submit()">
+    <form [formGroup]="createForm">
         <div class="mb-3">
             <label class="form-label">Capacity</label>
             <input formControlName="capacity" type="number" class="form-control" id="capacity" placeholder="50" min="0">
         </div>
         <div class="mt-2">
-        <button type="submit" class="editselect ms-2">
+        <button type="button" class="editselect ms-2" data-bs-toggle="modal" data-bs-target="#areyousure">
             <span class="text">Create</span>
             <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.7-14.3-32-32-32h-32c-17.7 0-32 14.3-32 32v144H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h144v144c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V304h144c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z"/></svg></span></button>
@@ -17,3 +17,5 @@
         </div>
     </form>
 </div>
+<app-are-you-sure (areYouSureEvent)="addShelf()" [areYouSureQuestion]="areYouSureQuestion" >
+</app-are-you-sure>

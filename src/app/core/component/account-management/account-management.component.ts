@@ -24,6 +24,7 @@ export class AccountManagementComponent implements  OnInit {
     
   })
 
+  areYouSureQuestion = 'Are you sure you want to edit this user?'
 
   userID = "";
   // roles: Role[]= []; 
@@ -89,9 +90,6 @@ export class AccountManagementComponent implements  OnInit {
     });
   }
 
-
-  
-
   cancel() {
     this.router.navigate(['/homepage/products']);
   }
@@ -102,6 +100,10 @@ pswCannotBeEmpty():boolean{
 }
 confirmPswCannotBeEmpty():boolean{
   return this.updateForm.value.checkPassword! === '' ;
+}
+
+editUser(){
+  this.submit();
 }
 
 }

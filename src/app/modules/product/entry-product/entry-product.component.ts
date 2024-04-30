@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrl: './entry-product.component.scss'
 })
 export class EntryProductComponent {
+
+  areYouSureQuestion = 'Are you sure you want to place this product?'
   
   products: Product[] = [];
   selectedProduct: Product | null = null;
@@ -63,6 +65,18 @@ export class EntryProductComponent {
 
   hasCountError():boolean{
     return this.entryForm.value.count! > (this.selectedProduct?.quantity! - this.selectedProduct?.unitInStock!);
+  }
+
+  countCannotBeEmpty():boolean{
+    return this.entryForm.value.count! === 0 ;
+  }
+
+  emptyAndCountError():boolean{
+    return this.hasCountError() || this.countCannotBeEmpty();
+  }
+
+  placeProduct(){
+    this.addProductToShelf();
   }
 
 }

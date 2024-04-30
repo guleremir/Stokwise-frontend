@@ -1,9 +1,8 @@
 import { Category } from './../../../shared/dto/category';
-import { Component } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ProductService } from '../../../shared/service/product.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CategoryService } from '../../../shared/service/category.service';
 
 @Component({
@@ -12,6 +11,8 @@ import { CategoryService } from '../../../shared/service/category.service';
   styleUrl: './add-category.component.scss'
 })
 export class AddCategoryComponent {
+
+  areYouSureQuestion = 'Are you sure you want to do this?'
 
   //createCategory
   createForm = this.fb.nonNullable.group({
@@ -24,7 +25,6 @@ export class AddCategoryComponent {
     private categoryService: CategoryService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute
   ) { }
 
   submit() { 
@@ -32,7 +32,7 @@ export class AddCategoryComponent {
     this.categoryService.addCategory(new Category(this.categoryID, categoryName)).subscribe({
       next: (result) => {
         this.toastr.info('Category created!');
-        this.router.navigate(['..'], { relativeTo: this.route });
+        this.router.navigate(['homepage/products/addProduct']);
       },
       error: (err) => {
         this.toastr.error(err.error.message);
@@ -44,4 +44,11 @@ export class AddCategoryComponent {
     this.router.navigate(['homepage/products/addProduct']);
   }
 
+  addCategory(){
+    this.submit();
+  }
+
+  confirmCategoryCannotBeEmpty():boolean{
+    return this.createForm.value.categoryName! === '' ;
+  }
 }

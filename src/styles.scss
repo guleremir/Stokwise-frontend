@@ -7,19 +7,15 @@ html{
 html, body { height: 100%; }
 body{ 
     margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-color: #B4C5CB;
-    
+    font-family: "Poppins", sans-serif; 
+    background-color: var(--lightblue-color);
 }
 
 button{
-   
     font-family: 'Merriweather', sans-serif !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   
-    
 }
 
 :root {
@@ -47,5 +43,5 @@ button{
     --lightredbtn-color:#ff3636;
     --darkredbtn-color:#911313;
     --cardred-color:rgb(255, 69, 69);
-  
+    --search-color: #757575;
   }

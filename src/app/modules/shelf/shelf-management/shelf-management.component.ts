@@ -20,6 +20,8 @@ export class ShelfManagementComponent implements OnInit {
   selectedShelf: AdminShelf | null = null;
   // selectTableShelf: Shelf | null = null;
 
+  areYouSureQuestion = 'Are you sure you want to edit this shelf?'
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -107,9 +109,10 @@ export class ShelfManagementComponent implements OnInit {
     this.router.navigate(['editShelf'], { relativeTo: this.route });
   }
   
-  deleteShelf(shelf: AdminShelf) {
-    console.log(shelf.id);
-    this.shelfService.deleteShelf(shelf.id).subscribe({
+  deleteShelf(shelf: AdminShelf | null) {
+    if(shelf){
+      console.log(shelf.id);
+      this.shelfService.deleteShelf(shelf.id).subscribe({
       next: () => {
         this.shelves = this.shelves.filter(s => s.id!== shelf.id);
         this.toastr.success("Shelf deleted successfully");
@@ -118,7 +121,9 @@ export class ShelfManagementComponent implements OnInit {
       error: (err)=> {
         console.log(err);
       }
-    })
+      })
+    }
+    
   }
 
 }

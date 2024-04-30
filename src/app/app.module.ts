@@ -18,37 +18,36 @@ import { AccountManagementComponent } from './core/component/account-management/
 import { MenuComponent } from './core/component/menu/menu/menu.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuComponent,
-    LoginComponent,
-    HomepageComponent,
-    AdminPanelComponent,
-    AccountManagementComponent,
-   
-    
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule,
-    
-  ],
-  providers: [
-    provideHttpClient(withInterceptors([urlInterceptor])),
-    {
-      provide: APP_CONFIG,
-      useValue: environment,
-    },
-    { provide: LOCALE_ID, useValue: 'tr'},
-    provideAnimationsAsync(),
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MenuComponent,
+        LoginComponent,
+        HomepageComponent,
+        AdminPanelComponent,
+        AccountManagementComponent,
+    ],
+    providers: [
+        provideHttpClient(withInterceptors([urlInterceptor])),
+        {
+            provide: APP_CONFIG,
+            useValue: environment,
+        },
+        { provide: LOCALE_ID, useValue: 'tr' },
+        provideAnimationsAsync(),
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot(), // ToastrModule added
+        ReactiveFormsModule,
+        HttpClientModule,
+        FormsModule,
+        SharedModule
+    ]
 })
 export class AppModule { }
