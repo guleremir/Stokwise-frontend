@@ -20,17 +20,20 @@ export class HomepageComponent {
   }
   
  
-  closeNavbar(): void {
-    if (this.navbarCollapse.nativeElement.classList.contains('show')) {
-      this.navbarCollapse.nativeElement.classList.remove('show');
+  closeNavbar() {
+    const navbarToggler = document.querySelector('.navbar-toggler') as HTMLElement;
+    const navbarCollapse = document.querySelector('.navbar-collapse') as HTMLElement;
+    if (navbarToggler && navbarCollapse.classList.contains('show')) {
+      navbarToggler.click();  
     }
-  } 
+  }
   
   logout(){
     this.loginService.logout();
     this.router.navigate(['/']);
   }
-  goMenu() {
+  goMenu(){
     this.router.navigate(['/menu']);
   }
 }
+

@@ -16,25 +16,6 @@ import ScrollReveal from 'scrollreveal';
 export class MenuComponent implements OnInit {
  
   messageForm: FormGroup;
-  // messageForm = this.({
-  //   name:"",
-  //   email: "",
-  //   message:"",
-
-  // })
-
-
-  // this.myGroup = new FormGroup({
-  //   firstName: new FormControl()
-
-  // this.messageForm = new FormGroup({
-  //   name: FormControl,
-  //   email: FormControl,
-  //   message: FormControl,
-  // })
-
-
-
 
 
   public isMenuOpen = false;
@@ -48,9 +29,9 @@ export class MenuComponent implements OnInit {
     
   ) {
     this.messageForm = new FormGroup({
-      name: new FormControl(''),  // İsim için boş bir başlangıç değeri
-      email: new FormControl(''), // E-posta için boş bir başlangıç değeri
-      message: new FormControl(''), // Mesaj için boş bir başlangıç değeri
+      name: new FormControl(''),  
+      email: new FormControl(''), 
+      message: new FormControl(''), 
     });
   
   }

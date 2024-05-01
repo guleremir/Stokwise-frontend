@@ -226,18 +226,18 @@
         </div>
 
         <div class="col">
-          <!-- FormGroup direktifini bütün form elemanlarını kapsayacak şekilde genişletiyorum -->
+         
           <div class="form-control" [formGroup]="messageForm">
             <div class="form-inputs">
               <input type="text" class="input-field" placeholder="Name" formControlName="name"/>
               <input type="text" class="input-field" placeholder="Email" formControlName="email"/>
             </div>
             <div class="text-area">
-              <!-- formControlName'i içeren textarea'yı da FormGroup'un içine aldım -->
+             
               <textarea placeholder="Type Your Message..." formControlName="message"></textarea>
             </div>
             <div class="form-button">
-              <button type="submit" class="send-btn btn"> <!-- type="submit" ekledim, formu submit etmek için -->
+              <button type="submit" class="send-btn btn"> 
                 <div class="svg-wrapper-1">
                   <div class="svg-wrapper">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
