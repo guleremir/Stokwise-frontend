@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { LoginService } from '../../service/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -8,7 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './homepage.component.scss'
 })
 export class HomepageComponent {
-  
+  @ViewChild('navbarToggler') navbarToggler!: ElementRef<HTMLButtonElement>;
+  @ViewChild('navbarCollapse') navbarCollapse!: ElementRef<HTMLDivElement>;
+
   constructor(
     private loginService : LoginService,
     private router : Router,
@@ -16,6 +18,13 @@ export class HomepageComponent {
   ){
     
   }
+  
+ 
+  closeNavbar(): void {
+    if (this.navbarCollapse.nativeElement.classList.contains('show')) {
+      this.navbarCollapse.nativeElement.classList.remove('show');
+    }
+  } 
   
   logout(){
     this.loginService.logout();

@@ -14,9 +14,10 @@ import ScrollReveal from 'scrollreveal';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-    
+  
+  // isMenuOpen: boolean = false;
   public isMenuOpen = false;
-  // Accessing DOM elements directly in Angular is generally done through ElementRef and Renderer2
+ 
   constructor(private el: ElementRef, private renderer: Renderer2,
     
     private toastr: ToastrService,
@@ -75,17 +76,29 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
   logInRouter(){
     this.router.navigate(['/login']);
   }
+
+  // navigate(event: Event, sectionId: string): void {
+  //   event.preventDefault();
+  //   const section = document.getElementById(sectionId);
+  //   if (section) {
+  //     section.scrollIntoView({ behavior: 'smooth' });
+  //   }
+
+  // }
 
   navigate(event: Event, sectionId: string): void {
     event.preventDefault();
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
+      this.isMenuOpen = false;  // Menüyü kapat
     }
-
   }
 }
