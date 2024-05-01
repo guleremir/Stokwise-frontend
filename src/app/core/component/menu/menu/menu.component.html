@@ -10,7 +10,7 @@
           alt="IMG"
         />
       </div>
-      <div class="nav-menu" id="myNavMenu"[ngClass]="{'responsive': isMenuOpen}" >
+      <div class="nav-menu" id="myNavMenu" [ngClass]="{'responsive': isMenuOpen}" >
         <ul class="nav_menu_list">
           <li class="nav_list">
             <a href="#home" class="nav-link" (click)="navigate($event, 'home')">Home</a>
@@ -35,8 +35,11 @@
           <span>Log In <i class="bi bi-box-arrow-in-right"></i></span>
         </button>
       </div>
-      <div class="nav-menu-btn" >
+      <div class="nav-menu-btn" (click)="toggleMenu()">
         <i class="bi bi-menu-up" ></i>
+        <button class="btn" (click)="logInRouter()">
+          <span> <i class="bi bi-box-arrow-in-right"></i></span>
+        </button>
       </div>
     </nav>
     

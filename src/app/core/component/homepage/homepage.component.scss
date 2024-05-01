@@ -73,3 +73,44 @@ img {
 }
 
 
+/*** Responsive ayarlamalar ***/
+@media (max-width: 992px) {
+    .navbar {
+        justify-content: flex-end; 
+        z-index: 1020;
+    }
+    .navbar-toggler {
+        margin-left: auto; 
+        z-index: 1021; 
+    }
+    .navbar-collapse {
+        text-align: center;
+        background-color: var(--cardbg--color); 
+        z-index: 1019; 
+        width: 250px !important; 
+        position: absolute; 
+        right: 0; 
+        top: 100%; 
+    }
+    .navbar-nav {
+        flex-direction: column; 
+        width: 100%; 
+    }
+    .nav-item {
+        width: 100%; 
+    }
+    .nav-link {
+        width: 100%; 
+        display: block; 
+        text-align: left;
+        // right: 40px;
+    }
+    .dropdown-menu {
+        left: auto; 
+        right: 0; 
+        z-index: 1022; 
+        background-color: var(--cardbg--color); 
+        width: 200px; 
+    }
+}
+
