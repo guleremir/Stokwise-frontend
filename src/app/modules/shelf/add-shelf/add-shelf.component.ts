@@ -11,6 +11,9 @@ import { Shelf } from '../../../shared/dto/shelf';
   styleUrl: './add-shelf.component.scss'
 })
 export class AddShelfComponent {
+
+  areYouSureQuestion = 'Are you sure you want to add this shelf?'
+
   //createShelf
   createForm = this.fb.nonNullable.group({
     capacity: 0,
@@ -47,6 +50,10 @@ export class AddShelfComponent {
 
   cancel() {
     this.router.navigate(['/homepage/shelves']);
+  }
+
+  addShelf(){
+    this.submit();
   }
 
 }

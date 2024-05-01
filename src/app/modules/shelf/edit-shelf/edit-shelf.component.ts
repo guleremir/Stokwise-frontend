@@ -11,6 +11,9 @@ import { Shelf } from '../../../shared/dto/shelf';
   styleUrl: './edit-shelf.component.scss'
 }) 
 export class EditShelfComponent implements OnInit {
+
+  areYouSureQuestion = 'Are you sure you want to edit this shelf?'
+
   createForm = this.fb.nonNullable.group({
     capacity: 0,
   });
@@ -58,4 +61,12 @@ export class EditShelfComponent implements OnInit {
   cancel() {
     this.router.navigate(['/homepage/shelves']);
   }
+  editShelf(){
+    this.submit();
+  }
+
+  deleteShelf(){
+    this.submit();
+  }
+  
 }

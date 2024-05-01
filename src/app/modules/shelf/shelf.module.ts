@@ -6,19 +6,21 @@ import { ShelfManagementComponent } from './shelf-management/shelf-management.co
 import { AddShelfComponent } from './add-shelf/add-shelf.component';
 import { EditShelfComponent } from './edit-shelf/edit-shelf.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
-  declarations: [
-    ShelfManagementComponent,
-    AddShelfComponent,
-    EditShelfComponent
-  ],
-  imports: [
-    CommonModule,
-    ShelfRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-  ]
+    declarations: [
+        ShelfManagementComponent,
+        AddShelfComponent,
+        EditShelfComponent
+    ],
+    imports: [
+        CommonModule,
+        ShelfRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule
+    ]
 })
 export class ShelfModule { }

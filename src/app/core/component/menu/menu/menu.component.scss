@@ -131,6 +131,13 @@ nav {
   left: 100px;
   width: 600px;
   height: 600px;
+  animation: imgFloat 5s ease-in-out infinite;
+}
+
+@keyframes imgFloat {
+  50%{
+      transform: translateY(15px);
+  }
 }
 .image img {
   width: 600px;
@@ -445,22 +452,23 @@ footer {
 @media only screen and (max-width: 900px) {
   .nav-button {
     display: none;
+   
   }
+
   .nav-menu.responsive {
     right: 0;
   }
   .nav-menu {
     position: fixed;
     top: 65px;
-    right: 0;
+    right: -200px; /* Başlangıçta ekran dışında */
     justify-content: center;
     align-items: center;
     width: 200px;
     min-height: 50px;
     height: 50vh;
     transition: right 0.3s ease-in-out;
-    right: -200px; 
-}
+  }
   .nav_menu_list {
     flex-direction: column;
     justify-content: center;
@@ -469,6 +477,9 @@ footer {
 
   .nav-menu-btn {
     display: flex;
+    position: absolute; /* Butonu konumlandırmak için */
+    right: 20px; /* Sağ kenardan 20px uzaklıkta */
+    top: 10px; 
     align-items: center;
     justify-content: center;
   }
