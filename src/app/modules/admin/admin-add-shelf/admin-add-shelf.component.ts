@@ -13,6 +13,7 @@ import { Shelf } from '../../../shared/dto/shelf';
 })
 export class AdminAddShelfComponent {
 
+  areYouSureQuestion = 'Are you sure you want to do this?'
   createForm = this.fb.nonNullable.group({
     capacity: 0,
   });
@@ -45,6 +46,14 @@ export class AdminAddShelfComponent {
 
   cancel() {
     this.router.navigate(['/adminPanel/shelves']);
+  }
+
+  addShelf(){
+    this.submit();
+  }
+
+  capacityCannotBeEmpty():boolean{
+    return this.createForm.value.capacity! === 0 ;
   }
 
   }

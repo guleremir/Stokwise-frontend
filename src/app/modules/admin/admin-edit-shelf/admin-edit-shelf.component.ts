@@ -10,6 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './admin-edit-shelf.component.scss'
 })
 export class AdminEditShelfComponent{
+
+  areYouSureQuestion = 'Are you sure you want to edit this shelf?'
+
   createForm = this.fb.nonNullable.group({
     capacity: 0,
   });
@@ -58,4 +61,13 @@ export class AdminEditShelfComponent{
   cancel() {
     this.router.navigate(['/adminPanel/shelves']);
   }
+
+  editShelf(){
+    this.submit();
+  }
+
+  capacityCannotBeEmpty():boolean{
+    return this.createForm.value.capacity! === 0 ;
+  }
+
 }
