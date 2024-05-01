@@ -1,266 +1,289 @@
+<div class="container">
+  <!-- --------------- HEADER --------------- -->
+  <nav id="header">
+    <div class="nav-logo">
+      <img
+        src="../../../../../assets/other-img/Logo.svg"
+        width="75px"
+        height="75px"
+        alt="IMG"
+      />
+    </div>
+    <div class="nav-menu" id="myNavMenu" [ngClass]="{ responsive: isMenuOpen }">
+      <ul class="nav_menu_list">
+        <li class="nav_list">
+          <a href="#home" class="nav-link" (click)="navigate($event, 'home')"
+            >Home</a
+          >
+          <div class="circle"></div>
+        </li>
+        <li class="nav_list">
+          <a href="#about" class="nav-link" (click)="navigate($event, 'about')"
+            >About</a
+          >
+          <div class="circle"></div>
+        </li>
+        <li class="nav_list">
+          <a href="#team" class="nav-link" (click)="navigate($event, 'team')"
+            >Team</a
+          >
+          <div class="circle"></div>
+        </li>
+        <li class="nav_list">
+          <a
+            href="#contact"
+            class="nav-link"
+            (click)="navigate($event, 'contact')"
+            >Contact</a
+          >
+          <div class="circle"></div>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-button">
+      <button class="btn" (click)="logInRouter()">
+        <span>Log In <i class="bi bi-box-arrow-in-right"></i></span>
+      </button>
+    </div>
+    <div class="nav-menu-btn" (click)="toggleMenu()">
+      <i class="bi bi-menu-up"></i>
+      <button class="btn" (click)="logInRouter()">
+        <span> <i class="bi bi-box-arrow-in-right"></i></span>
+      </button>
+    </div>
+  </nav>
 
-  <div class="container">
-    <!-- --------------- HEADER --------------- -->
-    <nav id="header">
-      <div class="nav-logo">
-        <img
-          src="../../../../../assets/other-img/Logo.svg"
-          width="75px"
-          height="75px"
-          alt="IMG"
-        />
+  <!-- -------------- MAIN ---------------- -->
+  <main class="wrapper">
+    <!-- -------------- FEATURED BOX ---------------- -->
+    <section class="featured-box" id="home">
+      <div class="featured-text">
+        <div class="featured-name">
+          <p>
+            <span class="typedText"></span>
+            <span class="typed-cursor" aria-hidden="true"></span>
+          </p>
+        </div>
+        <div class="featured-text-info">
+          <p>
+            If you're looking for quality storage solutions, you've come to the
+            right place!<br />
+            We offer modern and reliable storage spaces where you can safely
+            keep your belongings.<br />
+            Whether you need short-term or long-term solutions, everything you
+            need is right here.
+          </p>
+        </div>
       </div>
-      <div class="nav-menu" id="myNavMenu" [ngClass]="{'responsive': isMenuOpen}" >
-        <ul class="nav_menu_list">
-          <li class="nav_list">
-            <a href="#home" class="nav-link" (click)="navigate($event, 'home')">Home</a>
-            <div class="circle"></div>
-          </li>
-          <li class="nav_list">
-            <a href="#about" class="nav-link" (click)="navigate($event, 'about')">About</a>
-            <div class="circle"></div>
-          </li>
-          <li class="nav_list">
-            <a href="#team" class="nav-link" (click)="navigate($event, 'team')">Team</a>
-            <div class="circle"></div>
-          </li>
-          <li class="nav_list">
-            <a href="#contact" class="nav-link" (click)="navigate($event, 'contact')">Contact</a>
-            <div class="circle"></div>
-          </li>
-        </ul>
+      <div class="featured-image">
+        <div class="image">
+          <img src="../../../../../assets/other-img/Logo.svg" alt="Logo" />
+        </div>
       </div>
-      <div class="nav-button">
-        <button class="btn" (click)="logInRouter()">
-          <span>Log In <i class="bi bi-box-arrow-in-right"></i></span>
-        </button>
+      <div class="scroll-icon-box">
+        <a href="#about" class="scroll-btn">
+          <i class="bi bi-mouse"></i>
+          <p>Scroll Down</p>
+        </a>
       </div>
-      <div class="nav-menu-btn" (click)="toggleMenu()">
-        <i class="bi bi-menu-up" ></i>
-        <button class="btn" (click)="logInRouter()">
-          <span> <i class="bi bi-box-arrow-in-right"></i></span>
-        </button>
+    </section>
+    <!-- -------------- ABOUT BOX ---------------- -->
+    <section class="section" id="about">
+      <div class="top-header">
+        <h1>About Us</h1>
       </div>
-    </nav>
-    
-    <!-- -------------- MAIN ---------------- -->
-    <main class="wrapper">
-      <!-- -------------- FEATURED BOX ---------------- -->
-      <section class="featured-box" id="home">
-        <div class="featured-text">
-        
-          <div class="featured-name">
+      <div class="row">
+        <div class="col">
+          <div class="about-info">
             <p>
-              <span class="typedText"></span>
-              <span class="typed-cursor" aria-hidden="true"></span>
+              <br />
+              At Stokwise, we were established in 2023 and are dedicated to
+              providing our valued customers with high-quality storage
+              solutions. Our modern facilities ensure ideal storage conditions
+              for a variety of items and materials. By prioritizing security,
+              accessibility, and customer satisfaction, we aim to provide you
+              with a peaceful and secure storage experience.
+              <br />
+              <br />
+              Our mission is to offer flexible and reliable storage options that
+              cater to the needs of every customer. Our expert team treats your
+              belongings as if they were their own, and we are committed to
+              always delivering the best service.
+              <br />
+              <br />
+              At Stokwise, we create solutions for all types of storage needs;
+              whether personal or corporate, short-term or long-term, we are
+              always by your side. Your safety and satisfaction are our top
+              priorities.
+              <br />
+              <br />
+              Contact us to find the best solution for your storage needs. With
+              Stokwise, you can be assured that your items are securely stored.
+              Continue with your life, and let us handle your storage needs!
             </p>
           </div>
-          <div class="featured-text-info">
-            <p>
-              If you're looking for quality storage solutions, you've come to
-              the right place!<br/>
-              We offer modern and reliable storage spaces where you can safely
-              keep your belongings.<br/>
-              Whether you need short-term or long-term solutions, everything you
-              need is right here.
-            </p>
-          </div>
         </div>
-        <div class="featured-image">
-          <div class="image">
-            <img src="../../../../../assets/other-img/Logo.svg" alt="Logo" />
-          </div>
-        </div>
-        <div class="scroll-icon-box">
-          <a href="#about" class="scroll-btn">
-            <i class="bi bi-mouse"></i>
-            <p>Scroll Down</p>
-          </a>
-        </div>
-      </section>
-      <!-- -------------- ABOUT BOX ---------------- -->
-      <section class="section" id="about">
-        <div class="top-header">
-          <h1>About Us</h1>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="about-info">
-              <p>
-                <br>
-                At Stokwise, we were established in 2023 and are dedicated to
-                providing our valued customers with high-quality storage
-                solutions. Our modern facilities ensure ideal storage conditions
-                for a variety of items and materials. By prioritizing security,
-                accessibility, and customer satisfaction, we aim to provide you
-                with a peaceful and secure storage experience.
-                <br/>
-                <br>
-                Our mission is to offer flexible and reliable storage options
-                that cater to the needs of every customer. Our expert team
-                treats your belongings as if they were their own, and we are
-                committed to always delivering the best service.
-                <br/>
-                <br>
-                At Stokwise, we create solutions for all types of storage needs;
-                whether personal or corporate, short-term or long-term, we are
-                always by your side. Your safety and satisfaction are our top
-                priorities.
-                <br/>
-                <br>
-                Contact us to find the best solution for your storage needs.
-                With Stokwise, you can be assured that your items are securely
-                stored. Continue with your life, and let us handle your storage
-                needs!
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- -------------- TEAM BOX ---------------- -->
+    <!-- -------------- TEAM BOX ---------------- -->
 
-      <section class="section" id="team">
-        <div class="top-header">
-          <h1>Our Team</h1>
+    <section class="section" id="team">
+      <div class="top-header">
+        <h1>Our Team</h1>
+      </div>
+      <div class="team-container">
+        <div class="team-box">
+          <div class="img-box">
+            <img
+              class="emir teams"
+              src="../../../../../assets/team-img/emir2.jpg"
+              alt=""
+            />
+          </div>
+          <br />
+          <h5>Emir GÜLER</h5>
+          <p>Delirecem</p>
         </div>
-        <div class="team-container">
-          <div class="team-box">
-            <div class="img-box">
-              <img class="emir teams" src="../../../../../assets/team-img/emir2.jpg" alt="" />
-            </div>
-            <br/>
-            <h5>Emir GÜLER</h5>
-            <p>Delirecem </p>
+        <div class="team-box">
+          <div class="img-box">
+            <img
+              class="nazli teams"
+              src="../../../../../assets/team-img/nazlı3.jpg"
+              alt=""
+            />
           </div>
-          <div class="team-box">
-            <div class="img-box">
-              <img class="nazli teams" src="../../../../../assets/team-img/nazlı3.jpg" alt="" />
-            </div>
-            <br/>
-            <h5>Nazlı NOYAN TAŞTAN</h5>
-            <p>Ben Yeni Bişeyler Ekledim</p>
+          <br />
+          <h5>Nazlı NOYAN TAŞTAN</h5>
+          <p>Ben Yeni Bişeyler Ekledim</p>
+        </div>
+        <div class="team-box">
+          <div class="img-box">
+            <img
+              class="müslüm teams"
+              src="../../../../../assets/team-img/müslüm.jpg"
+              alt=""
+            />
           </div>
-          <div class="team-box">
-            <div class="img-box">
-              <img class="müslüm teams" src="../../../../../assets/team-img/müslüm.jpg" alt="" />
-            </div>
-            <br/>
-            <h5>Müslüm TUNÇ</h5>
-            <p>Her Türlü Hallederiz</p>
-          </div>
+          <br />
+          <h5>Müslüm TUNÇ</h5>
+          <p>Her Türlü Hallederiz</p>
+        </div>
 
-          <div class="team-box">
-            <div class="img-box">
-              <img class="asli teams" src="../../../../../assets/team-img/asli.webp" alt="" />
-            </div>
-            <br/>
-            <h5>Aslı KARAYİĞİT</h5>
-            <p>Tamam Tamam :)</p>
+        <div class="team-box">
+          <div class="img-box">
+            <img
+              class="asli teams"
+              src="../../../../../assets/team-img/asli.webp"
+              alt=""
+            />
           </div>
-          <div class="team-box">
-            <div class="img-box">
-              <img class="oguz teams" src="../../../../../assets/team-img/oguz.jpg" alt="" />
-            </div>
-            <br/>
-            <h5>Oğuzhan YALÇIN</h5>
-            <p>Şimdi Napıyoruz </p>
+          <br />
+          <h5>Aslı KARAYİĞİT</h5>
+          <p>Tamam Tamam :)</p>
+        </div>
+        <div class="team-box">
+          <div class="img-box">
+            <img
+              class="oguz teams"
+              src="../../../../../assets/team-img/oguz.jpg"
+              alt=""
+            />
           </div>
-          <div class="team-box">
-            <div class="img-box">
-              <img class="elif teams" src="../../../../../assets/team-img/elif.jpg" alt="" />
-            </div>
-            <br />
-            <h5>Elif ARAS</h5>
-            <p>Yaa Çok İyii Oldu </p>
+          <br />
+          <h5>Oğuzhan YALÇIN</h5>
+          <p>Şimdi Napıyoruz</p>
+        </div>
+        <div class="team-box">
+          <div class="img-box">
+            <img
+              class="elif teams"
+              src="../../../../../assets/team-img/elif.jpg"
+              alt=""
+            />
+          </div>
+          <br />
+          <h5>Elif ARAS</h5>
+          <p>Yaa Çok İyii Oldu</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------- CONTACT BOX ---------------- -->
+
+    <section class="section" id="contact">
+      <div class="top-header">
+        <h1>Get in touch</h1>
+        <span>If you need storage, please contact us.</span>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="contact-info">
+            <h2>Find Us</h2>
+            <p><i class="bi bi-envelope-fill"></i>info.stokwise.com</p>
+            <p><i class="bi bi-telephone-inbound-fill"></i> +91 70822 00001</p>
           </div>
         </div>
-      </section>
 
-      <!-- -------------- CONTACT BOX ---------------- -->
-
-      <section class="section" id="contact">
-        <div class="top-header">
-          <h1>Get in touch</h1>
-          <span>If you need storage, please contact us.</span>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="contact-info">
-              
-              <h2>Find Us</h2>
-              <p><i class="bi bi-envelope-fill"></i>info.stokwise.com</p>
-              <p><i class="bi bi-telephone-inbound-fill"></i> +91 70822 00001</p>
+        <div class="col">
+          <!-- FormGroup direktifini bütün form elemanlarını kapsayacak şekilde genişletiyorum -->
+          <div class="form-control" [formGroup]="messageForm">
+            <div class="form-inputs">
+              <input type="text" class="input-field" placeholder="Name" formControlName="name"/>
+              <input type="text" class="input-field" placeholder="Email" formControlName="email"/>
             </div>
-          </div>
-        
-          <div class="col">
-            <div class="form-control">
-              <div class="form-inputs">
-                <input type="text" class="input-field" placeholder="Name" formControlName="name"/>
-                <input type="text" class="input-field" placeholder="Email" formControlName="email"/>
-              </div>
-              <div class="text-area">
-                <textarea placeholder="Type Your Message..." formControlName="message"></textarea>
-              </div>
-              <div class="form-button">
-                <button class="send-btn btn">
-                  <div class="svg-wrapper-1">
-                    <div class="svg-wrapper">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        height="24"
-                      >
-                        <path fill="none" d="M0 0h24v24H0z"></path>
-                        <path
-                          fill="currentColor"
-                          d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                        ></path>
-                      </svg>
-                    </div>
+            <div class="text-area">
+              <!-- formControlName'i içeren textarea'yı da FormGroup'un içine aldım -->
+              <textarea placeholder="Type Your Message..." formControlName="message"></textarea>
+            </div>
+            <div class="form-button">
+              <button type="submit" class="send-btn btn"> <!-- type="submit" ekledim, formu submit etmek için -->
+                <div class="svg-wrapper-1">
+                  <div class="svg-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                      <path fill="none" d="M0 0h24v24H0z"></path>
+                      <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                    </svg>
                   </div>
-                  <span>Send</span>
-                </button>
-                
-              </div>
+                </div>
+                <span>Send</span>
+              </button>
             </div>
-
           </div>
-        
         </div>
-      </section>
-    </main>
+        
+      </div>
+    </section>
+  </main>
 
-    <!-- --------------- FOOTER --------------- -->
-    <footer>
-      <div class="top-footer">
-        <p>Pair-7</p>
-      </div>
-      <div class="middle-footer">
-        <ul class="footer-menu">
-          <li class="footer_menu_list">
-            <a href="#home">Home</a>
-          </li>
-          <li class="footer_menu_list">
-            <a href="#about">About</a>
-          </li>
-          <li class="footer_menu_list">
-            <a href="#team">Team</a>
-          </li>
-          <li class="footer_menu_list">
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
+  <!-- --------------- FOOTER --------------- -->
+  <footer>
+    <div class="top-footer">
+      <p>Pair-7</p>
+    </div>
+    <div class="middle-footer">
+      <ul class="footer-menu">
+        <li class="footer_menu_list">
+          <a href="#home">Home</a>
+        </li>
+        <li class="footer_menu_list">
+          <a href="#about">About</a>
+        </li>
+        <li class="footer_menu_list">
+          <a href="#team">Team</a>
+        </li>
+        <li class="footer_menu_list">
+          <a href="#contact">Contact</a>
+        </li>
+      </ul>
+    </div>
 
-      <div class="bottom-footer">
-        <p>
-          Copyright &copy;
-          <a href="#team" style="text-decoration: none">Pair-7</a> - All
-          rights reserved
-        </p>
-      </div>
-    </footer>
-  </div>
+    <div class="bottom-footer">
+      <p>
+        Copyright &copy;
+        <a href="#team" style="text-decoration: none">Pair-7</a> - All rights
+        reserved
+      </p>
+    </div>
+  </footer>
+</div>
