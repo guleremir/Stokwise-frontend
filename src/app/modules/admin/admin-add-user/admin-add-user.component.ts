@@ -18,6 +18,8 @@ export class AdminAddUserComponent {
   })
   userID = "";
 
+  areYouSureQuestion = 'Are you sure you want to do this?'
+
   constructor(
     private userService: UserService,
     private router: Router,
@@ -46,4 +48,13 @@ export class AdminAddUserComponent {
   cancel() {
     this.router.navigate(['/adminPanel/users']);
   }
+
+  addUser(){
+    this.submit();
+  }
+
+  userCannotBeEmpty():boolean{
+    return this.createForm.value.email! === '' || this.createForm.value.password! === ' ' || this.createForm.value.confirmPassword! === ''  ;
+  }
+
 }

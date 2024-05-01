@@ -15,10 +15,12 @@ export class UserListComponent {
   constructor(
   ) {}
 
-  deleteProduct() {
+  areYouSureQuestion = 'Are you sure you want to delete this user?'
+
+  deleteUser() {
     this.delete.emit(this.user);
   }
-  editProduct() {
+  editUser() {
     this.edit.emit(this.user);
   }
 }

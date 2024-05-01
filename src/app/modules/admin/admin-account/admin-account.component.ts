@@ -17,6 +17,8 @@ export class AdminAccountComponent {
     checkPassword: "",
   }, {validators: []});
 
+  areYouSureQuestion = 'Are you sure you want to edit this password?'
+
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
@@ -37,5 +39,20 @@ export class AdminAccountComponent {
       }
     });
   }
+
+  
+  cancel() {
+    this.router.navigate(['/adminPanel/products']);
+  }
+   
+  edit(){
+    this.submit();
+  }
+
+
+  editCannotBeEmpty():boolean{
+    return this.accountForm.value.oldPassword! === '' || this.accountForm.value.newPassword! === '' || this.accountForm.value.checkPassword! === '';
+  }
+
 }
 

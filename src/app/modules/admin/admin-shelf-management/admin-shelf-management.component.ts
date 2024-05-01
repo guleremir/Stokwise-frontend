@@ -30,6 +30,7 @@ export class AdminShelfManagementComponent implements OnInit {
      private logger: LoggerService
   ) { }
 
+  areYouSureQuestion = 'Are you sure you want to delete this shelf?'
   shelves: AdminShelf[] = [];
   products: AdminProduct[] = [];
   searchShelfId: string = ''; // Arama metni için değişken eklendi
