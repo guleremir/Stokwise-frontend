@@ -61,6 +61,7 @@ export class AdminCategoryManagementComponent implements OnInit {
   
 
   deleteCategory() {
+       
     if (this.selectedCategory) {
         this.categoryService.deleteCategory(this.selectedCategory.id).subscribe({
           next: () => {
