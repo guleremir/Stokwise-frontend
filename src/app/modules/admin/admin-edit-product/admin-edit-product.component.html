@@ -9,13 +9,12 @@
     </div>
     <div class="mb-3">
       <label for="txtProductQuantity" class="form-label">Quantity</label>
-      <input formControlName="productQuantity" type="number" class="form-control" [class.is-invalid]="hasQuantityError()" id="txtProductQuantity" min="0">
-      @if(hasQuantityError()){
-        <div class="invalid-feedback">
-          Please select a valid state.
-        </div>
-      }
+      <input formControlName="productQuantity" type="number" class="form-control" class="form-control" id="txtProductQuantity" readonly>      
     </div>
+    <div class="mb-3">
+      <label for="txtIncomingProductQuantity" class="form-label">Quantity of products received</label>
+      <input formControlName="incomingProductQuantity" type="number" class="form-control" class="form-control" id="txtIncomingProductQuantity" min="0">      
+    </div>    
     <div class="mb-3">
       <label for="txtProductUnitInStock" class="form-label">Units In Stock</label>
       <input formControlName="productUnitInStock" type="number" class="form-control" id="txtProductUnitInStock" readonly>
