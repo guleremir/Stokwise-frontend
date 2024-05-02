@@ -26,6 +26,7 @@ export class AdminEditUserComponent  implements OnInit {
   // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın
   selectedRoles: Role[] = [];
 
+  areYouSureQuestion = 'Are you sure you want to edit this user?'
 
   constructor(
     private userService: UserService,
@@ -108,5 +109,13 @@ confirmPswCannotBeEmpty():boolean{
   return this.updateForm.value.confirmPassword! === '' ;
 }
 
+editUser(){
+  this.submit();
+}
+
+
+editUserCannotBeEmpty():boolean{
+  return this.updateForm.value.email! === '' || this.updateForm.value.password! === '' || this.updateForm.value.confirmPassword! === '' ;
+}
 
 }

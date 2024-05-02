@@ -3,7 +3,7 @@ import Typed from 'typed.js';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../../service/login.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import ScrollReveal from 'scrollreveal';
 
 
@@ -14,8 +14,10 @@ import ScrollReveal from 'scrollreveal';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  
-  // isMenuOpen: boolean = false;
+ 
+  messageForm: FormGroup;
+
+
   public isMenuOpen = false;
  
   constructor(private el: ElementRef, private renderer: Renderer2,
@@ -25,13 +27,29 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     
-  ) {}
+  ) {
+    this.messageForm = new FormGroup({
+      name: new FormControl(''),  
+      email: new FormControl(''), 
+      message: new FormControl(''), 
+    });
+  
+  }
 
   ngOnInit(): void {
     this.initTyped();
     this.initScrollReveal();
   }
   
+  onSubmit() {
+    // Form gönderildiğinde çalışacak metod
+    if (this.messageForm.valid) {
+      console.log('Form Data:', this.messageForm.value);
+      // Form verilerini burada işleyebilirsiniz
+    } else {
+      console.log('Form is not valid!');
+    }
+  }
 
   private initTyped() {
     const options = {

@@ -148,22 +148,22 @@ body::before {
 
 
 /* Responsive Styles */
-@media (max-width: 992px) {
+@media (max-width: 100px) {
   .wrapper {
       width: auto;
-      padding: 177px 90px 33px 85px;
+      padding: 100px 90px 33px 85px;
   }
 }
 
 @media (max-width: 768px) {
   .wrapper {
-      padding: 100px 80px 33px 80px;
+      padding: 20px 50px 33px 50px;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 660px) {
   .wrapper {
-      padding: 100px 15px 33px 15px;
+      padding: 20px 15px 33px 15px;
   }
 }
 
