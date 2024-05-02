@@ -13,8 +13,11 @@ export class AreYouSureComponent {
 
   @Output() areYouSureEvent =  new EventEmitter();
   @Input() areYouSureQuestion = '';
+  @Input() id: string | undefined;
+
 
   buttonYesClick(id: string) {
+     
     this.areYouSureEvent.emit(id);
   }
   buttonNoClick() {

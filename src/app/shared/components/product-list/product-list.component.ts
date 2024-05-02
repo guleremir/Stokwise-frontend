@@ -24,7 +24,14 @@ loadProduct(){
     //private toastr: ToastrService
   ) {}
 
+  ngOnChanges() {
+    console.log("Product changed:", this.product);
+  }
+  
+
   deleteProduct() {
+    console.log(this.product.name);
+    
     this.delete.emit(this.product);
   }
   editProduct() {
