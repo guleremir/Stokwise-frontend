@@ -1,7 +1,7 @@
+import { ShelfService } from './../../../shared/service/shelf.service';
 import { ChangeDetectorRef, Component, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
 import { Shelf } from '../../../shared/dto/shelf';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { AdminShelf } from '../../../shared/dto/admin-shelf';
@@ -66,19 +66,24 @@ export class AdminShelfManagementComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-     this.shelfService.getAllTableShelves().subscribe({
-      next: (shelf => {
-        console.log(shelf);
-        this.shelves = shelf;
-        this.filterShelf();
-      })
-    });
+     this.loadShelves();
     this.searchForm.get("searchText")?.valueChanges.subscribe({
       next: (data) => {
         this.filterShelf(data);
       }
     })
   }
+
+  loadShelves(){
+    this.shelfService.getAllTableShelves().subscribe({
+      next: (shelf => {
+        console.log(shelf);
+        this.shelves = shelf;
+        this.filterShelf();
+      })
+    });
+  }
+
   addShelf() {
     this.router.navigate(['addShelf'], { relativeTo: this.route });
   }
@@ -113,19 +118,22 @@ export class AdminShelfManagementComponent implements OnInit {
 
   
   deleteShelf() {   
-    
     if (this.deleteSelectedShelf) {
       this.shelfService.deleteShelf(this.deleteSelectedShelf!.id).subscribe({
         next: () => {         
           this.shelves = this.shelves.filter(s => s.id !== this.deleteSelectedShelf!.id);
-          this.toastr.success("Shelf deleted successfully");                
+          this.filteredShelves = this.filteredShelves.filter(s => s.id !== this.deleteSelectedShelf!.id); // Filtrelenmiş diziden de kaldır
+          this.toastr.success("Shelf deleted successfully");
+          
+          if(this.selectedShelf && this.selectedShelf.id === this.deleteSelectedShelf!.id){
+            this.selectedShelf = null;
+          }
         },
         error: (err) => {
           console.error(err);
           this.toastr.error("An error occurred while deleting the shelf.");
         }
       });
-      this.router.navigate(['/adminPanel']);
     }
     
   }

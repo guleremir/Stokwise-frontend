@@ -8,16 +8,20 @@ import { LoggerService } from '../../../shared/service/logger.service';
 import { Category } from '../../../shared/dto/category';
 
 
+
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })
 export class ProductComponent {
-
+  p= 1;
+  itemsPerPage= 3;
+  totalProduct:any;
   products: Product[] = [];
   searchForm = this.fb.nonNullable.group({
-    searchText: [''] // Arama metni için değişken eklendi
+    searchText: [''] 
   });
   @Input() product: Product = new Product("", '',new Category() , 0, 0, 0, 0,'');
   @Output() delete = new EventEmitter();
@@ -32,7 +36,9 @@ export class ProductComponent {
     private productService: ProductService,
     private toastr: ToastrService,
     private logger: LoggerService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+   
+   
   ) { }
 
   //Component çağrıldığında çalışan method.
@@ -41,12 +47,16 @@ export class ProductComponent {
     this.searchForm.get("searchText")?.valueChanges.subscribe({
       next: (data) =>{
         this.filterProduct(data);
+        
       }
+      
     });
+    this.totalProduct = this.products.length;
   }
+  
 
   getAllProduct(){
-    //ProductService'den getAllProducts() methodunu çağrıyor. Tüm productları döndürüyor.
+    
     this.productService.getAllProduct().subscribe({
       next: (products => {
         console.log(products);
@@ -55,6 +65,7 @@ export class ProductComponent {
       })
     });
   }
+
 
   addProduct() {
     this.router.navigate(['addProduct'], { relativeTo: this.route });
@@ -139,4 +150,10 @@ export class ProductComponent {
       }
     });
   }
+
+  
+
+
 }
+
+
