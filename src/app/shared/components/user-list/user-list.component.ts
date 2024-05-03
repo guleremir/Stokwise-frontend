@@ -14,12 +14,25 @@ export class UserListComponent {
 
   constructor(
   ) {}
+  selectedUser: User | null = null;
+
+  selectUser(user: User) {
+    this.selectedUser = user;
+  }
+  
+  
 
   areYouSureQuestion = 'Are you sure you want to delete this user?'
 
-  deleteUser() {
+  /* deleteUser() {
+    this.selectedUser = this.user;
     this.delete.emit(this.user);
+  } */
+
+  deleteUser() {
+    this.delete.emit(this.selectedUser);  
   }
+  
   editUser() {
     this.edit.emit(this.user);
   }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../shared/service/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../../shared/service/user.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-user-management',
@@ -13,13 +14,20 @@ import { UserService } from '../../../shared/service/user.service';
 export class AdminUserManagementComponent {
   users: User[] = [];
   searchText: string = ''; // Arama metni için değişken eklendi
+  selectedUser: User | null = null;
+  myGroup: FormGroup;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    
+  ) { 
+    this.myGroup = new FormGroup({
+      searchText: new FormControl()
+    });
+  }
 
   //Component çağrıldığında çalışan method.
   ngOnInit(): void {
@@ -42,7 +50,8 @@ export class AdminUserManagementComponent {
     this.router.navigate(['editUser'], { relativeTo: this.route });
   }
 
-  deleteUser(user: User) {
+  /* deleteUser(user: User) {
+    console.log(user);
     
     this.userService.deleteUser(user).subscribe({
       next: () => {
@@ -54,7 +63,34 @@ export class AdminUserManagementComponent {
         console.log(err);
       }
     });
+  } */
+
+  
+  selectUser(user: User) {
+    this.selectedUser = user;
+    console.log('Selected user:', this.selectedUser);  // Log selected user for debug
   }
+  
+  
+  deleteUser() {
+    console.log('Attempting to delete user:', this.selectedUser);  // Check if user is selected
+    if (!this.selectedUser) {
+      console.error("No user selected for deletion.");
+      return;
+    }
+  
+    this.userService.deleteUser(this.selectedUser).subscribe({
+      next: () => {
+        this.users = this.users.filter(u => u !== this.selectedUser);
+        this.toastr.success("User deleted successfully");
+        this.selectedUser = null;  // Reset selected user
+      },
+      error: (err) => {
+        console.error("Failed to delete user: ", err);
+      }
+    });
+  }
+  
 
   // Ürünleri filtrelemek için fonksiyon eklendi
   filterUsers(): User[] {
