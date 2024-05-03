@@ -6,11 +6,12 @@
             <i class="fa-solid fa-magnifying-glass"></i> -->
          
             <div class="search-container">
-               
+                <form [formGroup]="myGroup"> 
                 <input type="text" placeholder="Search Category" class="record-search" formControlName="searchText"/> 
                 <span>
                     <i class="bi bi-search"></i>
                   </span>
+                </form>
             </div>
             
 
@@ -53,7 +54,7 @@
 
 <app-user-list *ngFor="let user of filterUsers()" [user]="user" 
 (edit)="editUser($event)" 
-(delete)="deleteUser($event)">
+(delete)="deleteUser()">
 </app-user-list>
 <router-outlet/>
 </div>
