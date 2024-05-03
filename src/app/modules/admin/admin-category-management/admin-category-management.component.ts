@@ -18,6 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AdminCategoryManagementComponent implements OnInit {
 
   areYouSureQuestion = 'Are you sure you want to edit this category?'
+  deleteQuestion = 'Are you sure you want to delete this category?'
 
   constructor(
     private router: Router,
@@ -27,9 +28,11 @@ export class AdminCategoryManagementComponent implements OnInit {
     private fb: FormBuilder,
   ) { }
 
-  // selectedCategory: Category | null = null;
+  selectedCategory: Category | null = null;
 
   categories: Category[] = [];
+ 
+
 
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe({
@@ -55,19 +58,26 @@ export class AdminCategoryManagementComponent implements OnInit {
     
   }
 
-  deleteCategory (category: Category){
-    console.log(category.id);
-    this.categoryService.deleteCategory(category.id).subscribe({
-      next: () => {
-        this.categories = this.categories.filter(c => c.id!== category.id);
-        this.toastr.success("Category deleted successfully");
-        console.log(this.categories);
-      },
-      error: (err)=> {
-        console.log(err);
-      }
-    })
-    
-  }
+  
+
+  deleteCategory() {
+       
+    if (this.selectedCategory) {
+        this.categoryService.deleteCategory(this.selectedCategory.id).subscribe({
+          next: () => {
+            this.categories = this.categories.filter(c => c.id!== this.selectedCategory!.id);
+            this.toastr.success("Category deleted successfully");
+            console.log(this.categories);
+          },
+          error: (err)=> {
+            console.log(err);
+          }
+        })
+        
+    }
+}
+
+
+  
 
 }

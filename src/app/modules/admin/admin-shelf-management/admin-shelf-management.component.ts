@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
 import { Shelf } from '../../../shared/dto/shelf';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { ShelfService } from '../../../shared/service/shelf.service';
@@ -16,18 +16,22 @@ import { LoggerService } from '../../../shared/service/logger.service';
   styleUrl: './admin-shelf-management.component.scss'
 })
 export class AdminShelfManagementComponent implements OnInit {
-  selectedShelf: AdminShelf | null = null;
+
   searchForm = this.fb.nonNullable.group({
     searchText: [''] // Arama metni için değişken eklendi
   });
 
+  selectedShelf: AdminShelf | null = null;
+  deleteSelectedShelf: AdminShelf | null = null;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-     private shelfService: ShelfService,
-     private toastr: ToastrService,
-     private fb: FormBuilder,
-     private logger: LoggerService
+    private shelfService: ShelfService,
+    private toastr: ToastrService,
+    private fb: FormBuilder,
+    private logger: LoggerService
+   
   ) { }
 
   areYouSureQuestion = 'Are you sure you want to delete this shelf?'
@@ -37,15 +41,15 @@ export class AdminShelfManagementComponent implements OnInit {
 
   // loadShelfEvent=new EventEmitter<void>();
   // uuidToSequenceMap: { [key: string]: number} = {};
-  
+
   // loadShelf(){
   //   this.shelfService.getAllShelves().subscribe(
   //     (data: AdminShelf[]) => {
   //       this.shelves = data;
-        
+
   //       // UUID'leri sıralı numaralarla eşleştirme
   //       this.uuidToSequenceMap = {}; // Önce objeyi sıfırlayın
-        
+
   //       this.shelves.forEach((shelf, index) => {
   //         // Her ürünün id'sini sıralı numaralarla eşleştir
   //         this.uuidToSequenceMap[shelf.id] = index + 1;
@@ -62,8 +66,7 @@ export class AdminShelfManagementComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    // this.loadShelf();
-    this.shelfService.getAllTableShelves().subscribe({
+     this.shelfService.getAllTableShelves().subscribe({
       next: (shelf => {
         console.log(shelf);
         this.shelves = shelf;
@@ -71,63 +74,87 @@ export class AdminShelfManagementComponent implements OnInit {
       })
     });
     this.searchForm.get("searchText")?.valueChanges.subscribe({
-      next: (data) =>{
+      next: (data) => {
         this.filterShelf(data);
       }
     })
   }
-  addShelf(){
+  addShelf() {
     this.router.navigate(['addShelf'], { relativeTo: this.route });
   }
 
   setSelectedShelf(shelf: AdminShelf) {
     if (shelf == this.selectedShelf) {
       this.selectedShelf = null;
-    } else if(shelf.productCount > 0){
+    } else if (shelf.productCount > 0) {
       this.selectedShelf = shelf;
       this.getSelectedShelfProducts();
     }
   }
+
+  
+
   getSelectedShelfProducts() {
-    if(this.selectedShelf != null){
-      this.shelfService.getAllProductsFromShelf(this.selectedShelf.id).subscribe((products)=>{
-        this.products=products;
+    if (this.selectedShelf != null) {
+      this.shelfService.getAllProductsFromShelf(this.selectedShelf.id).subscribe((products) => {
+        this.products = products;
       });
     }
   }
 
-  editShelf(shelf : AdminShelf) {
+  deleteSelectShelf(dShelf: AdminShelf) {
+    if (!dShelf) {
+      console.error("Invalid shelf provided.");
+      return;
+    }
+    this.deleteSelectedShelf = dShelf;
+    
+}
+
+  
+  deleteShelf() {   
+    
+    if (this.deleteSelectedShelf) {
+      this.shelfService.deleteShelf(this.deleteSelectedShelf!.id).subscribe({
+        next: () => {         
+          this.shelves = this.shelves.filter(s => s.id !== this.deleteSelectedShelf!.id);
+          this.toastr.success("Shelf deleted successfully");                
+        },
+        error: (err) => {
+          console.error(err);
+          this.toastr.error("An error occurred while deleting the shelf.");
+        }
+      });
+      this.router.navigate(['/adminPanel']);
+    }
+    
+  }
+  
+  
+  editShelf(shelf: AdminShelf) {
     this.shelfService.editingShelf = shelf;
     console.log(shelf);
     this.router.navigate(['editShelf'], { relativeTo: this.route });
   }
-  
-  deleteShelf(shelf: AdminShelf) {
-    console.log(shelf.id);
-    this.shelfService.deleteShelf(shelf.id).subscribe({
-      next: () => {
-        this.shelves = this.shelves.filter(s => s.id!== shelf.id);
-        this.toastr.success("Shelf deleted successfully");
-        console.log(this.shelves);
-      },
-      error: (err)=> {
-        console.log(err);
-      }
-    })
-  }
+    
+    
 
-  filteredShelves: AdminShelf [] = [];
-  filterShelf(data="") {
-    this.filteredShelves= this.shelves ;
+
+
+ 
+
+  filteredShelves: AdminShelf[] = [];
+  filterShelf(data = "") {
+    this.filteredShelves = this.shelves;
     // Arama filtresi
     if (data) {
-     this.filteredShelves = this.filteredShelves.filter(shelf => {
-      this.logger.log(shelf)
-      return shelf.productCategory?.toLowerCase().includes(data.toLowerCase())
-     }
-     );
+      this.filteredShelves = this.filteredShelves.filter(shelf => {
+        this.logger.log(shelf)
+        return shelf.productCategory?.toLowerCase().includes(data.toLowerCase())
+      }
+      );
     }
   }
 
 
-  }
+}
