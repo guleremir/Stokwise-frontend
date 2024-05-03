@@ -22,6 +22,7 @@ export class AdminShelfManagementComponent implements OnInit {
   });
 
   selectedShelf: AdminShelf | null = null;
+  deleteSelectedShelf: AdminShelf | null = null;
 
   constructor(
     private router: Router,
@@ -82,27 +83,16 @@ export class AdminShelfManagementComponent implements OnInit {
     this.router.navigate(['addShelf'], { relativeTo: this.route });
   }
 
-  /* setSelectedShelf(shelf: AdminShelf) {
+  setSelectedShelf(shelf: AdminShelf) {
     if (shelf == this.selectedShelf) {
       this.selectedShelf = null;
     } else if (shelf.productCount > 0) {
       this.selectedShelf = shelf;
       this.getSelectedShelfProducts();
     }
-  } */
+  }
 
-  // silinecek rafı alabilmesi için bu şekilde bi değişiklik yaptım ancak bu defa da rafa tekrar tıklayınca ürün gösterimini kapatmıyor buna tekrar bir bakmalıyız
-
-  setSelectedShelf(shelf: AdminShelf) {
-    if (!shelf) {
-      console.error("Invalid shelf provided.");
-      return;
-    }
-    this.selectedShelf = shelf;
-    if (shelf.productCount > 0) {
-      this.getSelectedShelfProducts();
-    } 
-}
+  
 
   getSelectedShelfProducts() {
     if (this.selectedShelf != null) {
@@ -112,21 +102,23 @@ export class AdminShelfManagementComponent implements OnInit {
     }
   }
 
+  deleteSelectShelf(dShelf: AdminShelf) {
+    if (!dShelf) {
+      console.error("Invalid shelf provided.");
+      return;
+    }
+    this.deleteSelectedShelf = dShelf;
+    
+}
 
-  editShelf(shelf: AdminShelf) {
-    this.shelfService.editingShelf = shelf;
-    console.log(shelf);
-    this.router.navigate(['editShelf'], { relativeTo: this.route });
-  }
- 
+  
   deleteShelf() {   
     
-    if (this.selectedShelf) {
-      this.shelfService.deleteShelf(this.selectedShelf!.id).subscribe({
+    if (this.deleteSelectedShelf) {
+      this.shelfService.deleteShelf(this.deleteSelectedShelf!.id).subscribe({
         next: () => {         
-          this.shelves = this.shelves.filter(s => s.id !== this.selectedShelf!.id);
-          this.toastr.success("Shelf deleted successfully");
-          //this.selectedShelf = null;         
+          this.shelves = this.shelves.filter(s => s.id !== this.deleteSelectedShelf!.id);
+          this.toastr.success("Shelf deleted successfully");                
         },
         error: (err) => {
           console.error(err);
@@ -137,8 +129,13 @@ export class AdminShelfManagementComponent implements OnInit {
     }
     
   }
-
-
+  
+  
+  editShelf(shelf: AdminShelf) {
+    this.shelfService.editingShelf = shelf;
+    console.log(shelf);
+    this.router.navigate(['editShelf'], { relativeTo: this.route });
+  }
     
     
 
