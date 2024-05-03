@@ -39,12 +39,13 @@
     <div class="card-container">
       <app-product-card
         class="ms-2 col-3 mb-5"
-        *ngFor="let product of filteredProducts"
+        *ngFor="let product of filteredProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: p }"
         [product]="product"
         (edit)="editProduct($event)"
         (delete)="selectedProduct($event.id)"
       >
       </app-product-card>
+      
     </div>
   </div>
   <app-are-you-sure
@@ -78,5 +79,9 @@
       </div>
     </div>
   </div>
-  <!-- Report Modal -->
+ 
+</div>
+<div class="paginate-page">
+  <pagination-controls (pageChange)="p = $event" ></pagination-controls>
+ 
 </div>

@@ -11,6 +11,7 @@ import { AreYouSureComponent } from '../are-you-sure/are-you-sure.component';
   styleUrl: './product-card.component.scss'
 })
 export class ProductCardComponent {
+  
   @Input() product: Product = new Product("", '',new Category() , 0, 0, 0, 0,'');
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();

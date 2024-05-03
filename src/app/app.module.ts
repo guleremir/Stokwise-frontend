@@ -19,6 +19,11 @@ import { MenuComponent } from './core/component/menu/menu/menu.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from "./shared/shared.module";
+// import { NgxPaginationModule } from 'ngx-pagination';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+
 
 @NgModule({
     declarations: [
@@ -28,6 +33,7 @@ import { SharedModule } from "./shared/shared.module";
         HomepageComponent,
         AdminPanelComponent,
         AccountManagementComponent,
+        
     ],
     providers: [
         provideHttpClient(withInterceptors([urlInterceptor])),
@@ -47,7 +53,12 @@ import { SharedModule } from "./shared/shared.module";
         ReactiveFormsModule,
         HttpClientModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        // NgxPaginationModule,
+        MatPaginatorModule,
+        NgxPaginationModule,
+
+        
     ]
 })
 export class AppModule { }
