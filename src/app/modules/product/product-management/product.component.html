@@ -31,21 +31,20 @@
         </form>
       </div>
       <div>
-        <button type="button" class="btn btn-add button" (click)="report()" data-bs-toggle="modal" data-bs-target="#report">
+        <button type="button" class="btn btn-add button" data-bs-toggle="modal" data-bs-target="#report">
           Report
         </button>
       </div>
     </div>
     <div class="card-container">
       <app-product-card
-        class="ms-2 col-3 mb-5"
+        class="ms-2 col-3 mb-5 mt-4"
         *ngFor="let product of filteredProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: p }"
         [product]="product"
         (edit)="editProduct($event)"
         (delete)="selectedProduct($event.id)"
       >
       </app-product-card>
-      
     </div>
   </div>
   <app-are-you-sure

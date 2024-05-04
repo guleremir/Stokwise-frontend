@@ -7,9 +7,6 @@ import { FormBuilder } from '@angular/forms';
 import { LoggerService } from '../../../shared/service/logger.service';
 import { Category } from '../../../shared/dto/category';
 
-
-
-
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -17,7 +14,7 @@ import { Category } from '../../../shared/dto/category';
 })
 export class ProductComponent {
   p= 1;
-  itemsPerPage= 3;
+  itemsPerPage= 4;
   totalProduct:any;
   products: Product[] = [];
   searchForm = this.fb.nonNullable.group({
@@ -27,7 +24,9 @@ export class ProductComponent {
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
   
+  id = "";
   selectedProductId: string =  "";
+  filteredProducts: Product [] = [];
   areYouSureQuestion = 'Are you sure you want to delete this product?'
 
   constructor(
@@ -37,26 +36,18 @@ export class ProductComponent {
     private toastr: ToastrService,
     private logger: LoggerService,
     private fb: FormBuilder,
-   
-   
-  ) { }
-
+  ) {}
   //Component çağrıldığında çalışan method.
   ngOnInit(): void {
     this.getAllProduct();
     this.searchForm.get("searchText")?.valueChanges.subscribe({
       next: (data) =>{
         this.filterProduct(data);
-        
       }
-      
     });
     this.totalProduct = this.products.length;
   }
-  
-
-  getAllProduct(){
-    
+  getAllProduct(){ 
     this.productService.getAllProduct().subscribe({
       next: (products => {
         console.log(products);
@@ -65,54 +56,29 @@ export class ProductComponent {
       })
     });
   }
-
-
   addProduct() {
     this.router.navigate(['addProduct'], { relativeTo: this.route });
   }
-  
   editProduct(product: Product) {
-    // this.productService.editProduct = product;
     this.productService.editingProduct = product;
     console.log(product);
     this.router.navigate(['editProduct'], { relativeTo: this.route });
   }
-
-  // deleteProduct(product: Product) {
-  //   //console.log(product);
-  //   this.productService.deleteProduct(product.id).subscribe({
-  //     next: () => {
-  //       this.products = this.products.filter(p => p.id !== product.id);
-  //       this.toastr.success("Product deleted successfully");
-  //       //console.log(this.products);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     }
-  //   });
-  // }
-
   deleteProduct(id: any) {
-    //console.log(product);
     this.productService.deleteProduct(id).subscribe({
       next: () => {
         this.products = this.products.filter(p => p.id !== id);
         this.toastr.success("Product deleted successfully");
         this.getAllProduct();
-        //console.log(this.products);
       },
       error: (err) => {
         console.log(err);
       }
     });
   }
-
-  id = "";
   selectedProduct(productId: string){
     this.id = productId;
   }
-
-  filteredProducts: Product [] = [];
   filterProduct(data="") {
     this.filteredProducts= this.products ;
     // Arama filtresi
@@ -124,36 +90,12 @@ export class ProductComponent {
      );
     }
   }
-
-  report(){
-    // this.router.navigate(['/homepage/products/report'],{ relativeTo: this.route });
-  }
-
   reportMinimumCount(){
-    this.productService.reportWarningCountProduct().subscribe({
-      next: () => {
-        this.toastr.success("Product reported successfully");
-      },
-      error: (err) => {
-        console.log("Error:", err); // Hatayı konsola yazdır
-      }
-    });
+    this.productService.reportWarningCountProduct();
   }
-
   reportProduct(){
-    this.productService.reportProduct().subscribe({
-      next: () => {
-        this.toastr.success("Product reported successfully");
-      },
-      error: (err) => {
-        console.log("Error:", err); // Hatayı konsola yazdır
-      }
-    });
+    this.productService.reportProduct();
   }
-
-  
-
-
 }
 
 

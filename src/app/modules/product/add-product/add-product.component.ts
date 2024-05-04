@@ -106,24 +106,10 @@ export class AddProductComponent implements OnInit{
     return this.productNameCannotBeEmpty() || this.productPriceCannotBeEmpty() || this.productQuantityCannotBeEmpty() || this.productMinimumCountCannotBeEmpty() || this.productDescriptionCannotBeEmpty(); 
     // Eğer herhangi biri true döndürürse, en az bir alan boş demektir
   }
-
- /*********/
- /*********/
- /*********/
-
-  // Verilen bir alanın boş olup olmadığını kontrol eden genel bir işlev
-// fieldCannotBeEmpty(fieldValue: any): boolean {
-//   return fieldValue === '' || fieldValue === 0;
-// }
-
-// // Tüm alanların kontrolünü tek bir işlevde birleştirin
-// allFieldsNotEmpty(): boolean {
-//   const formValues = this.createForm.value;
-//   return this.fieldCannotBeEmpty(formValues.productName) ||
-//          this.fieldCannotBeEmpty(formValues.productPrice) ||
-//          this.fieldCannotBeEmpty(formValues.productQuantity) ||
-//          this.fieldCannotBeEmpty(formValues.productMinimumCount) ||
-//          this.fieldCannotBeEmpty(formValues.productDescription);
-// }
-
+  clearFieldOnFocus(fieldName: string) {
+    const currentValue = this.createForm.get(fieldName)!.value;
+    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+      this.createForm.get(fieldName)!.setValue('');
+    }
+  }
 }

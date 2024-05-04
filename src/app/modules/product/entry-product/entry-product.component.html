@@ -37,7 +37,7 @@
     </div>
     <div class="mb-3">
       <label for="count" class="form-label">Count</label>
-      <input formControlName="count" type="number" class="form-control" [class.is-invalid]="hasCountError()" id="count" min="0">
+      <input formControlName="count" type="number" class="form-control" [class.is-invalid]="hasCountError()" id="count" min="0" placeholder="0"(focus)="clearFieldOnFocus('count')">
       @if(hasCountError()){
         <div class="invalid-feedback">
           Please select a valid state.

@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AdminProductManagementComponent {
   products: Product[] = [];
   searchText: string = ''; // Arama metni için değişken eklendi
+  uuidToSequenceMap: { [key: string]: number} = {};
 
   constructor(
     private router: Router,
@@ -20,16 +21,12 @@ export class AdminProductManagementComponent {
     private toastr: ToastrService
   ) { }
 
-   uuidToSequenceMap: { [key: string]: number} = {};
-
-   loadProducts(): void {
+  loadProducts(): void {
     this.productService.getAllProduct().subscribe(
       (data: Product[]) => {
         this.products = data;
-  
         // UUID'leri sıralı numaralarla eşleştirme
         this.uuidToSequenceMap = {}; // Önce objeyi sıfırlayın
-  
         this.products.forEach((product, index) => {
           // Her ürünün id'sini sıralı numaralarla eşleştir
           this.uuidToSequenceMap[product.id] = index + 1;
@@ -43,14 +40,7 @@ export class AdminProductManagementComponent {
       }
     );
   }
-
   ngOnInit(): void {
-    // this.productService.getAllProduct().subscribe({
-    //   next: (products => {
-    //     console.log(products);
-    //     this.products = products;
-    //   })
-    // });
     this.loadProducts()
   }
   // Sıralama sütunu ve sıralama tipi
@@ -68,58 +58,33 @@ export class AdminProductManagementComponent {
       this.sortDirection = 'asc';
     }
   }
-
   addProduct(){
     this.router.navigate(['addProduct'], { relativeTo: this.route });
   }
-
   editProduct(product: Product) {
-    // this.productService.editProduct = product;
     this.productService.editingProduct = product;
-    console.log(product);
     this.router.navigate(['editProduct'], { relativeTo: this.route });
   }
-
   deleteProduct(product: Product) {
-    //console.log(product);
     this.productService.deleteProduct(product.id).subscribe({
       next: () => {
         this.products = this.products.filter(p => p.id !== product.id);
         this.toastr.success("Product deleted successfully");
-        //console.log(this.products);
       },
       error: (err) => {
         console.log(err);
       }
     });
   }
-
   reportMinimumCount(){
-    this.productService.reportWarningCountProduct().subscribe({
-      next: () => {
-        this.toastr.success("Product reported successfully");
-      },
-      error: (err) => {
-        console.log("Error:", err); // Hatayı konsola yazdır
-      }
-    });
+    this.productService.reportWarningCountProduct();
   }
-
   reportProduct(){
-    this.productService.reportProduct().subscribe({
-      next: () => {
-        this.toastr.success("Product reported successfully");
-      },
-      error: (err) => {
-        console.log("Error:", err); // Hatayı konsola yazdır
-      }
-    });
+    this.productService.reportProduct();
   }
-
   // Ürünleri filtrelemek için fonksiyon eklendi
-filterProducts() {
+  filterProducts() {
     let filteredProducts = this.products;
-
     // Arama filtresi
     if (this.searchText) {
       filteredProducts = filteredProducts.filter(product =>
@@ -128,5 +93,4 @@ filterProducts() {
     }
     return filteredProducts;
   }
-
 }
