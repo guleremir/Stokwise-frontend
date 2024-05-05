@@ -1,6 +1,8 @@
 .formControl{
     padding: 30px;
-    background-color: var(--cardbg--color);
+    background-color: var(--admintblbg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
 }
 .mt-2 {
     display: flex;

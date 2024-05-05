@@ -84,5 +84,11 @@ emptyAndCountError():boolean{
 dispatchProduct(){
   this.dispatchProductFromShelf();
 }
+clearFieldOnFocus(fieldName: string) {
+  const currentValue = this.entryForm.get(fieldName)!.value;
+  if (currentValue === 0) { // Sadece değer 0 ise boşalt
+    this.entryForm.get(fieldName)!.setValue('');
+  }
+}
 
 }

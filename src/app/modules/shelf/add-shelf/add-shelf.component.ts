@@ -56,4 +56,11 @@ export class AddShelfComponent {
     this.submit();
   }
 
+  clearFieldOnFocus(fieldName: string) {
+    const currentValue = this.createForm.get(fieldName)!.value;
+    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+      this.createForm.get(fieldName)!.setValue('');
+    }
+  }
+
 }

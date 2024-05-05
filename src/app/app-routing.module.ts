@@ -10,8 +10,8 @@ import { loginGuard } from './core/guard/login.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
-  { path: 'menu', component: MenuComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'menu', title:'Stokwise Warehouse', component: MenuComponent },
+  { path: 'login', title:'Stokwise - Login', component: LoginComponent },
   {
     path: 'homepage', component: HomepageComponent, canActivate: [loginGuard], children: [
       {
@@ -23,7 +23,7 @@ const routes: Routes = [
           .then(s => s.ShelfModule)
       },
       {
-        path: 'account', component: AccountManagementComponent
+        path: 'account', title:'Stokwise - Account', component: AccountManagementComponent
       }
     ]
   },
