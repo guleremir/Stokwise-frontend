@@ -17,7 +17,7 @@ export class AdminAccountComponent {
     checkPassword: "",
   }, {validators: []});
 
-  areYouSureQuestion = 'Are you sure you want to edit this password?'
+  areYouSureQuestion = 'Are you sure you want to edit this password ?'
 
   constructor(
     private fb: FormBuilder,
@@ -34,13 +34,12 @@ export class AdminAccountComponent {
     this.accountService.changePassword({oldPassword, newPassword }).subscribe({
       next: (sonuc) => {
         console.log(sonuc);
-        this.toastr.info("Şifre değiştirilmiştir.");
+        this.toastr.info("Password Successfully Changed !");
         this.router.navigate(['..'], { relativeTo: this.route });
       }
     });
   }
 
-  
   cancel() {
     this.router.navigate(['/adminPanel/products']);
   }
@@ -49,10 +48,8 @@ export class AdminAccountComponent {
     this.submit();
   }
 
-
   editCannotBeEmpty():boolean{
     return this.accountForm.value.oldPassword! === '' || this.accountForm.value.newPassword! === '' || this.accountForm.value.checkPassword! === '';
   }
-
 }
 

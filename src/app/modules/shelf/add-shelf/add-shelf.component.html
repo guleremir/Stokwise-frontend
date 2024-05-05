@@ -2,7 +2,7 @@
     <form [formGroup]="createForm">
         <div class="mb-3">
             <label class="form-label">Capacity</label>
-            <input formControlName="capacity" type="number" class="form-control" id="capacity" placeholder="50" min="0">
+            <input formControlName="capacity" type="number" class="form-control" id="capacity" placeholder="50" min="0" placeholder="0"(focus)="clearFieldOnFocus('capacity')">
         </div>
         <div class="mt-2">
         <button type="button" class="editselect ms-2" data-bs-toggle="modal" data-bs-target="#areyousure">

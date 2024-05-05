@@ -1,12 +1,10 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2 ,AfterViewInit} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2} from '@angular/core';
 import Typed from 'typed.js';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../../service/login.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import ScrollReveal from 'scrollreveal';
-
-
 
 @Component({
   selector: 'app-menu',
@@ -16,24 +14,16 @@ import ScrollReveal from 'scrollreveal';
 export class MenuComponent implements OnInit {
  
   messageForm: FormGroup;
-
-
-  public isMenuOpen = false;
+  isMenuOpen = false;
  
   constructor(private el: ElementRef, private renderer: Renderer2,
-    
-    private toastr: ToastrService,
-    private loginService: LoginService,
-    private router: Router,
-    private fb: FormBuilder,
-    
+    private router: Router,  
   ) {
     this.messageForm = new FormGroup({
       name: new FormControl(''),  
       email: new FormControl(''), 
       message: new FormControl(''), 
     });
-  
   }
 
   ngOnInit(): void {
@@ -47,7 +37,7 @@ export class MenuComponent implements OnInit {
       console.log('Form Data:', this.messageForm.value);
       // Form verilerini burada işleyebilirsiniz
     } else {
-      console.log('Form is not valid!');
+      console.log('Form is not valid !');
     }
   }
 
@@ -101,15 +91,6 @@ export class MenuComponent implements OnInit {
   logInRouter(){
     this.router.navigate(['/login']);
   }
-
-  // navigate(event: Event, sectionId: string): void {
-  //   event.preventDefault();
-  //   const section = document.getElementById(sectionId);
-  //   if (section) {
-  //     section.scrollIntoView({ behavior: 'smooth' });
-  //   }
-
-  // }
 
   navigate(event: Event, sectionId: string): void {
     event.preventDefault();

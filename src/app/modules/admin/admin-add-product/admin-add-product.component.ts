@@ -15,7 +15,7 @@ import { Category } from '../../../shared/dto/category';
 export class AdminAddProductComponent implements OnInit{
   categories: Category[] = [];
 
-  areYouSureQuestion = 'Are you sure you want to add this product?'
+  areYouSureQuestion = 'Are you sure you want to add this product ?'
 
   //createProduct
   createForm = this.fb.nonNullable.group({
@@ -60,7 +60,7 @@ export class AdminAddProductComponent implements OnInit{
     let productCategoryID = (this.createForm.get('productCategoryID')!.value);
     this.productService.addProduct(new Product(this.productID, productName, new Category(productCategoryID,"") ,productPrice,productQuantity,productUnitInStock,productMinimumCount, productDescription )).subscribe({
       next: (result) => {
-        this.toastr.info('Product created.');
+        this.toastr.info('Product Successfully Created !');
         this.router.navigate(['..'], { relativeTo: this.route });
       }
     });
@@ -98,5 +98,11 @@ export class AdminAddProductComponent implements OnInit{
     // İki alanın da dolu olup olmadığını kontrol etmek için productNameCannotBeEmpty ve productDescriptionCannotBeEmpty fonksiyonlarını birleştirin
     return this.productNameCannotBeEmpty() || this.productPriceCannotBeEmpty() || this.productQuantityCannotBeEmpty() || this.productMinimumCountCannotBeEmpty() || this.productDescriptionCannotBeEmpty(); 
     // Eğer herhangi biri true döndürürse, en az bir alan boş demektir
+  }
+  clearFieldOnFocus(fieldName: string) {
+    const currentValue = this.createForm.get(fieldName)!.value;
+    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+      this.createForm.get(fieldName)!.setValue('');
+    }
   }
 }

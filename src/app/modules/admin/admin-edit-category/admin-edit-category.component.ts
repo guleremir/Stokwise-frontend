@@ -33,26 +33,25 @@ export class AdminEditCategoryComponent {
      this.createForm.setValue({
        name : this.categoryService.editingCategory.name,
      });
-     
-   } else { }
- }
-
-
-submit() {
-const name = this.createForm.get('name')!.value;
-this.categoryService.editCategory(this.categoryID,name).subscribe({
-  next:(result) => {
-    this.toastr.info('Category edited.');
-    this.router.navigate(['/adminPanel/categories']);
-  },
-  error:(error) => {
-    this.toastr.error('buraya hata mesajı eklenecek');
-    console.log(error);
+    } 
   }
-})
-}
-cancel() {
-  this.router.navigate(['/adminPanel/categories']);
+
+  submit() {
+    const name = this.createForm.get('name')!.value;
+    this.categoryService.editCategory(this.categoryID,name).subscribe({
+      next:(result) => {
+        this.toastr.info('Category Successfully Saved !');
+        this.router.navigate(['/adminPanel/categories']);
+      },
+      error:(error) => {
+        this.toastr.error('Category Editing Failed !');
+        console.log(error);
+      }
+    })
+  }
+
+  cancel() {
+    this.router.navigate(['/adminPanel/categories']);
   }
 
   editCategory(){
@@ -62,5 +61,4 @@ cancel() {
   categoryNameCannotBeEmpty():boolean{
     return this.createForm.value.name! === '' ;
   }
-
 }

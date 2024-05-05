@@ -16,7 +16,7 @@ export class AddProductComponent implements OnInit{
 
   categories: Category[] = [];
 
-  areYouSureQuestion = 'Are you sure you want to add this product?'
+  areYouSureQuestion = 'Are you sure you want to add this product ?'
 
   //createProduct
   createForm = this.fb.nonNullable.group({
@@ -61,10 +61,10 @@ export class AddProductComponent implements OnInit{
     let productCategoryID = (this.createForm.get('productCategoryID')!.value);
     this.productService.addProduct(new Product(this.productID, productName, new Category(productCategoryID,"") ,productPrice,productQuantity,productUnitInStock,productMinimumCount, productDescription )).subscribe({
       next: (result) => {
-        this.toastr.info('Product created.');
+        this.toastr.info('Product Successfully Created !');
         this.router.navigate(['..'], { relativeTo: this.route });
       }, error: (err) => {
-        this.toastr.error('Please check the information you have entered!');
+        this.toastr.error('Please check the information you have entered !');
       }
     });
   }
@@ -106,24 +106,10 @@ export class AddProductComponent implements OnInit{
     return this.productNameCannotBeEmpty() || this.productPriceCannotBeEmpty() || this.productQuantityCannotBeEmpty() || this.productMinimumCountCannotBeEmpty() || this.productDescriptionCannotBeEmpty(); 
     // Eğer herhangi biri true döndürürse, en az bir alan boş demektir
   }
-
- /*********/
- /*********/
- /*********/
-
-  // Verilen bir alanın boş olup olmadığını kontrol eden genel bir işlev
-// fieldCannotBeEmpty(fieldValue: any): boolean {
-//   return fieldValue === '' || fieldValue === 0;
-// }
-
-// // Tüm alanların kontrolünü tek bir işlevde birleştirin
-// allFieldsNotEmpty(): boolean {
-//   const formValues = this.createForm.value;
-//   return this.fieldCannotBeEmpty(formValues.productName) ||
-//          this.fieldCannotBeEmpty(formValues.productPrice) ||
-//          this.fieldCannotBeEmpty(formValues.productQuantity) ||
-//          this.fieldCannotBeEmpty(formValues.productMinimumCount) ||
-//          this.fieldCannotBeEmpty(formValues.productDescription);
-// }
-
+  clearFieldOnFocus(fieldName: string) {
+    const currentValue = this.createForm.get(fieldName)!.value;
+    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+      this.createForm.get(fieldName)!.setValue('');
+    }
+  }
 }

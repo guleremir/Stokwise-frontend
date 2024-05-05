@@ -117,15 +117,37 @@ side-head span {
     color: #fff;
 }
 
-.side-menu a span {
-    display: block;
+.side-menu li a{
+    display: flex;
+    gap: 10px;
+    // justify-content: space-around;
+    // align-items: center;
+}
+
+.side-menu a .icon {
+    display: flex;
+    justify-content: center;
     text-align: center;
-    font-size: 1.7rem;
+    font-size: 10px;
+    height: 20px;
+    width: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+    margin-top: 2px;
+    fill: var(--pageheader-color);
+}
+
+.side-menu a.active .icon {
+    fill: #fff;
 }
 
 .side-menu a span,
 .side-menu a small {
     color: var(--darkblue-color);
+}
+
+.side-menu small{
+    font-size: 16px;
 }
 
 #menu-toggle:checked~.sidebar {
@@ -159,6 +181,8 @@ side-head span {
     margin-left: 165px;
     width: calc(100% - 165px);
     transition: margin-left 300ms;
+    height: 100%;
+    background-color: var(--adminmain-color);
 }
 
 header {
@@ -254,7 +278,7 @@ main {
 
 .page-header h1,
 .page-header small {
-    color: #74767d;
+    color: var(--pageheader-color);
 }
 
 .page-content {
@@ -272,7 +296,7 @@ main {
 
 .card {
     box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
-    background: #fff;
+    background: var(--admintblbg-color);
     padding: 1rem;
     border-radius: 3px;
 }

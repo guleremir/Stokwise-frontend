@@ -1,11 +1,8 @@
-
-
 .container {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 20px;
-   
 }
 
 .head-row {
@@ -82,7 +79,7 @@
     }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   .head-row {
       flex-direction: column;
   }
@@ -94,6 +91,16 @@
   .card-container{
     gap:20px;
   }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px){
+  .input {
+    padding: 10px 40px;
+  }
+  .card-container{
+    gap:30px;
+  }
+
 }
 
 .btn-add{
@@ -183,11 +190,9 @@
   }
 
   .paginate-page {
-    
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
 
   .paginate-page li a{
@@ -263,7 +268,6 @@
 // .ng-star-inserted{
 //   color: orange;
 // }
-
 
 .pagination-controls ul li a {
   display: none;

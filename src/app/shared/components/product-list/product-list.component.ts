@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { Product } from '../../dto/product';
-import { Category } from '../../dto/category';
 
 @Component({
   selector: 'app-product-list',
@@ -8,32 +7,32 @@ import { Category } from '../../dto/category';
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent {
-  @Input() product: Product = new Product("", '',new Category() , 0, 0, 0, 0,'');
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
-@Output() loadProductEvent=new EventEmitter<void>();
-@Input() uuidToSequenceMap: { [key: string]: number} = {};
+  @Output() loadProductEvent=new EventEmitter<void>();
+  @Input() uuidToSequenceMap: { [key: string]: number} = {};
+  @Input() products: Product[] = [];
 
-areYouSureQuestion = 'Are you sure you want to delete this product?'
-
-loadProduct(){
-  this.loadProductEvent.emit();
-}
+  selectedProduct: Product | null = null;
+  areYouSureQuestion = 'Are you sure you want to delete this product ?'
 
   constructor(
     //private toastr: ToastrService
   ) {}
 
+  loadProduct(){
+    this.loadProductEvent.emit();
+  }
   deleteProduct() {
-    this.delete.emit(this.product);
+    this.delete.emit(this.selectedProduct);
   }
-  editProduct() {
-    this.edit.emit(this.product);
+  editProduct(product: Product) {
+    this.edit.emit(product);
   }
-
-  hasQuantityError():boolean{
-    return this.product.minimumCount! >= this.product.quantity!;
+  hasQuantityError(product: Product):boolean{
+    return product.minimumCount! >= product.quantity!;
   }
-  
-
+  selectProduct(product: Product) {
+  this.selectedProduct = product;
+  }
 }

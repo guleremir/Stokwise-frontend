@@ -13,12 +13,13 @@ import { Category } from '../../../shared/dto/category';
 })
 export class AdminEditProductComponent implements OnInit{
 
-  areYouSureQuestion = 'Are you sure you want to edit this product?'
+  areYouSureQuestion = 'Are you sure you want to edit this product ?'
 
   createForm = this.fb.nonNullable.group({
     productName: "",
     productPrice: 0,
     productQuantity: 0,
+    incomingProductQuantity: 0,
     productUnitInStock: 0,
     productMinimumCount: 0,
     productDescription: "",
@@ -44,6 +45,7 @@ export class AdminEditProductComponent implements OnInit{
         productUnitInStock: this.productService.editingProduct.unitInStock,
         productMinimumCount: this.productService.editingProduct.minimumCount,
         productDescription: this.productService.editingProduct.description,
+        incomingProductQuantity: 0
       });
     } else { }
   }
@@ -53,15 +55,15 @@ export class AdminEditProductComponent implements OnInit{
     let productName = this.createForm.get('productName')!.value;
     let productPrice = (this.createForm.get('productPrice')!.value);
     let productUnitInStock = (this.createForm.get('productUnitInStock')!.value);
-    let productQuantity = (this.createForm.get('productQuantity')!.value);
+    let productQuantity = (this.createForm.get('productQuantity')!.value + this.createForm.get('incomingProductQuantity')!.value);
     let productMinimumCount = (this.createForm.get('productMinimumCount')!.value);
     let productDescription = (this.createForm.get('productDescription')!.value);
     this.productService.editProduct(new Product(this.productID, productName, new Category("",this.productCategory) ,productPrice, productQuantity, productUnitInStock, productMinimumCount, productDescription)).subscribe({
       next: (result) => {
-        this.toastr.info('Product updated!');
+        this.toastr.info('Product Successfully Saved !');
         this.router.navigate(['..'], { relativeTo: this.route });
       }, error: (err) => {
-        this.toastr.error('Please check the information you have entered!');
+        this.toastr.error('Please check the information you have entered !');
       }
     });
   }

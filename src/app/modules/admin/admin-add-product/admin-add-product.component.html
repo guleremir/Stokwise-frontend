@@ -14,11 +14,11 @@
     </div>
     <div class="mb-3">
       <label for="txtProductPrice" class="form-label">Price</label>
-      <input formControlName="productPrice" type="number" class="form-control" id="txtProductPrice" min="0">
+      <input formControlName="productPrice" type="number" class="form-control" id="txtProductPrice" min="0" placeholder="0"(focus)="clearFieldOnFocus('productPrice')">
     </div>
     <div class="mb-3">
       <label for="txtProductQuantity" class="form-label">Quantity</label>
-      <input formControlName="productQuantity" type="number" class="form-control" id="txtProductQuantity" min="0">
+      <input formControlName="productQuantity" type="number" class="form-control" id="txtProductQuantity" min="0" placeholder="0"(focus)="clearFieldOnFocus('productQuantity')">
     </div>
     <div class="mb-3">
       <label for="txtProductUnitInStock" class="form-label">Units In Stock</label>
@@ -26,7 +26,7 @@
     </div>
     <div class="mb-3">
       <label for="txtProductMinimumCount" class="form-label">Minimum Count</label>
-      <input formControlName="productMinimumCount" type="number" class="form-control" id="txtProductMinimumCount" min="0">
+      <input formControlName="productMinimumCount" type="number" class="form-control" id="txtProductMinimumCount" min="0" placeholder="0"(focus)="clearFieldOnFocus('productMinimumCount')">
     </div>
     <div class="mb-3">
       <label for="txtProductDescription" class="form-label">Description</label>

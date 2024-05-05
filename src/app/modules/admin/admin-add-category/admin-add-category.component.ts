@@ -12,7 +12,7 @@ import { Category } from '../../../shared/dto/category';
 })
 export class AdminAddCategoryComponent {
 
-  areYouSureQuestion = 'Are you sure you want to do this?'
+  areYouSureQuestion = 'Are you sure you want to do this ?'
 
   createForm = this.fb.nonNullable.group({
     categoryName: "",
@@ -31,7 +31,7 @@ export class AdminAddCategoryComponent {
     let categoryName = this.createForm.get('categoryName')!.value;
     this.categoryService.addCategory(new Category(this.categoryID, categoryName)).subscribe({
       next: (result) => {
-        this.toastr.info('Category created!');
+        this.toastr.info('Category Successfully Created !');
         this.router.navigate(['..'], { relativeTo: this.route });
       },
       error: (err) => {

@@ -56,19 +56,10 @@ export class AdminPanelComponent implements OnInit {
       })
     })
   }
-//   calculateProgress(): number {
-//     if (this.products.length > 0) {
-//         // Tüm ürünlerin sayısını 200'e göre oranlayarak ilerleme yüzdesini hesaplar
-//         return (this.products.length / 60) * 100;
-//     } else {
-//         // Eğer ürün yoksa ilerleme çubuğu boş olmalı
-//         return 0;
-//     }
-// }
 
   logout() {
     this.loginService.logout();
-    this.toastr.success("Logout Successfuly!");
+    this.toastr.success("Successfully Logged Out !");
     this.router.navigate(['/login']);
   }
 

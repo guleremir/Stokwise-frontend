@@ -24,25 +24,8 @@
       </button>
     </div>
   </div>
-  <div>
-    <table width="100%">
-      <thead>
-        <tr>
-          <th> Index Number </th>
-          <!-- (click)="sort('productId')" -->
-          <th> Product Name </th>
-          <th><span class="las la-sort"></span> Price </th>
-          <th><span class="las la-sort"></span> Quantity </th>
-          <th><span class="las la-sort"></span> Units In Stock </th>
-          <th><span class="las la-sort"></span> Description </th>
-          <th><span class="las la-sort"></span> Actions </th>
-        </tr>
-      </thead>
-    </table>
-  </div>
 
-
-  <app-product-list (loadProductEvent)="loadProducts()" [uuidToSequenceMap]="uuidToSequenceMap" *ngFor="let product of filterProducts()" [product]="product" (edit)="editProduct($event)"
+  <app-product-list (loadProductEvent)="loadProducts()" [uuidToSequenceMap]="uuidToSequenceMap" [products]="filterProducts()" (edit)="editProduct($event)"
     (delete)="deleteProduct($event)">
   </app-product-list>
 </div>

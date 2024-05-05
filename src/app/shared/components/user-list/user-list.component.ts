@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../dto/user';
-import { UserRole } from '../../dto/userRole';
 
 @Component({
   selector: 'app-user-list',
@@ -8,19 +7,26 @@ import { UserRole } from '../../dto/userRole';
   styleUrl: './user-list.component.scss'
 })
 export class UserListComponent {
-  @Input() user: User = new User("",'','',[]);
+  
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
+  @Output() loadUsersEvent=new EventEmitter<void>();
+  @Input() users:  User[] =  [];
 
-  constructor(
-  ) {}
-
-  areYouSureQuestion = 'Are you sure you want to delete this user?'
-
-  deleteUser() {
-    this.delete.emit(this.user);
+  constructor() {}
+  selectedUser: User | null = null;
+  areYouSureQuestion = 'Are you sure you want to delete this user ?'
+  
+  selectUser(user: User) {
+    this.selectedUser = user;
   }
-  editUser() {
-    this.edit.emit(this.user);
+  deleteUser() {
+    this.delete.emit(this.selectedUser);  
+  }
+  editUser(user: User) {
+    this.edit.emit(user);
+  }
+  loadUsers(){
+    this.loadUsersEvent.emit();
   }
 }
