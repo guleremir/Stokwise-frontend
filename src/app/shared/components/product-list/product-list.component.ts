@@ -14,7 +14,7 @@ export class ProductListComponent {
   @Input() products: Product[] = [];
 
   selectedProduct: Product | null = null;
-  areYouSureQuestion = 'Are you sure you want to delete this product?'
+  areYouSureQuestion = 'Are you sure you want to delete this product ?'
 
   constructor(
     //private toastr: ToastrService

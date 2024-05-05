@@ -24,7 +24,7 @@ export class AccountManagementComponent implements  OnInit {
     
   })
 
-  areYouSureQuestion = 'Are you sure you want to edit this user?'
+  areYouSureQuestion = 'Are you sure you want to edit this user ?'
 
   userID = "";
   // roles: Role[]= []; 
@@ -59,24 +59,15 @@ export class AccountManagementComponent implements  OnInit {
   }
 
   loadCurrentUser() {
-    
     if (this.loginService.loggedIn) {
       this.userID = this.loginService.email;
       this.selectedRoles=this.loginService.roles,
       this.updateForm.patchValue({
         email: this.loginService.email, 
-        
-        
         oldPassword: '' 
-        
       });
-    
-    } else {
-      console.log("Kullanıcı giriş yapmamış.");
     }
   }
-
-
 
    submit() {
     let oldPassword = this.updateForm.get('oldPassword')!.value;
@@ -84,7 +75,7 @@ export class AccountManagementComponent implements  OnInit {
     this.accountService.changePassword({oldPassword, newPassword }).subscribe({
       next: (sonuc) => {
         console.log(sonuc);
-        this.toastr.info("Şifre değiştirilmiştir.");
+        this.toastr.info("Password Successfully Changed !");
         this.router.navigate(['/homepage/products'], { relativeTo: this.route });
       }
     });
@@ -94,16 +85,14 @@ export class AccountManagementComponent implements  OnInit {
     this.router.navigate(['/homepage/products']);
   }
 
+  pswCannotBeEmpty():boolean{
+    return this.updateForm.value.oldPassword! === '' ;
+  }
+  confirmPswCannotBeEmpty():boolean{
+    return this.updateForm.value.checkPassword! === '' ;
+  }
 
-pswCannotBeEmpty():boolean{
-  return this.updateForm.value.oldPassword! === '' ;
-}
-confirmPswCannotBeEmpty():boolean{
-  return this.updateForm.value.checkPassword! === '' ;
-}
-
-editUser(){
-  this.submit();
-}
-
+  editUser(){
+    this.submit();
+  }
 }

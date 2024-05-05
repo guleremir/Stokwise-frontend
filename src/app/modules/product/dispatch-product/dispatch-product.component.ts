@@ -13,7 +13,7 @@ import { ProductService } from '../../../shared/service/product.service';
 })
 export class DispatchProductComponent {
 
-  areYouSureQuestion = 'Are you sure you want to dispatch this product?'
+  areYouSureQuestion = 'Are you sure you want to dispatch this product ?'
 
   products: Product[] = [];
   selectedProduct: Product | null = null;
@@ -53,7 +53,7 @@ dispatchProductFromShelf() { //deneme
       next: (result) => {
         console.log("result data " + result );
         
-        this.toastr.info('Product dispatch successfuly.');
+        this.toastr.info('Product Successfully Dispatch !');
         this.router.navigate(['/homepage/shelves']);
       },
       error: (err) => {

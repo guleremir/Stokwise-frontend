@@ -86,7 +86,7 @@
     border: none;
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-    background: var(--bluebtn-color);
+    background: var(--greenbtn-color);
    }
    
    .editselect, .editselect span {
@@ -101,7 +101,7 @@
    
    .editselect .icon {
     position: absolute;
-    border-left: 1px solid var(--darkbluebtn-color);
+    border-left: 1px solid var(--darkgreenbtn-color);
     transform: translateX(110px);
     height: 40px;
     width: 40px;
@@ -116,7 +116,7 @@
    }
    
    .editselect:hover {
-    background: var(--lightbluebtn-color);
+    background: var(--lightgreenbtn-color);
    }
    
    .editselect:hover .text {
@@ -126,7 +126,7 @@
    .editselect:hover .icon {
     width: 150px;
     border-left: none;
-    transform: translateX(0px);
+    transform: translateX(0);
    }
    
    .editselect:focus {
@@ -136,15 +136,4 @@
    .editselect:active .icon svg {
     transform: scale(0.8);
    }
-
-   .add{
-    background: var(--purplebtn-color) ;
-   }
-   .add .icon{
-    border-left: 1px solid var(--darkpurplebtn-color) ;
-   }
-   .add:hover {
-    background: var(--lightpurplebtn-color);
-   }
-   
 /*****************************/ 

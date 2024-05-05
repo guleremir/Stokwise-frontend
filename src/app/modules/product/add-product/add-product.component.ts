@@ -16,7 +16,7 @@ export class AddProductComponent implements OnInit{
 
   categories: Category[] = [];
 
-  areYouSureQuestion = 'Are you sure you want to add this product?'
+  areYouSureQuestion = 'Are you sure you want to add this product ?'
 
   //createProduct
   createForm = this.fb.nonNullable.group({
@@ -61,10 +61,10 @@ export class AddProductComponent implements OnInit{
     let productCategoryID = (this.createForm.get('productCategoryID')!.value);
     this.productService.addProduct(new Product(this.productID, productName, new Category(productCategoryID,"") ,productPrice,productQuantity,productUnitInStock,productMinimumCount, productDescription )).subscribe({
       next: (result) => {
-        this.toastr.info('Product created.');
+        this.toastr.info('Product Successfully Created !');
         this.router.navigate(['..'], { relativeTo: this.route });
       }, error: (err) => {
-        this.toastr.error('Please check the information you have entered!');
+        this.toastr.error('Please check the information you have entered !');
       }
     });
   }

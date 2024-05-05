@@ -10,11 +10,12 @@ export class UserListComponent {
   
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
+  @Output() loadUsersEvent=new EventEmitter<void>();
   @Input() users:  User[] =  [];
 
   constructor() {}
   selectedUser: User | null = null;
-  areYouSureQuestion = 'Are you sure you want to delete this user?'
+  areYouSureQuestion = 'Are you sure you want to delete this user ?'
   
   selectUser(user: User) {
     this.selectedUser = user;
@@ -24,5 +25,8 @@ export class UserListComponent {
   }
   editUser(user: User) {
     this.edit.emit(user);
+  }
+  loadUsers(){
+    this.loadUsersEvent.emit();
   }
 }

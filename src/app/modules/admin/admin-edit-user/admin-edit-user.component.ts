@@ -26,7 +26,7 @@ export class AdminEditUserComponent  implements OnInit {
   // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın
   selectedRoles: Role[] = [];
 
-  areYouSureQuestion = 'Are you sure you want to edit this user?'
+  areYouSureQuestion = 'Are you sure you want to edit this user ?'
 
   constructor(
     private userService: UserService,
@@ -71,15 +71,15 @@ export class AdminEditUserComponent  implements OnInit {
       if (password === confirmPassword) {
         this.userService.updateUser(new User(this.userID, email, password, selectedRoles)).subscribe({
           next: (result) => {
-            this.toastr.info('User updated.');
+            this.toastr.info('User Successfully Saved !');
             this.router.navigate(['..'], { relativeTo: this.route });
           },
           error: (error) => {
-            this.toastr.error('An error occurred while updating user.');
+            this.toastr.error('An error occurred while updating user !');
           }
         });
       } else {
-        this.toastr.error('Passwords do not match.');
+        this.toastr.error('Passwords do not match !');
       }
   }
 

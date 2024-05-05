@@ -15,7 +15,7 @@ export class AdminUserManagementComponent {
   users: User[] = [];
   searchText: string = ''; // Arama metni için değişken eklendi
   selectedUser: User | null = null;
-  myGroup: FormGroup;
+  // myGroup: FormGroup;
 
   constructor(
     private router: Router,
@@ -23,20 +23,37 @@ export class AdminUserManagementComponent {
     private userService: UserService,
     private toastr: ToastrService,
   ) { 
-    this.myGroup = new FormGroup({
-      searchText: new FormControl()
-    });
+    // this.myGroup = new FormGroup({
+    //   searchText: new FormControl()
+    // });
   }
   //Component çağrıldığında çalışan method.
   ngOnInit(): void {
     //ProductService'den getAllProducts() methodunu çağrıyor. Tüm productları döndürüyor.
-    this.userService.getAllUsers().subscribe({
-      next: (users => {
-        console.log(users);
-        this.users = users;
-      })
-    });
+    // this.userService.getAllUsers().subscribe({
+    //   next: (users => {
+    //     console.log(users);
+    //     this.users = users;
+    //   })
+    // });
+    this.loadUsers();
   }
+
+  loadUsers(): void {
+    // ProductService'den getAllProducts() methodunu çağrıyor. Tüm productları döndürüyor.
+    // this.userService.getAllUsers().subscribe({
+    //   next: (users => {
+    //     console.log(users);
+    //     this.users = users;
+    //   })
+    // });
+    this.userService.getAllUsers().subscribe(
+      (data: User[]) => {
+        this.users = data;
+      } 
+    )
+  }
+
   addUser(){
     this.router.navigate(['addUser'], { relativeTo: this.route });
   }
@@ -47,18 +64,18 @@ export class AdminUserManagementComponent {
   }
   selectUser(user: User) {
     this.selectedUser = user;
-    console.log('Selected user:', this.selectedUser);  // Log selected user for debug
+    console.log('Selected user: ', this.selectedUser);  // Log selected user for debug
   }
   deleteUser(user: User) {
-    console.log('Attempting to delete user:', user);  // Check if user is selected
+    console.log('Attempting to delete user: ', user);  // Check if user is selected
     if (!user) {
-      console.error("No user selected for deletion.");
+      console.error("No user selected for deletion !");
       return;
     }
     this.userService.deleteUser(user).subscribe({
       next: () => {
         this.users = this.users.filter(u => u !== user);
-        this.toastr.success("User deleted successfully");
+        this.toastr.success("User Successfully Deleted !");
       },
       error: (err) => {
         console.error("Failed to delete user: ", err);
@@ -66,9 +83,16 @@ export class AdminUserManagementComponent {
     });
   }
   // Ürünleri filtrelemek için fonksiyon eklendi
-  filterUsers(): User[] {
-    return this.users.filter(user => {
-      return user.email.toLowerCase().includes(this.searchText.toLowerCase());
-    });
+  filterUsers() {
+    let filteredUsers = this.users;
+    if(this.searchText){
+      filteredUsers = filteredUsers.filter(user => 
+        user.email.toLowerCase().includes(this.searchText.toLowerCase())
+      ); 
+    }
+    return filteredUsers;
+    // return this.users.filter(user => {
+    //   return user.email.toLowerCase().includes(this.searchText.toLowerCase());
+    // });
   }
 }

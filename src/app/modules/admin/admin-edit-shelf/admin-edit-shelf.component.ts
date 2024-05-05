@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AdminEditShelfComponent{
 
-  areYouSureQuestion = 'Are you sure you want to edit this shelf?'
+  areYouSureQuestion = 'Are you sure you want to edit this shelf ?'
 
   createForm = this.fb.nonNullable.group({
     capacity: 0,
@@ -40,19 +40,16 @@ export class AdminEditShelfComponent{
     private route: ActivatedRoute,
   ) { }
 
-  // close() {
-  //Geri dönüş butonu oluşturulacak
-  // }
   submit() {
     //let capacity = this.createForm.get('capacity');   
     const capacity = this.createForm.get('capacity')!.value;
     this.shelfService.editShelf(this.shelfID, capacity).subscribe({
       next: (result) => {
-        this.toastr.info('Shelf edited.');
+        this.toastr.info('Shelf Successfully Saved !');
         this.router.navigate(['..'], { relativeTo: this.route });
       },
       error: (error) => {
-        this.toastr.error('You cannot set capacity less than the number of products in the shelf.');
+        this.toastr.error('You cannot set capacity less than the number of products in the shelf !');
         console.log(error);
       }
     });
