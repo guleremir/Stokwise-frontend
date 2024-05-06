@@ -20,6 +20,7 @@ export class AdminPanelComponent implements OnInit {
   products: Product[] = [];
   shelves: Shelf[] = [];
   users: User[] = [];
+  isMenuOpen = false;
   
   constructor(
     private router: Router,
@@ -71,6 +72,7 @@ export class AdminPanelComponent implements OnInit {
   getTotalShelfCapacity(): number {
     return this.shelves.reduce((total, shelf) => total +  shelf.capacity, 0);
   }
+
 
   getOccupancyRate(): number {
     const rate = (this.getTotalProductQuantity() / this.getTotalShelfCapacity()) * 100;
