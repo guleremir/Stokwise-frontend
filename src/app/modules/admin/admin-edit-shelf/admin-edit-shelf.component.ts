@@ -22,14 +22,12 @@ export class AdminEditShelfComponent{
   productName = "";
 
   ngOnInit(): void {
-     console.log(this.shelfService.editingShelf);
      if (this.shelfService.editingShelf != null) {
       this.shelfID = this.shelfService.editingShelf.id;
       this.createForm.setValue({
         capacity : this.shelfService.editingShelf.capacity,
       });
-      // console.log(this.productService.editingProduct);
-    } else { }
+    } 
   }
 
   constructor(
@@ -40,11 +38,10 @@ export class AdminEditShelfComponent{
     private route: ActivatedRoute,
   ) { }
 
-  submit() {
-    //let capacity = this.createForm.get('capacity');   
+  submit() { 
     const capacity = this.createForm.get('capacity')!.value;
     this.shelfService.editShelf(this.shelfID, capacity).subscribe({
-      next: (result) => {
+      next: () => {
         this.toastr.info('Shelf Successfully Saved !');
         this.router.navigate(['..'], { relativeTo: this.route });
       },
@@ -66,5 +63,4 @@ export class AdminEditShelfComponent{
   capacityCannotBeEmpty():boolean{
     return this.createForm.value.capacity! === 0 ;
   }
-
 }

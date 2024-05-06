@@ -141,14 +141,6 @@
   .product:hover{
     background-color: var(--purplebtn-color);
   }
-
-//   .card-button-wrapper {
-//     width: 100%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     gap: 10px;
-//   }
   
   .modal-header{
     display: flex;
@@ -169,7 +161,6 @@
   .modal-footer{
     display: flex;
     justify-content: space-evenly;
-    // align-items: center;
   }
   .exit-button {
     display: flex;
@@ -199,76 +190,3 @@
     color: red;
     font-size: 20px;
   }
-
-//   .paginate-page li {
-//     width: 35px ;
-//     height: 35px;
-//     border-radius: 50%;
-//     display:flex;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: blue;
-
-  
-//   }
-//   .pagination-previous,
-//   .pagination.next{
-//     a,span{
-//       width: 100%;
-//       height: 100%;
-//       border-radius: 50%;
-//       color: red;
-
-
-//     }
-//   }
-
-// .paginate-page .pagination-previous a::before,
-// .paginate-page .pagination-previous.disabled::before,
-// .paginate-page .pagination-next::before{
-//   margin-right: 0px;
-//   font-size: 26px;
-//   margin-top: -8px;
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   border-radius: 50%;
-//   border: 1px solid purple;
-//   display: flex;
-//   justify-content: cente;
-//   align-items: cente;
-//   color: aquamarine;
-//   left: 0;
-//   pointer-events: none;
-// }
-
-// .paginate-page .pagination-next::before{
-//   content: '\bb';
-
-// }
-
-// .paginate-page .pagination-next::after{
-//   display: none;
-// }
-
-// .paginate-page .pagination-previous.disabled.pagination-previous::before
-// .paginate-page .pagination-next.disabled::before{
-//   opacity: 0.4;
-// }
-
-// .paginate-page .pagination-previous.disabled:hover{
-//   background-color: pink;
-// }
-
-// .paginate-page a:hover,
-// .paginate-page button:hover{
-//   background: initial;
-// }
-
-// .ng-star-inserted{
-//   color: orange;
-// }
-
-.pagination-controls ul li a {
-  display: none;
-}

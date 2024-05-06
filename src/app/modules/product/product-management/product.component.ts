@@ -14,7 +14,7 @@ import { Category } from '../../../shared/dto/category';
 })
 export class ProductComponent {
   p= 1;
-  itemsPerPage= 4;
+  itemsPerPage= 8;
   totalProduct:any;
   products: Product[] = [];
   searchForm = this.fb.nonNullable.group({
@@ -50,7 +50,6 @@ export class ProductComponent {
   getAllProduct(){ 
     this.productService.getAllProduct().subscribe({
       next: (products => {
-        console.log(products);
         this.products = products;
         this.filterProduct();
       })

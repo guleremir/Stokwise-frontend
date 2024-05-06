@@ -41,7 +41,6 @@ export class AdminEditUserComponent  implements OnInit {
     this.roleService.getAllRoles().subscribe({
       next: (data: Role[]) => {
         this.roles = data;
-        console.log(this.roles);
       },
       error: (error) => {
         console.log(error);
@@ -87,35 +86,34 @@ export class AdminEditUserComponent  implements OnInit {
     this.router.navigate(['/adminPanel/users']);
   }
 
-// Seçilen rollerin kontrolü
-isSelected(role: Role): boolean {
-  return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
-}
-
-// Seçilen rolleri değiştirme
-toggleSelection(role: Role): void {
-  const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
-  if (index === -1) {
-    this.selectedRoles.push(role);
-  } else {
-    this.selectedRoles.splice(index, 1);
+  // Seçilen rollerin kontrolü
+  isSelected(role: Role): boolean {
+    return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
   }
-}
 
-pswCannotBeEmpty():boolean{
-  return this.updateForm.value.password! === '' ;
-}
-confirmPswCannotBeEmpty():boolean{
-  return this.updateForm.value.confirmPassword! === '' ;
-}
+  // Seçilen rolleri değiştirme
+  toggleSelection(role: Role): void {
+    const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
+    if (index === -1) {
+      this.selectedRoles.push(role);
+    } else {
+      this.selectedRoles.splice(index, 1);
+    }
+  }
 
-editUser(){
-  this.submit();
-}
+  pswCannotBeEmpty():boolean{
+    return this.updateForm.value.password! === '' ;
+  }
 
+  confirmPswCannotBeEmpty():boolean{
+    return this.updateForm.value.confirmPassword! === '' ;
+  }
 
-editUserCannotBeEmpty():boolean{
-  return this.updateForm.value.email! === '' || this.updateForm.value.password! === '' || this.updateForm.value.confirmPassword! === '' ;
-}
-
+  editUser(){
+    this.submit();
+  }
+  
+  editUserCannotBeEmpty():boolean{
+    return this.updateForm.value.email! === '' || this.updateForm.value.password! === '' || this.updateForm.value.confirmPassword! === '' ;
+  }
 }
