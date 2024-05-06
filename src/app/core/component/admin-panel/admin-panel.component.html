@@ -3,7 +3,8 @@
         <div class="profile">
             <img src="/assets/other-img/Asset-1.svg" width="100px" height="100px" alt="IMG">
         </div>
-        <div class="side-menu">
+        <div class="side-menu" id="mySideMenu" [ngClass]="{responsive : isMenuOpen}"> 
+            <!-- <i class="fa-solid fa-warehouse btn"></i> -->
             <ul>
                 <li>
                    <a routerLink="/adminPanel/products" [class.active] = "isCurrentRoute('/adminPanel/products')">
@@ -71,6 +72,10 @@
                  </li>
 
             </ul>
+        </div>
+        <div class="nav-menu-btn" (click)="toggleMenu()">
+            <i class="fa-solid fa-warehouse"></i>
+         
         </div>
     </div>
 </div>
