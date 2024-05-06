@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../../../shared/service/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -41,7 +41,6 @@ export class AdminAddUserComponent {
     this.roleService.getAllRoles().subscribe({
       next: (data: Role[]) => {
         this.roles = data;
-        console.log(this.roles);
       },
       error: (error) => {
         console.log(error);
@@ -53,7 +52,7 @@ export class AdminAddUserComponent {
         email : this.userService.editingUser.email,
         password : this.userService.editingUser.password
       });
-    } else{}
+    }
   }
 
   submit() {
@@ -68,7 +67,7 @@ export class AdminAddUserComponent {
     });
     if(password == confirmPassword) {
       this.userService.addUser(new User(this.userID, email,password,selectedRoles)).subscribe({
-        next: (result) => {
+        next: () => {
           this.toastr.info('User Successfully Created !');
           this.router.navigate(['..'], { relativeTo: this.route });
         }
@@ -88,7 +87,7 @@ export class AdminAddUserComponent {
   }
 
   userCannotBeEmpty():boolean{
-    return this.createForm.value.email! === '' || this.createForm.value.password! === ' ' || this.createForm.value.confirmPassword! === ''  ;
+    return this.createForm.value.email! === '' || this.createForm.value.password! === '' || this.createForm.value.confirmPassword! === ''  ;
   }
 
   // Seçilen rollerin kontrolü
@@ -105,4 +104,24 @@ export class AdminAddUserComponent {
       this.selectedRoles.splice(index, 1);
     }
   }
+  pswCannotBeEmpty():boolean{
+    return this.createForm.value.password! === '' ;
+  }
+  confirmPswCannotBeEmpty():boolean{
+    return this.createForm.value.confirmPassword! === '' ;
+  }
+
+  emailIsRequired(): boolean {
+    const emailControl = this.createForm.get('email');
+    if (emailControl && emailControl.value) {
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return !emailPattern.test(emailControl.value);
+    }
+    return true;
+  }
+
+  disabledButton(): boolean {
+    return !this.emailIsRequired();
+  }
+  
 }

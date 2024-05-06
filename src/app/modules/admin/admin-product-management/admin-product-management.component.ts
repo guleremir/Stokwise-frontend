@@ -31,8 +31,6 @@ export class AdminProductManagementComponent {
           // Her ürünün id'sini sıralı numaralarla eşleştir
           this.uuidToSequenceMap[product.id] = index + 1;
         });
-        console.log('Products: ', this.products);
-      // console.log('uuidToSequenceMap: ', this.uuidToSequenceMap);
       },
       (error) => {
         console.error('Error loading products: ', error);

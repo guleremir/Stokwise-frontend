@@ -29,7 +29,6 @@ export class AdminCategoryManagementComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe({
       next: (category => {
-        console.log(category);
         this.categories = category;
       })
     });
@@ -43,7 +42,6 @@ export class AdminCategoryManagementComponent implements OnInit {
 
   editCategory(category:Category){
     this.categoryService.editingCategory = category;
-    console.log(category);
     this.router.navigate(['editCategory'],{
       relativeTo:this.route
     });
@@ -55,7 +53,6 @@ export class AdminCategoryManagementComponent implements OnInit {
           next: () => {
             this.categories = this.categories.filter(c => c.id!== this.selectedCategory!.id);
             this.toastr.success("Category Successfully Deleted !");
-            console.log(this.categories);
           },
           error: (err)=> {
             console.log(err);

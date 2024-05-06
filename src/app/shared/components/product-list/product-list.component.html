@@ -18,8 +18,22 @@
             <td>
                 <div class="client">
                     <div class="client-info">
-                        <h6>{{product.name}}</h6>
-                        <small>{{product.category.name}}</small>
+                           <div class="actions" data-toggle="tooltip" data-placement="top" title="{{product.name}}">
+                            <h6><ng-container *ngIf="product.name.length > 18">
+                                {{ product.name | slice:0:18 }}...
+                              </ng-container>
+                              <ng-container *ngIf="product.name.length <= 18">
+                                {{ product.name }}
+                              </ng-container></h6>
+                            </div>
+                            <div class="actions" data-toggle="tooltip" data-placement="top" title="{{product.category.name}}">
+                                <small><ng-container *ngIf="product.category.name.length > 20">
+                                    {{ product.category.name | slice:0:20 }}...
+                                  </ng-container>
+                                  <ng-container *ngIf="product.category.name.length <= 20">
+                                    {{ product.category.name }}
+                                  </ng-container></small>
+                            </div>
                     </div>
                 </div>
             </td>
@@ -33,11 +47,11 @@
                 {{product.unitInStock}}
             </td>
             <td>
-                <div class="actions">
-                    <ng-container *ngIf="product.description.length > 25">
-                        {{ product.description | slice:0:25 }}...
+                <div class="actions" data-toggle="tooltip" data-placement="top" title="{{product.description}}">
+                    <ng-container *ngIf="product.description.length > 18">
+                        {{ product.description | slice:0:18 }}...
                       </ng-container>
-                      <ng-container *ngIf="product.description.length <= 25">
+                      <ng-container *ngIf="product.description.length <= 18">
                         {{ product.description }}
                       </ng-container>
                 </div>
