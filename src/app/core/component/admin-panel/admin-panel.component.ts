@@ -73,14 +73,7 @@ export class AdminPanelComponent implements OnInit {
     return this.shelves.reduce((total, shelf) => total +  shelf.capacity, 0);
   }
 
-<<<<<<< HEAD
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
 
-
-=======
->>>>>>> 26d69cc80a910b9a4ce30d51becdfe43ee4ba3b0
   getOccupancyRate(): number {
     const rate = (this.getTotalProductQuantity() / this.getTotalShelfCapacity()) * 100;
     return parseFloat(rate.toFixed(2));
