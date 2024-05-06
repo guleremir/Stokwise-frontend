@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CategoryService } from '../../../shared/service/category.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-edit-category',
@@ -23,11 +23,9 @@ export class AdminEditCategoryComponent {
     private categoryService: CategoryService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    console.log(this.categoryService.editingCategory);
     if (this.categoryService.editingCategory != null) {
      this.categoryID = this.categoryService.editingCategory.id;
      this.createForm.setValue({
@@ -39,7 +37,7 @@ export class AdminEditCategoryComponent {
   submit() {
     const name = this.createForm.get('name')!.value;
     this.categoryService.editCategory(this.categoryID,name).subscribe({
-      next:(result) => {
+      next:() => {
         this.toastr.info('Category Successfully Saved !');
         this.router.navigate(['/adminPanel/categories']);
       },

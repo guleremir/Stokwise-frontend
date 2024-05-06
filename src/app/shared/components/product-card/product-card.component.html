@@ -1,28 +1,37 @@
 <div class="col">
     <div class="card" >
         <div class="card-body" [class.is-invalid]="hasQuantityError()">
-            <h5 class="card-title">{{product.name}}</h5>
+            <h5 class="card-title" data-toggle="tooltip" data-placement="top" title="{{product.name}}">
+                <!-- {{product.name}} -->
+                <ng-container *ngIf="product.name.length > 19">
+                    {{ product.name | slice:0:19 }}...
+              </ng-container>
+              <ng-container *ngIf="product.name.length <= 19">
+                    {{ product.name }}
+              </ng-container>
+            </h5>
             <div class="features">
             <p class="card-text">
-                Category : {{product.category.name}}
+                <span class="bold">Category :</span><span> {{product.category.name}}</span>
             </p>
             <p class="card-text">
-                Price : {{product.price}} $
+                <span class="bold">Price :</span><span> $ {{product.price}}</span>
             </p>
             <p class="card-text">
-                Quantity : {{product.quantity}}
+                <span class="bold">Quantity :</span><span> {{product.quantity}}</span>
             </p>
             <p class="card-text">
-                Units In Stock : {{product.unitInStock}}
+                <span class="bold">Units In Stock :</span><span> {{product.unitInStock}}</span>
             </p>
             <p class="card-text" data-toggle="tooltip" data-placement="top" title="{{product.description}}">
-                Description : 
+                <span class="bold">Description :</span><span>                 
                 <ng-container *ngIf="product.description.length > 14">
                       {{ product.description | slice:0:14 }}...
                 </ng-container>
                 <ng-container *ngIf="product.description.length <= 14">
                       {{ product.description }}
                 </ng-container>
+                </span>
             </p>
             </div>
             <div class="button-group">

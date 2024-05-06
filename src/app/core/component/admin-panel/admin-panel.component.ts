@@ -39,19 +39,16 @@ export class AdminPanelComponent implements OnInit {
     });
     this.productService.getAllProduct().subscribe({
       next: (products => {
-        console.log(products);
         this.products = products;
       })
     });
     this.shelfService.getAllShelves().subscribe({
       next: (shelves => {
-        console.log(shelves);
         this.shelves = shelves;
       })
     });
     this.userService.getAllUsers().subscribe({
       next: (users => {
-        console.log(users);
         this.users = users;
       })
     })
@@ -75,10 +72,6 @@ export class AdminPanelComponent implements OnInit {
     return this.shelves.reduce((total, shelf) => total +  shelf.capacity, 0);
   }
 
-  // getOccupancyRate(): string {
-  //   return  ((this.getTotalProductQuantity() / this.getTotalShelfCapacity()) * 100).toFixed(2);
-  // }
-
   getOccupancyRate(): number {
     const rate = (this.getTotalProductQuantity() / this.getTotalShelfCapacity()) * 100;
     return parseFloat(rate.toFixed(2));
@@ -87,5 +80,4 @@ export class AdminPanelComponent implements OnInit {
   getTotalUsers() {
    return this.users.length;
   }
-
 }

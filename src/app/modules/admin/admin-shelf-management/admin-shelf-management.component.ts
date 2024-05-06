@@ -1,6 +1,6 @@
 import { ShelfService } from './../../../shared/service/shelf.service';
 import { Component, OnInit} from '@angular/core';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminShelf } from '../../../shared/dto/admin-shelf';
 import { AdminProduct } from '../../../shared/dto/admin-product';
@@ -36,7 +36,7 @@ export class AdminShelfManagementComponent implements OnInit {
   searchShelfId: string = ''; // Arama metni için değişken eklendi
 
   ngOnInit(): void {
-     this.loadShelves();
+    this.loadShelves();
     this.searchForm.get("searchText")?.valueChanges.subscribe({
       next: (data) => {
         this.filterShelf(data);
@@ -47,7 +47,6 @@ export class AdminShelfManagementComponent implements OnInit {
   loadShelves(){
     this.shelfService.getAllTableShelves().subscribe({
       next: (shelf => {
-        console.log(shelf);
         this.shelves = shelf;
         this.filterShelf();
       })
@@ -105,7 +104,6 @@ export class AdminShelfManagementComponent implements OnInit {
   
   editShelf(shelf: AdminShelf) {
     this.shelfService.editingShelf = shelf;
-    console.log(shelf);
     this.router.navigate(['editShelf'], { relativeTo: this.route });
   }
 

@@ -59,15 +59,12 @@ export class AdminUserManagementComponent {
   }
   editUser(user: User) {
     this.userService.editingUser = user;
-    console.log(user);
     this.router.navigate(['editUser'], { relativeTo: this.route });
   }
   selectUser(user: User) {
     this.selectedUser = user;
-    console.log('Selected user: ', this.selectedUser);  // Log selected user for debug
   }
   deleteUser(user: User) {
-    console.log('Attempting to delete user: ', user);  // Check if user is selected
     if (!user) {
       console.error("No user selected for deletion !");
       return;
