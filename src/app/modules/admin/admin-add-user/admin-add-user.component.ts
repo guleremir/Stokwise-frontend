@@ -26,7 +26,7 @@ export class AdminAddUserComponent {
   // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın
   selectedRoles: Role[] = [];
 
-  areYouSureQuestion = 'Are you sure you want to do this?'
+  areYouSureQuestion = 'Are you sure you want to do this ?'
 
   constructor(
     private userService: UserService,
@@ -56,7 +56,6 @@ export class AdminAddUserComponent {
     } else{}
   }
 
-
   submit() {
     let email = this.createForm.get('email')!.value;
     let password = (this.createForm.get('password')!.value);
@@ -70,17 +69,16 @@ export class AdminAddUserComponent {
     if(password == confirmPassword) {
       this.userService.addUser(new User(this.userID, email,password,selectedRoles)).subscribe({
         next: (result) => {
-          this.toastr.info('User created.');
+          this.toastr.info('User Successfully Created !');
           this.router.navigate(['..'], { relativeTo: this.route });
         }
       });
     }
      else {
-      this.toastr.error('Passwords do not match.');
+      this.toastr.error('Passwords do not match !');
     }
   }
   
-
   cancel() {
     this.router.navigate(['/adminPanel/users']);
   }
@@ -94,20 +92,17 @@ export class AdminAddUserComponent {
   }
 
   // Seçilen rollerin kontrolü
-isSelected(role: Role): boolean {
-  return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
-}
-
-// Seçilen rolleri değiştirme
-toggleSelection(role: Role): void {
-  const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
-  if (index === -1) {
-    this.selectedRoles.push(role);
-  } else {
-    this.selectedRoles.splice(index, 1);
+  isSelected(role: Role): boolean {
+    return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
   }
-}
 
-
-
+  // Seçilen rolleri değiştirme
+  toggleSelection(role: Role): void {
+    const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
+    if (index === -1) {
+      this.selectedRoles.push(role);
+    } else {
+      this.selectedRoles.splice(index, 1);
+    }
+  }
 }

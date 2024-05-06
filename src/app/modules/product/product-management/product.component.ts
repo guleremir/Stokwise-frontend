@@ -27,7 +27,7 @@ export class ProductComponent {
   id = "";
   selectedProductId: string =  "";
   filteredProducts: Product [] = [];
-  areYouSureQuestion = 'Are you sure you want to delete this product?'
+  areYouSureQuestion = 'Are you sure you want to delete this product ?'
 
   constructor(
     private router: Router,
@@ -68,7 +68,7 @@ export class ProductComponent {
     this.productService.deleteProduct(id).subscribe({
       next: () => {
         this.products = this.products.filter(p => p.id !== id);
-        this.toastr.success("Product deleted successfully");
+        this.toastr.success("Product Successfully Deleted !");
         this.getAllProduct();
       },
       error: (err) => {

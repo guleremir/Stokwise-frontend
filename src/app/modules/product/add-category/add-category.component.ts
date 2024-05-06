@@ -12,7 +12,7 @@ import { CategoryService } from '../../../shared/service/category.service';
 })
 export class AddCategoryComponent {
 
-  areYouSureQuestion = 'Are you sure you want to do this?'
+  areYouSureQuestion = 'Are you sure you want to do this ?'
 
   //createCategory
   createForm = this.fb.nonNullable.group({
@@ -31,7 +31,7 @@ export class AddCategoryComponent {
     let categoryName = this.createForm.get('categoryName')!.value;
     this.categoryService.addCategory(new Category(this.categoryID, categoryName)).subscribe({
       next: (result) => {
-        this.toastr.info('Category created!');
+        this.toastr.info('Category Successfully Created !');
         this.router.navigate(['homepage/products/addProduct']);
       },
       error: (err) => {

@@ -15,11 +15,8 @@ export class HomepageComponent {
     private loginService : LoginService,
     private router : Router,
     public route : ActivatedRoute
-  ){
-    
-  }
+  ){}
   
- 
   closeNavbar() {
     const navbarToggler = document.querySelector('.navbar-toggler') as HTMLElement;
     const navbarCollapse = document.querySelector('.navbar-collapse') as HTMLElement;

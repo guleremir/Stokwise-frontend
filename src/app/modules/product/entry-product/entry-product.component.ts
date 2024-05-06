@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class EntryProductComponent {
 
-  areYouSureQuestion = 'Are you sure you want to place this product?'
+  areYouSureQuestion = 'Are you sure you want to place this product ?'
   
   products: Product[] = [];
   selectedProduct: Product | null = null;
@@ -34,14 +34,13 @@ export class EntryProductComponent {
         }
       });
     }
-  //   
   
   addProductToShelf() {
     if (this.selectedProduct) {
       let count = this.entryForm.get('count')!.value;
       this.productService.acceptProduct(this.selectedProduct.id, count).subscribe({
         next: (result) => {
-          this.toastr.info('Product successfully placed.');
+          this.toastr.info('Product Successfully Placed !');
           this.router.navigate(['/homepage/shelves']);
         },
         error: (err) => {

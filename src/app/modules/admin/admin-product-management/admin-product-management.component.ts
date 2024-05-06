@@ -31,17 +31,17 @@ export class AdminProductManagementComponent {
           // Her ürünün id'sini sıralı numaralarla eşleştir
           this.uuidToSequenceMap[product.id] = index + 1;
         });
-        console.log('Products:', this.products);
-      console.log('uuidToSequenceMap:', this.uuidToSequenceMap);
+        console.log('Products: ', this.products);
+      // console.log('uuidToSequenceMap: ', this.uuidToSequenceMap);
       },
       (error) => {
-        console.error('Error loading products:', error);
-        this.toastr.error('Error loading products. Please try again.');
+        console.error('Error loading products: ', error);
+        this.toastr.error('Error loading products. Please try again !');
       }
     );
   }
   ngOnInit(): void {
-    this.loadProducts()
+    this.loadProducts();
   }
   // Sıralama sütunu ve sıralama tipi
   sortBy: string = 'productId'; // Varsayılan olarak productName'e göre sırala
@@ -69,7 +69,7 @@ export class AdminProductManagementComponent {
     this.productService.deleteProduct(product.id).subscribe({
       next: () => {
         this.products = this.products.filter(p => p.id !== product.id);
-        this.toastr.success("Product deleted successfully");
+        this.toastr.success("Product Successfully Deleted !");
       },
       error: (err) => {
         console.log(err);

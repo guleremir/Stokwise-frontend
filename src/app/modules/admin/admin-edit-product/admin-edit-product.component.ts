@@ -13,7 +13,7 @@ import { Category } from '../../../shared/dto/category';
 })
 export class AdminEditProductComponent implements OnInit{
 
-  areYouSureQuestion = 'Are you sure you want to edit this product?'
+  areYouSureQuestion = 'Are you sure you want to edit this product ?'
 
   createForm = this.fb.nonNullable.group({
     productName: "",
@@ -60,10 +60,10 @@ export class AdminEditProductComponent implements OnInit{
     let productDescription = (this.createForm.get('productDescription')!.value);
     this.productService.editProduct(new Product(this.productID, productName, new Category("",this.productCategory) ,productPrice, productQuantity, productUnitInStock, productMinimumCount, productDescription)).subscribe({
       next: (result) => {
-        this.toastr.info('Product updated!');
+        this.toastr.info('Product Successfully Saved !');
         this.router.navigate(['..'], { relativeTo: this.route });
       }, error: (err) => {
-        this.toastr.error('Please check the information you have entered!');
+        this.toastr.error('Please check the information you have entered !');
       }
     });
   }
