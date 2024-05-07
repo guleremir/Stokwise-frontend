@@ -1,7 +1,7 @@
 <form class="formControl" [formGroup]="updateForm" >
   <div class="mb-3">
     <label for="txtEmail" class="form-label">Email</label>
-    <input formControlName="email" type="text" class="form-control" id="txtEmail" readonly>
+    <input formControlName="email" type="email" class="form-control" id="txtEmail" readonly>
   </div>
   <div class="mb-3">
     <label for="txtPassword" class="form-label">Password</label>
@@ -15,7 +15,7 @@
 
   <div class="mb-3">
     <label for="txtConfirmPassword" class="form-label">Verify Password</label>
-    <input formControlName="confirmPassword" type="text" class="form-control" [class.is-invalid]="confirmPswCannotBeEmpty()" id="txtConfirmPassword" min="0">
+    <input formControlName="confirmPassword" type="text" class="form-control" [class.is-invalid]="confirmPswCannotBeEmpty()" id="txtConfirmPassword" min="0" required>
     @if(confirmPswCannotBeEmpty()){
       <div class="invalid-feedback">
         This field cannot be left blank! Please verify the password you entered!

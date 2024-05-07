@@ -29,7 +29,6 @@ export class EntryProductComponent {
     ngOnInit(): void {
       this.productService.getAllProduct().subscribe({
         next: (result) => {
-          console.log(result);
           this.products = result;
         }
       });
@@ -54,8 +53,6 @@ export class EntryProductComponent {
 
   productSelect(product: Product) {
     this.selectedProduct = product;
-    console.log(this.selectedProduct + " productSelect metodu");
-    console.log(product);
   }
 
   cancel() {
@@ -84,6 +81,5 @@ export class EntryProductComponent {
       this.entryForm.get(fieldName)!.setValue('');
     }
   }
-
 }
 
