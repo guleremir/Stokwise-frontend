@@ -32,7 +32,7 @@ export const urlInterceptor: HttpInterceptorFn = (req, next) => {
         // login/signup işlemi yapılmıyor ve token hatası döndü ise tekrar giriş yapmayı dene
         return loginService.relogin().pipe(
           switchMap((token: any) => {
-            toastrService.info("Tekrar giriş yapıldı");
+            toastrService.info("Re-login successfully done !");
             headers = headers.set('Authorization', 'Bearer ' + loginService.token);
             newReq = newReq.clone({
               headers,
@@ -40,7 +40,7 @@ export const urlInterceptor: HttpInterceptorFn = (req, next) => {
             return next(newReq);
           }),
           catchError(error => {
-            toastrService.error("Tekrar giriş başarısız oldu");
+            toastrService.error("Re-login failed !");
             loginService.logout();
             router.navigateByUrl('/');
             return throwError(() => error);

@@ -1,30 +1,23 @@
 <div class="user-table">
-<div class="record-header">
-    <div class="browse">
-        <input type="search" placeholder="Search User" class="record-search" [(ngModel)]="searchText">
-        <button (click)="addUser()">
-            <span class="transition"></span>
-            <span class="gradient"></span>
-            <span class="label">Add User</span>
-        </button>
-
+    <div class="record-header">
+        <div class="browse">
+            <div class="search-container">
+                <!-- <form [formGroup]="myGroup">  -->
+                <input type="text" placeholder="Search User" class="record-search"  [(ngModel)]="searchText"> 
+                <span>
+                    <i class="bi bi-search"></i>
+                  </span>
+                <!-- </form> -->
+            </div>
+            <button (click)="addUser()" class="left-button">
+                <span class="transition"></span>
+                <span class="gradient"></span>
+                <span class="label">Add User</span>
+              </button>
+        </div>
     </div>
-</div>
-<div>
-    <table width="100%">
-        <thead>
-            <tr>
-                <th><span class="las la-sort"></span> Email </th>
-                <th><span class="las la-sort"></span> Password </th>
-                <th><span class="las la-sort"></span> Roles </th>
-                <th><span class="las la-sort"></span> Actions </th>
-            </tr>
-        </thead>
-    </table>
-</div>
-
-
-<app-user-list *ngFor="let user of filterUsers()" [user]="user" 
+<app-user-list [users]="filterUsers()"
+(loadUserEvent)="loadUsers()" 
 (edit)="editUser($event)" 
 (delete)="deleteUser($event)">
 </app-user-list>

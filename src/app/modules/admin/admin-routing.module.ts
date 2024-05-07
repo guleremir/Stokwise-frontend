@@ -10,41 +10,45 @@ import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.compon
 import { AdminAccountComponent } from './admin-account/admin-account.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { AdminProductComponent } from './admin-product/admin-product.component';
-import { AdminPanelComponent } from '../../core/component/admin-panel/admin-panel.component';
 import { AdminAddShelfComponent } from './admin-add-shelf/admin-add-shelf.component';
 import { AdminShelfComponent } from './admin-shelf/admin-shelf.component';
 import { AdminEditShelfComponent } from './admin-edit-shelf/admin-edit-shelf.component';
-import { roleCheckGuard } from '../../shared/guard/role-check.guard';
-import { ROLE_ADMIN, ROLE_REPORT_READER } from '../../shared/model/constant';
+import { AdminCategoryComponent } from './admin-category/admin-category.component';
+import { AdminCategoryManagementComponent } from './admin-category-management/admin-category-management.component';
+import { AdminAddCategoryComponent } from './admin-add-category/admin-add-category.component';
+import { AdminEditCategoryComponent } from './admin-edit-category/admin-edit-category.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'products', pathMatch: 'full' },
-  { path: 'products', component: AdminProductComponent,  
+  { path: 'products', title:'Stokwise - Admin - Product', component: AdminProductComponent,  
   children: [
       {path: '', component: AdminProductManagementComponent, pathMatch: 'full' },
       {path: 'editProduct', component: AdminEditProductComponent},
       {path: 'addProduct', component: AdminAddProductComponent}
     ]
   },
-  // { path: 'editProduct', component: AdminEditProductComponent},
-  // { path: 'addProduct', component: AdminAddProductComponent},
-  { path: 'shelves', component: AdminShelfComponent,
+  { path: 'categories', title:'Stokwise - Admin - Category', component: AdminCategoryComponent,  
+  children: [
+      {path: '', component: AdminCategoryManagementComponent, pathMatch: 'full' },
+      {path: 'addCategory', component: AdminAddCategoryComponent},
+      {path: 'editCategory', component: AdminEditCategoryComponent}
+    ]
+  },
+  { path: 'shelves', title:'Stokwise - Admin - Shelf', component: AdminShelfComponent,
   children: [
     {path: '', component: AdminShelfManagementComponent, pathMatch: 'full' },
-    {path: 'editShelf', component: AdminEditShelfComponent, canActivate:[roleCheckGuard(ROLE_ADMIN)]},
-    {path: 'addShelf', component: AdminAddShelfComponent, canActivate:[roleCheckGuard(ROLE_ADMIN)]},
-    
-  ]
-
+    {path: 'editShelf', component: AdminEditShelfComponent},
+    {path: 'addShelf', component: AdminAddShelfComponent},
+    ]
   },
-  { path: 'users', component: AdminUserComponent,  
+  { path: 'users', title:'Stokwise - Admin - User', component: AdminUserComponent,  
   children: [
       {path: '', component: AdminUserManagementComponent, pathMatch: 'full' },
       {path: 'addUser', component: AdminAddUserComponent},
       {path: 'editUser', component: AdminEditUserComponent}
     ]
   },
-  { path: 'account', component: AdminAccountComponent}
+  { path: 'account', title:'Stokwise - Admin - Account', component: AdminAccountComponent}
 ];
 
 @NgModule({

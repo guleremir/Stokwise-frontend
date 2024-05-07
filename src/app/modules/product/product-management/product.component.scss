@@ -1,0 +1,192 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+.head-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.group {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.input {
+    width: 500px;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: 0.3s ease;
+  }
+  
+  .input::placeholder {
+    color: #9e9ea7;
+  }
+  
+  .input:focus,
+  input:hover {
+    outline: none;
+    border-color: rgba(0, 48, 73, 0.4);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgb(0 48 73 / 10%);
+  }
+  
+  .icon {
+    position: absolute;
+    left: 1rem;
+    fill: #9e9ea7;
+    width: 1rem;
+    height: 1rem;
+  }
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+// .app-product-card {
+//     // background: #fff;
+//     // border: 1px solid #ddd;
+//     // border-radius: 8px;
+//     // box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+//     // padding: 15px;
+//     // display: flex;
+//     // flex-direction: column;
+// }
+
+@media (max-width: 768px) {
+    .head-row {
+        flex-direction: column;
+    }
+
+    .input {
+        padding: 10px; 
+    }
+}
+
+@media (max-width: 1000px) {
+  .head-row {
+      flex-direction: column;
+  }
+
+  .input {
+      padding: 10px; 
+  }
+
+  .card-container{
+    gap:20px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px){
+  .input {
+    padding: 10px 40px;
+  }
+  .card-container{
+    gap:30px;
+  }
+
+}
+
+.btn-add{
+    color:  var(--cardbg--color);
+    background-color: var(--darkblue-color);
+}
+
+.report{
+    border: none;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .report-button{
+    width: 100%;
+    height: 45px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .min{
+    background-color:  var(--lightbluebtn-color);
+  }
+  .min:hover{
+    background-color: var(--bluebtn-color);
+  }
+  
+  .product{
+    background-color: var(--lightpurplebtn-color);
+  }
+  .product:hover{
+    background-color: var(--purplebtn-color);
+  }
+  
+  .modal-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fa-file-pdf{
+    font-size: 100px;
+    color: rgb(197, 0, 0);
+  }
+  
+  .modal-body{
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .modal-footer{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .exit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+  .exit-button:hover svg {
+    fill: black;
+  }
+  .exit-button svg {
+    fill: rgb(175, 175, 175);
+  }
+
+  .paginate-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .paginate-page li a{
+    color: red;
+    font-size: 20px;
+  }
