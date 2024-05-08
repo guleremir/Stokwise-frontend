@@ -90,7 +90,7 @@
         (click)="onPageChange(currentPage - 1)"
         tabindex="-1"
         aria-disabled="true"
-        > <span>&raquo;</span>
+        > <span>&laquo;</span>
       </a>
     </li>
     <li *ngFor="let page of totalPagesArray()" [class.active]="currentPage === page">
@@ -98,7 +98,7 @@
     </li>
     <li [ngClass]="{ disabled: currentPage === totalPages }">
       <a (click)="onPageChange(currentPage + 1)">
-        <span>&laquo;</span>
+        <span>&raquo;</span>
       </a>
     </li>
   </ul>
