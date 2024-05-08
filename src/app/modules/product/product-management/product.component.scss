@@ -69,39 +69,6 @@
 //     // flex-direction: column;
 // }
 
-@media (max-width: 768px) {
-    .head-row {
-        flex-direction: column;
-    }
-
-    .input {
-        padding: 10px; 
-    }
-}
-
-@media (max-width: 1000px) {
-  .head-row {
-      flex-direction: column;
-  }
-
-  .input {
-      padding: 10px; 
-  }
-
-  .card-container{
-    gap:20px;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1399px){
-  .input {
-    padding: 10px 40px;
-  }
-  .card-container{
-    gap:30px;
-  }
-
-}
 
 .btn-add{
     color:  var(--cardbg--color);
@@ -190,3 +157,89 @@
     color: red;
     font-size: 20px;
   }
+  
+@media (max-width: 768px) {
+    .head-row {
+        flex-direction: column;
+    }
+
+    .input {
+        padding: 10px; 
+    }
+}
+
+@media (max-width: 1000px) {
+  .head-row {
+      flex-direction: column;
+  }
+
+  .input {
+      padding: 10px; 
+  }
+
+  .card-container{
+    gap:20px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px){
+  .input {
+    padding: 10px 40px;
+  }
+  .card-container{
+    gap:30px;
+  }
+
+}
+
+/* PAGINATION */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  
+}
+  
+.pagination {
+  list-style: none;
+  display: flex;
+  gap: 5px;
+  padding: 7px;
+  border: 1px solid var(--cardbg--color);
+  border-radius: 30px;
+  background: var(--cardbg--color);
+  
+}
+  
+.pagination li a {
+  display: block;
+  padding: 5px 12px;
+  text-decoration: none;
+  color: var(--darkblue-color);
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+  
+.pagination li a:hover {
+  
+  color: var(--cardbg--color);
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--darkorange-color);
+}
+
+
+ 
+.pagination li.active a {
+  border-radius: 50px;
+  
+  
+}
+  
+.pagination li a i {
+  margin: 0 5px;
+  
+}

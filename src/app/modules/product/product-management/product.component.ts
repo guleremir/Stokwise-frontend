@@ -13,10 +13,10 @@ import { Category } from '../../../shared/dto/category';
   styleUrl: './product.component.scss'
 })
 export class ProductComponent {
-  p= 1;
+
   itemsPerPage= 8;
-  totalProduct:any;
-  products: Product[] = [];
+  allProducts: Product[] = [];
+  productsPerPage: Product[] = [];
   searchForm = this.fb.nonNullable.group({
     searchText: [''] 
   });
@@ -34,7 +34,6 @@ export class ProductComponent {
     private route: ActivatedRoute,
     private productService: ProductService,
     private toastr: ToastrService,
-    private logger: LoggerService,
     private fb: FormBuilder,
   ) {}
   //Component çağrıldığında çalışan method.
@@ -45,16 +44,21 @@ export class ProductComponent {
         this.filterProduct(data);
       }
     });
-    this.totalProduct = this.products.length;
+    
   }
   getAllProduct(){ 
     this.productService.getAllProduct().subscribe({
       next: (products => {
-        this.products = products;
+        this.allProducts = products;
+        this.totalPages= Math.ceil(products.length/this.itemsPerPage)
+        this.updatePageProducts();
         this.filterProduct();
+
       })
     });
   }
+
+
   addProduct() {
     this.router.navigate(['addProduct'], { relativeTo: this.route });
   }
@@ -63,38 +67,104 @@ export class ProductComponent {
     console.log(product);
     this.router.navigate(['editProduct'], { relativeTo: this.route });
   }
+
   deleteProduct(id: any) {
     this.productService.deleteProduct(id).subscribe({
       next: () => {
-        this.products = this.products.filter(p => p.id !== id);
+        this.allProducts = this.allProducts.filter(p => p.id !== id);
         this.toastr.success("Product Successfully Deleted !");
         this.getAllProduct();
       },
       error: (err) => {
         console.log(err);
+        this.toastr.error("Product quantity is not zero!");
       }
     });
   }
   selectedProduct(productId: string){
     this.id = productId;
   }
-  filterProduct(data="") {
-    this.filteredProducts= this.products ;
-    // Arama filtresi
-    if (data) {
-     this.filteredProducts = this.filteredProducts.filter(product => {
-      this.logger.log(product)
-      return product.name?.toLowerCase().includes(data.toLowerCase())
-     }
-     );
-    }
-  }
+
+  // filterProduct(data="") {
+  //   this.filteredProducts= this.allProducts ;
+  //   // Arama filtresi
+  //   if (data) {
+  //    this.filteredProducts = this.filteredProducts.filter(product => {
+  //     this.logger.log(product)
+  //     return product.name?.toLowerCase().includes(data.toLowerCase())
+  //    }
+  //    );
+  //   }
+  // }
+  
   reportMinimumCount(){
     this.productService.reportWarningCountProduct();
   }
   reportProduct(){
     this.productService.reportProduct();
   }
+  
+  filterProduct(data="") {
+    
+    if (data) {
+      this.filteredProducts = this.allProducts.filter(product => {
+        return product.name?.toLowerCase().includes(data.toLowerCase());
+      });
+    } else {
+      this.filteredProducts = this.allProducts;
+    }
+    this.totalPages = Math.ceil(this.filteredProducts.length / this.itemsPerPage);
+    this.currentPage = 1; 
+    this.updatePageProducts();
+  }
+
+  totalPages = 0;
+  currentPage = 1;
+  onPageChange(pageNo: number) {
+    if (pageNo < 1 || pageNo > this.totalPages) {
+      return; 
+    }
+    this.currentPage = pageNo;
+    this.updatePageProducts();
+  }
+
+  
+  updatePageProducts(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    this.productsPerPage = this.filteredProducts.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  totalPagesArray(): number[] {
+    const numPagesToShow = 5; 
+  const currentPage = this.currentPage;
+  const totalPages = this.totalPages;
+  
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= numPagesToShow) {
+    
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+   
+    if (currentPage <= Math.floor(numPagesToShow / 2)) {
+   
+      startPage = 1;
+      endPage = numPagesToShow;
+    } else if (currentPage + Math.floor(numPagesToShow / 2) >= totalPages) {
+     
+      startPage = totalPages - numPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = currentPage - Math.floor(numPagesToShow / 2);
+      endPage = currentPage + Math.floor(numPagesToShow / 2);
+    }
+  }
+  return Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index);
+  }
 }
+
+
 
 

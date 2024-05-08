@@ -4,8 +4,9 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { HttpClientModule } from '@angular/common/http';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { UserListComponent } from './components/user-list/user-list.component';
-import { FilterPipe } from './pipe/filter.pipe';
+
 import { AreYouSureComponent } from './components/are-you-sure/are-you-sure.component';
+import { PaginationPipe } from './pipe/pagination.pipe';
 
 
 
@@ -14,8 +15,9 @@ import { AreYouSureComponent } from './components/are-you-sure/are-you-sure.comp
     ProductCardComponent,
     ProductListComponent,
     UserListComponent,
-    FilterPipe,
-    AreYouSureComponent
+   
+    AreYouSureComponent,
+    PaginationPipe,
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { AreYouSureComponent } from './components/are-you-sure/are-you-sure.comp
     ProductCardComponent,
     ProductListComponent,
     UserListComponent,
-    AreYouSureComponent
+    AreYouSureComponent,
+    PaginationPipe
   ]
 })
 export class SharedModule { }
