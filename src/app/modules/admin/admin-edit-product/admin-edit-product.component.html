@@ -13,7 +13,7 @@
     </div>
     <div class="mb-3">
       <label for="txtIncomingProductQuantity" class="form-label">Quantity of products received</label>
-      <input formControlName="incomingProductQuantity" type="number" class="form-control" class="form-control" id="txtIncomingProductQuantity" min="0">      
+      <input formControlName="incomingProductQuantity" type="number" class="form-control" class="form-control" id="txtIncomingProductQuantity" min="0" placeholder="0" (focus)="clearFieldOnFocus('incomingProductQuantity')">      
     </div>    
     <div class="mb-3">
       <label for="txtProductUnitInStock" class="form-label">Units In Stock</label>
