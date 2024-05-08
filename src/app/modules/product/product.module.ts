@@ -8,6 +8,10 @@ import { SharedModule } from '../../shared/shared.module';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { EntryProductComponent } from './entry-product/entry-product.component';
 import { DispatchProductComponent } from './dispatch-product/dispatch-product.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 @NgModule({
@@ -17,12 +21,16 @@ import { DispatchProductComponent } from './dispatch-product/dispatch-product.co
     EditProductComponent,
     EntryProductComponent,
     DispatchProductComponent,
+    AddCategoryComponent,
   ],
   imports: [
     CommonModule,
     ProductRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule,
+    MatPaginatorModule,
+   
   ]
 })
 export class ProductModule { }

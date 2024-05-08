@@ -12,6 +12,9 @@ import { ProductService } from '../../../shared/service/product.service';
   styleUrl: './dispatch-product.component.scss'
 })
 export class DispatchProductComponent {
+
+  areYouSureQuestion = 'Are you sure you want to dispatch this product ?'
+
   products: Product[] = [];
   selectedProduct: Product | null = null;
   entryForm = this.fb.nonNullable.group({
@@ -28,53 +31,54 @@ export class DispatchProductComponent {
     ngOnInit(): void {
       this.productService.getAllProductsFromShelves().subscribe({
         next: (result) => {
-          console.log(result);
           this.products = result;
         }
       });
     }
 
-
-    productSelect(product: Product) {
+  productSelect(product: Product) {
   this.selectedProduct = product;
-  console.log(this.selectedProduct + " productSelect metodu");
-  console.log(this.selectedProduct);
-  console.log(product);
-  
-}
-
-    
-  
-
-dispatchProductFromShelf() { //deneme
-  if(this.selectedProduct){
-    console.log(this.selectedProduct.id + "seçilen ürün");
-    
-    let count = this.entryForm.get('count')!.value;
-    this.productService.dispatchProduct(this.selectedProduct.id, count).subscribe({
-      next: (result) => {
-        console.log("result data " + result );
-        
-        this.toastr.info('Product dispatch successfuly.');
-        this.router.navigate(['/homepage/shelves']);
-      },
-      error: (err) => {
-        console.log(err);
-          this.toastr.error(err.error);
-        
-      }
-    });
   }
-}
 
+  dispatchProductFromShelf() { //deneme
+    if(this.selectedProduct){
+      let count = this.entryForm.get('count')!.value;
+      this.productService.dispatchProduct(this.selectedProduct.id, count).subscribe({
+        next: () => {
+          this.toastr.info('Product Successfully Dispatch !');
+          this.router.navigate(['/homepage/shelves']);
+        },
+        error: (err) => {
+          console.log(err);
+            this.toastr.error(err.error);
+        }
+      });
+    }
+  }
 
+  cancel() {
+    this.router.navigate(['/homepage/shelves']);
+  }
 
-cancel() {
-  this.router.navigate(['/homepage/shelves']);
-}
+  hasCountError():boolean{
+    return this.entryForm.value.count! > this.selectedProduct?.unitInStock!;
+  }
 
-hasCountError():boolean{
-  return this.entryForm.value.count! > this.selectedProduct?.unitInStock!;
-}
+  countCannotBeEmpty():boolean{
+    return this.entryForm.value.count! === 0 ;
+  }
 
+  emptyAndCountError():boolean{
+    return this.hasCountError() || this.countCannotBeEmpty();
+  }
+
+  dispatchProduct(){
+    this.dispatchProductFromShelf();
+  }
+  clearFieldOnFocus(fieldName: string) {
+    const currentValue = this.entryForm.get(fieldName)!.value;
+    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+     this.entryForm.get(fieldName)!.setValue('');
+    }
+  }
 }

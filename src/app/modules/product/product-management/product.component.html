@@ -1,15 +1,105 @@
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div><button class="btn btn-primary mb-2" (click)="addProduct()">Add Product</button>
+  <div class="row">
+    <div class="head-row">
+      <div>
+        <button class="btn btn-add" (click)="addProduct()">
+          Add Product
+        </button>
+      </div>
+      <div>
+        <form [formGroup]="searchForm">
+          <!-- <div class="search-container">
+            <input type="text" placeholder="Search Category" class="record-search" formControlName="searchText"/> 
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          </div> -->
+
+          <div class="group">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+              <g>
+                <path
+                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                ></path>
+              </g>
+            </svg>
+            <input
+              class="input"
+              type="text"
+              placeholder="Search Product"
+              formControlName="searchText"
+            />
+          </div>
+        </form>
+      </div>
+      <div>
+        <button type="button" class="btn btn-add button" data-bs-toggle="modal" data-bs-target="#report">
+          Report
+        </button>
+      </div>
     </div>
-    <app-product-card class="ms-2 col-3 mb-5" 
-             *ngFor="let product of products" [product]="product"
-             (edit)="editProduct($event)"
-             (delete)="selectedProduct($event.id)"
-             >
-    </app-product-card>
+    <div class="card-container">
+      <app-product-card
+        class="ms-2 col-3 mb-5 mt-4"
+        *ngFor="let product of productsPerPage "
+        [product]="product"
+        (edit)="editProduct($event)"
+        (delete)="selectedProduct($event.id)"
+      >
+      </app-product-card>
     </div>
-    <app-are-you-sure (areYouSureEvent)="deleteProduct(id)" [areYouSureQuestion]="areYouSureQuestion" >
-    </app-are-you-sure>
+  </div>
+  <app-are-you-sure
+    (areYouSureEvent)="deleteProduct(id)"
+    [areYouSureQuestion]="areYouSureQuestion"
+  >
+  </app-are-you-sure>
+
+  <!-- Report Modal -->
+  <div class="modal fade" id="report" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="fa-solid fa-file-pdf"></i>
+          <button class="exit-button"  data-bs-dismiss="modal">
+            <svg height="20px" viewBox="0 0 384 512">
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+              ></path>
+            </svg>
+          </button>
+          <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
+        </div>
+        <div class="modal-body">
+          Which reporting type do you want to use?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="report report-button min" data-bs-dismiss="modal" (click)="reportMinimumCount()">Minimum Count</button>
+          <button type="button" class="report report-button product" data-bs-dismiss="modal" (click)="reportProduct()">Report Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
 </div>
 
+
+
+<div class="pagination-container">
+  <ul class="pagination">
+    <li [ngClass]="{ disabled: currentPage === 1 }">
+      <a
+        (click)="onPageChange(currentPage - 1)"
+        tabindex="-1"
+        aria-disabled="true"
+        > <span>&laquo;</span>
+      </a>
+    </li>
+    <li *ngFor="let page of totalPagesArray()" [class.active]="currentPage === page">
+      <a (click)="onPageChange(page)">{{ page }}</a>
+    </li>
+    <li [ngClass]="{ disabled: currentPage === totalPages }">
+      <a (click)="onPageChange(currentPage + 1)">
+        <span>&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -30,31 +30,30 @@ export class LoginComponent {
       
       // email veya password null ise hata göster.
       if (email == null || password == null) {
-        this.toastr.error('Email or password cannot be null.');
+        this.toastr.error('Email or password cannot be null !');
         return;
       }
   
       this.loginService.login(email, password).subscribe({
         next: (value) => {
-          this.toastr.success('Successfully Logged In');
+          this.toastr.success('Successfully Logged In !');
           let isAdmin = this.loginService.userHasRole('admin');
           this.router.navigateByUrl(isAdmin ? '/adminPanel' : '/homepage/products');
         },
         error: (err) => {
-          this.toastr.error('Wrong email or password!');
+          this.toastr.error('Wrong email or password !');
           this.loginForm.patchValue({ email: '', password: '' });
           console.error(err);
         }
       });
     } else {
-      this.toastr.error('Please fill in all required fields correctly.');
+      this.toastr.error('Please fill in all required fields correctly !');
     }
   }
-  
+  backToMenu() {
+    this.router.navigate(['/menu']);
+  }
 }
 
-  // signUpRouter(){
-  //   this.router.navigate(['/signup']);
-  // }
 
 

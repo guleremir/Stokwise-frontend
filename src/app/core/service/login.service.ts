@@ -31,7 +31,6 @@ export class LoginService {
     this.scheduleLogout();
     return this.http.post<any>('/login', { email, password }).pipe(
       map(resp => {
-        console.log(resp);
         return this.parseLoginResponse(resp, email, password);
       })
     );

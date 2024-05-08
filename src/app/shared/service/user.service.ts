@@ -14,13 +14,12 @@ export class UserService {
     private httpClient: HttpClient
   ) { }
 
-
   getAllUsers(): Observable<User[]>{
     return this.httpClient.get<User[]>('/admin/user/getAll');
   }
 
   addUser(user: User): Observable<SuccessResponse>{
-    return this.httpClient.post<SuccessResponse>('/admin/user/signup',user );
+    return this.httpClient.post<SuccessResponse>('/admin/addUser',user );
   }
 
   updateUser(user: User): Observable<SuccessResponse>{
@@ -30,6 +29,4 @@ export class UserService {
   deleteUser(user: User): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/admin/user/delete', user);
   }
-
-
 }

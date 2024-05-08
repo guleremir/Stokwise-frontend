@@ -9,12 +9,15 @@ import { Category } from '../../dto/category';
 })
 export class AreYouSureComponent {
 
-  selectedId?: number = undefined;
+  selectedId?: string = undefined;
 
   @Output() areYouSureEvent =  new EventEmitter();
   @Input() areYouSureQuestion = '';
+  @Input() id: string | undefined;
 
-  buttonYesClick(id: number) {
+
+  buttonYesClick(id: string) {
+     
     this.areYouSureEvent.emit(id);
   }
   buttonNoClick() {

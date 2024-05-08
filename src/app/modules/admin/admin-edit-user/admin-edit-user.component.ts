@@ -20,12 +20,13 @@ export class AdminEditUserComponent  implements OnInit {
     confirmPassword: "",
     roles: [[]]
   })
-  userID = 0;
+  userID = "";
   roles: Role[]= []; // Roller dizisini tanımla
 
   // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın
   selectedRoles: Role[] = [];
 
+  areYouSureQuestion = 'Are you sure you want to edit this user ?'
 
   constructor(
     private userService: UserService,
@@ -37,11 +38,9 @@ export class AdminEditUserComponent  implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.roleService.getAllRoles().subscribe({
       next: (data: Role[]) => {
         this.roles = data;
-        console.log(this.roles);
       },
       error: (error) => {
         console.log(error);
@@ -64,22 +63,22 @@ export class AdminEditUserComponent  implements OnInit {
     let selectedRoles: UserRole[] = this.selectedRoles.map(role => {
       return {
         id: role.id,
-        name: role.name // veya role.name gibi
+        name: role.name 
       };
     });
     
       if (password === confirmPassword) {
         this.userService.updateUser(new User(this.userID, email, password, selectedRoles)).subscribe({
           next: (result) => {
-            this.toastr.info('User updated.');
+            this.toastr.info('User Successfully Saved !');
             this.router.navigate(['..'], { relativeTo: this.route });
           },
           error: (error) => {
-            this.toastr.error('An error occurred while updating user.');
+            this.toastr.error('An error occurred while updating user !');
           }
         });
       } else {
-        this.toastr.error('Passwords do not match.');
+        this.toastr.error('Passwords do not match !');
       }
   }
 
@@ -87,41 +86,34 @@ export class AdminEditUserComponent  implements OnInit {
     this.router.navigate(['/adminPanel/users']);
   }
 
-// Seçilen rollerin kontrolü
-isSelected(role: Role): boolean {
-  return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
-}
-
-// Seçilen rolleri değiştirme
-toggleSelection(role: Role): void {
-  const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
-  if (index === -1) {
-    this.selectedRoles.push(role);
-  } else {
-    this.selectedRoles.splice(index, 1);
+  // Seçilen rollerin kontrolü
+  isSelected(role: Role): boolean {
+    return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
   }
-}
 
-// // Bir rolün seçilip seçilmediğini değiştiren işlev
-// toggleRoleSelection(checked: boolean, role: Role): void {
-//   if (checked) {
-//       // Eğer check box işaretlendi ise, seçili roller dizisine ekleyin
-//       this.selectedRoles.push(role);
-//   } else {
-//       // Eğer check box işareti kaldırıldı ise, seçili roller dizisinden kaldırın
-//       const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
-//       if (index !== -1) {
-//           this.selectedRoles.splice(index, 1);
-//       }
-//   }
-// }
+  // Seçilen rolleri değiştirme
+  toggleSelection(role: Role): void {
+    const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
+    if (index === -1) {
+      this.selectedRoles.push(role);
+    } else {
+      this.selectedRoles.splice(index, 1);
+    }
+  }
 
-pswCannotBeEmpty():boolean{
-  return this.updateForm.value.password! === '' ;
-}
-confirmPswCannotBeEmpty():boolean{
-  return this.updateForm.value.confirmPassword! === '' ;
-}
+  pswCannotBeEmpty():boolean{
+    return this.updateForm.value.password! === '' ;
+  }
 
+  confirmPswCannotBeEmpty():boolean{
+    return this.updateForm.value.confirmPassword! === '' ;
+  }
 
+  editUser(){
+    this.submit();
+  }
+  
+  editUserCannotBeEmpty():boolean{
+    return this.updateForm.value.email! === '' || this.updateForm.value.password! === '' || this.updateForm.value.confirmPassword! === '' ;
+  }
 }

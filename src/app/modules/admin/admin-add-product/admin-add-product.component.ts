@@ -15,6 +15,8 @@ import { Category } from '../../../shared/dto/category';
 export class AdminAddProductComponent implements OnInit{
   categories: Category[] = [];
 
+  areYouSureQuestion = 'Are you sure you want to add this product ?'
+
   //createProduct
   createForm = this.fb.nonNullable.group({
     productName: "",
@@ -23,9 +25,9 @@ export class AdminAddProductComponent implements OnInit{
     productUnitInStock: 0,
     productMinimumCount:0,
     productDescription: "",
-    productCategoryID: 0,
+    productCategoryID: "",
   })
-  productID = 0;
+  productID = "";
 
   constructor(
     private productService: ProductService,
@@ -41,7 +43,6 @@ export class AdminAddProductComponent implements OnInit{
     this.categoryService.getAllCategories().subscribe({
       next: (data: Category[]) => {
         this.categories = data;
-        console.log(this.categories);
       },
       error: (error) => {
         console.log(error);
@@ -58,7 +59,7 @@ export class AdminAddProductComponent implements OnInit{
     let productCategoryID = (this.createForm.get('productCategoryID')!.value);
     this.productService.addProduct(new Product(this.productID, productName, new Category(productCategoryID,"") ,productPrice,productQuantity,productUnitInStock,productMinimumCount, productDescription )).subscribe({
       next: (result) => {
-        this.toastr.info('Product created.');
+        this.toastr.info('Product Successfully Created !');
         this.router.navigate(['..'], { relativeTo: this.route });
       }
     });
@@ -66,5 +67,41 @@ export class AdminAddProductComponent implements OnInit{
 
   cancel() {
     this.router.navigate(['/adminPanel']);
+  }
+
+  addProduct(){
+    this.submit();
+  }
+
+  productNameCannotBeEmpty():boolean{
+    return this.createForm.value.productName! === '' ;
+  }
+
+  productPriceCannotBeEmpty():boolean{
+    return this.createForm.value.productPrice! === 0 ;
+  }
+
+  productQuantityCannotBeEmpty():boolean{
+    return this.createForm.value.productQuantity! === 0 ;
+  }
+
+  productMinimumCountCannotBeEmpty():boolean{
+    return this.createForm.value.productMinimumCount! === 0 ;
+  }
+
+  productDescriptionCannotBeEmpty():boolean{
+    return this.createForm.value.productDescription! === '' ;
+  }
+
+  bothFieldsCannotBeEmpty(): boolean {
+    // İki alanın da dolu olup olmadığını kontrol etmek için productNameCannotBeEmpty ve productDescriptionCannotBeEmpty fonksiyonlarını birleştirin
+    return this.productNameCannotBeEmpty() || this.productPriceCannotBeEmpty() || this.productQuantityCannotBeEmpty() || this.productMinimumCountCannotBeEmpty() || this.productDescriptionCannotBeEmpty(); 
+    // Eğer herhangi biri true döndürürse, en az bir alan boş demektir
+  }
+  clearFieldOnFocus(fieldName: string) {
+    const currentValue = this.createForm.get(fieldName)!.value;
+    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+      this.createForm.get(fieldName)!.setValue('');
+    }
   }
 }
