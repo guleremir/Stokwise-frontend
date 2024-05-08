@@ -13,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 
+
 @NgModule({
   declarations: [
     ProductComponent,
@@ -28,7 +29,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ReactiveFormsModule,
     SharedModule,
     NgxPaginationModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+   
   ]
 })
 export class ProductModule { }

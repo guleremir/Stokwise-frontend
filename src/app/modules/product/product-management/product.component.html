@@ -39,7 +39,7 @@
     <div class="card-container">
       <app-product-card
         class="ms-2 col-3 mb-5 mt-4"
-        *ngFor="let product of filteredProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: p }"
+        *ngFor="let product of productsPerPage "
         [product]="product"
         (edit)="editProduct($event)"
         (delete)="selectedProduct($event.id)"
@@ -80,7 +80,26 @@
   </div>
  
 </div>
-<div class="paginate-page">
-  <pagination-controls (pageChange)="p = $event" ></pagination-controls>
- 
+
+
+
+<div class="pagination-container">
+  <ul class="pagination">
+    <li [ngClass]="{ disabled: currentPage === 1 }">
+      <a
+        (click)="onPageChange(currentPage - 1)"
+        tabindex="-1"
+        aria-disabled="true"
+        > <span>&raquo;</span>
+      </a>
+    </li>
+    <li *ngFor="let page of totalPagesArray()" [class.active]="currentPage === page">
+      <a (click)="onPageChange(page)">{{ page }}</a>
+    </li>
+    <li [ngClass]="{ disabled: currentPage === totalPages }">
+      <a (click)="onPageChange(currentPage + 1)">
+        <span>&laquo;</span>
+      </a>
+    </li>
+  </ul>
 </div>
