@@ -1,5 +1,7 @@
+<div class="h-row">
+
 <div>
-    <button class="btn btn-add mb-2" (click)="addShelf()">Add Shelf</button>
+    <button class="btn btn-add " (click)="addShelf()">Add Shelf</button>
 </div>
 <div>
     <form [formGroup]="searchForm">
@@ -24,7 +26,7 @@
       </div>
     </form>
   </div>
-
+</div>
 @if (shelves.length == 0) {
     It seems there are no shelves...
     }  @else {
