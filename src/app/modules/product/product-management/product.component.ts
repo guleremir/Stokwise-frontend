@@ -34,7 +34,6 @@ export class ProductComponent {
     private route: ActivatedRoute,
     private productService: ProductService,
     private toastr: ToastrService,
-    private logger: LoggerService,
     private fb: FormBuilder,
   ) {}
   //Component çağrıldığında çalışan method.
@@ -106,7 +105,7 @@ export class ProductComponent {
   }
   
   filterProduct(data="") {
-    // Filtreleme bütün ürünler üzerinde yapılır
+    
     if (data) {
       this.filteredProducts = this.allProducts.filter(product => {
         return product.name?.toLowerCase().includes(data.toLowerCase());
@@ -115,7 +114,7 @@ export class ProductComponent {
       this.filteredProducts = this.allProducts;
     }
     this.totalPages = Math.ceil(this.filteredProducts.length / this.itemsPerPage);
-    this.currentPage = 1; // Filtreleme sonrası sayfayı sıfırla
+    this.currentPage = 1; 
     this.updatePageProducts();
   }
 
@@ -123,7 +122,7 @@ export class ProductComponent {
   currentPage = 1;
   onPageChange(pageNo: number) {
     if (pageNo < 1 || pageNo > this.totalPages) {
-      return; // Geçersiz sayfa numarası, işlemi durdur
+      return; 
     }
     this.currentPage = pageNo;
     this.updatePageProducts();
@@ -136,7 +135,7 @@ export class ProductComponent {
   }
 
   totalPagesArray(): number[] {
-    const numPagesToShow = 5; // Gösterilecek maksimum sayfa sayısı
+    const numPagesToShow = 5; 
   const currentPage = this.currentPage;
   const totalPages = this.totalPages;
   
@@ -144,21 +143,20 @@ export class ProductComponent {
   let endPage: number;
 
   if (totalPages <= numPagesToShow) {
-    // Toplam sayfa sayısı, gösterilecek maksimum sayfa sayısından az veya eşitse
+    
     startPage = 1;
     endPage = totalPages;
   } else {
-    // Toplam sayfa sayısı, gösterilecek maksimum sayfa sayısından fazlaysa
+   
     if (currentPage <= Math.floor(numPagesToShow / 2)) {
-      // Mevcut sayfa ilk sayfalardaysa
+   
       startPage = 1;
       endPage = numPagesToShow;
     } else if (currentPage + Math.floor(numPagesToShow / 2) >= totalPages) {
-      // Mevcut sayfa son sayfalardaysa
+     
       startPage = totalPages - numPagesToShow + 1;
       endPage = totalPages;
     } else {
-      // Mevcut sayfa orta kısımdaysa
       startPage = currentPage - Math.floor(numPagesToShow / 2);
       endPage = currentPage + Math.floor(numPagesToShow / 2);
     }
