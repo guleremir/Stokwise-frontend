@@ -69,39 +69,6 @@
 //     // flex-direction: column;
 // }
 
-@media (max-width: 768px) {
-    .head-row {
-        flex-direction: column;
-    }
-
-    .input {
-        padding: 10px; 
-    }
-}
-
-@media (max-width: 1000px) {
-  .head-row {
-      flex-direction: column;
-  }
-
-  .input {
-      padding: 10px; 
-  }
-
-  .card-container{
-    gap:20px;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1399px){
-  .input {
-    padding: 10px 40px;
-  }
-  .card-container{
-    gap:30px;
-  }
-
-}
 
 .btn-add{
     color:  var(--cardbg--color);
@@ -190,3 +157,37 @@
     color: red;
     font-size: 20px;
   }
+  
+@media (max-width: 768px) {
+    .head-row {
+        flex-direction: column;
+    }
+
+    .input {
+        padding: 10px; 
+    }
+}
+
+@media (max-width: 1000px) {
+  .head-row {
+      flex-direction: column;
+  }
+
+  .input {
+      padding: 10px; 
+  }
+
+  .card-container{
+    gap:20px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px){
+  .input {
+    padding: 10px 40px;
+  }
+  .card-container{
+    gap:30px;
+  }
+
+}

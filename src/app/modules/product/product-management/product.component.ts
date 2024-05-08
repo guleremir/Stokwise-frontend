@@ -72,6 +72,7 @@ export class ProductComponent {
       },
       error: (err) => {
         console.log(err);
+        this.toastr.error("Product quantity is not zero!");
       }
     });
   }
