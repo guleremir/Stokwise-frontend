@@ -14,7 +14,7 @@ import { Category } from '../../../shared/dto/category';
 })
 export class ProductComponent {
 
-  itemsPerPage= 1;
+  itemsPerPage= 8;
   allProducts: Product[] = [];
   productsPerPage: Product[] = [];
   searchForm = this.fb.nonNullable.group({
