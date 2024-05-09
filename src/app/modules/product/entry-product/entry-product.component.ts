@@ -4,7 +4,8 @@ import { ProductService } from '../../../shared/service/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+ 
 @Component({
   selector: 'app-entry-product',
   templateUrl: './entry-product.component.html',
@@ -19,6 +20,10 @@ export class EntryProductComponent {
   entryForm = this.fb.nonNullable.group({
     count: 0
   });
+  filteredProducts: Product[] = []; // Filtrelenmiş ürün listesi
+  filterQuery: string = ''; // Arama çubuğundan gelen girdi
+  productInput = new Subject<string>();
+
   
   constructor(
     private productService: ProductService,
@@ -26,13 +31,31 @@ export class EntryProductComponent {
     private fb: FormBuilder,
     private router: Router,
     ) { }
+
     ngOnInit(): void {
       this.productService.getAllProduct().subscribe({
-        next: (result) => {
-          this.products = result;
+        next: (products) => {
+          this.products = products;
+          this.filteredProducts = products;
         }
       });
     }
+
+    onSearch(event: { term: string; items: any[] }) {
+      this.filterProducts(event.term);
+    }
+
+    filterProducts(term: string): void {
+      if (!term) {
+        this.filteredProducts = this.products;
+      } else {
+        this.filteredProducts = this.products.filter(product =>
+          product.name.toLowerCase().includes(term.toLowerCase())
+        );
+      }
+    }
+
+   
   
   addProductToShelf() {
     if (this.selectedProduct) {

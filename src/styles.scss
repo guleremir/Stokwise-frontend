@@ -49,3 +49,11 @@ button{
     --pageheader-color: #2B384E;
     --adminmain-color: #f1f4f9;
   }
+
+  .ng-dropdown-panel{
+    position: relative !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items{
+    width: 250px;
+}
