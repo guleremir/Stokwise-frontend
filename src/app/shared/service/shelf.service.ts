@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SuccessResponse } from '../dto/successResponse';
 import { AdminProduct } from '../dto/admin-product';
 import { AdminShelf } from '../dto/admin-shelf';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +38,13 @@ export class ShelfService {
     return this.httpClient.post<AdminProduct[]>('/getAllProductsFromShelf', { id });
   }
 
-  getAllTableShelves():Observable<AdminShelf[]> {
+  /* getAllTableShelves():Observable<AdminShelf[]> {
     return this.httpClient.get<AdminShelf[]>('/getAllTableShelves');
-  }
+  } */
   
+  getAllTableShelves(): Observable<AdminShelf[]> {
+    return this.httpClient.get<AdminShelf[]>('/getAllTableShelves').pipe(
+      map((shelves: AdminShelf[]) => shelves.sort((a, b) => b.productCount - a.productCount))
+    );
+  }
 }
