@@ -197,6 +197,7 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  
 }
   
 .pagination {
@@ -204,9 +205,9 @@
   display: flex;
   gap: 5px;
   padding: 7px;
-  border: 1px solid #E2E5FF;
-  border-radius: 50px;
-  background: #ffffff;
+  border: 1px solid var(--cardbg--color);
+  border-radius: 30px;
+  background: var(--cardbg--color);
   
 }
   
@@ -214,26 +215,32 @@
   display: block;
   padding: 5px 12px;
   text-decoration: none;
-  color: #000;
+  color: var(--darkblue-color);
   font-weight: bold;
   font-size: 15px;
   cursor: pointer;
+  transition: all .3s ease-in-out;
 }
   
 .pagination li a:hover {
-  background-color: #000;
-  color: #fff;
+  
+  color: var(--cardbg--color);
   border-radius: 50px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--darkorange-color);
 }
 
 
  
 .pagination li.active a {
   border-radius: 50px;
-  background-color: #000;
-  color: #fff;
+  // font-size: 18px;
+  font-weight: 500;
+  color: var(--darkorange-color);
 }
   
 .pagination li a i {
   margin: 0 5px;
+  
 }

@@ -1,12 +1,12 @@
 <form class="formControl" [formGroup]="createForm">
     <div class="mb-3">
       <label for="txtProductName" class="form-label">Product Name</label>
-      <input formControlName="productName" type="text" class="form-control" id="txtProductName">
+      <input formControlName="productName" type="text" class="form-control" id="txtProductName" placeholder="Product Name">
     </div>
     <div class="mb-3">
       <label class="form-label">Category Name</label>
-      
       <select formControlName="productCategoryID" class="form-select" aria-label="Default select example">
+        <option value="" selected disabled hidden>Select Category</option>
         @for (category of categories; track category.id) {
           <option value="{{category.id}}">{{category.name}}</option>
         }
@@ -30,7 +30,7 @@
     </div>
     <div class="mb-3">
       <label for="txtProductDescription" class="form-label">Description</label>
-      <input formControlName="productDescription" type="text" class="form-control" id="txtProductDescription">
+      <input formControlName="productDescription" type="text" class="form-control" id="txtProductDescription" placeholder="Type Your Description...">
     </div>
     <!-- <div>
       <br>
