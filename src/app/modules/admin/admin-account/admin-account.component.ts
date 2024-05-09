@@ -4,6 +4,8 @@ import { LoginService } from '../../../core/service/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../../../core/service/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../../../shared/service/user.service';
+import { User } from '../../../shared/dto/user';
 
 @Component({
   selector: 'app-admin-account',
@@ -25,23 +27,37 @@ export class AdminAccountComponent {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
+    private userService: UserService
 
   ) {}
 
   submit() {
     let oldPassword = this.accountForm.get('oldPassword')!.value;
     let newPassword = this.accountForm.get('newPassword')!.value;
-    this.accountService.changePassword({oldPassword, newPassword }).subscribe({
-      next: (sonuc) => {
-        console.log(sonuc);
-        this.toastr.info("Password Successfully Changed !");
-        this.router.navigate(['..'], { relativeTo: this.route });
-      }
-    });
+    let checkPassword = this.accountForm.get('checkPassword')!.value;
+    if(newPassword === checkPassword){
+      this.accountService.changePassword({oldPassword, newPassword }).subscribe({
+        next: (sonuc) => {
+          this.toastr.info("Password Successfully Changed!");
+          this.router.navigate(['..'], { relativeTo: this.route });
+        }
+      });
+    }
+    else{
+      this.toastr.error('Passwords do not match !');
+    }
   }
 
   cancel() {
     this.router.navigate(['/adminPanel/products']);
+  }
+
+  pswCannotBeEmpty():boolean{
+    return this.accountForm.value.newPassword! === '' ;
+  }
+
+  verifyPswCannotBeEmpty():boolean{
+    return this.accountForm.value.checkPassword! === '' ;
   }
    
   edit(){

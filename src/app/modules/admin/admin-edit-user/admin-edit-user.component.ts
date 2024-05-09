@@ -53,7 +53,7 @@ export class AdminEditUserComponent  implements OnInit {
         email : this.userService.editingUser.email,
         password : this.userService.editingUser.password
       });
-    } else{}
+    }
   }
 
   submit() {

@@ -235,8 +235,9 @@
  
 .pagination li.active a {
   border-radius: 50px;
-  
-  
+  // font-size: 18px;
+  font-weight: 500;
+  color: var(--darkorange-color);
 }
   
 .pagination li a i {

@@ -74,8 +74,7 @@ export class AccountManagementComponent implements  OnInit {
     let newPassword = this.updateForm.get('newPassword')!.value;
     this.accountService.changePassword({oldPassword, newPassword }).subscribe({
       next: (sonuc) => {
-        console.log(sonuc);
-        this.toastr.info("Password Successfully Changed !");
+        this.toastr.info("Password Successfully Changed!");
         this.router.navigate(['/homepage/products'], { relativeTo: this.route });
       }
     });
