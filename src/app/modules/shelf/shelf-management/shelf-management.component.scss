@@ -204,3 +204,56 @@ td, th {
    .editselect:active .icon svg {
     transform: scale(0.8);
    }
+
+   /* PAGINATION */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    
+  }
+    
+  .pagination {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+    padding: 7px;
+    border: 1px solid var(--cardbg--color);
+    border-radius: 30px;
+    background: var(--cardbg--color);
+    
+  }
+    
+  .pagination li a {
+    display: block;
+    padding: 5px 12px;
+    text-decoration: none;
+    color: var(--darkblue-color);
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+  }
+    
+  .pagination li a:hover {
+    
+    color: var(--cardbg--color);
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--darkorange-color);
+  }
+  
+  
+   
+  .pagination li.active a {
+    border-radius: 50px;
+    
+    
+  }
+    
+  .pagination li a i {
+    margin: 0 5px;
+    
+  }
+  

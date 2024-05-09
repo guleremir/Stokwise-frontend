@@ -9,8 +9,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { EntryProductComponent } from './entry-product/entry-product.component';
 import { DispatchProductComponent } from './dispatch-product/dispatch-product.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 
@@ -28,8 +27,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ProductRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    NgxPaginationModule,
-    MatPaginatorModule,
+  
    
   ]
 })
