@@ -71,6 +71,7 @@ export class AdminProductManagementComponent {
       },
       error: (err) => {
         console.log(err);
+        this.toastr.error("Product quantity is not zero!");
       }
     });
   }

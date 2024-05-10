@@ -40,9 +40,9 @@
                 </tr>
             </thead>
             <tbody>
-                @for (shelf of filteredShelves; track shelf.id; let i = $index) {
+                @for (shelf of selvesPerPage; track shelf.id; let i = $index) {
                     <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
-                        <td>{{ i + 1 }}</td>
+                        <td>{{  (currentPage - 1) * itemsPerPage + i + 1  }}</td>
                         <td>{{ shelf.capacity }}</td>
                         <td>{{ shelf.productCount }}</td>
                         <td>{{ shelf.productCategory }}</td>
@@ -93,6 +93,28 @@
     }
 }
 </div>
+
+<div class="pagination-container">
+    <ul class="pagination">
+      <li [ngClass]="{ disabled: currentPage === 1 }">
+        <a
+          (click)="onPageChange(currentPage - 1)"
+          tabindex="-1"
+          aria-disabled="true"
+          > <span>&laquo;</span>
+        </a>
+      </li>
+      <li *ngFor="let page of totalPagesArray()" [class.active]="currentPage === page">
+        <a (click)="onPageChange(page)">{{ page }}</a>
+      </li>
+      <li [ngClass]="{ disabled: currentPage === totalPages }">
+        <a (click)="onPageChange(currentPage + 1)">
+          <span>&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
 <br>
 <br>
 <app-are-you-sure (areYouSureEvent)="deleteShelf(selectedShelf)" [areYouSureQuestion]="areYouSureQuestion" >

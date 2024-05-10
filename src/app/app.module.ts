@@ -16,12 +16,9 @@ import { APP_CONFIG } from './app.config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AccountManagementComponent } from './core/component/account-management/account-management.component';
 import { MenuComponent } from './core/component/menu/menu/menu.component';
-
-import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from "./shared/shared.module";
-// import { NgxPaginationModule } from 'ngx-pagination';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { NgxPaginationModule } from 'ngx-pagination';
+
+
 
 
 
@@ -54,9 +51,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         HttpClientModule,
         FormsModule,
         SharedModule,
-        // NgxPaginationModule,
-        MatPaginatorModule,
-        NgxPaginationModule,
+      
 
         
     ]
