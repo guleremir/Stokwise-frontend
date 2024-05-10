@@ -30,9 +30,9 @@ import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     SharedModule,
     NgxPaginationModule,
-    MatPaginatorModule,
-    FormsModule,
-    NgSelectModule
+    MatPaginatorModule
+    
+  
    
   ]
 })
