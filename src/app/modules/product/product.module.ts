@@ -9,9 +9,11 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { EntryProductComponent } from './entry-product/entry-product.component';
 import { DispatchProductComponent } from './dispatch-product/dispatch-product.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
+
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
+
 
 
 
@@ -29,10 +31,20 @@ import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
     ProductRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+
     NgxPaginationModule,
+<<<<<<< HEAD
     MatPaginatorModule
     
   
+=======
+    MatPaginatorModule,
+    FormsModule,
+    NgSelectModule
+
+  
+
+>>>>>>> origin/nazlint
    
   ]
 })
