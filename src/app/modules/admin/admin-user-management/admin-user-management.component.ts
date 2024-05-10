@@ -55,6 +55,7 @@ export class AdminUserManagementComponent {
   }
 
   addUser(){
+    this.userService.editingUser = null;
     this.router.navigate(['addUser'], { relativeTo: this.route });
   }
   editUser(user: User) {

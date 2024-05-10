@@ -52,10 +52,11 @@ export class AdminCategoryManagementComponent implements OnInit {
         this.categoryService.deleteCategory(this.selectedCategory.id).subscribe({
           next: () => {
             this.categories = this.categories.filter(c => c.id!== this.selectedCategory!.id);
-            this.toastr.success("Category Successfully Deleted !");
+            this.toastr.success("Category Successfully Deleted!");
           },
           error: (err)=> {
             console.log(err);
+            this.toastr.error("Error while deleting the category because there is a product in the category!");
           }
         }) 
     }
