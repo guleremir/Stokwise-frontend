@@ -18,9 +18,9 @@ export class ShelfManagementComponent implements OnInit {
     searchText: [''] // Arama metni için değişken eklendi
   });
 
-
+  itemsPerPage= 8;
   selectedShelf: AdminShelf | null = null;
-
+  selvesPerPage: AdminShelf[] = [];
   areYouSureQuestion = 'Are you sure you want to edit this shelf ?'
 
   constructor(
@@ -43,10 +43,13 @@ export class ShelfManagementComponent implements OnInit {
     })
   }
 
+  
   loadShelves(){
     this.shelfService.getAllTableShelves().subscribe({
       next: (shelf => {
         this.shelves = shelf;
+        this.totalPages= Math.ceil(this.shelves.length/this.itemsPerPage)
+        this.updatePageShelves();
         this.filterShelf();
       })
     });
@@ -61,7 +64,12 @@ export class ShelfManagementComponent implements OnInit {
                 return shelf.productCategory?.toLowerCase().includes(data.toLowerCase())
       }
       );
+    } else {
+      this.filteredShelves = this.shelves;
     }
+    this.totalPages = Math.ceil(this.filteredShelves.length / this.itemsPerPage);
+    this.currentPage = 1; 
+    this.updatePageShelves();
   }
   
   addShelf(){
@@ -96,7 +104,7 @@ export class ShelfManagementComponent implements OnInit {
       this.shelfService.deleteShelf(shelf.id).subscribe({
       next: () => {
         this.shelves = this.shelves.filter(s => s.id!== shelf.id);
-        this.filteredShelves = this.filteredShelves.filter(s => s.id !== shelf.id); // Filtrelenmiş diziden de kaldır
+        this.filteredShelves = this.filteredShelves.filter(s => s.id !== shelf.id);
         this.toastr.success("Shelf Successfully Deleted !");
       },
       error: (err)=> {
@@ -104,5 +112,51 @@ export class ShelfManagementComponent implements OnInit {
       }
       })
     }
+  }
+  updatePageShelves(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    this.selvesPerPage = this.filteredShelves.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+  
+
+  totalPages = 0;
+  currentPage = 1;
+  onPageChange(pageNo: number) {
+    if (pageNo < 1 || pageNo > this.totalPages) {
+      return; 
+    }
+    this.currentPage = pageNo;
+    this.updatePageShelves();
+  }
+
+
+  totalPagesArray(): number[] {
+    const numPagesToShow = 5; 
+  const currentPage = this.currentPage;
+  const totalPages = this.totalPages;
+  
+  let startPage: number;
+  let endPage: number;
+
+  if (totalPages <= numPagesToShow) {
+    
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+   
+    if (currentPage <= Math.floor(numPagesToShow / 2)) {
+   
+      startPage = 1;
+      endPage = numPagesToShow;
+    } else if (currentPage + Math.floor(numPagesToShow / 2) >= totalPages) {
+     
+      startPage = totalPages - numPagesToShow + 1;
+      endPage = totalPages;
+    } else {
+      startPage = currentPage - Math.floor(numPagesToShow / 2);
+      endPage = currentPage + Math.floor(numPagesToShow / 2);
+    }
+  }
+  return Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index);
   }
 }
