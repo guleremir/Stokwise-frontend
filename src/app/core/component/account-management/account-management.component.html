@@ -1,35 +1,32 @@
 <form class="formControl" [formGroup]="updateForm">
     <div class="mb-3">
       <label for="txtEmail" class="form-label">Email</label>
-      <input formControlName="email" type="text" class="form-control" id="txtEmail" readonly>
+      <input formControlName="email" type="email" class="form-control" id="txtEmail" readonly>
     </div>
     <div class="mb-3">
       <label for="txtPassword" class="form-label">Old Password</label>
-      <input formControlName="oldPassword" type="text" class="form-control" [class.is-invalid]="pswCannotBeEmpty()" id="txtPassword" min="0" required>
-      @if(pswCannotBeEmpty()){
-        <div class="invalid-feedback">
-          This field cannot be left blank! Please enter a password!
+      <input formControlName="oldPassword" type="password" class="form-control" [class.is-invalid]="!updateForm.get('oldPassword')?.valid && updateForm.get('oldPassword')?.touched" id="txtPassword" min="0" required aria-describedby="oldPassword">
+        <div *ngIf="!updateForm.get('oldPassword')?.valid && updateForm.get('oldPassword')?.touched" class="small text-danger">
+          <div *ngIf="updateForm.get('oldPassword')?.errors?.['required'] ">This field cannot be left blank! Please enter a password!</div>
+          <div *ngIf="updateForm.get('oldPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
-      }
     </div>
     <div class="mb-3">
       <label for="txtPassword" class="form-label">New Password</label>
-      <input formControlName="newPassword" type="text" class="form-control" [class.is-invalid]="pswCannotBeEmpty()" id="txtPassword" min="0" required>
-      @if(pswCannotBeEmpty()){
-        <div class="invalid-feedback">
-          This field cannot be left blank! Please enter a password!
+      <input formControlName="newPassword" type="password" class="form-control" [class.is-invalid]="!updateForm.get('newPassword')?.valid && updateForm.get('newPassword')?.touched" id="txtPassword" min="0" required aria-describedby="newPassword">
+        <div *ngIf="!updateForm.get('newPassword')?.valid && updateForm.get('newPassword')?.touched" class="small text-danger">
+          <div *ngIf="updateForm.get('newPassword')?.errors?.['required'] ">This field cannot be left blank! Please enter a password!</div>
+          <div *ngIf="updateForm.get('newPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
-      }
     </div>
 
     <div class="mb-3">
       <label for="txtConfirmPassword" class="form-label">Verify Password</label>
-      <input formControlName="checkPassword" type="text" class="form-control" [class.is-invalid]="confirmPswCannotBeEmpty()" id="txtConfirmPassword" min="0">
-      @if(confirmPswCannotBeEmpty()){
-        <div class="invalid-feedback">
-          This field cannot be left blank! Please verify the password you entered!
+      <input formControlName="checkPassword" type="password" class="form-control" [class.is-invalid]="!updateForm.get('checkPassword')?.valid && updateForm.get('checkPassword')?.touched" id="txtPassword" min="0" required aria-describedby="checkPassword">
+        <div *ngIf="!updateForm.get('checkPassword')?.valid && updateForm.get('checkPassword')?.touched" class="small text-danger">
+          <div *ngIf="updateForm.get('checkPassword')?.errors?.['required'] ">This field cannot be left blank! Please verify the password you entered!</div>
+          <div *ngIf="updateForm.get('checkPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
-      }
     </div>
     <div class="mb-3">
       <label for="roleList" class="form-label">Roles</label>

@@ -1,30 +1,26 @@
 <form class="formControl" [formGroup]="createForm" (submit)="submit()">
     <div class="mb-3">
       <label for="txtEmail" class="form-label">Email</label>
-      <input formControlName="email" type="email" class="form-control" [class.is-invalid]="emailIsRequired()" id="txtEmail" placeholder="name@stokwise.com" required [disabled]="!emailIsRequired()" >
-      @if(emailIsRequired()){
-        <div class="invalid-feedback">
-          Please provide a valid email address!
-        </div>
-      }
+      <input formControlName="email" type="email" class="form-control" [class.is-invalid]="!createForm.get('email')?.valid && createForm.get('email')?.touched" id="txtEmail" placeholder="name@stokwise.com" [disabled]="!emailIsRequired()" required aria-describedby="email">
+      <div *ngIf="!createForm.get('email')?.valid && createForm.get('email')?.touched" class="small text-danger">
+        <div *ngIf="createForm.get('email')?.errors?.['required'] ">Please provide a valid email address!</div>
+      </div>
     </div>
     <div class="mb-3">
       <label for="txtPassword" class="form-label">Password</label>
-      <input formControlName="password" type="text" class="form-control" [class.is-invalid]="pswCannotBeEmpty()" id="txtPassword" min="0" required>
-      @if(pswCannotBeEmpty()){
-        <div class="invalid-feedback">
-          This field cannot be left blank! Please enter a password!
+      <input formControlName="password" type="password" class="form-control" [class.is-invalid]="!createForm.get('password')?.valid && createForm.get('password')?.touched" id="txtPassword" min="0" required aria-describedby="password">
+        <div *ngIf="!createForm.get('password')?.valid && createForm.get('password')?.touched" class="small text-danger">
+          <div *ngIf="createForm.get('password')?.errors?.['required'] ">This field cannot be left blank! Please enter a password!</div>
+          <div *ngIf="createForm.get('password')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
-      }
     </div>
     <div class="mb-3">
       <label for="txtConfirmPassword" class="form-label">Confirm Password</label>
-      <input formControlName="confirmPassword" type="text" class="form-control" [class.is-invalid]="confirmPswCannotBeEmpty()" id="txtConfirmPassword" min="0" required>
-      @if(confirmPswCannotBeEmpty()){
-        <div class="invalid-feedback">
-          This field cannot be left blank! Please confirm the password you entered!
+      <input formControlName="confirmPassword" type="password" class="form-control" [class.is-invalid]="!createForm.get('confirmPassword')?.valid && createForm.get('confirmPassword')?.touched" id="txtPassword" min="0" required aria-describedby="confirmPassword">
+        <div *ngIf="!createForm.get('confirmPassword')?.valid && createForm.get('confirmPassword')?.touched" class="small text-danger">
+          <div *ngIf="createForm.get('confirmPassword')?.errors?.['required'] ">This field cannot be left blank! Please confirm the password you entered!</div>
+          <div *ngIf="createForm.get('confirmPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
-      }
     </div>
     <div class="mb-3">
       <label class="form-label">Roles</label>
@@ -40,13 +36,6 @@
         <label class="form-check-label" for="{{ 'chk_' + role.id }}">{{ role.name }}</label>
       </div>
     </div>
-    
-
-    <!-- <div>
-      <br>
-      <button type="submit" class="btn btn-primary">Add User</button>
-      <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
-    </div> -->
 
     <div class="mt-2">    
       <button type="button" class="editselect add ms-2 btn-btn"  data-bs-toggle="modal" data-bs-target="#areyousure" [disabled]="userCannotBeEmpty() || !disabledButton()">
