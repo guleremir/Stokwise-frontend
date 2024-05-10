@@ -33,18 +33,9 @@ import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
     SharedModule,
 
     NgxPaginationModule,
-<<<<<<< HEAD
     MatPaginatorModule
     
   
-=======
-    MatPaginatorModule,
-    FormsModule,
-    NgSelectModule
-
-  
-
->>>>>>> origin/nazlint
    
   ]
 })
