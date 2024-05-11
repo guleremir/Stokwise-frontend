@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from '../../../core/service/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../../../core/service/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../../shared/service/user.service';
-import { User } from '../../../shared/dto/user';
 
 @Component({
   selector: 'app-admin-account',
@@ -27,7 +24,6 @@ export class AdminAccountComponent {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
 
   ) {}
 
