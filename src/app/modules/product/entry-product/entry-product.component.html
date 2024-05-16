@@ -29,6 +29,32 @@
                         </ul>
                     </div>
                 </div>
+                <div class="card flex justify-content-center">
+                   
+                    <p-dropdown 
+                        [options]="products"
+                        [(ngModel)]="selectedProduct"
+                        optionLabel="name"
+                        [filter]="true"
+                        filterBy="name"
+                        [showClear]="true"
+                        placeholder="Select Product"
+                        class="custom-dropdown">
+                        <ng-template pTemplate="selectedItem" let-selectedOption>
+                            <div class="flex align-items-center gap-2">
+                                <div>{{ selectedOption.name }}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-product pTemplate="item">
+                            <div class="p-dropdown-item dropdown-item">
+                                <div class="product-name">{{ product.name }}</div>
+                                <div class="product-quantity">{{ product.quantity - product.unitInStock }}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+               
+                </div>
+                
             </div>
             <div style="float:left">
                 <div id="selected-image" style="align-items: center; display:flex;margin-left:5px"></div>

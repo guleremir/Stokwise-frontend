@@ -13,7 +13,9 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
-
+import { DropdownModule } from 'primeng/dropdown';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -33,7 +35,11 @@ import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
     SharedModule,
 
     NgxPaginationModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    DropdownModule,
+    
+   
+    FormsModule
     
   
    
