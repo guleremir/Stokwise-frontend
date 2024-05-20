@@ -29,4 +29,9 @@ export class UserService {
   deleteUser(user: User): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/admin/user/delete', user);
   }
+  getloggedInUserEmail(): String{
+    const userEmail = localStorage.getItem('email') || '';
+    return userEmail;
+  }
+
 }

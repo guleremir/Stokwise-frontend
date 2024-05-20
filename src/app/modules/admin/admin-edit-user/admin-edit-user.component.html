@@ -1,11 +1,14 @@
 <form class="formControl" [formGroup]="updateForm" >
   <div class="mb-3">
     <label for="txtEmail" class="form-label">Email</label>
-    <input formControlName="email" type="email" class="form-control" id="txtEmail" readonly>
+    <input formControlName="email" type="email" class="form-control" id="txtEmail" readonly style="height: 49px;">
   </div>
   <div class="mb-3">
     <label for="txtPassword" class="form-label">Password</label>
-    <input formControlName="password" type="password" class="form-control" [class.is-invalid]="pswCannotBeEmpty()" id="txtPassword" min="0" required>
+    <!-- <input formControlName="password" type="password" class="form-control" [class.is-invalid]="pswCannotBeEmpty()" id="txtPassword" min="0" required> -->
+    <div style="width: 100%;">
+      <p-password [toggleMask]="true" formControlName="password" />
+    </div>
     @if(pswCannotBeEmpty()){
       <div class="invalid-feedback">
         This field cannot be left blank! Please enter a password!
@@ -15,7 +18,10 @@
 
   <div class="mb-3">
     <label for="txtConfirmPassword" class="form-label">Verify Password</label>
-    <input formControlName="confirmPassword" type="password" class="form-control" [class.is-invalid]="!updateForm.get('confirmPassword')?.valid && updateForm.get('confirmPassword')?.touched" id="txtConfirmPassword" min="0" required aria-describedby="confirmPassword">
+    <div style="width: 100%;">
+      <p-password [toggleMask]="true" formControlName="confirmPassword" />
+    </div>
+    <!-- <input formControlName="confirmPassword" type="password" class="form-control" [class.is-invalid]="!updateForm.get('confirmPassword')?.valid && updateForm.get('confirmPassword')?.touched" id="txtConfirmPassword" min="0" required aria-describedby="confirmPassword"> -->
         <div *ngIf="!updateForm.get('confirmPassword')?.valid && updateForm.get('confirmPassword')?.touched" class="small text-danger">
           <div *ngIf="updateForm.get('confirmPassword')?.errors?.['required'] ">This field cannot be left blank! Please verify the password you entered!</div>
           <div *ngIf="updateForm.get('confirmPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>

@@ -17,6 +17,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AccountManagementComponent } from './core/component/account-management/account-management.component';
 import { MenuComponent } from './core/component/menu/menu/menu.component';
 import { SharedModule } from "./shared/shared.module";
+import { PasswordModule } from 'primeng/password';
 
 
 
@@ -51,7 +52,7 @@ import { SharedModule } from "./shared/shared.module";
         HttpClientModule,
         FormsModule,
         SharedModule,
-      
+        PasswordModule
 
         
     ]
