@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../shared/service/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../../shared/dto/user';
 import { RoleService } from '../../../shared/service/role.service';
 import { UserRole } from '../../../shared/dto/userRole';
 import { Role } from '../../../shared/dto/role';
+import { passwordCheckValidator } from './password-validator.directive';
 
 @Component({
   selector: 'app-admin-edit-user',
@@ -16,10 +17,10 @@ import { Role } from '../../../shared/dto/role';
 export class AdminEditUserComponent  implements OnInit {
   updateForm = this.fb.nonNullable.group({
     email: "",
-    password: "",
-    confirmPassword: "",
+    password: ["", Validators.minLength(3)],
+    confirmPassword: ["", Validators.minLength(3)],
     roles: [[]]
-  })
+  },{validators: [passwordCheckValidator()]})
   userID = "";
   roles: Role[]= []; // Roller dizisini tanımla
 
@@ -67,7 +68,7 @@ export class AdminEditUserComponent  implements OnInit {
       };
     });
     
-      if (password === confirmPassword) {
+      // if (password === confirmPassword) {
         this.userService.updateUser(new User(this.userID, email, password, selectedRoles)).subscribe({
           next: (result) => {
             this.toastr.info('User Successfully Saved !');
@@ -77,9 +78,9 @@ export class AdminEditUserComponent  implements OnInit {
             this.toastr.error('An error occurred while updating user !');
           }
         });
-      } else {
-        this.toastr.error('Passwords do not match !');
-      }
+      // } else {
+      //   this.toastr.error('Passwords do not match !');
+      // }
   }
 
   cancel() {
