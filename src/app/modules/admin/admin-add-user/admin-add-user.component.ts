@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { UserService } from '../../../shared/service/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../../shared/dto/user';
 import { RoleService } from '../../../shared/service/role.service';
 import { Role } from '../../../shared/dto/role';
 import { UserRole } from '../../../shared/dto/userRole';
+import { passwordCheckValidator } from '../admin-edit-user/password-validator.directive';
 
 @Component({
   selector: 'app-admin-add-user',
@@ -16,10 +17,10 @@ import { UserRole } from '../../../shared/dto/userRole';
 export class AdminAddUserComponent {
   createForm = this.fb.nonNullable.group({
     email:"",
-    password:"",
-    confirmPassword:"",
+    password:["", Validators.minLength(3)],
+    confirmPassword:["", Validators.minLength(3)],
     roles: [[]]
-  })
+  },{validators: [passwordCheckValidator()]})
   userID = "";
   roles: Role[]= []; // Roller dizisini tanımla
 
@@ -65,17 +66,17 @@ export class AdminAddUserComponent {
         name: role.name 
       };
     });
-    if(password == confirmPassword) {
+    // if(password == confirmPassword) {
       this.userService.addUser(new User(this.userID, email,password,selectedRoles)).subscribe({
         next: () => {
           this.toastr.info('User Successfully Created !');
           this.router.navigate(['..'], { relativeTo: this.route });
         }
       });
-    }
-     else {
-      this.toastr.error('Passwords do not match !');
-    }
+    // }
+    //  else {
+    //   this.toastr.error('Passwords do not match !');
+    // }
   }
   
   cancel() {
