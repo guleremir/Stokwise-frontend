@@ -8,17 +8,23 @@
     </div>
     <div class="mb-3">
       <label for="txtPassword" class="form-label">Password</label>
-      <input formControlName="password" type="password" class="form-control" [class.is-invalid]="!createForm.get('password')?.valid && createForm.get('password')?.touched" id="txtPassword" min="0" required aria-describedby="password">
-        <div *ngIf="!createForm.get('password')?.valid && createForm.get('password')?.touched" class="small text-danger">
-          <div *ngIf="createForm.get('password')?.errors?.['required'] ">This field cannot be left blank! Please enter a password!</div>
+      <!-- <input formControlName="password" type="password" class="form-control" [class.is-invalid]="!createForm.get('password')?.valid && createForm.get('password')?.touched" id="txtPassword" min="0" required aria-describedby="password"> -->
+      <div style="width: 100%;">
+        <p-password [toggleMask]="true" formControlName="password" />
+      </div>  
+      <div *ngIf="!createForm.get('password')?.valid && createForm.get('password')?.touched" class="small text-danger">
+          <!-- <div *ngIf="createForm.get('password')?.errors?.['required'] ">This field cannot be left blank! Please enter a password!</div> -->
           <div *ngIf="createForm.get('password')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
     </div>
     <div class="mb-3">
       <label for="txtConfirmPassword" class="form-label">Confirm Password</label>
-      <input formControlName="confirmPassword" type="password" class="form-control" [class.is-invalid]="!createForm.get('confirmPassword')?.valid && createForm.get('confirmPassword')?.touched" id="txtPassword" min="0" required aria-describedby="confirmPassword">
+      <!-- <input formControlName="confirmPassword" type="password" class="form-control" [class.is-invalid]="!createForm.get('confirmPassword')?.valid && createForm.get('confirmPassword')?.touched" id="txtPassword" min="0" required aria-describedby="confirmPassword"> -->
+      <div style="width: 100%;">
+        <p-password [toggleMask]="true" formControlName="confirmPassword" />
+      </div>
         <div *ngIf="!createForm.get('confirmPassword')?.valid && createForm.get('confirmPassword')?.touched" class="small text-danger">
-          <div *ngIf="createForm.get('confirmPassword')?.errors?.['required'] ">This field cannot be left blank! Please confirm the password you entered!</div>
+          <!-- <div *ngIf="createForm.get('confirmPassword')?.errors?.['required'] ">This field cannot be left blank! Please confirm the password you entered!</div> -->
           <div *ngIf="createForm.get('confirmPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
     </div>
