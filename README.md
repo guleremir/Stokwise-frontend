@@ -1,5 +1,4 @@
 # Warehouse Management System - Pair 7
-
 ## Project Name: Stokwise
 
 ![Stokwise-Demo](https://github.com/guleremir/Stokwise-frontend/blob/oguzhan/src/assets/other-img/stokwise-homepage.png)
