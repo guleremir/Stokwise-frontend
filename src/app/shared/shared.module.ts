@@ -9,7 +9,6 @@ import { AreYouSureComponent } from './components/are-you-sure/are-you-sure.comp
 import { PaginationPipe } from './pipe/pagination.pipe';
 
 
-
 @NgModule({
   declarations: [
     ProductCardComponent,
