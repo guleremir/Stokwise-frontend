@@ -11,8 +11,16 @@
               </ng-container>
             </h5>
             <div class="features">
-            <p class="card-text">
-                <span class="bold">Category :</span><span> {{product.category.name}}</span>
+            <p class="card-text" data-toggle="tooltip" data-placement="top" title="{{product.category.name}}">
+                <span class="bold">Category :</span>
+                <span>
+                    <ng-container *ngIf="product.category.name.length > 17">
+                        {{ product.category.name | slice:0:17 }}...
+                    </ng-container>
+                    <ng-container *ngIf="product.category.name.length <= 17">
+                        {{ product.category.name }}
+                    </ng-container>
+                </span>
             </p>
             <p class="card-text">
                 <span class="bold">Price :</span><span> $ {{product.price}}</span>
