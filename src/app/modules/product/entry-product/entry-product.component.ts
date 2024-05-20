@@ -45,9 +45,10 @@ export class EntryProductComponent {
         error: (err) => {
           console.log(err);
             this.toastr.error(err.error);
-          
         }
       });
+    } else{
+      console.log("ERROR")
     }
   }
 

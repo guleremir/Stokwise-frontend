@@ -1,3 +1,4 @@
+import { PasswordModule } from 'primeng/password';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -49,7 +50,8 @@ import { AdminEditCategoryComponent } from './admin-edit-category/admin-edit-cat
     AdminRoutingModule, 
     ReactiveFormsModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    PasswordModule
   ]
 })
 export class AdminModule { }

@@ -4,6 +4,7 @@ import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Shelf } from '../../../shared/dto/shelf';
+import { AdminShelf } from '../../../shared/dto/admin-shelf';
 
 @Component({
   selector: 'app-edit-shelf',
@@ -11,6 +12,8 @@ import { Shelf } from '../../../shared/dto/shelf';
   styleUrl: './edit-shelf.component.scss'
 }) 
 export class EditShelfComponent implements OnInit {
+
+  shelves: Shelf[] = [];
 
   areYouSureQuestion = 'Are you sure you want to edit this shelf ?'
 
@@ -30,6 +33,14 @@ export class EditShelfComponent implements OnInit {
         capacity : this.shelfService.editingShelf.capacity,
       });
     }
+    this.shelfService.getAllShelves().subscribe({
+      next: (data: Shelf[]) => {
+        this.shelves = data;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
   constructor(

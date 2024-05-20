@@ -19,6 +19,7 @@ export class LoginService {
     this.token = localStorage.getItem('token') || "";
     this.email = localStorage.getItem('email') || "";
     this.password = localStorage.getItem('password') || "";
+    this.loggedIn = true;
   }
 
   scheduleLogout() {
@@ -77,5 +78,4 @@ export class LoginService {
     this.roles = [];
     localStorage.clear();
   }
-
 }

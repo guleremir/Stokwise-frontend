@@ -1,12 +1,12 @@
 <form [formGroup]="entryForm">
     <div class="row">
         <div class="col">
-            <div style="float:left">
+            <div style="float:left; width: 100vh;">
                 <div class="dropdown">
                     <div class="dropdown">
-                        Products on shelves: 
+                        Products on Shelves: 
                     </div>
-                    <div>
+                    <!-- <div>
                         <button class="form-select mt-2 mb-4" type="button" id="fruitSelectButton"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <div>
@@ -27,7 +27,31 @@
                                 </li>
                             }
                         </ul>
-                    </div>
+                    </div> -->
+                </div>
+                <div class="card flex justify-content-center mb-2" style="width: 405px; height: 50px">
+                    <p-dropdown 
+                         [options]="products"
+                         [(ngModel)]="selectedProduct"
+                         optionLabel="name"
+                         [filter]="true"
+                         filterBy="name"
+                         [showClear]="true"
+                         placeholder="Select Product"
+                         class="custom-dropdown"
+                         [style]="{width: '100%'}">
+                        <ng-template pTemplate="selectedItem" let-selectedProduct>
+                                <div class="flex align-items-center gap-2">
+                                    <div>{{ selectedProduct?.name }}</div>
+                                </div>
+                        </ng-template>
+                        <ng-template let-product pTemplate="item">
+                                    <div class="p-dropdown-item dropdown-item" (click)="productSelect(product)">
+                                        <div class="product-name" >{{ product.name }}</div>
+                                        <div class="product-unitInStock">{{ product.unitInStock }}</div>
+                                    </div>
+                        </ng-template>
+                    </p-dropdown>
                 </div>
             </div>
             <div style="float:left">
@@ -36,8 +60,8 @@
         </div>
     </div>
     <div class="mb-3">
-      <label for="count" class="form-label">Count</label>
-      <input formControlName="count" type="number" class="form-control" id="count" [class.is-invalid]="hasCountError()" id="count" min="0" placeholder="0"(focus)="clearFieldOnFocus('count')">
+      <label for="count" class="form-label">Count:</label>
+      <input style="height: 49px;" formControlName="count" type="number" class="form-control" id="count" [class.is-invalid]="hasCountError()" id="count" min="0" placeholder="0"(focus)="clearFieldOnFocus('count')">
       @if(hasCountError()){
         <div class="invalid-feedback">
           Please select a valid state.

@@ -2,11 +2,21 @@
     <form class="formControl" [formGroup]="accountForm">
         <div class="mb-3">
             <label for="txtOldPassword" class="form-label">Old Password</label>
-            <input formControlName="oldPassword" type="password" class="form-control" id="txtOldPassword" aria-describedby="oldPassword">
+            <!-- <input formControlName="oldPassword" type="password" class="form-control" [class.is-invalid]="!accountForm.get('oldPassword')?.valid && accountForm.get('oldPassword')?.touched" id="txtOldPassword" required aria-describedby="oldPassword"> -->
+            <div style="width: 100%;">
+                <p-password [toggleMask]="true" formControlName="password" />
+            </div>
+            <div *ngIf="!accountForm.get('oldPassword')?.valid && accountForm.get('oldPassword')?.touched" class="small text-danger">
+                <div *ngIf="accountForm.get('oldPassword')?.errors?.['required'] ">The password field cannot be left blank!</div>
+                <div *ngIf="accountForm.get('oldPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="txtNewPassword" class="form-label">New Password</label>
-            <input formControlName="newPassword" type="password" class="form-control" [class.is-invalid]="!accountForm.get('newPassword')?.valid && accountForm.get('newPassword')?.touched" id="txtNewPassword" aria-describedby="newPassword">
+            <!-- <input formControlName="newPassword" type="password" class="form-control" [class.is-invalid]="!accountForm.get('newPassword')?.valid && accountForm.get('newPassword')?.touched" id="txtNewPassword" required aria-describedby="newPassword"> -->
+            <div style="width: 100%;">
+                <p-password [toggleMask]="true" formControlName="newPassword" />
+            </div>
             <div *ngIf="!accountForm.get('newPassword')?.valid && accountForm.get('newPassword')?.touched" class="small text-danger">
                 <div *ngIf="accountForm.get('newPassword')?.errors?.['required'] ">The password field cannot be left blank!</div>
                 <div *ngIf="accountForm.get('newPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
@@ -14,7 +24,14 @@
         </div>
         <div class="mb-3">
             <label for="txtCheckPassword" class="form-label">New Password Retry</label>
-            <input formControlName="checkPassword" type="password" class="form-control" id="txtCheckPassword" aria-describedby="checkPassword">
+            <!-- <input formControlName="checkPassword" type="password" class="form-control" [class.is-invalid]="!accountForm.get('checkPassword')?.valid && accountForm.get('checkPassword')?.touched" id="txtCheckPassword" required aria-describedby="checkPassword"> -->
+            <div style="width: 100%;">
+                <p-password [toggleMask]="true" formControlName="checkPassword" />
+            </div>
+            <div *ngIf="!accountForm.get('checkPassword')?.valid && accountForm.get('checkPassword')?.touched" class="small text-danger">
+                <div *ngIf="accountForm.get('checkPassword')?.errors?.['required'] ">The password field cannot be left blank!</div>
+                <div *ngIf="accountForm.get('checkPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
+            </div>
         </div>
         <br>
         <div class="mt-2">
