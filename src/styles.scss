@@ -1,8 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
 
+html{
+    scroll-behavior: smooth;
+}
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body{ 
+    margin: 0; 
+    font-family: "Poppins", sans-serif; 
+    background-color: var(--lightblue-color);
+}
 
 button{
     font-family: 'Merriweather', sans-serif !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --body-color: #ffebc0;
+    --color-white: rgb(255, 255, 255);
+    --first-shadow-color: rgba(0, 0, 0, 0.1);
+    --lightblue-color:#b4c5cb;
+    --darkblue-color:#273d45;
+    --darkorange-color: #bd4f07;
+    --orange-color: #fb9048;
+    --cardbg--color:#fff7e6;
+    --yellowbtn-color:#efb60c;
+    --lightyellowbtn-color:#ffc310;
+    --darkyellowbtn-color: #a7800a;
+    --bluebtn-color:#1f7ea0;
+    --lightbluebtn-color:#2596be;
+    --darkbluebtn-color:#185e77;
+    --purplebtn-color: #3f51b5;
+    --lightpurplebtn-color:#5972fd;
+    --darkpurplebtn-color:#22307e;
+    --greenbtn-color:#1fa064;
+    --lightgreenbtn-color:#26ca7e;
+    --darkgreenbtn-color:#107546;
+    --redbtn-color:#e62222;
+    --lightredbtn-color:#ff3636;
+    --darkredbtn-color:#911313;
+    --cardred-color:rgb(255, 69, 69);
+    --search-color: #757575;
+    --admintblbg-color:#fffcf6;
+    --border-color: #d2d0cb;
+    --pageheader-color: #2B384E;
+    --adminmain-color: #f1f4f9;
+  }
+
+.ng-star-inserted ul{
+    padding-left: 0;
 }

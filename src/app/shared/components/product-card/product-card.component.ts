@@ -11,7 +11,8 @@ import { AreYouSureComponent } from '../are-you-sure/are-you-sure.component';
   styleUrl: './product-card.component.scss'
 })
 export class ProductCardComponent {
-  @Input() product: Product = new Product(0, '',new Category() , 0, 0, 0, 0,'');
+  
+  @Input() product: Product = new Product("", '',new Category() , 0, 0, 0, 0,'');
   @Output() delete = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Input() productList: any[] = [] ;
@@ -21,11 +22,15 @@ export class ProductCardComponent {
     // private dialog: MatDialog
   ) {}
 
-  deleteProduct(id: number) {
+  deleteProduct(id: string) {
     this.delete.emit(this.product);
   }
   editProduct() {
     this.edit.emit(this.product);
+  }
+
+  hasQuantityError():boolean{
+    return this.product.minimumCount! >= this.product.quantity!;
   }
 
   // deleteProductButtonClicked(){

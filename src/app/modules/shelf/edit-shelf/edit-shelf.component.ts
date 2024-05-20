@@ -4,6 +4,7 @@ import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Shelf } from '../../../shared/dto/shelf';
+import { AdminShelf } from '../../../shared/dto/admin-shelf';
 
 @Component({
   selector: 'app-edit-shelf',
@@ -11,10 +12,15 @@ import { Shelf } from '../../../shared/dto/shelf';
   styleUrl: './edit-shelf.component.scss'
 }) 
 export class EditShelfComponent implements OnInit {
+
+  shelves: Shelf[] = [];
+
+  areYouSureQuestion = 'Are you sure you want to edit this shelf ?'
+
   createForm = this.fb.nonNullable.group({
     capacity: 0,
   });
-  shelfID = 0;
+  shelfID = "";
   productCount = 0;
   productCategory = "";
   productName = "";
@@ -26,8 +32,15 @@ export class EditShelfComponent implements OnInit {
       this.createForm.setValue({
         capacity : this.shelfService.editingShelf.capacity,
       });
-      // console.log(this.productService.editingProduct);
-    } else { }
+    }
+    this.shelfService.getAllShelves().subscribe({
+      next: (data: Shelf[]) => {
+        this.shelves = data;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
   constructor(
@@ -38,19 +51,15 @@ export class EditShelfComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
-  // close() {
-  //Geri dönüş butonu oluşturulacak
-  // }
   submit() {
-    //let capacity = this.createForm.get('capacity');   
     const capacity = this.createForm.get('capacity')!.value;
     this.shelfService.editShelf(this.shelfID, capacity).subscribe({
       next: (result) => {
-        this.toastr.info('Shelf edited.');
+        this.toastr.info('Shelf Successfully Edited !');
         this.router.navigate(['..'], { relativeTo: this.route });
       },
       error: (error) => {
-        this.toastr.error('You cannot set capacity less than the number of products in the shelf.');
+        this.toastr.error('You cannot set capacity less than the number of products in the shelf !');
         console.log(error);
       }
     });
@@ -58,4 +67,12 @@ export class EditShelfComponent implements OnInit {
   cancel() {
     this.router.navigate(['/homepage/shelves']);
   }
+  editShelf(){
+    this.submit();
+  }
+
+  deleteShelf(){
+    this.submit();
+  }
+  
 }

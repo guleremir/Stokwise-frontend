@@ -11,11 +11,14 @@ import { Shelf } from '../../../shared/dto/shelf';
   styleUrl: './add-shelf.component.scss'
 })
 export class AddShelfComponent {
+
+  areYouSureQuestion = 'Are you sure you want to add this shelf ?'
+
   //createShelf
   createForm = this.fb.nonNullable.group({
     capacity: 0,
   });
-  shelfID = 0;
+  shelfID = "";
   productCount = 0;
   productCategory = "";
   productName = "";
@@ -28,15 +31,11 @@ export class AddShelfComponent {
     private route: ActivatedRoute
   ) { }
 
-  // close() {
-  //Geri dönüş butonu oluşturulacak
-  // }
-  submit() {
-    //let capacity = this.createForm.get('capacity');   
+  submit() {  
     const capacity = this.createForm.get('capacity')!.value;
     this.shelfService.addShelf(new Shelf(this.shelfID, this.productCount, capacity, this.productCategory,this.productName)).subscribe({
       next: (result) => {
-        this.toastr.info('Shelf created.');
+        this.toastr.info('Shelf Successfully Created !');
         this.router.navigate(['..'], { relativeTo: this.route });
       },
       error: (err) => {
@@ -49,4 +48,14 @@ export class AddShelfComponent {
     this.router.navigate(['/homepage/shelves']);
   }
 
+  addShelf(){
+    this.submit();
+  }
+
+  clearFieldOnFocus(fieldName: string) {
+    const currentValue = this.createForm.get(fieldName)!.value;
+    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+      this.createForm.get(fieldName)!.setValue('');
+    }
+  }
 }

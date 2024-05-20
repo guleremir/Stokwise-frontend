@@ -3,7 +3,7 @@ import { UserRole } from "./userRole";
 
 export class User {
     constructor(
-        public id:number = 0,
+        public id:string = "",
         public email: string = '',
         public password: string = '',
         public roles: UserRole[] = []

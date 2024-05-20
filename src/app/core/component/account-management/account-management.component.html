@@ -1,54 +1,52 @@
-<form class="formControl" [formGroup]="updateForm" (submit)="submit()">
+<form class="formControl" [formGroup]="updateForm">
     <div class="mb-3">
       <label for="txtEmail" class="form-label">Email</label>
-      <input formControlName="email" type="text" class="form-control" id="txtEmail" readonly>
+      <input formControlName="email" type="email" class="form-control" id="txtEmail" readonly>
     </div>
     <div class="mb-3">
-      <label for="txtPassword" class="form-label">Password</label>
-      <input formControlName="password" type="text" class="form-control" [class.is-invalid]="pswCannotBeEmpty()" id="txtPassword" min="0" required>
-      @if(pswCannotBeEmpty()){
-        <div class="invalid-feedback">
-          This field cannot be left blank! Please enter a password!
+      <label for="txtPassword" class="form-label">Old Password</label>
+      <input formControlName="oldPassword" type="password" class="form-control" [class.is-invalid]="!updateForm.get('oldPassword')?.valid && updateForm.get('oldPassword')?.touched" id="txtPassword" min="0" required aria-describedby="oldPassword">
+        <div *ngIf="!updateForm.get('oldPassword')?.valid && updateForm.get('oldPassword')?.touched" class="small text-danger">
+          <div *ngIf="updateForm.get('oldPassword')?.errors?.['required'] ">This field cannot be left blank! Please enter a password!</div>
+          <div *ngIf="updateForm.get('oldPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
-      }
     </div>
-    <!-- <div class="mb-3">
-      <label for="txtConfirmPassword" class="form-label">New Password</label>
-      <input formControlName="confirmPassword" type="text" class="form-control" [class.is-invalid]="confirmPswCannotBeEmpty()" id="txtConfirmPassword" min="0">
-      @if(confirmPswCannotBeEmpty()){
-        <div class="invalid-feedback">
-          This field cannot be left blank! Please verify the password you entered!
+    <div class="mb-3">
+      <label for="txtPassword" class="form-label">New Password</label>
+      <input formControlName="newPassword" type="password" class="form-control" [class.is-invalid]="!updateForm.get('newPassword')?.valid && updateForm.get('newPassword')?.touched" id="txtPassword" min="0" required aria-describedby="newPassword">
+        <div *ngIf="!updateForm.get('newPassword')?.valid && updateForm.get('newPassword')?.touched" class="small text-danger">
+          <div *ngIf="updateForm.get('newPassword')?.errors?.['required'] ">This field cannot be left blank! Please enter a password!</div>
+          <div *ngIf="updateForm.get('newPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
-      }
-    </div> -->
+    </div>
+
     <div class="mb-3">
       <label for="txtConfirmPassword" class="form-label">Verify Password</label>
-      <input formControlName="confirmPassword" type="text" class="form-control" [class.is-invalid]="confirmPswCannotBeEmpty()" id="txtConfirmPassword" min="0">
-      @if(confirmPswCannotBeEmpty()){
-        <div class="invalid-feedback">
-          This field cannot be left blank! Please verify the password you entered!
+      <input formControlName="checkPassword" type="password" class="form-control" [class.is-invalid]="!updateForm.get('checkPassword')?.valid && updateForm.get('checkPassword')?.touched" id="txtPassword" min="0" required aria-describedby="checkPassword">
+        <div *ngIf="!updateForm.get('checkPassword')?.valid && updateForm.get('checkPassword')?.touched" class="small text-danger">
+          <div *ngIf="updateForm.get('checkPassword')?.errors?.['required'] ">This field cannot be left blank! Please verify the password you entered!</div>
+          <div *ngIf="updateForm.get('checkPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
-      }
     </div>
     <div class="mb-3">
-      <label for="selRoles" class="form-label">Roles</label>
-      <select formControlName="roles" id="selRoles" class="form-select" multiple>
-        <option *ngFor="let role of roles" [value]="role">{{ role.name }}</option>
-      </select>
+      <label for="roleList" class="form-label">Roles</label>
+      <ul id="roleList">
+        <li *ngFor="let role of selectedRoles">{{role}}</li>
+      </ul>
     </div>
-  
-    <!-- <div class="mb-3">
-      <label class="form-label">Roles</label>
-      <div *ngFor="let role of roles" class="form-check">
-        <input type="checkbox" [id]="'checkRole' + role.id" [value]="role" class="form-check-input"
-               [checked]="isSelected(role)" (change)="toggleSelection(role)">
-        <label [for]="'checkRole' + role.id" class="form-check-label">{{ role.name }}</label>
-      </div>
-    </div> -->
+
+    <div class="mt-2">
+      <button type="button" class="editselect ms-2" data-bs-toggle="modal" data-bs-target="#areyousure">
+        <span class="text">Save User</span>
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h274.9c-2.4-6.8-3.4-14-2.6-21.3l6.8-60.9 1.2-11.1 7.9-7.9 77.3-77.3c-24.5-27.7-60-45.5-99.9-45.5zm45.3 145.3l-6.8 61c-1.1 10.2 7.5 18.8 17.6 17.6l60.9-6.8 137.9-137.9-71.7-71.7-137.9 137.8zM633 268.9L595.1 231c-9.3-9.3-24.5-9.3-33.8 0l-37.8 37.8-4.1 4.1 71.8 71.7 41.8-41.8c9.3-9.4 9.3-24.5 0-33.9z"/></svg></span></button>
+      <button type="button" class="noselect ms-2" (click)="cancel()">
+        <span class="text">Cancel</span>
+        <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M34.5 239L228.9 44.7c9.4-9.4 24.6-9.4 33.9 0l22.7 22.7c9.4 9.4 9.4 24.5 0 33.9L131.5 256l154 154.8c9.3 9.4 9.3 24.5 0 33.9l-22.7 22.7c-9.4 9.4-24.6 9.4-33.9 0L34.5 273c-9.4-9.4-9.4-24.6 0-33.9z"/></svg></span></button>
     
-    <div>
-      <button type="submit" class="btn btn-primary">Update User</button>
-      <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
     </div>
     <br>
   </form>
+  <app-are-you-sure (areYouSureEvent)="editUser()" [areYouSureQuestion]="areYouSureQuestion" >
+  </app-are-you-sure>

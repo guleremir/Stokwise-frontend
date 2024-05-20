@@ -1,13 +1,13 @@
-<form [formGroup]="entryForm" (submit)="addProductToShelf()">
+<form [formGroup]="entryForm">
     <div class="row">
         <div class="col">
-            <div style="float:left">
+            <div style="float:left; width: 100vh;">
                 <div class="dropdown">
                     <div >
                         Product: 
                     </div>
                     <div>
-                        <button class="form-select mt-2 mb-4" type="button" id="fruitSelectButton"
+                        <!-- <button class="form-select mt-2 mb-4" type="button" id="fruitSelectButton"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <div>
                                 @if (selectedProduct == null) {
@@ -16,8 +16,8 @@
                                     <span>{{selectedProduct.name}}</span>
                                 }
                             </div>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="fruitSelectButton" id="products">
+                        </button> -->
+                        <!-- <ul class="dropdown-menu" aria-labelledby="fruitSelectButton" id="products">
                             @for (product of products; track product.id) {
                                 <li>
                                     <a class="dropdown-item" (click)="productSelect(product)">
@@ -26,8 +26,32 @@
                                     </a>
                                 </li>
                             }
-                        </ul>
+                        </ul> -->
                     </div>
+                </div>
+                <div class="card flex justify-content-center mb-2" style="width: 405px; height: 50px">
+                    <p-dropdown 
+                         [options]="products"
+                         [(ngModel)]="selectedProduct"
+                         optionLabel="name"
+                         [filter]="true"
+                         filterBy="name"
+                         [showClear]="true"
+                         placeholder="Select Product"
+                         class="custom-dropdown"
+                         [style]="{width: '100%'}">
+                        <ng-template pTemplate="selectedItem" let-selectedProduct>
+                                <div class="flex align-items-center gap-2">
+                                    <div>{{ selectedProduct?.name }}</div>
+                                </div>
+                        </ng-template>
+                        <ng-template let-product pTemplate="item">
+                                    <div class="p-dropdown-item dropdown-item" (click)="productSelect(product)">
+                                        <div class="product-name" >{{ product.name }}</div>
+                                        <div class="product-quantity">{{ product.quantity - product.unitInStock }}</div>
+                                    </div>
+                        </ng-template>
+                    </p-dropdown>
                 </div>
             </div>
             <div style="float:left">
@@ -36,14 +60,24 @@
         </div>
     </div>
     <div class="mb-3">
-      <label for="count" class="form-label">Count</label>
-      <input formControlName="count" type="number" class="form-control" [class.is-invalid]="hasCountError()" id="count" min="0">
+      <label for="count" class="form-label">Count:</label>
+      <input style="height: 49px;" formControlName="count" type="number" class="form-control" [class.is-invalid]="hasCountError()" id="count" min="0" placeholder="0"(focus)="clearFieldOnFocus('count')">
       @if(hasCountError()){
         <div class="invalid-feedback">
           Please select a valid state.
         </div>
      }
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="hasCountError()">Place Product</button>
-    <button class="ms-2 btn btn-warning" type="button" (click)="cancel()">Cancel</button>
+    <div class="mt-2">
+        <button type="button" class="editselect ms-2" [disabled]="emptyAndCountError()" data-bs-toggle="modal" data-bs-target="#areyousure">
+            <span class="text">Place Product</span>
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M560 288h-80v96l-32-21.3-32 21.3v-96h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16zm-384-64h224c8.8 0 16-7.2 16-16V16c0-8.8-7.2-16-16-16h-80v96l-32-21.3L256 96V0h-80c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16zm64 64h-80v96l-32-21.3L96 384v-96H16c-8.8 0-16 7.2-16 16v192c0 8.8 7.2 16 16 16h224c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16z"/></svg></span></button>
+        <button type="button" class="noselect ms-2" (click)="cancel()">
+            <span class="text">Cancel</span>
+            <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M34.5 239L228.9 44.7c9.4-9.4 24.6-9.4 33.9 0l22.7 22.7c9.4 9.4 9.4 24.5 0 33.9L131.5 256l154 154.8c9.3 9.4 9.3 24.5 0 33.9l-22.7 22.7c-9.4 9.4-24.6 9.4-33.9 0L34.5 273c-9.4-9.4-9.4-24.6 0-33.9z"/></svg></span></button>
+    </div>
   </form>
+  <app-are-you-sure (areYouSureEvent)="placeProduct()" [areYouSureQuestion]="areYouSureQuestion" >
+</app-are-you-sure>

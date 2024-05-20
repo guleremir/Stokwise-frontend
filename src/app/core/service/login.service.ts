@@ -19,6 +19,7 @@ export class LoginService {
     this.token = localStorage.getItem('token') || "";
     this.email = localStorage.getItem('email') || "";
     this.password = localStorage.getItem('password') || "";
+    this.loggedIn = true;
   }
 
   scheduleLogout() {
@@ -31,24 +32,12 @@ export class LoginService {
     this.scheduleLogout();
     return this.http.post<any>('/login', { email, password }).pipe(
       map(resp => {
-        console.log(resp);
         return this.parseLoginResponse(resp, email, password);
       })
     );
   }
 
-  signUp(email: string, password: string): Observable<any> {
-    // email: email, password: password
-    //http.post<any>(url, body) ~ "Observable"
-    return this.http.post<any>('/user/signup', { email, password }).pipe(
-      map(resp => {
-        // console.log(resp);
-        return this.parseLoginResponse(resp, email, password);
-      })
-    );
-  }
 
-  
   parseLoginResponse(data: any, email: string, password: string) {
     this.loggedIn = true;
     this.token = data.token;
@@ -89,5 +78,4 @@ export class LoginService {
     this.roles = [];
     localStorage.clear();
   }
-
 }

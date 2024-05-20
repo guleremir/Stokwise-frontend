@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SuccessResponse } from '../dto/successResponse';
 import { AdminProduct } from '../dto/admin-product';
 import { AdminShelf } from '../dto/admin-shelf';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,20 +26,25 @@ export class ShelfService {
     return this.httpClient.post<SuccessResponse>('/addShelf', shelf);
   }
   
-  deleteShelf(id: number): Observable<SuccessResponse> {
+  deleteShelf(id: string): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/deleteShelf', { id });
   }
   
-  editShelf(id: number, capacity: number): Observable<SuccessResponse> {
+  editShelf(id: string, capacity: number): Observable<SuccessResponse> {
     return this.httpClient.post<SuccessResponse>('/editShelf', { id, capacity });
   }
   
-  getAllProductsFromShelf(id: number): Observable<AdminProduct[]> {
+  getAllProductsFromShelf(id: string): Observable<AdminProduct[]> {
     return this.httpClient.post<AdminProduct[]>('/getAllProductsFromShelf', { id });
   }
 
-  getAllTableShelves():Observable<AdminShelf[]> {
+  /* getAllTableShelves():Observable<AdminShelf[]> {
     return this.httpClient.get<AdminShelf[]>('/getAllTableShelves');
-  }
+  } */
   
+  getAllTableShelves(): Observable<AdminShelf[]> {
+    return this.httpClient.get<AdminShelf[]>('/getAllTableShelves').pipe(
+      map((shelves: AdminShelf[]) => shelves.sort((a, b) => b.productCount - a.productCount))
+    );
+  }
 }
