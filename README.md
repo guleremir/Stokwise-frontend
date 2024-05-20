@@ -70,11 +70,11 @@ To install and run the Warehouse Management System locally, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/warehouse-management-system.git
+   git clone https://github.com/guleremir/Stokwise-frontend.git
    ```
 2. **Navigate to the project directory:**
    ```bash
-   cd warehouse-management-system
+   cd Stokwise-frontend
    ```
 3. **Install dependencies:**
    ```bash
@@ -100,7 +100,7 @@ To install and run the Warehouse Management System locally, follow these steps:
      ```
 
 ### Usage
-Once the system is up and running, you can access the application in your web browser at `http://localhost:3000`. Use the admin panel to manage products, shelves, and users, and generate reports to monitor warehouse operations.
+Once the system is up and running, you can access the application in your web browser at `http://localhost:4200`. Use the admin panel to manage products, shelves, and users, and generate reports to monitor warehouse operations.
 
 ### Contributing
 Contributions are welcome! Please follow these steps to contribute:
