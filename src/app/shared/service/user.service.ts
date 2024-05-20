@@ -33,5 +33,4 @@ export class UserService {
     const userEmail = localStorage.getItem('email') || '';
     return userEmail;
   }
-
 }
