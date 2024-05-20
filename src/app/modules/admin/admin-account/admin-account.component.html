@@ -4,7 +4,7 @@
             <label for="txtOldPassword" class="form-label">Old Password</label>
             <!-- <input formControlName="oldPassword" type="password" class="form-control" [class.is-invalid]="!accountForm.get('oldPassword')?.valid && accountForm.get('oldPassword')?.touched" id="txtOldPassword" required aria-describedby="oldPassword"> -->
             <div style="width: 100%;">
-                <p-password [toggleMask]="true" formControlName="password" />
+                <p-password [toggleMask]="true" formControlName="oldPassword" />
             </div>
             <div *ngIf="!accountForm.get('oldPassword')?.valid && accountForm.get('oldPassword')?.touched" class="small text-danger">
                 <div *ngIf="accountForm.get('oldPassword')?.errors?.['required'] ">The password field cannot be left blank!</div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="mb-3">
-            <label for="txtCheckPassword" class="form-label">New Password Retry</label>
+            <label for="txtCheckPassword" class="form-label">Verify Password</label>
             <!-- <input formControlName="checkPassword" type="password" class="form-control" [class.is-invalid]="!accountForm.get('checkPassword')?.valid && accountForm.get('checkPassword')?.touched" id="txtCheckPassword" required aria-describedby="checkPassword"> -->
             <div style="width: 100%;">
                 <p-password [toggleMask]="true" formControlName="checkPassword" />
