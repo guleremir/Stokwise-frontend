@@ -230,7 +230,7 @@ This structure provides flexibility in database management while ensuring data s
 
 ### Installation
 To install and run the Warehouse Management System locally, follow these steps:
-
+## Clone Frontend
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/guleremir/Stokwise-frontend.git
@@ -243,49 +243,23 @@ To install and run the Warehouse Management System locally, follow these steps:
    ```bash
    npm install
    ```
-4. **Set up the backend:**
-   - Navigate to the backend directory
-
-    **Set Up Your Project Locally**
-
-    - First, navigate to the directory where your project is located. You can use the following command in your terminal or command prompt:
-
+4. **Run the frontend:**
+   - Navigate to the frontend directory
+   - Start the frontend server:
+     ```bash
+     npm start
+     ```
+## Clone Backend
+1. **Clone the repository:**
       ```bash
-      cd /path/to/your/project
+     git clone https://github.com/guleremir/stokwise-backend.git
       ```
+2. **Check your maven:**
+   Check your maven path and install dependency.
+3. **Run Configuration:**
+   Check your run configuration settings.
 
-    **Initialize Git**
 
-    - Initialize Git in your project directory:
-
-      ```bash
-      git init
-      ```
-
-    **Add Remote Repository**
-
-    - Add your GitHub repository as the remote repository:
-
-      ```bash
-      git remote add origin https://github.com/guleremir/stokwise-backend.git
-      ```
-
-    **Stage Files and Commit**
-
-    - Add all files and make the initial commit:
-
-      ```bash
-      git add .
-      git commit -m "Initial commit"
-      ```
-
-    **Push Changes to GitHub**
-
-    - Push your commits to GitHub:
-
-      ```bash
-      git push -u origin master
-      ```
 
    **Project Configuration (application.properties)**
 
@@ -300,13 +274,7 @@ To install and run the Warehouse Management System locally, follow these steps:
       spring.datasource.password=your_password
       ```
 ----
-     
-5. **Run the frontend:**
-   - Navigate to the frontend directory
-   - Start the frontend server:
-     ```bash
-     npm start
-     ```
+    
 
 ### Usage
 Once the system is up and running, you can access the application in your web browser at `http://localhost:4200`. Use the admin panel to manage products, shelves, and users, and generate reports to monitor warehouse operations.
