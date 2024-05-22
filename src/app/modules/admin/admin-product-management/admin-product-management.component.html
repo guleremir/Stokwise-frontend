@@ -24,7 +24,6 @@
       </button>
     </div>
   </div>
-
   <app-product-list (loadProductEvent)="loadProducts()" [uuidToSequenceMap]="uuidToSequenceMap" [products]="filterProducts()" (edit)="editProduct($event)"
     (delete)="deleteProduct($event)">
   </app-product-list>

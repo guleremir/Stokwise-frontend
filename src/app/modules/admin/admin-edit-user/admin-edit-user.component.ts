@@ -7,7 +7,8 @@ import { User } from '../../../shared/dto/user';
 import { RoleService } from '../../../shared/service/role.service';
 import { UserRole } from '../../../shared/dto/userRole';
 import { Role } from '../../../shared/dto/role';
-import { passwordCheckValidator } from './password-validator.directive';
+import { passwordCheckValidator } from '../../../shared/components/password/password-validator.directive';
+
 
 @Component({
   selector: 'app-admin-edit-user',
@@ -22,9 +23,8 @@ export class AdminEditUserComponent  implements OnInit {
     roles: [[]]
   },{validators: [passwordCheckValidator()]})
   userID = "";
-  roles: Role[]= []; // Roller dizisini tanımla
+  roles: Role[]= [];
 
-  // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın
   selectedRoles: Role[] = [];
 
   areYouSureQuestion = 'Are you sure you want to edit this user ?'
@@ -60,39 +60,31 @@ export class AdminEditUserComponent  implements OnInit {
   submit() {
     let email = this.updateForm.get('email')!.value;
     let password = this.updateForm.get('password')!.value;
-    let confirmPassword = this.updateForm.get('confirmPassword')!.value;
     let selectedRoles: UserRole[] = this.selectedRoles.map(role => {
       return {
         id: role.id,
         name: role.name 
       };
     });
-    
-      // if (password === confirmPassword) {
-        this.userService.updateUser(new User(this.userID, email, password, selectedRoles)).subscribe({
-          next: (result) => {
-            this.toastr.info('User Successfully Saved !');
-            this.router.navigate(['..'], { relativeTo: this.route });
-          },
-          error: (error) => {
-            this.toastr.error('An error occurred while updating user !');
-          }
-        });
-      // } else {
-      //   this.toastr.error('Passwords do not match !');
-      // }
+      this.userService.updateUser(new User(this.userID, email, password, selectedRoles)).subscribe({
+         next: (result) => {
+           this.toastr.info('User Successfully Saved !');
+           this.router.navigate(['..'], { relativeTo: this.route });
+         },
+         error: (error) => {
+           this.toastr.error('An error occurred while updating user !');
+         }
+    });
   }
 
   cancel() {
     this.router.navigate(['/adminPanel/users']);
   }
 
-  // Seçilen rollerin kontrolü
   isSelected(role: Role): boolean {
     return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
   }
 
-  // Seçilen rolleri değiştirme
   toggleSelection(role: Role): void {
     const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
     if (index === -1) {
@@ -102,19 +94,7 @@ export class AdminEditUserComponent  implements OnInit {
     }
   }
 
-  pswCannotBeEmpty():boolean{
-    return this.updateForm.value.password! === '' ;
-  }
-
-  confirmPswCannotBeEmpty():boolean{
-    return this.updateForm.value.confirmPassword! === '' ;
-  }
-
   editUser(){
     this.submit();
-  }
-  
-  editUserCannotBeEmpty():boolean{
-    return this.updateForm.value.email! === '' || this.updateForm.value.password! === '' || this.updateForm.value.confirmPassword! === '' ;
   }
 }

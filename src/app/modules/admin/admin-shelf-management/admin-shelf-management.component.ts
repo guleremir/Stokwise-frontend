@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { AdminShelf } from '../../../shared/dto/admin-shelf';
 import { AdminProduct } from '../../../shared/dto/admin-product';
 import { FormBuilder } from '@angular/forms';
-import { LoggerService } from '../../../shared/service/logger.service';
 
 @Component({
   selector: 'app-admin-shelf-management',
@@ -15,7 +14,7 @@ import { LoggerService } from '../../../shared/service/logger.service';
 export class AdminShelfManagementComponent implements OnInit {
 
   searchForm = this.fb.nonNullable.group({
-    searchText: [''] // Arama metni için değişken eklendi
+    searchText: ['']
   });
 
   selectedShelf: AdminShelf | null = null;
@@ -26,14 +25,13 @@ export class AdminShelfManagementComponent implements OnInit {
     private route: ActivatedRoute,
     private shelfService: ShelfService,
     private toastr: ToastrService,
-    private fb: FormBuilder,
-    private logger: LoggerService
+    private fb: FormBuilder
   ) { }
 
   areYouSureQuestion = 'Are you sure you want to delete this shelf ?'
   shelves: AdminShelf[] = [];
   products: AdminProduct[] = [];
-  searchShelfId: string = ''; // Arama metni için değişken eklendi
+  searchShelfId: string = '';
 
   ngOnInit(): void {
     this.loadShelves();
@@ -80,16 +78,16 @@ export class AdminShelfManagementComponent implements OnInit {
       return;
     }
     this.deleteSelectedShelf = dShelf;
-}
+  }
 
   deleteShelf() {   
     if (this.deleteSelectedShelf) {
       this.shelfService.deleteShelf(this.deleteSelectedShelf!.id).subscribe({
         next: () => {         
           this.shelves = this.shelves.filter(s => s.id !== this.deleteSelectedShelf!.id);
-          this.filteredShelves = this.filteredShelves.filter(s => s.id !== this.deleteSelectedShelf!.id); // Filtrelenmiş diziden de kaldır
+          this.filteredShelves = this.filteredShelves.filter(s => s.id !== this.deleteSelectedShelf!.id);
           this.toastr.success("Shelf Successfully Deleted !");
-          
+
           if(this.selectedShelf && this.selectedShelf.id === this.deleteSelectedShelf!.id){
             this.selectedShelf = null;
           }
@@ -110,10 +108,8 @@ export class AdminShelfManagementComponent implements OnInit {
   filteredShelves: AdminShelf[] = [];
   filterShelf(data = "") {
     this.filteredShelves = this.shelves;
-    // Arama filtresi
     if (data) {
       this.filteredShelves = this.filteredShelves.filter(shelf => {
-        this.logger.log(shelf)
         return shelf.productCategory?.toLowerCase().includes(data.toLowerCase())
       }
       );

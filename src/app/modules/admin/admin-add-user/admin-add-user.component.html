@@ -8,25 +8,21 @@
     </div>
     <div class="mb-3">
       <label for="txtPassword" class="form-label">Password</label>
-      <!-- <input formControlName="password" type="password" class="form-control" [class.is-invalid]="!createForm.get('password')?.valid && createForm.get('password')?.touched" id="txtPassword" min="0" required aria-describedby="password"> -->
       <div style="width: 100%;">
         <p-password [toggleMask]="true" formControlName="password" />
       </div>  
       <div *ngIf="!createForm.get('password')?.valid && createForm.get('password')?.touched" class="small text-danger">
-          <!-- <div *ngIf="createForm.get('password')?.errors?.['required'] ">This field cannot be left blank! Please enter a password!</div> -->
-          <div *ngIf="createForm.get('password')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
-        </div>
+        <div *ngIf="createForm.get('password')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
+      </div>
     </div>
     <div class="mb-3">
       <label for="txtConfirmPassword" class="form-label">Confirm Password</label>
-      <!-- <input formControlName="confirmPassword" type="password" class="form-control" [class.is-invalid]="!createForm.get('confirmPassword')?.valid && createForm.get('confirmPassword')?.touched" id="txtPassword" min="0" required aria-describedby="confirmPassword"> -->
       <div style="width: 100%;">
         <p-password [toggleMask]="true" formControlName="confirmPassword" />
       </div>
-        <div *ngIf="!createForm.get('confirmPassword')?.valid && createForm.get('confirmPassword')?.touched" class="small text-danger">
-          <!-- <div *ngIf="createForm.get('confirmPassword')?.errors?.['required'] ">This field cannot be left blank! Please confirm the password you entered!</div> -->
-          <div *ngIf="createForm.get('confirmPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
-        </div>
+      <div *ngIf="!createForm.get('confirmPassword')?.valid && createForm.get('confirmPassword')?.touched" class="small text-danger">
+        <div *ngIf="createForm.get('confirmPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
+      </div>
     </div>
     <div class="mb-3">
       <label class="form-label">Roles</label>
@@ -42,20 +38,19 @@
         <label class="form-check-label" for="{{ 'chk_' + role.id }}">{{ role.name }}</label>
       </div>
     </div>
-
     <div class="mt-2">    
       <button type="button" class="editselect add ms-2 btn-btn"  data-bs-toggle="modal" data-bs-target="#areyousure" [disabled]="userCannotBeEmpty() || !disabledButton()">
           <span class="text">Add User</span>
           <span class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.7-14.3-32-32-32h-32c-17.7 0-32 14.3-32 32v144H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h144v144c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V304h144c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z"/></svg></span></button>
-      
-
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.7-14.3-32-32-32h-32c-17.7 0-32 14.3-32 32v144H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h144v144c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V304h144c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32z"/></svg>
+          </span>
+      </button>
       <button type="button" class="noselect ms-2 btn-btn" (click)="cancel()">
           <span class="text">Cancel</span>
           <span class="icon">
-               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M34.5 239L228.9 44.7c9.4-9.4 24.6-9.4 33.9 0l22.7 22.7c9.4 9.4 9.4 24.5 0 33.9L131.5 256l154 154.8c9.3 9.4 9.3 24.5 0 33.9l-22.7 22.7c-9.4 9.4-24.6 9.4-33.9 0L34.5 273c-9.4-9.4-9.4-24.6 0-33.9z"/></svg></span></button>
-      
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M34.5 239L228.9 44.7c9.4-9.4 24.6-9.4 33.9 0l22.7 22.7c9.4 9.4 9.4 24.5 0 33.9L131.5 256l154 154.8c9.3 9.4 9.3 24.5 0 33.9l-22.7 22.7c-9.4 9.4-24.6 9.4-33.9 0L34.5 273c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>
+          </span>
+      </button>
   </div>
-    </form>
-    <app-are-you-sure (areYouSureEvent)="addUser()" [areYouSureQuestion]="areYouSureQuestion" >
-    </app-are-you-sure>
+</form>
+<app-are-you-sure (areYouSureEvent)="addUser()" [areYouSureQuestion]="areYouSureQuestion"></app-are-you-sure>

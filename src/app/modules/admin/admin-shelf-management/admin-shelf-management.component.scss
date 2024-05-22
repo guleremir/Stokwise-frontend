@@ -19,7 +19,6 @@
 }
 .selectedShelf{
     background-color: #62b0b6a0;
-    // background-color: #273D45;
     color: #0d0d0d;
 }
 .add,
@@ -95,7 +94,6 @@ select {
     align-items: center;
 }
 
-/* Tablo stilleri */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -108,7 +106,6 @@ th {
     border: 1px solid var(--border-color);
     text-align: left;
     max-width: 10px;
-    /* Maksimum genişlik ayarı */
     height: 30px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -117,7 +114,7 @@ th {
 
 .shelf-item{
     cursor: pointer;
-  }
+}
 
 .left-button {
     font-size: 14px;

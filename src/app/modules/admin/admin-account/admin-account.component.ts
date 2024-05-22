@@ -24,7 +24,6 @@ export class AdminAccountComponent {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
-
   ) {}
 
   submit() {
@@ -46,14 +45,6 @@ export class AdminAccountComponent {
 
   cancel() {
     this.router.navigate(['/adminPanel/products']);
-  }
-
-  pswCannotBeEmpty():boolean{
-    return this.accountForm.value.newPassword! === '' ;
-  }
-
-  verifyPswCannotBeEmpty():boolean{
-    return this.accountForm.value.checkPassword! === '' ;
   }
    
   edit(){
