@@ -19,7 +19,6 @@
           <div *ngIf="updateForm.get('newPassword')?.errors?.['minlength']">Password must contain at least 3 characters!</div>
         </div>
     </div>
-
     <div class="mb-3">
       <label for="txtConfirmPassword" class="form-label">Verify Password</label>
       <input formControlName="checkPassword" type="password" class="form-control" [class.is-invalid]="!updateForm.get('checkPassword')?.valid && updateForm.get('checkPassword')?.touched" id="txtPassword" min="0" required aria-describedby="checkPassword">
@@ -34,7 +33,6 @@
         <li *ngFor="let role of selectedRoles">{{role}}</li>
       </ul>
     </div>
-
     <div class="mt-2">
       <button type="button" class="editselect ms-2" data-bs-toggle="modal" data-bs-target="#areyousure">
         <span class="text">Save User</span>
@@ -44,7 +42,6 @@
         <span class="text">Cancel</span>
         <span class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M34.5 239L228.9 44.7c9.4-9.4 24.6-9.4 33.9 0l22.7 22.7c9.4 9.4 9.4 24.5 0 33.9L131.5 256l154 154.8c9.3 9.4 9.3 24.5 0 33.9l-22.7 22.7c-9.4 9.4-24.6 9.4-33.9 0L34.5 273c-9.4-9.4-9.4-24.6 0-33.9z"/></svg></span></button>
-    
     </div>
     <br>
   </form>

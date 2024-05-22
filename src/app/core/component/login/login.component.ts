@@ -28,7 +28,6 @@ export class LoginComponent {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
       
-      // email veya password null ise hata göster.
       if (email == null || password == null) {
         this.toastr.error('Email or password cannot be null !');
         return;

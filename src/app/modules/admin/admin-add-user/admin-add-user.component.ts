@@ -7,7 +7,7 @@ import { User } from '../../../shared/dto/user';
 import { RoleService } from '../../../shared/service/role.service';
 import { Role } from '../../../shared/dto/role';
 import { UserRole } from '../../../shared/dto/userRole';
-import { passwordCheckValidator } from '../admin-edit-user/password-validator.directive';
+import { passwordCheckValidator } from '../../../shared/components/password/password-validator.directive';
 
 @Component({
   selector: 'app-admin-add-user',
@@ -22,9 +22,8 @@ export class AdminAddUserComponent {
     roles: [[]]
   },{validators: [passwordCheckValidator()]})
   userID = "";
-  roles: Role[]= []; // Roller dizisini tanımla
+  roles: Role[]= [];
 
-  // Kullanıcıya ait seçili rolleri tutmak için bir dizi tanımlayın
   selectedRoles: Role[] = [];
 
   areYouSureQuestion = 'Are you sure you want to do this ?'
@@ -59,24 +58,18 @@ export class AdminAddUserComponent {
   submit() {
     let email = this.createForm.get('email')!.value;
     let password = (this.createForm.get('password')!.value);
-    let confirmPassword = (this.createForm.get('confirmPassword')!.value);
     let selectedRoles: UserRole[] = this.selectedRoles.map(role => {
       return {
         id: role.id,
         name: role.name 
       };
     });
-    // if(password == confirmPassword) {
       this.userService.addUser(new User(this.userID, email,password,selectedRoles)).subscribe({
         next: () => {
           this.toastr.info('User Successfully Created !');
           this.router.navigate(['..'], { relativeTo: this.route });
         }
-      });
-    // }
-    //  else {
-    //   this.toastr.error('Passwords do not match !');
-    // }
+    });
   }
   
   cancel() {
@@ -91,12 +84,10 @@ export class AdminAddUserComponent {
     return this.createForm.value.email! === '' || this.createForm.value.password! === '' || this.createForm.value.confirmPassword! === ''  ;
   }
 
-  // Seçilen rollerin kontrolü
   isSelected(role: Role): boolean {
     return this.selectedRoles.some(selectedRole => selectedRole.id === role.id);
   }
 
-  // Seçilen rolleri değiştirme
   toggleSelection(role: Role): void {
     const index = this.selectedRoles.findIndex(selectedRole => selectedRole.id === role.id);
     if (index === -1) {
@@ -108,6 +99,7 @@ export class AdminAddUserComponent {
   pswCannotBeEmpty():boolean{
     return this.createForm.value.password! === '' ;
   }
+  
   confirmPswCannotBeEmpty():boolean{
     return this.createForm.value.confirmPassword! === '' ;
   }
@@ -124,5 +116,4 @@ export class AdminAddUserComponent {
   disabledButton(): boolean {
     return !this.emailIsRequired();
   }
-  
 }

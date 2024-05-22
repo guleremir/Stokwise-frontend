@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,6 @@ export class AddShelfComponent {
 
   areYouSureQuestion = 'Are you sure you want to add this shelf ?'
 
-  //createShelf
   createForm = this.fb.nonNullable.group({
     capacity: 0,
   });
@@ -54,7 +53,7 @@ export class AddShelfComponent {
 
   clearFieldOnFocus(fieldName: string) {
     const currentValue = this.createForm.get(fieldName)!.value;
-    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+    if (currentValue === 0) {
       this.createForm.get(fieldName)!.setValue('');
     }
   }

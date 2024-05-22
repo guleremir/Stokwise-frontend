@@ -1,5 +1,5 @@
 import { Category } from './../../../shared/dto/category';
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -14,7 +14,6 @@ export class AddCategoryComponent {
 
   areYouSureQuestion = 'Are you sure you want to do this ?'
 
-  //createCategory
   createForm = this.fb.nonNullable.group({
     categoryName: "",
   });
