@@ -16,6 +16,11 @@ td, th {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.shelf-item{
+  cursor: pointer;
+}
+
 .btn-add{
     color: var(--cardbg--color);
     background-color: var(--darkblue-color) ;

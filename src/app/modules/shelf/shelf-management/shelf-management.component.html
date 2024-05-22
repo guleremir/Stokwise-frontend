@@ -41,7 +41,7 @@
             </thead>
             <tbody>
                 @for (shelf of selvesPerPage; track shelf.id; let i = $index) {
-                    <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
+                    <tr class="shelf-item" [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
                         <td>{{  (currentPage - 1) * itemsPerPage + i + 1  }}</td>
                         <td>{{ shelf.capacity }}</td>
                         <td>{{ shelf.productCount }}</td>

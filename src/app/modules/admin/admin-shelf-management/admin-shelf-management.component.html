@@ -37,7 +37,7 @@
             <tbody>
                 @for (shelf of filteredShelves; track shelf.id; let  i = $index) {
 
-                    <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
+                    <tr class="shelf-item" [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
 
                     <td>{{ i + 1 }}</td>
                     <td>{{ shelf.capacity }}</td>
