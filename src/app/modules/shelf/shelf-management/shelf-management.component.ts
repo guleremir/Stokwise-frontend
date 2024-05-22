@@ -15,7 +15,7 @@ import { FormBuilder } from '@angular/forms';
 export class ShelfManagementComponent implements OnInit {
 
   searchForm = this.fb.nonNullable.group({
-    searchText: [''] // Arama metni için değişken eklendi
+    searchText: ['']
   });
 
   itemsPerPage= 8;
@@ -43,7 +43,6 @@ export class ShelfManagementComponent implements OnInit {
     })
   }
 
-  
   loadShelves(){
     this.shelfService.getAllTableShelves().subscribe({
       next: (shelf => {
@@ -58,7 +57,6 @@ export class ShelfManagementComponent implements OnInit {
   filteredShelves: AdminShelf[] = [];
   filterShelf(data = "") {
     this.filteredShelves = this.shelves;
-    // Arama filtresi
     if (data) {
       this.filteredShelves = this.filteredShelves.filter(shelf => {
                 return shelf.productCategory?.toLowerCase().includes(data.toLowerCase())
@@ -78,10 +76,8 @@ export class ShelfManagementComponent implements OnInit {
 
   setSelectedShelf(shelf: AdminShelf) {
     if(shelf === this.selectedShelf){
-      // Seçili raf zaten varsa ve tekrar tıklanırsa, seçili rafı kapat
       this.selectedShelf = null;
     } else {
-      // Seçili rafı değiştir
       this.selectedShelf = shelf;
       this.getSelectedShelfProducts();
     }
@@ -118,7 +114,6 @@ export class ShelfManagementComponent implements OnInit {
     this.selvesPerPage = this.filteredShelves.slice(startIndex, startIndex + this.itemsPerPage);
   }
   
-
   totalPages = 0;
   currentPage = 1;
   onPageChange(pageNo: number) {
@@ -129,34 +124,29 @@ export class ShelfManagementComponent implements OnInit {
     this.updatePageShelves();
   }
 
-
   totalPagesArray(): number[] {
     const numPagesToShow = 5; 
-  const currentPage = this.currentPage;
-  const totalPages = this.totalPages;
+    const currentPage = this.currentPage;
+    const totalPages = this.totalPages;
   
-  let startPage: number;
-  let endPage: number;
+    let startPage: number;
+    let endPage: number;
 
-  if (totalPages <= numPagesToShow) {
-    
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-   
-    if (currentPage <= Math.floor(numPagesToShow / 2)) {
-   
+    if (totalPages <= numPagesToShow) {
       startPage = 1;
-      endPage = numPagesToShow;
-    } else if (currentPage + Math.floor(numPagesToShow / 2) >= totalPages) {
-     
-      startPage = totalPages - numPagesToShow + 1;
       endPage = totalPages;
     } else {
-      startPage = currentPage - Math.floor(numPagesToShow / 2);
-      endPage = currentPage + Math.floor(numPagesToShow / 2);
+      if (currentPage <= Math.floor(numPagesToShow / 2)) {
+        startPage = 1;
+        endPage = numPagesToShow;
+      } else if (currentPage + Math.floor(numPagesToShow / 2) >= totalPages) {
+        startPage = totalPages - numPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = currentPage - Math.floor(numPagesToShow / 2);
+        endPage = currentPage + Math.floor(numPagesToShow / 2);
+      }
     }
-  }
   return Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index);
   }
 }

@@ -6,28 +6,6 @@
                     <div class="dropdown">
                         Products on Shelves: 
                     </div>
-                    <!-- <div>
-                        <button class="form-select mt-2 mb-4" type="button" id="fruitSelectButton"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <div>
-                                @if (selectedProduct == null) {
-                                    Select Product
-                                } @else {
-                                    <span>{{selectedProduct.name}}</span>
-                                }
-                            </div>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="productSelectButton" id="products">
-                            @for (product of products; track product.id) {
-                                <li>
-                                    <a class="dropdown-item" (click)="productSelect(product)">
-                                        <span>{{product.name}}</span>
-                                        <span>{{product.unitInStock}}</span>
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    </div> -->
                 </div>
                 <div class="card flex justify-content-center mb-2" style="width: 405px; height: 50px">
                     <p-dropdown 
@@ -78,6 +56,5 @@
             <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M34.5 239L228.9 44.7c9.4-9.4 24.6-9.4 33.9 0l22.7 22.7c9.4 9.4 9.4 24.5 0 33.9L131.5 256l154 154.8c9.3 9.4 9.3 24.5 0 33.9l-22.7 22.7c-9.4 9.4-24.6 9.4-33.9 0L34.5 273c-9.4-9.4-9.4-24.6 0-33.9z"/></svg></span></button>
         </div>
-  </form>
-  <app-are-you-sure (areYouSureEvent)="dispatchProduct()" [areYouSureQuestion]="areYouSureQuestion" >
-</app-are-you-sure>
+</form>
+<app-are-you-sure (areYouSureEvent)="dispatchProduct()" [areYouSureQuestion]="areYouSureQuestion"></app-are-you-sure>

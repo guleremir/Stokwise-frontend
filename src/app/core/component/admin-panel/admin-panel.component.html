@@ -4,7 +4,6 @@
             <img src="/assets/other-img/Asset-1.svg" width="100px" height="100px" alt="IMG">
         </div>
         <div class="side-menu" id="mySideMenu" [ngClass]="{responsive : isMenuOpen}"> 
-            <!-- <i class="fa-solid fa-warehouse btn"></i> -->
             <ul>
                 <li>
                    <a routerLink="/adminPanel/products" [class.active] = "isCurrentRoute('/adminPanel/products')">
@@ -70,10 +69,8 @@
                          </span>
                      </a>
                  </li>
-
             </ul>
         </div>
-       
     </div>
 </div>
 
@@ -97,9 +94,6 @@
                        
                     </div>
                 </div>
-                
-                
-
                 <div class="card">
                     <div class="card-head">
                         <h2>{{ getTotalShelfCapacity() }}</h2>
@@ -112,7 +106,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card">
                     <div class="card-head">
                         <h2> %{{ getOccupancyRate() }}</h2>
@@ -127,7 +120,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card">
                     <div class="card-head">
                         <h2>{{ getTotalUsers() }}</h2>

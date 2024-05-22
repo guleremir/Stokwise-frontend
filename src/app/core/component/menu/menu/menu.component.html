@@ -34,8 +34,7 @@
             href="#contact"
             class="nav-link"
             (click)="navigate($event, 'contact')"
-            >Contact</a
-          >
+            >Contact</a>
           <div class="circle"></div>
         </li>
       </ul>
@@ -46,7 +45,6 @@
       </button>
     </div>
     <div class="nav-menu-btn" (click)="toggleMenu()">
-      <!-- <i class="bi bi-menu-up"></i> -->
       <i class="fa-solid fa-warehouse"></i>
       <button class="btn" (click)="logInRouter()">
         <span> <i class="bi bi-box-arrow-in-right" style="font-weight: 900;"></i></span>
@@ -128,7 +126,6 @@
     </section>
 
     <!-- -------------- TEAM BOX ---------------- -->
-
     <section class="section" id="team">
       <div class="top-header">
         <h1>Our Team</h1>
@@ -211,7 +208,6 @@
     </section>
 
     <!-- -------------- CONTACT BOX ---------------- -->
-
     <section class="section" id="contact">
       <div class="top-header">
         <h1>Get in touch</h1>
@@ -225,16 +221,13 @@
             <p><i class="bi bi-telephone-inbound-fill"></i> +91 70822 00001</p>
           </div>
         </div>
-
         <div class="col">
-         
           <div class="form-control" [formGroup]="messageForm">
             <div class="form-inputs">
               <input type="text" class="input-field" placeholder="Name" formControlName="name"/>
               <input type="text" class="input-field" placeholder="Email" formControlName="email"/>
             </div>
             <div class="text-area">
-             
               <textarea placeholder="Type Your Message..." formControlName="message"></textarea>
             </div>
             <div class="form-button">
@@ -252,7 +245,6 @@
             </div>
           </div>
         </div>
-        
       </div>
     </section>
   </main>
@@ -278,7 +270,6 @@
         </li>
       </ul>
     </div>
-
     <div class="bottom-footer">
       <p>
         Copyright &copy;

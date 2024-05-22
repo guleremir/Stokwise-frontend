@@ -173,8 +173,6 @@ nav {
     justify-content: center; 
   }
   
-
-
 /* ----- MAIN BOX ----- */
 .section {
   padding-block: 5em;
@@ -278,7 +276,6 @@ nav {
     border-radius: 20px;
 }
 
-
 /* ----- CONTACT BOX ----- */
 .contact-info {
   position: relative;
@@ -330,7 +327,6 @@ textarea {
 .form-button > .btn:hover {
     background: var(--lightblue-color) ;
 }
-
 
 /* ----- FOOTER BOX ----- */
 footer {
@@ -461,7 +457,7 @@ footer {
   .nav-menu {
     position: fixed;
     top: 65px;
-    right: -200px; /* Başlangıçta ekran dışında */
+    right: -200px;
     justify-content: center;
     align-items: center;
     width: 200px;
@@ -477,8 +473,8 @@ footer {
 
   .nav-menu-btn {
     display: flex;
-    position: absolute; /* Butonu konumlandırmak için */
-    right: 20px; /* Sağ kenardan 20px uzaklıkta */
+    position: absolute;
+    right: 20px;
     top: 10px; 
     align-items: center;
     justify-content: center;

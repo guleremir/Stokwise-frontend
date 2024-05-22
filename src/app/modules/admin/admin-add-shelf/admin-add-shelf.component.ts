@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -30,8 +29,7 @@ export class AdminAddShelfComponent {
     private route: ActivatedRoute
   ) { }
 
-  submit() {
-    //let capacity = this.createForm.get('capacity');   
+  submit() { 
     const capacity = this.createForm.get('capacity')!.value;
     this.shelfService.addShelf(new Shelf(this.shelfID, this.productCount, capacity, this.productCategory,this.productName)).subscribe({
       next: (result) => {
@@ -58,12 +56,11 @@ export class AdminAddShelfComponent {
 
   clearFieldOnFocus(fieldName: string) {
     const currentValue = this.createForm.get(fieldName)!.value;
-    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+    if (currentValue === 0) {
       this.createForm.get(fieldName)!.setValue('');
     }
   }
-
-  }
+}
 
 
 

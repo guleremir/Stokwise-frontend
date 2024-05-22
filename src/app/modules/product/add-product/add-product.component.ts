@@ -18,7 +18,6 @@ export class AddProductComponent implements OnInit{
 
   areYouSureQuestion = 'Are you sure you want to add this product ?'
 
-  //createProduct
   createForm = this.fb.nonNullable.group({
     productName: "",
     productPrice: 0,
@@ -38,7 +37,6 @@ export class AddProductComponent implements OnInit{
     private toastr: ToastrService,
     private fb: FormBuilder
   ) {}
-
 
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe({
@@ -101,13 +99,11 @@ export class AddProductComponent implements OnInit{
   }
 
   bothFieldsCannotBeEmpty(): boolean {
-    // İki alanın da dolu olup olmadığını kontrol etmek için productNameCannotBeEmpty ve productDescriptionCannotBeEmpty fonksiyonlarını birleştirin
     return this.productNameCannotBeEmpty() || this.productPriceCannotBeEmpty() || this.productQuantityCannotBeEmpty() || this.productMinimumCountCannotBeEmpty() || this.productDescriptionCannotBeEmpty(); 
-    // Eğer herhangi biri true döndürürse, en az bir alan boş demektir
   }
   clearFieldOnFocus(fieldName: string) {
     const currentValue = this.createForm.get(fieldName)!.value;
-    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+    if (currentValue === 0) {
       this.createForm.get(fieldName)!.setValue('');
     }
   }
