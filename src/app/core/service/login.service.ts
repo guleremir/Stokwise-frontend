@@ -25,8 +25,8 @@ export class LoginService {
   scheduleLogout() {
     setTimeout(() => {
         this.logout();
-    }, 24 * 60 * 60 * 1000); // 1 gün sonra (24 saat * 60 dakika * 60 saniye * 1000 milisaniye)
-}
+    }, 24 * 60 * 60 * 1000);
+  }
 
   login(email: string, password: string): Observable<any> {
     this.scheduleLogout();
@@ -36,7 +36,6 @@ export class LoginService {
       })
     );
   }
-
 
   parseLoginResponse(data: any, email: string, password: string) {
     this.loggedIn = true;

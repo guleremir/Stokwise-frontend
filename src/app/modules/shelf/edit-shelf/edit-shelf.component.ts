@@ -4,7 +4,6 @@ import { ShelfService } from '../../../shared/service/shelf.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Shelf } from '../../../shared/dto/shelf';
-import { AdminShelf } from '../../../shared/dto/admin-shelf';
 
 @Component({
   selector: 'app-edit-shelf',
@@ -67,6 +66,7 @@ export class EditShelfComponent implements OnInit {
   cancel() {
     this.router.navigate(['/homepage/shelves']);
   }
+  
   editShelf(){
     this.submit();
   }
@@ -74,5 +74,4 @@ export class EditShelfComponent implements OnInit {
   deleteShelf(){
     this.submit();
   }
-  
 }

@@ -1,7 +1,6 @@
 import { PasswordModule } from 'primeng/password';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminProductManagementComponent } from './admin-product-management/admin-product-management.component';
 import { SharedModule } from '../../shared/shared.module';
@@ -23,7 +22,6 @@ import { AdminCategoryManagementComponent } from './admin-category-management/ad
 import { AdminAddCategoryComponent } from './admin-add-category/admin-add-category.component';
 import { AdminEditCategoryComponent } from './admin-edit-category/admin-edit-category.component';
 
-
 @NgModule({
   declarations: [
     AdminProductManagementComponent,
@@ -43,7 +41,6 @@ import { AdminEditCategoryComponent } from './admin-edit-category/admin-edit-cat
     AdminCategoryManagementComponent,
     AdminAddCategoryComponent,
     AdminEditCategoryComponent,
-    
   ],
   imports: [
     CommonModule,

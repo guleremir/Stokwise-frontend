@@ -2,13 +2,12 @@
     <thead>
         <tr>
           <th> Index Number </th>
-          <!-- (click)="sort('productId')" -->
           <th> Product Name </th>
-          <th><span class="las la-sort"></span> Price </th>
-          <th><span class="las la-sort"></span> Quantity </th>
-          <th><span class="las la-sort"></span> Units In Stock </th>
-          <th><span class="las la-sort"></span> Description </th>
-          <th><span class="las la-sort"></span> Actions </th>
+          <th> Price </th>
+          <th> Quantity </th>
+          <th> Units In Stock </th>
+          <th> Description </th>
+          <th> Actions </th>
         </tr>
       </thead>
     <tbody>
@@ -76,5 +75,4 @@
     }
     </tbody>
 </table>
-<app-are-you-sure (areYouSureEvent)="deleteProduct()" [areYouSureQuestion]="areYouSureQuestion" >
-</app-are-you-sure>
+<app-are-you-sure (areYouSureEvent)="deleteProduct()" [areYouSureQuestion]="areYouSureQuestion"></app-are-you-sure>

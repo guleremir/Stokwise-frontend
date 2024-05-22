@@ -1,6 +1,4 @@
 import { UserRole } from "./userRole";
-
-
 export class User {
     constructor(
         public id:string = "",

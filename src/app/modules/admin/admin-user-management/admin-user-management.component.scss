@@ -23,13 +23,10 @@
     align-items: center;
 }
 
-
 .browse {
     display: flex;
     align-items: center;
 }
-
-
 
 input,
 button,
@@ -50,12 +47,9 @@ select {
     color: #666;
 }
 
-
 .browse input {
     width: 175px;
 }
-
-
 
 .search-container .bi{
     position: relative;
@@ -63,9 +57,6 @@ select {
     color: var(--search-color);
 }
 
-
-
-/* Tablo stilleri */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -78,27 +69,23 @@ th {
     border: 1px solid var(--border-color);
     text-align: left;
     max-width: 10px;
-    /* Maksimum genişlik ayarı */
     height: 30px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-
 .search-container {
     position: relative;
 }
 
-
 .search-icon {
     position: absolute;
     top: 50%;
-    left: 150px; /* İstenilen yerde ayarlayabilirsiniz */
+    left: 150px;
     transform: translateY(-50%);
     opacity: 0.7;
 }
-
 
 .left-button {
     font-size: 14px;
@@ -113,7 +100,6 @@ th {
     cursor: pointer;
     margin-right: 10px;
 }
-
 
 .gradient {
     position: absolute;

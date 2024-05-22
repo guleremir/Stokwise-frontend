@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { Role } from '../dto/role';
 
 @Injectable({
@@ -13,10 +12,7 @@ export class RoleService {
     private httpClient: HttpClient
   ) { }
 
-
   getAllRoles(): Observable<Role[]>{
     return this.httpClient.get<Role[]>('/role/getAll');
   }
-
-
 }

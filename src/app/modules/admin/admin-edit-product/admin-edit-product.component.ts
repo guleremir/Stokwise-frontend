@@ -100,13 +100,11 @@ export class AdminEditProductComponent implements OnInit{
   }
 
   bothFieldsCannotBeEmpty(): boolean {
-    // İki alanın da dolu olup olmadığını kontrol etmek için productNameCannotBeEmpty ve productDescriptionCannotBeEmpty fonksiyonlarını birleştirin
     return this.productNameCannotBeEmpty() || this.productPriceCannotBeEmpty() || this.productQuantityCannotBeEmpty() || this.productMinimumCountCannotBeEmpty() || this.productDescriptionCannotBeEmpty() || this.hasQuantityError(); 
-    // Eğer herhangi biri true döndürürse, en az bir alan boş demektir
   }
   clearFieldOnFocus(fieldName: string) {
     const currentValue = this.createForm.get(fieldName)!.value;
-    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+    if (currentValue === 0) {
       this.createForm.get(fieldName)!.setValue('');
     }
   }
