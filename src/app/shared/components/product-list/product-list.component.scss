@@ -1,4 +1,3 @@
-/* Tablo stilleri */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -18,12 +17,10 @@ td, th {
     white-space: nowrap;
 }
 
-/* İstemci bilgisi stilleri */
 .client {
     display: flex;
     align-items: center;
 }
-
 
 .client-info h4 {
     margin: 0;
@@ -33,8 +30,6 @@ td, th {
     color: #666;
 }
 
-
-/* Eylemler stilleri */
 .actions {
     display: flex;
 }
@@ -43,19 +38,6 @@ td, th {
     margin-right: 5px;
     cursor: pointer;
 }
-
-// .buttons{
-//     display: flex;
-//     justify-content: space-evenly;
-// }
-
-// .buttons .btn-update .far{
-//     // background-color:  rgba(182, 13, 13, 0.781);
-//     font-size: 20px;
-// }
-// .buttons .btn-delete{
-//     background-color: #9DC7B9;
-// }
 
 .buttons {
     display: flex;

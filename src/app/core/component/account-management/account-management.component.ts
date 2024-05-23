@@ -1,11 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Role } from '../../../shared/dto/role';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../shared/service/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
 import { RoleService } from '../../../shared/service/role.service';
-import { User } from '../../../shared/dto/user';
 import { LoginService } from '../../service/login.service';
 import { AccountService } from '../../service/account.service';
 
@@ -19,17 +17,13 @@ export class AccountManagementComponent implements  OnInit {
     email: "",
     oldPassword: "",
     newPassword: "",
-    checkPassword: "",
-    // roles: {value:this.loginService.roles}
-    
+    checkPassword: "",    
   })
 
   areYouSureQuestion = 'Are you sure you want to edit this user ?'
 
   userID = "";
-  // roles: Role[]= []; 
   selectedRoles: string [] = [];
-
 
   constructor(
     private userService: UserService,
@@ -40,15 +34,10 @@ export class AccountManagementComponent implements  OnInit {
     private roleService: RoleService,
     private loginService: LoginService,
     private accountService: AccountService   
-      
-    
   ) { }
 
   ngOnInit(): void {
-       
-        
     this.loadCurrentUser();
-
     if(this.userService.editingUser != null){
       this.userID = this.userService.editingUser.id;
       this.updateForm.patchValue({
@@ -87,6 +76,7 @@ export class AccountManagementComponent implements  OnInit {
   pswCannotBeEmpty():boolean{
     return this.updateForm.value.oldPassword! === '' ;
   }
+  
   confirmPswCannotBeEmpty():boolean{
     return this.updateForm.value.checkPassword! === '' ;
   }

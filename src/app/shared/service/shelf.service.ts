@@ -37,10 +37,6 @@ export class ShelfService {
   getAllProductsFromShelf(id: string): Observable<AdminProduct[]> {
     return this.httpClient.post<AdminProduct[]>('/getAllProductsFromShelf', { id });
   }
-
-  /* getAllTableShelves():Observable<AdminShelf[]> {
-    return this.httpClient.get<AdminShelf[]>('/getAllTableShelves');
-  } */
   
   getAllTableShelves(): Observable<AdminShelf[]> {
     return this.httpClient.get<AdminShelf[]>('/getAllTableShelves').pipe(

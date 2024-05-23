@@ -78,7 +78,7 @@ export class EntryProductComponent {
 
   clearFieldOnFocus(fieldName: string) {
     const currentValue = this.entryForm.get(fieldName)!.value;
-    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+    if (currentValue === 0) {
       this.entryForm.get(fieldName)!.setValue('');
     }
   }

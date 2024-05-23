@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdminProductManagementComponent {
   products: Product[] = [];
-  searchText: string = ''; // Arama metni için değişken eklendi
+  searchText: string = '';
   uuidToSequenceMap: { [key: string]: number} = {};
 
   constructor(
@@ -25,10 +25,8 @@ export class AdminProductManagementComponent {
     this.productService.getAllProduct().subscribe(
       (data: Product[]) => {
         this.products = data;
-        // UUID'leri sıralı numaralarla eşleştirme
-        this.uuidToSequenceMap = {}; // Önce objeyi sıfırlayın
+        this.uuidToSequenceMap = {};
         this.products.forEach((product, index) => {
-          // Her ürünün id'sini sıralı numaralarla eşleştir
           this.uuidToSequenceMap[product.id] = index + 1;
         });
       },
@@ -41,17 +39,13 @@ export class AdminProductManagementComponent {
   ngOnInit(): void {
     this.loadProducts();
   }
-  // Sıralama sütunu ve sıralama tipi
-  sortBy: string = 'productId'; // Varsayılan olarak productName'e göre sırala
-  sortDirection: 'asc' | 'desc' = 'asc'; // Varsayılan olarak artan sıralama
+  sortBy: string = 'productId';
+  sortDirection: 'asc' | 'desc' = 'asc';
 
-  // Sıralama fonksiyonu
   sort(column: string) {
     if (this.sortBy === column) {
-      // Sıralama sütunu aynıysa sıralama tipini değiştir
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
-      // Sıralama sütunu değiştiyse varsayılan olarak artan sıralamaya dön
       this.sortBy = column;
       this.sortDirection = 'asc';
     }
@@ -81,10 +75,8 @@ export class AdminProductManagementComponent {
   reportProduct(){
     this.productService.reportProduct();
   }
-  // Ürünleri filtrelemek için fonksiyon eklendi
   filterProducts() {
     let filteredProducts = this.products;
-    // Arama filtresi
     if (this.searchText) {
       filteredProducts = filteredProducts.filter(product =>
         product.name.toLowerCase().includes(this.searchText.toLowerCase())

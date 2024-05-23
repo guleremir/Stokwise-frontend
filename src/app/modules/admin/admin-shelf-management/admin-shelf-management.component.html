@@ -1,18 +1,14 @@
 <div class="shelf-table">
     <div class="record-header">
         <div class="browse">
-
-            
             <form [formGroup]="searchForm" >
             <div class="search-container">
-               
                 <input type="text" placeholder="Search Category" class="record-search" formControlName="searchText"/> 
                 <span>
                     <i class="bi bi-search"></i>
-                  </span>
+                </span>
             </div>
             </form>
-
             <button (click)="addShelf()" class="left-button">
                 <span class="transition"></span>
                 <span class="gradient"></span>
@@ -37,15 +33,13 @@
             <tbody>
                 @for (shelf of filteredShelves; track shelf.id; let  i = $index) {
 
-                    <tr [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
-
+                <tr class="shelf-item" [class.selectedShelf]="selectedShelf == shelf" (click)="setSelectedShelf(shelf)">
                     <td>{{ i + 1 }}</td>
                     <td>{{ shelf.capacity }}</td>
                     <td>{{ shelf.productCount }}</td>
                     <td>{{ shelf.productCategory }}</td>
-                 <td>
+                <td>
                     <div class="buttons">
-                        <!-- <button type="button" (click)="editProduct()" class="btn btn-update me-2" ><i class="far fa-edit"></i></button> -->
                         <div>
                             <button type="button" class="edit-button" (click)="editShelf(shelf)">
                                 <svg class="edit-svgIcon" viewBox="0 0 512 512">
@@ -58,10 +52,8 @@
                                 <svg viewBox="0 0 448 512" class="svgIcon"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
                             </button>
                           </div>
-                        <!-- <button type="button" (click)="deleteProduct(product.id)"  class="btn btn-delete" data-bs-toggle="modal" data-bs-target="#areyousure">Delete</button> -->
                     </div>
-                </td>
-                    
+                </td>  
                 </tr>
                 @if (selectedShelf?.id == shelf.id) {
                 <tr>
@@ -85,15 +77,10 @@
                     </td>
                 </tr>
                 }
-
                 }
-
             </tbody>
         </table>
         }
     </div>
 </div>
-
-<app-are-you-sure (areYouSureEvent)="deleteShelf()" [areYouSureQuestion]="areYouSureQuestion" >
-</app-are-you-sure>
-
+<app-are-you-sure (areYouSureEvent)="deleteShelf()" [areYouSureQuestion]="areYouSureQuestion"></app-are-you-sure>

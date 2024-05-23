@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../dto/product';
-import { Category } from '../../dto/category';
 
 @Component({
   selector: 'app-are-you-sure',
@@ -15,13 +13,10 @@ export class AreYouSureComponent {
   @Input() areYouSureQuestion = '';
   @Input() id: string | undefined;
 
-
   buttonYesClick(id: string) {
-     
     this.areYouSureEvent.emit(id);
   }
   buttonNoClick() {
     this.areYouSureEvent.emit('no');
   }
-
 }

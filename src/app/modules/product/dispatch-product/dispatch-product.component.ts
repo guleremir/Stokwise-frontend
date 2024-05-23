@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Product } from '../../../shared/dto/product';
-
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -40,7 +39,7 @@ export class DispatchProductComponent {
   this.selectedProduct = product;
   }
 
-  dispatchProductFromShelf() { //deneme
+  dispatchProductFromShelf() {
     if(this.selectedProduct){
       let count = this.entryForm.get('count')!.value;
       this.productService.dispatchProduct(this.selectedProduct.id, count).subscribe({
@@ -77,7 +76,7 @@ export class DispatchProductComponent {
   }
   clearFieldOnFocus(fieldName: string) {
     const currentValue = this.entryForm.get(fieldName)!.value;
-    if (currentValue === 0) { // Sadece değer 0 ise boşalt
+    if (currentValue === 0) {
      this.entryForm.get(fieldName)!.setValue('');
     }
   }

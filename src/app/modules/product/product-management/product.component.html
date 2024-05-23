@@ -8,11 +8,6 @@
       </div>
       <div>
         <form [formGroup]="searchForm">
-          <!-- <div class="search-container">
-            <input type="text" placeholder="Search Category" class="record-search" formControlName="searchText"/> 
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          </div> -->
-
           <div class="group">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
               <g>
@@ -52,8 +47,6 @@
     [areYouSureQuestion]="areYouSureQuestion"
   >
   </app-are-you-sure>
-
-  <!-- Report Modal -->
   <div class="modal fade" id="report" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -66,7 +59,6 @@
               ></path>
             </svg>
           </button>
-          <!-- <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1> -->
         </div>
         <div class="modal-body">
           Which reporting type do you want to use?
@@ -78,11 +70,7 @@
       </div>
     </div>
   </div>
- 
 </div>
-
-
-
 <div class="pagination-container">
   <ul class="pagination">
     <li [ngClass]="{ disabled: currentPage === 1 }">

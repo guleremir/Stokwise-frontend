@@ -14,7 +14,6 @@ import { PaginationPipe } from './pipe/pagination.pipe';
     ProductCardComponent,
     ProductListComponent,
     UserListComponent,
-   
     AreYouSureComponent,
     PaginationPipe,
   ],

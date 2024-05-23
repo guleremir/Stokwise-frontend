@@ -29,7 +29,6 @@ export const urlInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error) => {
       if (error instanceof HttpErrorResponse && error.url != appConfig.serverURL+ '/login'
            && error.url != appConfig.serverURL+ '/user/signup' && error.status == 403) {
-        // login/signup işlemi yapılmıyor ve token hatası döndü ise tekrar giriş yapmayı dene
         return loginService.relogin().pipe(
           switchMap((token: any) => {
             toastrService.info("Re-login successfully done !");

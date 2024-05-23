@@ -51,5 +51,4 @@ export class AdminAddCategoryComponent {
   confirmCategoryCannotBeEmpty():boolean{
     return this.createForm.value.categoryName! === '' ;
   }
-
 }

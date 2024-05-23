@@ -16,9 +16,7 @@ export class ProductListComponent {
   selectedProduct: Product | null = null;
   areYouSureQuestion = 'Are you sure you want to delete this product ?'
 
-  constructor(
-    //private toastr: ToastrService
-  ) {}
+  constructor() {}
 
   loadProduct(){
     this.loadProductEvent.emit();

@@ -1,9 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, Renderer2} from '@angular/core';
 import Typed from 'typed.js';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { LoginService } from '../../../service/login.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import ScrollReveal from 'scrollreveal';
 
 @Component({
@@ -32,10 +30,8 @@ export class MenuComponent implements OnInit {
   }
   
   onSubmit() {
-    // Form gönderildiğinde çalışacak metod
     if (this.messageForm.valid) {
       console.log('Form Data:', this.messageForm.value);
-      // Form verilerini burada işleyebilirsiniz
     } else {
       console.log('Form is not valid !');
     }
@@ -60,11 +56,9 @@ export class MenuComponent implements OnInit {
       reset: true
     });
 
- 
     sr.reveal('.featured-name', { delay: 100 });
     sr.reveal('.featured-text-info', { delay: 200 });
     sr.reveal('.featured-text-btn', { delay: 200 });
-   
     sr.reveal('.featured-image', { delay: 300 });
   }
 
@@ -97,7 +91,7 @@ export class MenuComponent implements OnInit {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
-      this.isMenuOpen = false;  // Menüyü kapat
+      this.isMenuOpen = false;
     }
   }
 }

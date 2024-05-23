@@ -19,7 +19,7 @@ export class UserService {
   }
 
   addUser(user: User): Observable<SuccessResponse>{
-    return this.httpClient.post<SuccessResponse>('/admin/addUser',user );
+    return this.httpClient.post<SuccessResponse>('/admin/user/add',user );
   }
 
   updateUser(user: User): Observable<SuccessResponse>{
@@ -33,5 +33,4 @@ export class UserService {
     const userEmail = localStorage.getItem('email') || '';
     return userEmail;
   }
-
 }

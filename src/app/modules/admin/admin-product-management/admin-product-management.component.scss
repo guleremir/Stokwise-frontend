@@ -81,7 +81,6 @@ select {
     align-items: center;
 }
 
-/* Tablo stilleri */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -94,7 +93,6 @@ th {
     border: 1px solid var(--border-color);
     text-align: left;
     max-width: 10px;
-    /* Maksimum genişlik ayarı */
     height: 30px;
     overflow: hidden;
     text-overflow: ellipsis;

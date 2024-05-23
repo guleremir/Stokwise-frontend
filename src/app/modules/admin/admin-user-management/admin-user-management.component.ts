@@ -11,7 +11,7 @@ import { UserService } from '../../../shared/service/user.service';
 })
 export class AdminUserManagementComponent {
   users: User[] = [];
-  searchText: string = ''; // Arama metni için değişken eklendi
+  searchText: string = '';
   selectedUser: User | null = null;
 
   constructor(
@@ -19,9 +19,8 @@ export class AdminUserManagementComponent {
     private route: ActivatedRoute,
     private userService: UserService,
     private toastr: ToastrService,
-  ) { 
-  }
-  //Component çağrıldığında çalışan method.
+  ) {}
+  
   ngOnInit(): void {
     this.loadUsers();
   }
@@ -66,7 +65,6 @@ export class AdminUserManagementComponent {
       }
     });
   }
-  // Ürünleri filtrelemek için fonksiyon eklendi
   filterUsers() {
     let filteredUsers = this.users;
     if(this.searchText){

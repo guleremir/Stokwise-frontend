@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../shared/service/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
-import { LoggerService } from '../../../shared/service/logger.service';
 import { Category } from '../../../shared/dto/category';
 
 @Component({
@@ -36,7 +35,7 @@ export class ProductComponent {
     private toastr: ToastrService,
     private fb: FormBuilder,
   ) {}
-  //Component çağrıldığında çalışan method.
+  
   ngOnInit(): void {
     this.getAllProduct();
     this.searchForm.get("searchText")?.valueChanges.subscribe({
@@ -44,7 +43,6 @@ export class ProductComponent {
         this.filterProduct(data);
       }
     });
-    
   }
   getAllProduct(){ 
     this.productService.getAllProduct().subscribe({
@@ -53,18 +51,15 @@ export class ProductComponent {
         this.totalPages= Math.ceil(products.length/this.itemsPerPage)
         this.updatePageProducts();
         this.filterProduct();
-
       })
     });
   }
-
 
   addProduct() {
     this.router.navigate(['addProduct'], { relativeTo: this.route });
   }
   editProduct(product: Product) {
     this.productService.editingProduct = product;
-    console.log(product);
     this.router.navigate(['editProduct'], { relativeTo: this.route });
   }
 
@@ -84,18 +79,6 @@ export class ProductComponent {
   selectedProduct(productId: string){
     this.id = productId;
   }
-
-  // filterProduct(data="") {
-  //   this.filteredProducts= this.allProducts ;
-  //   // Arama filtresi
-  //   if (data) {
-  //    this.filteredProducts = this.filteredProducts.filter(product => {
-  //     this.logger.log(product)
-  //     return product.name?.toLowerCase().includes(data.toLowerCase())
-  //    }
-  //    );
-  //   }
-  // }
   
   reportMinimumCount(){
     this.productService.reportWarningCountProduct();
@@ -128,7 +111,6 @@ export class ProductComponent {
     this.updatePageProducts();
   }
 
-  
   updatePageProducts(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     this.productsPerPage = this.filteredProducts.slice(startIndex, startIndex + this.itemsPerPage);
@@ -136,32 +118,28 @@ export class ProductComponent {
 
   totalPagesArray(): number[] {
     const numPagesToShow = 5; 
-  const currentPage = this.currentPage;
-  const totalPages = this.totalPages;
+    const currentPage = this.currentPage;
+    const totalPages = this.totalPages;
   
-  let startPage: number;
-  let endPage: number;
+    let startPage: number;
+    let endPage: number;
 
-  if (totalPages <= numPagesToShow) {
-    
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-   
-    if (currentPage <= Math.floor(numPagesToShow / 2)) {
-   
+    if (totalPages <= numPagesToShow) {
       startPage = 1;
-      endPage = numPagesToShow;
-    } else if (currentPage + Math.floor(numPagesToShow / 2) >= totalPages) {
-     
-      startPage = totalPages - numPagesToShow + 1;
       endPage = totalPages;
     } else {
-      startPage = currentPage - Math.floor(numPagesToShow / 2);
-      endPage = currentPage + Math.floor(numPagesToShow / 2);
+      if (currentPage <= Math.floor(numPagesToShow / 2)) {
+        startPage = 1;
+        endPage = numPagesToShow;
+      } else if (currentPage + Math.floor(numPagesToShow / 2) >= totalPages) {
+        startPage = totalPages - numPagesToShow + 1;
+        endPage = totalPages;
+      } else {
+        startPage = currentPage - Math.floor(numPagesToShow / 2);
+        endPage = currentPage + Math.floor(numPagesToShow / 2);
+      }
     }
-  }
-  return Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index);
+    return Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index);
   }
 }
 
